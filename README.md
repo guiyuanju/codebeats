@@ -1,6 +1,6 @@
 # Piano Keyboard Sound Simulator
 
-A Rust-based piano simulator that maps your keyboard keys to musical notes, creating a harmonious typing experience optimized for programming workflows.
+A minimal Rust-based piano simulator that maps your keyboard keys to musical notes, creating a harmonious typing experience optimized for programming workflows.
 
 ## Features
 
@@ -8,7 +8,7 @@ A Rust-based piano simulator that maps your keyboard keys to musical notes, crea
 - **Programming-Optimized**: Common programming keys are mapped to pleasant pentatonic scales
 - **Volume-Aware**: Key frequency determines volume (common keys are quieter)
 - **Cross-Platform Audio**: Uses `cpal` for low-latency audio output
-- **Simple Testing Framework**: Built-in tests for audio functionality
+- **Ultra-Minimal**: Pure core functionality, no complex features
 
 ## Quick Start
 
@@ -28,28 +28,11 @@ cargo build --release
 
 ### Usage
 
-#### Interactive Mode (Real-time keyboard piano)
 ```bash
 cargo run
 ```
-This starts the global keyboard listener. Every key you press will play a musical note.
 
-#### Testing Mode
-```bash
-# Run all tests
-cargo run test
-
-# Test specific functionality
-cargo run scale          # Play C major scale
-cargo run chords         # Play chord progression
-cargo run arpeggio       # Play arpeggio pattern
-cargo run octaves        # Test different octaves
-cargo run keyboard       # Test keyboard mapping
-
-# Play specific notes/chords
-cargo run note C4 1000                    # Play C4 for 1 second
-cargo run chord C4,E4,G4 800             # Play C major chord for 800ms
-```
+This starts the global keyboard listener. Every key you press will play a musical note in real-time.
 
 ## Keyboard Mapping
 
@@ -90,33 +73,6 @@ The keyboard is mapped to create pleasant harmonies during programming:
 - `cpal`: Cross-platform audio library
 - `device_query`: Global keyboard input detection
 
-## Testing Framework
-
-The built-in testing framework provides:
-
-### Available Tests
-- **Scale Test**: Plays C major scale to verify note accuracy
-- **Chord Test**: Tests polyphonic capabilities with basic chord progressions
-- **Arpeggio Test**: Tests rapid note transitions
-- **Octave Test**: Verifies frequency calculation across octaves
-- **Keyboard Test**: Validates key-to-note mapping
-
-### Custom Tests
-```bash
-# Play any note with custom duration
-cargo run note <note> [duration_ms]
-# Examples:
-cargo run note C4 500
-cargo run note F#5 1000
-cargo run note Bb3 800
-
-# Play any chord with custom duration  
-cargo run chord <note1,note2,note3> [duration_ms]
-# Examples:
-cargo run chord C4,E4,G4 1000
-cargo run chord F4,A4,C5,E5 1500
-```
-
 ## macOS Setup
 
 For global keyboard detection on macOS:
@@ -132,7 +88,7 @@ This simulator is designed for:
 - **Coding Ambiance**: Create pleasant background tones while programming
 - **Non-Disruptive**: Common keys are quieter to maintain focus
 - **Musically Harmonic**: Uses music theory to ensure pleasant combinations
-- **Minimal Complexity**: Simple testing interface replaces complex DSL
+- **Ultra-Minimal**: Pure core functionality without any complexity
 - **Real-time Performance**: Low latency for responsive audio feedback
 
 ## Project Structure
@@ -140,19 +96,28 @@ This simulator is designed for:
 ```
 sound/
 ├── src/
-│   ├── main.rs         # Main application with audio engine and tests
+│   ├── main.rs         # Complete application (< 300 lines)
 │   └── test_keys.rs    # Utility for testing key detection
 ├── Cargo.toml          # Dependencies
 └── README.md           # This file
 ```
 
+The entire core functionality is contained in a single, focused file with no external complexity.
+
+## Usage Tips
+
+- **Volume Control**: Use your system volume to adjust overall loudness
+- **Key Combinations**: Hold multiple keys for chords
+- **Programming Flow**: Let the music enhance your coding rhythm
+- **Focus Mode**: Common keys are intentionally quiet to not break concentration
+
 ## Contributing
 
-The codebase is designed to be simple and focused:
-- Core audio functionality in `main.rs`
-- Minimal testing framework for validation
-- No complex DSL or scripting - just direct function calls
-- Easy to extend with new test cases or keyboard mappings
+The codebase is intentionally minimal:
+- All functionality in `main.rs` 
+- No testing framework or complex features
+- Easy to understand and modify
+- Direct mapping functions for easy customization
 
 ## License
 
