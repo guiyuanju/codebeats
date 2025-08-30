@@ -2,13 +2,30 @@
 name = "sound"
 version = "0.1.0"
 edition = "2021"
-description = "Ultra-minimal Piano Keyboard Sound Simulator - Maps keyboard keys to musical notes in real-time"
-authors = ["Your Name <your.email@example.com>"]
+description = "Piano Keyboard Sound Simulator - Real-time audio synthesis with multiple waveforms and ADSR envelopes"
+authors = ["Piano Simulator Team"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
-repository = "https://github.com/yourusername/piano-keyboard-sound-simulator"
-keywords = ["audio", "piano", "keyboard", "music", "minimal"]
-categories = ["multimedia::audio"]
+repository = "https://github.com/piano-simulator/piano-keyboard-sound-simulator"
+keywords = [
+    "audio",
+    "piano",
+    "keyboard",
+    "music",
+    "synthesis",
+    "waveform",
+    "adsr",
+]
+categories = ["multimedia::audio", "development-tools"]
+documentation = "https://docs.rs/sound"
+
+[lib]
+name = "sound"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sound"
+path = "src/main.rs"
 
 [dependencies]
 cpal = "0.15"
