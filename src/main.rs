@@ -1,6 +1,7 @@
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use device_query::{DeviceQuery, DeviceState, Keycode};
 use std::collections::HashMap;
+use std::env;
 use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
@@ -44,7 +45,7 @@ fn get_frequency_from_note(note: &str) -> Option<f32> {
     Some(frequency)
 }
 
-fn get_frequency_and_volume(keycode: Keycode) -> Option<(f32, f32)> {
+fn get_frequency_and_volume(keycode: Keycode) -> Option<(f32, f32, &'static str)> {
     let (note, volume) = match keycode {
         // Most common programming letters - pleasant pentatonic scale
         Keycode::E => ("E4", 0.3), // Very common
@@ -146,14 +147,138 @@ fn get_frequency_and_volume(keycode: Keycode) -> Option<(f32, f32)> {
         _ => return None,
     };
 
-    get_frequency_from_note(note).map(|freq| (freq, volume))
+    get_frequency_from_note(note).map(|freq| (freq, volume, note))
+}
+
+// Waveform types for different tones
+#[derive(Clone, Copy, Debug)]
+enum Waveform {
+    Natural,    // Complex harmonic piano-like tone
+    Electronic, // Pure sine wave
+    Saw,        // Sawtooth wave for electronic feel
+    Square,     // Square wave for retro electronic
+    Cyberpunk,  // Blade Runner 2049 style analog synth
+}
+
+impl Waveform {
+    fn generate_sample(&self, phase: f32, frequency: f32, sample_rate: f32) -> f32 {
+        let base_phase = phase * 2.0 * std::f32::consts::PI;
+
+        match self {
+            Waveform::Electronic => {
+                // Pure sine wave
+                base_phase.sin()
+            }
+            Waveform::Natural => {
+                // Piano-like tone with harmonics
+                let fundamental = base_phase.sin();
+                let harmonic2 = (base_phase * 2.0).sin() * 0.3;
+                let harmonic3 = (base_phase * 3.0).sin() * 0.15;
+                let harmonic4 = (base_phase * 4.0).sin() * 0.08;
+                let harmonic5 = (base_phase * 5.0).sin() * 0.05;
+
+                // Add slight frequency modulation for natural variation
+                let vibrato = (phase * 6.0 * 2.0 * std::f32::consts::PI).sin() * 0.002;
+                let modulated_phase = base_phase * (1.0 + vibrato);
+
+                fundamental
+                    + harmonic2
+                    + harmonic3
+                    + harmonic4
+                    + harmonic5
+                    + modulated_phase.sin() * 0.02
+            }
+            Waveform::Saw => {
+                // Sawtooth wave
+                2.0 * (phase - phase.floor()) - 1.0
+            }
+            Waveform::Square => {
+                // Square wave
+                if (phase % 1.0) < 0.5 {
+                    1.0
+                } else {
+                    -1.0
+                }
+            }
+            Waveform::Cyberpunk => {
+                // Blade Runner 2049 style analog synth
+                let time = phase * sample_rate / frequency;
+
+                // Base oscillators: warm saw + sub bass
+                let saw = 2.0 * (phase - phase.floor()) - 1.0;
+                let sub_bass = (base_phase * 0.5).sin() * 0.4; // Sub octave
+
+                // LFO for analog character (slow modulation)
+                let lfo = (time * 0.3).sin();
+                let lfo2 = (time * 0.7).sin();
+
+                // PWM (Pulse Width Modulation) for analog warmth
+                let pulse_width = 0.5 + lfo * 0.1;
+                let pulse = if (phase % 1.0) < pulse_width {
+                    1.0
+                } else {
+                    -1.0
+                };
+
+                // Mix oscillators
+                let mixed = saw * 0.6 + pulse * 0.3 + sub_bass;
+
+                // Analog-style low-pass filter (simple approximation)
+                let cutoff_mod = 0.7 + lfo2 * 0.2;
+                let filtered = mixed * cutoff_mod;
+
+                // Subtle distortion for warmth
+                let driven = filtered * 1.2;
+                let saturated = if driven > 0.8 {
+                    0.8 + (driven - 0.8) * 0.3
+                } else if driven < -0.8 {
+                    -0.8 + (driven + 0.8) * 0.3
+                } else {
+                    driven
+                };
+
+                // Add slight detuning chorus effect
+                let detune1 = (base_phase * 1.003).sin() * 0.15;
+                let detune2 = (base_phase * 0.997).sin() * 0.15;
+
+                saturated + detune1 + detune2
+            }
+        }
+    }
 }
 
 // Audio state management
-struct AudioState {
-    active_notes: HashMap<Keycode, (f32, f32)>, // frequency, volume
-    sample_rate: f32,
+#[derive(Clone)]
+enum EnvelopeState {
+    Attack,
+    Decay,
+    Sustain,
+    Release,
+}
+
+#[derive(Clone)]
+struct ADSRParams {
+    attack_time: f32,   // seconds
+    decay_time: f32,    // seconds
+    sustain_level: f32, // 0.0 to 1.0
+    release_time: f32,  // seconds
+}
+
+struct NoteState {
+    frequency: f32,
+    base_volume: f32,
     phase: f32,
+    envelope_state: EnvelopeState,
+    envelope_time: f32,
+    adsr: ADSRParams,
+    waveform: Waveform,
+}
+
+struct AudioState {
+    active_notes: HashMap<Keycode, NoteState>,
+    sample_rate: f32,
+    default_adsr: ADSRParams,
+    current_waveform: Waveform,
 }
 
 impl AudioState {
@@ -161,36 +286,185 @@ impl AudioState {
         Self {
             active_notes: HashMap::new(),
             sample_rate,
-            phase: 0.0,
+            default_adsr: ADSRParams {
+                attack_time: 0.02,  // 20ms attack
+                decay_time: 0.1,    // 100ms decay
+                sustain_level: 0.7, // 70% sustain level
+                release_time: 0.15, // 150ms release
+            },
+            current_waveform: Waveform::Natural,
         }
+    }
+
+    fn set_waveform(&mut self, waveform: Waveform) {
+        self.current_waveform = waveform;
+
+        // Update ADSR parameters based on waveform for authentic sound
+        match waveform {
+            Waveform::Cyberpunk => {
+                // Blade Runner 2049 style: slower attack, longer release
+                self.default_adsr = ADSRParams {
+                    attack_time: 0.08,  // 80ms - analog synth pad feel
+                    decay_time: 0.3,    // 300ms - longer decay
+                    sustain_level: 0.6, // 60% - softer sustain
+                    release_time: 0.4,  // 400ms - long analog tail
+                };
+            }
+            Waveform::Natural => {
+                // Piano-like response
+                self.default_adsr = ADSRParams {
+                    attack_time: 0.02,
+                    decay_time: 0.1,
+                    sustain_level: 0.7,
+                    release_time: 0.15,
+                };
+            }
+            Waveform::Electronic => {
+                // Clean electronic response
+                self.default_adsr = ADSRParams {
+                    attack_time: 0.01,
+                    decay_time: 0.05,
+                    sustain_level: 0.8,
+                    release_time: 0.1,
+                };
+            }
+            Waveform::Saw | Waveform::Square => {
+                // Punchy electronic
+                self.default_adsr = ADSRParams {
+                    attack_time: 0.005,
+                    decay_time: 0.08,
+                    sustain_level: 0.75,
+                    release_time: 0.12,
+                };
+            }
+        }
+
+        println!("🎵 Switched to {:?} waveform", waveform);
     }
 
     fn generate_sample(&mut self) -> f32 {
         let mut sample = 0.0;
+        let dt = 1.0 / self.sample_rate;
+        let mut to_remove = Vec::new();
 
-        for (frequency, volume) in self.active_notes.values() {
-            sample += (self.phase * frequency * 2.0 * std::f32::consts::PI / self.sample_rate)
-                .sin()
-                * volume;
+        for (keycode, note_state) in self.active_notes.iter_mut() {
+            // Update envelope time
+            note_state.envelope_time += dt;
+
+            // Calculate ADSR envelope multiplier
+            let envelope_multiplier = match note_state.envelope_state {
+                EnvelopeState::Attack => {
+                    if note_state.envelope_time >= note_state.adsr.attack_time {
+                        note_state.envelope_state = EnvelopeState::Decay;
+                        note_state.envelope_time = 0.0;
+                        1.0
+                    } else {
+                        // Exponential attack curve for more natural sound
+                        let progress = note_state.envelope_time / note_state.adsr.attack_time;
+                        progress * progress // Square for exponential curve
+                    }
+                }
+                EnvelopeState::Decay => {
+                    if note_state.envelope_time >= note_state.adsr.decay_time {
+                        note_state.envelope_state = EnvelopeState::Sustain;
+                        note_state.envelope_time = 0.0;
+                        note_state.adsr.sustain_level
+                    } else {
+                        let progress = note_state.envelope_time / note_state.adsr.decay_time;
+                        // Exponential decay from 1.0 to sustain_level
+                        1.0 - (1.0 - note_state.adsr.sustain_level) * progress * progress
+                    }
+                }
+                EnvelopeState::Sustain => note_state.adsr.sustain_level,
+                EnvelopeState::Release => {
+                    if note_state.envelope_time >= note_state.adsr.release_time {
+                        to_remove.push(*keycode);
+                        0.0
+                    } else {
+                        let progress = note_state.envelope_time / note_state.adsr.release_time;
+                        // Exponential release curve
+                        note_state.adsr.sustain_level * (1.0 - progress * progress)
+                    }
+                }
+            };
+
+            // Generate sample for this note using selected waveform
+            let wave_sample = note_state.waveform.generate_sample(
+                note_state.phase,
+                note_state.frequency,
+                self.sample_rate,
+            );
+            let note_sample = wave_sample * note_state.base_volume * envelope_multiplier;
+
+            sample += note_sample;
+
+            // Update phase for this note
+            note_state.phase += note_state.frequency / self.sample_rate;
+            if note_state.phase >= 1.0 {
+                note_state.phase -= 1.0;
+            }
         }
 
-        self.phase += 1.0;
-        if self.phase >= self.sample_rate {
-            self.phase = 0.0;
+        // Remove fully released notes
+        for keycode in to_remove {
+            self.active_notes.remove(&keycode);
         }
 
         sample * 0.3 // Global volume adjustment
     }
+
+    fn start_note(&mut self, keycode: Keycode, frequency: f32, volume: f32) {
+        let note_state = NoteState {
+            frequency,
+            base_volume: volume,
+            phase: 0.0,
+            envelope_state: EnvelopeState::Attack,
+            envelope_time: 0.0,
+            adsr: self.default_adsr.clone(),
+            waveform: self.current_waveform,
+        };
+        self.active_notes.insert(keycode, note_state);
+    }
+
+    fn stop_note(&mut self, keycode: Keycode) {
+        if let Some(note_state) = self.active_notes.get_mut(&keycode) {
+            if !matches!(note_state.envelope_state, EnvelopeState::Release) {
+                note_state.envelope_state = EnvelopeState::Release;
+                note_state.envelope_time = 0.0;
+            }
+        }
+    }
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let args: Vec<String> = env::args().collect();
+
+    // Check for waveform argument
+    let initial_waveform = if args.len() > 1 {
+        match args[1].as_str() {
+            "natural" => Waveform::Natural,
+            "electronic" => Waveform::Electronic,
+            "saw" => Waveform::Saw,
+            "square" => Waveform::Square,
+            "cyberpunk" => Waveform::Cyberpunk,
+            _ => {
+                println!("Available waveforms: natural, electronic, saw, square, cyberpunk");
+                println!("Using default: natural");
+                Waveform::Natural
+            }
+        }
+    } else {
+        Waveform::Natural
+    };
     // Initialize audio
     let host = cpal::default_host();
     let device = host.default_output_device().unwrap();
     let config = device.default_output_config()?;
     let sample_rate = config.sample_rate().0 as f32;
 
-    let audio_state = Arc::new(Mutex::new(AudioState::new(sample_rate)));
+    let mut audio_state_init = AudioState::new(sample_rate);
+    audio_state_init.set_waveform(initial_waveform);
+    let audio_state = Arc::new(Mutex::new(audio_state_init));
     let audio_state_clone = audio_state.clone();
 
     // Create audio stream
@@ -209,7 +483,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     stream.play()?;
 
     // Interactive keyboard mode
-    println!("🎹 Piano Keyboard Sound Simulator");
+    println!(
+        "🎹 Piano Keyboard Sound Simulator - {:?} Mode",
+        initial_waveform
+    );
     println!();
     println!("IMPORTANT - macOS Permission Required:");
     println!("If this fails, you need to grant accessibility permissions:");
@@ -254,6 +531,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("🎼 Creates pleasant harmonies using C major pentatonic scale");
     println!("🔇 Common keys are quieter to avoid disrupting concentration");
     println!();
+    println!("🎛️  Waveform Controls:");
+    println!("   Press F9  = Natural piano tone (complex harmonics)");
+    println!("   Press F10 = Electronic tone (pure sine wave)");
+    println!("   Press F11 = Saw wave (bright electronic)");
+    println!("   Press F12 = Square wave (retro electronic)");
+    println!("   Press F8  = Cyberpunk 2049 style (analog synth)");
+    println!();
+    println!("💡 Command line options:");
+    println!("   cargo run natural    # Start with natural piano");
+    println!("   cargo run electronic # Start with electronic");
+    println!("   cargo run saw        # Start with saw wave");
+    println!("   cargo run square     # Start with square wave");
+    println!("   cargo run cyberpunk  # Start with Blade Runner 2049 style");
+    println!();
     println!("Press Ctrl+C to exit");
     println!();
 
@@ -268,12 +559,42 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // Check for newly pressed keys
         for key in &keys {
             if !prev_keys.contains(key) {
-                if let Some((frequency, volume)) = get_frequency_and_volume(*key) {
+                // Check for waveform switching keys
+                match key {
+                    Keycode::F8 => {
+                        let mut audio_state = audio_state.lock().unwrap();
+                        audio_state.set_waveform(Waveform::Cyberpunk);
+                        continue;
+                    }
+                    Keycode::F9 => {
+                        let mut audio_state = audio_state.lock().unwrap();
+                        audio_state.set_waveform(Waveform::Natural);
+                        continue;
+                    }
+                    Keycode::F10 => {
+                        let mut audio_state = audio_state.lock().unwrap();
+                        audio_state.set_waveform(Waveform::Electronic);
+                        continue;
+                    }
+                    Keycode::F11 => {
+                        let mut audio_state = audio_state.lock().unwrap();
+                        audio_state.set_waveform(Waveform::Saw);
+                        continue;
+                    }
+                    Keycode::F12 => {
+                        let mut audio_state = audio_state.lock().unwrap();
+                        audio_state.set_waveform(Waveform::Square);
+                        continue;
+                    }
+                    _ => {}
+                }
+
+                if let Some((frequency, volume, note)) = get_frequency_and_volume(*key) {
                     let mut audio_state = audio_state.lock().unwrap();
-                    audio_state.active_notes.insert(*key, (frequency, volume));
+                    audio_state.start_note(*key, frequency, volume);
                     println!(
-                        "Playing: {:?} ({:.2} Hz, vol: {:.2})",
-                        key, frequency, volume
+                        "Playing: {:?} -> {} ({:.2} Hz, vol: {:.2})",
+                        key, note, frequency, volume
                     );
                 }
             }
@@ -282,10 +603,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // Check for released keys
         for key in &prev_keys {
             if !keys.contains(key) {
-                if get_frequency_and_volume(*key).is_some() {
+                if let Some((_, _, note)) = get_frequency_and_volume(*key) {
                     let mut audio_state = audio_state.lock().unwrap();
-                    audio_state.active_notes.remove(key);
-                    println!("Stopped: {:?}", key);
+                    audio_state.stop_note(*key);
+                    println!("Stopped: {:?} -> {}", key, note);
                 }
             }
         }

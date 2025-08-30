@@ -1,0 +1,2 @@
+1. prefer simple even stupid code, avoid using complex structures and premuture optimizations
+2. very briefly describe the approach you want take before doing any code change, ask for my permission
