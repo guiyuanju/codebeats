@@ -1,0 +1,15 @@
+[package]
+name = "sound"
+version = "0.1.0"
+edition = "2021"
+description = "Piano Keyboard Sound Simulator - Maps keyboard keys to musical notes with built-in testing framework"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/yourusername/piano-keyboard-sound-simulator"
+keywords = ["audio", "piano", "keyboard", "music", "testing"]
+categories = ["multimedia::audio", "development-tools::testing"]
+
+[dependencies]
+cpal = "0.15"
+device_query = "2.0"
