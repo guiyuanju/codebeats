@@ -1,12 +1,11 @@
 [package]
-name = "sound"
+name = "codebeats"
 version = "0.1.0"
 edition = "2021"
-description = "Piano Keyboard Sound Simulator - Real-time audio synthesis with multiple waveforms and ADSR envelopes"
-authors = ["Piano Simulator Team"]
+description = "CodeBeats - Programming-optimized keyboard music simulator with real-time audio synthesis"
+authors = ["jgy"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
-repository = "https://github.com/piano-simulator/piano-keyboard-sound-simulator"
 keywords = [
     "audio",
     "piano",
@@ -17,14 +16,13 @@ keywords = [
     "adsr",
 ]
 categories = ["multimedia::audio", "development-tools"]
-documentation = "https://docs.rs/sound"
 
 [lib]
-name = "sound"
+name = "codebeats"
 path = "src/lib.rs"
 
 [[bin]]
-name = "sound"
+name = "codebeats"
 path = "src/main.rs"
 
 [dependencies]

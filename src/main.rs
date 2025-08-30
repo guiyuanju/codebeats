@@ -1,13 +1,14 @@
-//! Piano Keyboard Sound Simulator - Main Application
+//! CodeBeats - Programming Music Simulator
 //!
-//! A real-time piano simulator that maps keyboard keys to musical notes with
-//! multiple waveform types and ADSR envelope system for natural sound.
+//! Transform your coding workflow into a harmonious musical experience.
+//! Every keystroke becomes a note, creating beautiful melodies while you code.
 //!
 //! Features:
 //! - Real-time polyphonic audio synthesis
-//! - Multiple waveform types (natural piano, electronic, saw, square, cyberpunk)
-//! - Programming-optimized keyboard mapping
+//! - Multiple waveforms (Electronic default, Natural piano, Saw, Square, Cyberpunk)
+//! - Programming-optimized keyboard mapping based on key frequency analysis
 //! - ADSR envelope system for natural sound transitions
+//! - Command-line waveform selection (no runtime switching)
 //! - Real-time waveform switching with function keys
 
 mod audio;
@@ -107,7 +108,10 @@ struct UIManager;
 impl UIManager {
     /// Display welcome message and instructions
     fn show_welcome(waveform: Waveform) {
-        println!("🎹 Piano Keyboard Sound Simulator - {} Mode", waveform);
+        println!(
+            "🎵 CodeBeats - Programming Music Simulator ({:?} Mode)",
+            waveform
+        );
         println!();
 
         Self::show_macos_permissions_info();
@@ -175,6 +179,7 @@ impl UIManager {
         println!("   cargo run square     # Start with square wave");
         println!("   cargo run cyberpunk  # Start with Blade Runner 2049 style");
         println!();
+        println!("🎵 CodeBeats: Turn your coding into music!");
         println!("🎵 Waveform is fixed at startup - no runtime switching");
         println!("Press Ctrl+C to exit");
         println!();

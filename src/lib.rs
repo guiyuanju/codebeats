@@ -1,20 +1,21 @@
-//! Piano Keyboard Sound Simulator Library
+//! CodeBeats - Programming Music Simulator Library
 //!
-//! This library provides a complete real-time audio synthesis system for mapping
-//! keyboard keys to musical notes with multiple waveform types and ADSR envelopes.
+//! Transform your coding workflow into a harmonious musical experience.
+//! This library provides real-time audio synthesis that maps keyboard keys to musical
+//! notes, creating beautiful melodies while you code.
 //!
 //! # Features
 //!
-//! - **Real-time Audio Synthesis**: Low-latency polyphonic audio generation
-//! - **Multiple Waveforms**: Natural piano, electronic, saw, square, and cyberpunk synth
-//! - **ADSR Envelope System**: Advanced attack/decay/sustain/release for natural sound
-//! - **Programming-Optimized Mapping**: Keyboard layout designed for coding workflows
-//! - **Cross-Platform**: Works on macOS, Windows, and Linux
+//! - **🎹 Smart Audio Synthesis**: Low-latency polyphonic audio generation
+//! - **🎵 Multiple Waveforms**: Electronic (default), Natural piano, Saw, Square, and Cyberpunk synth
+//! - **📈 ADSR Envelope System**: Advanced attack/decay/sustain/release for natural sound
+//! - **⌨️ Programming-Optimized Mapping**: Keyboard layout based on coding key frequency analysis
+//! - **🌍 Cross-Platform**: Works on macOS, Windows, and Linux
 //!
-//! # Quick Start
+//! ## Quick Start
 //!
 //! ```rust
-//! use sound::{AudioState, Waveform};
+//! use codebeats::{AudioState, Waveform};
 //! use device_query::Keycode;
 //!
 //! // Create audio state with electronic waveform
@@ -73,7 +74,7 @@ mod tests {
     #[test]
     fn test_version_info() {
         let info = version_info();
-        assert!(info.contains("sound"));
+        assert!(info.contains("codebeats"));
         assert!(info.contains("v"));
     }
 

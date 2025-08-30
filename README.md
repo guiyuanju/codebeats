@@ -1,16 +1,16 @@
-# Piano Keyboard Sound Simulator
+# CodeBeats 🎵
 
-A Rust-based piano simulator with multiple waveform types that maps your keyboard keys to musical notes, creating a harmonious typing experience optimized for programming workflows.
+CodeBeats is a programming-optimized keyboard music simulator that transforms your coding workflow into a harmonious musical experience. Every keystroke becomes a note, creating beautiful melodies while you code.
 
 ## Features
 
-- **Real-time Keyboard Mapping**: Every key on your keyboard is mapped to a musical note
-- **Programming-Optimized**: Common programming keys are mapped to pleasant pentatonic scales
-- **Volume-Aware**: Key frequency determines volume (common keys are quieter)
-- **Cross-Platform Audio**: Uses `cpal` for low-latency audio output
-- **Multiple Waveforms**: 5 distinct sound types from natural piano to cyberpunk synth
-- **ADSR Envelope System**: Advanced attack/decay/sustain/release for natural sound
-- **Real-time Switching**: Change waveforms instantly with function keys
+- **🎹 Smart Keyboard Mapping**: Every key mapped to musical notes based on coding frequency
+- **⌨️ Programming-Optimized**: Common keys use pleasant pentatonic scales, quiet enough not to distract
+- **🎵 Multiple Waveforms**: Electronic (default), Natural piano, Saw, Square, and Cyberpunk synth
+- **🔊 Volume Intelligence**: Frequently used keys are quieter to maintain coding flow
+- **⚡ Real-time Audio**: Low-latency audio synthesis with ADSR envelopes
+- **🌍 Cross-Platform**: Works on macOS, Windows, and Linux
+- **🎚️ Command-line Control**: Set your preferred waveform at startup
 
 ## Quick Start
 
@@ -24,19 +24,19 @@ A Rust-based piano simulator with multiple waveform types that maps your keyboar
 
 ```bash
 git clone <repository>
-cd sound
+cd codebeats
 cargo build --release
 ```
 
 ### Usage
 
 ```bash
-# Default (Natural piano)
+# Default (Electronic waveform)
 cargo run
 
 # Or choose a specific waveform
 cargo run natural      # Natural piano with harmonics
-cargo run electronic   # Pure sine wave
+cargo run electronic   # Pure sine wave (default)
 cargo run saw          # Bright sawtooth wave
 cargo run square       # Retro 8-bit square wave
 cargo run cyberpunk    # Blade Runner 2049 style analog synth
@@ -106,7 +106,7 @@ The keyboard is mapped to create pleasant harmonies during programming:
 - **Modifiers (Shift, Ctrl, Alt)** - Barely audible bass
 - **Function keys** - Bright harmonics for special actions
 
-## Technical Details
+## ⚙️ Technical Details
 
 ### Audio System
 - **Sample Rate**: Uses system default (typically 44.1kHz)
