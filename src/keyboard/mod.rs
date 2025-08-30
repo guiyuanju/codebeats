@@ -6,7 +6,4 @@
 
 pub mod mapping;
 
-pub use mapping::{
-    get_frequency_and_volume, get_frequency_from_note, get_waveform_for_key, is_waveform_key,
-    theory,
-};
+pub use mapping::get_frequency_and_volume;

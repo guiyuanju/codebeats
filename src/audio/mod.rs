@@ -8,4 +8,4 @@
 
 pub mod engine;
 
-pub use engine::{ADSRParams, AudioState, EnvelopeState, NoteState};
+pub use engine::AudioState;

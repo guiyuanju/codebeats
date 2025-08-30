@@ -158,61 +158,6 @@ pub fn get_frequency_and_volume(keycode: Keycode) -> Option<(f32, f32, &'static 
     get_frequency_from_note(note).map(|freq| (freq, volume, note))
 }
 
-/// Check if a keycode is a waveform switching key (F8-F12)
-pub fn is_waveform_key(keycode: Keycode) -> bool {
-    matches!(
-        keycode,
-        Keycode::F8 | Keycode::F9 | Keycode::F10 | Keycode::F11 | Keycode::F12
-    )
-}
-
-/// Get the waveform type for function keys
-pub fn get_waveform_for_key(keycode: Keycode) -> Option<crate::waveform::Waveform> {
-    use crate::waveform::Waveform;
-
-    match keycode {
-        Keycode::F8 => Some(Waveform::Cyberpunk),
-        Keycode::F9 => Some(Waveform::Natural),
-        Keycode::F10 => Some(Waveform::Electronic),
-        Keycode::F11 => Some(Waveform::Saw),
-        Keycode::F12 => Some(Waveform::Square),
-        _ => None,
-    }
-}
-
-/// Get musical intervals and relationships
-pub mod theory {
-    /// Perfect fifth interval in semitones
-    pub const PERFECT_FIFTH: i32 = 7;
-
-    /// Major third interval in semitones
-    pub const MAJOR_THIRD: i32 = 4;
-
-    /// Minor third interval in semitones
-    pub const MINOR_THIRD: i32 = 3;
-
-    /// Octave interval in semitones
-    pub const OCTAVE: i32 = 12;
-
-    /// C Major pentatonic scale notes (used for programming keys)
-    pub const C_MAJOR_PENTATONIC: [&str; 5] = ["C", "D", "E", "G", "A"];
-
-    /// Check if two notes form a consonant interval
-    pub fn is_consonant_interval(semitone_diff: i32) -> bool {
-        let interval = semitone_diff.abs() % OCTAVE;
-        matches!(
-            interval,
-            0 |          // Unison
-            MAJOR_THIRD | // Major third
-            MINOR_THIRD | // Minor third (4th from bottom)
-            5 |          // Perfect fourth
-            PERFECT_FIFTH | // Perfect fifth
-            8 |          // Minor sixth (major third from top)
-            9 // Major sixth (minor third from top)
-        )
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -249,9 +194,8 @@ mod tests {
         assert_eq!(vol, 0.3);
         assert!((freq - 261.63).abs() < 1.0);
 
-        // Test function keys
-        assert!(is_waveform_key(Keycode::F9));
-        assert!(!is_waveform_key(Keycode::A));
+        // Test that we can get frequency and volume for valid keys
+        assert!(get_frequency_and_volume(Keycode::F9).is_some());
     }
 
     #[test]
@@ -261,17 +205,6 @@ mod tests {
         let (_, modifier_vol, _) = get_frequency_and_volume(Keycode::LShift).unwrap();
 
         assert!(common_vol > modifier_vol);
-    }
-
-    #[test]
-    fn test_consonant_intervals() {
-        use theory::*;
-
-        assert!(is_consonant_interval(0)); // Unison
-        assert!(is_consonant_interval(PERFECT_FIFTH)); // Perfect fifth
-        assert!(is_consonant_interval(MAJOR_THIRD)); // Major third
-        assert!(!is_consonant_interval(1)); // Minor second (dissonant)
-        assert!(!is_consonant_interval(6)); // Tritone (dissonant)
     }
 
     #[test]

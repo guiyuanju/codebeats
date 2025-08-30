@@ -177,25 +177,20 @@ pub struct AudioState {
 
 impl AudioState {
     /// Create new audio state
-    pub fn new(sample_rate: f32) -> Self {
-        Self {
-            active_notes: HashMap::new(),
-            sample_rate,
-            current_waveform: Waveform::Natural,
-            default_adsr: ADSRParams::natural(),
-        }
-    }
-
-    /// Change current waveform and update ADSR accordingly
-    pub fn set_waveform(&mut self, waveform: Waveform) {
-        self.current_waveform = waveform;
-        self.default_adsr = match waveform {
+    pub fn new(sample_rate: f32, waveform: Waveform) -> Self {
+        let default_adsr = match waveform {
             Waveform::Natural => ADSRParams::natural(),
             Waveform::Electronic => ADSRParams::electronic(),
             Waveform::Saw | Waveform::Square => ADSRParams::punchy(),
             Waveform::Cyberpunk => ADSRParams::cyberpunk(),
         };
-        println!("🎵 Switched to {:?} waveform", waveform);
+
+        Self {
+            active_notes: HashMap::new(),
+            sample_rate,
+            current_waveform: waveform,
+            default_adsr,
+        }
     }
 
     /// Start a new note
@@ -246,16 +241,6 @@ impl AudioState {
         // Global volume adjustment
         sample * 0.3
     }
-
-    /// Get current waveform
-    pub fn current_waveform(&self) -> Waveform {
-        self.current_waveform
-    }
-
-    /// Get number of active notes (for debugging)
-    pub fn active_note_count(&self) -> usize {
-        self.active_notes.len()
-    }
 }
 
 #[cfg(test)]
@@ -271,22 +256,24 @@ mod tests {
 
     #[test]
     fn test_audio_state_creation() {
-        let state = AudioState::new(44100.0);
+        use crate::waveform::Waveform;
+        let state = AudioState::new(44100.0, Waveform::Electronic);
         assert_eq!(state.sample_rate, 44100.0);
-        assert_eq!(state.active_note_count(), 0);
+        assert_eq!(state.active_notes.len(), 0);
     }
 
     #[test]
     fn test_note_lifecycle() {
-        let mut state = AudioState::new(44100.0);
+        use crate::waveform::Waveform;
+        let mut state = AudioState::new(44100.0, Waveform::Electronic);
 
         // Start note
         state.start_note(Keycode::A, 440.0, 0.5);
-        assert_eq!(state.active_note_count(), 1);
+        assert_eq!(state.active_notes.len(), 1);
 
         // Stop note
         state.stop_note(Keycode::A);
         // Note should still be active (in release phase)
-        assert_eq!(state.active_note_count(), 1);
+        assert_eq!(state.active_notes.len(), 1);
     }
 }

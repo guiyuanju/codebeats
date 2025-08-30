@@ -17,7 +17,7 @@ mod waveform;
 use audio::AudioState;
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use device_query::{DeviceQuery, DeviceState, Keycode};
-use keyboard::{get_frequency_and_volume, get_waveform_for_key, is_waveform_key};
+use keyboard::get_frequency_and_volume;
 use std::env;
 use std::sync::{Arc, Mutex};
 use std::thread;
@@ -38,11 +38,11 @@ impl AppConfig {
         let initial_waveform = if args.len() > 1 {
             Waveform::from_str(&args[1]).unwrap_or_else(|| {
                 println!("Available waveforms: natural, electronic, saw, square, cyberpunk");
-                println!("Using default: natural");
-                Waveform::Natural
+                println!("Using default: electronic");
+                Waveform::Electronic
             })
         } else {
-            Waveform::Natural
+            Waveform::Electronic
         };
 
         Ok(Self {
@@ -71,8 +71,7 @@ impl AudioSystem {
         // Update config with actual sample rate
         config.sample_rate = device_config.sample_rate().0 as f32;
 
-        let mut audio_state = AudioState::new(config.sample_rate);
-        audio_state.set_waveform(config.initial_waveform);
+        let audio_state = AudioState::new(config.sample_rate, config.initial_waveform);
         let audio_state = Arc::new(Mutex::new(audio_state));
         let audio_state_clone = audio_state.clone();
 
@@ -113,7 +112,6 @@ impl UIManager {
 
         Self::show_macos_permissions_info();
         Self::show_keyboard_layout();
-        Self::show_waveform_controls();
         Self::show_usage_info();
     }
 
@@ -168,17 +166,6 @@ impl UIManager {
         println!();
     }
 
-    /// Show waveform switching controls
-    fn show_waveform_controls() {
-        println!("🎛️  Waveform Controls:");
-        println!("   Press F9  = Natural piano tone (complex harmonics)");
-        println!("   Press F10 = Electronic tone (pure sine wave)");
-        println!("   Press F11 = Saw wave (bright electronic)");
-        println!("   Press F12 = Square wave (retro electronic)");
-        println!("   Press F8  = Cyberpunk 2049 style (analog synth)");
-        println!();
-    }
-
     /// Show command line usage information
     fn show_usage_info() {
         println!("💡 Command line options:");
@@ -188,6 +175,7 @@ impl UIManager {
         println!("   cargo run square     # Start with square wave");
         println!("   cargo run cyberpunk  # Start with Blade Runner 2049 style");
         println!();
+        println!("🎵 Waveform is fixed at startup - no runtime switching");
         println!("Press Ctrl+C to exit");
         println!();
     }
@@ -258,15 +246,6 @@ impl PianoApp {
 
     /// Handle a pressed key
     fn handle_key_press(&self, key: Keycode) {
-        // Check for waveform switching keys first
-        if is_waveform_key(key) {
-            if let Some(waveform) = get_waveform_for_key(key) {
-                let mut audio_state = self.audio_system.state().lock().unwrap();
-                audio_state.set_waveform(waveform);
-                return;
-            }
-        }
-
         // Handle musical keys
         if let Some((frequency, volume, note)) = get_frequency_and_volume(key) {
             let mut audio_state = self.audio_system.state().lock().unwrap();
@@ -280,13 +259,10 @@ impl PianoApp {
 
     /// Handle a released key
     fn handle_key_release(&self, key: Keycode) {
-        // Only handle keys that produce sound (not waveform switching keys)
-        if !is_waveform_key(key) {
-            if let Some((_, _, note)) = get_frequency_and_volume(key) {
-                let mut audio_state = self.audio_system.state().lock().unwrap();
-                audio_state.stop_note(key);
-                println!("Stopped: {:?} -> {}", key, note);
-            }
+        if let Some((_, _, note)) = get_frequency_and_volume(key) {
+            let mut audio_state = self.audio_system.state().lock().unwrap();
+            audio_state.stop_note(key);
+            println!("Stopped: {:?} -> {}", key, note);
         }
     }
 
@@ -324,7 +300,7 @@ mod tests {
     #[test]
     fn test_app_config_default() {
         let config = AppConfig::from_args().unwrap();
-        assert_eq!(config.initial_waveform, Waveform::Natural);
+        assert_eq!(config.initial_waveform, Waveform::Electronic);
     }
 
     #[test]

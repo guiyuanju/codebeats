@@ -45,7 +45,7 @@ impl Waveform {
     }
 
     /// Natural piano with harmonics and vibrato
-    fn generate_natural_piano(&self, phase: f32, base_phase: f32, sample_rate: f32) -> f32 {
+    fn generate_natural_piano(&self, phase: f32, base_phase: f32, _sample_rate: f32) -> f32 {
         // Harmonic series for piano-like tone
         let fundamental = base_phase.sin();
         let harmonic2 = (base_phase * 2.0).sin() * 0.3;
@@ -136,39 +136,7 @@ impl Waveform {
     }
 
     /// Get a human-readable description of the waveform
-    pub fn description(&self) -> &'static str {
-        match self {
-            Waveform::Natural => "Natural piano with rich harmonics",
-            Waveform::Electronic => "Pure sine wave",
-            Waveform::Saw => "Bright sawtooth wave",
-            Waveform::Square => "Retro square wave",
-            Waveform::Cyberpunk => "Blade Runner 2049 analog synth",
-        }
-    }
-
-    /// Get the recommended use case for this waveform
-    pub fn use_case(&self) -> &'static str {
-        match self {
-            Waveform::Natural => "General coding, classical feel, long sessions",
-            Waveform::Electronic => "Electronic music, sound design, precision work",
-            Waveform::Saw => "EDM production, high-energy coding",
-            Waveform::Square => "Game development, chiptune music",
-            Waveform::Cyberpunk => "Sci-fi projects, night coding, immersive atmosphere",
-        }
-    }
-
-    /// Get all available waveforms
-    pub fn all() -> Vec<Waveform> {
-        vec![
-            Waveform::Natural,
-            Waveform::Electronic,
-            Waveform::Saw,
-            Waveform::Square,
-            Waveform::Cyberpunk,
-        ]
-    }
-
-    /// Parse waveform from string (for command line arguments)
+    /// Parse waveform from string (case insensitive)
     pub fn from_str(s: &str) -> Option<Waveform> {
         match s.to_lowercase().as_str() {
             "natural" => Some(Waveform::Natural),
@@ -177,17 +145,6 @@ impl Waveform {
             "square" => Some(Waveform::Square),
             "cyberpunk" => Some(Waveform::Cyberpunk),
             _ => None,
-        }
-    }
-
-    /// Convert waveform to string
-    pub fn to_str(&self) -> &'static str {
-        match self {
-            Waveform::Natural => "natural",
-            Waveform::Electronic => "electronic",
-            Waveform::Saw => "saw",
-            Waveform::Square => "square",
-            Waveform::Cyberpunk => "cyberpunk",
         }
     }
 }
@@ -210,7 +167,13 @@ mod tests {
 
     #[test]
     fn test_waveform_generation() {
-        let waveforms = Waveform::all();
+        let waveforms = vec![
+            Waveform::Natural,
+            Waveform::Electronic,
+            Waveform::Saw,
+            Waveform::Square,
+            Waveform::Cyberpunk,
+        ];
 
         for waveform in waveforms {
             let sample = waveform.generate_sample(0.25, 440.0, 44100.0);
@@ -256,13 +219,5 @@ mod tests {
 
         assert_eq!(sample_low, 1.0);
         assert_eq!(sample_high, -1.0);
-    }
-
-    #[test]
-    fn test_waveform_descriptions() {
-        for waveform in Waveform::all() {
-            assert!(!waveform.description().is_empty());
-            assert!(!waveform.use_case().is_empty());
-        }
     }
 }
