@@ -74,39 +74,39 @@
       "description": "or, cons, do - fourteenth"
     },
     "U": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
-      "description": "null, unquote - double octave"
+      "description": "null, unquote - octave"
     },
     "P": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
-      "description": "pair, procedure - high second"
+      "description": "pair, procedure - ninth"
     },
     "H": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
-      "description": "hash, head - high third"
+      "description": "hash, head - tenth"
     },
     "W": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
-      "description": "with, write - high fourth"
+      "description": "with, write - eleventh"
     },
     "V": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
-      "description": "vector, values - high fifth"
+      "description": "vector, values - twelfth"
     },
     "G": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
-      "description": "get, global - high sixth"
+      "description": "get, global - thirteenth"
     },
     "Y": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.15,
-      "description": "yes, yield - high seventh"
+      "description": "yes, yield - fourteenth"
     },
     "K": {
       "note": "C4",
@@ -289,7 +289,7 @@
       "description": "Division"
     },
     "Question": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.3,
       "description": "Shift+/ - predicate suffix convention"
     },
@@ -299,7 +299,7 @@
       "description": "Character literals"
     },
     "Pipe": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
       "description": "Shift+\\ - rarely used"
     },
@@ -439,27 +439,27 @@
       "description": "Debug step"
     },
     "F8": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Continue debugging"
     },
     "F9": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Toggle breakpoint"
     },
     "F10": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Step over"
     },
     "F11": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Step into"
     },
     "F12": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Scheme REPL"
     },

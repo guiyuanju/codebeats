@@ -74,39 +74,39 @@
       "description": "return, read, record - fourteenth"
     },
     "H": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
-      "description": "haskell, head, higher - double octave"
+      "description": "haskell, head, higher - octave"
     },
     "W": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
-      "description": "where, with, when - high second"
+      "description": "where, with, when - ninth"
     },
     "B": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
-      "description": "bool, bind, bracket - high third"
+      "description": "bool, bind, bracket - tenth"
     },
     "G": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
-      "description": "guard, group, general - high fourth"
+      "description": "guard, group, general - eleventh"
     },
     "V": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
-      "description": "value, var, vector - high fifth"
+      "description": "value, var, vector - twelfth"
     },
     "P": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
-      "description": "pattern, pure, point - high sixth"
+      "description": "pattern, pure, point - thirteenth"
     },
     "Y": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.2,
-      "description": "yes, yield, type - high seventh"
+      "description": "yes, yield, type - fourteenth"
     },
     "K": {
       "note": "C4",
@@ -289,7 +289,7 @@
       "description": "Division - octave"
     },
     "Question": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Shift+/ - type holes"
     },
@@ -439,27 +439,27 @@
       "description": "Debug step"
     },
     "F8": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Continue debugging"
     },
     "F9": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Toggle breakpoint"
     },
     "F10": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Step over"
     },
     "F11": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Step into"
     },
     "F12": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Haskell REPL"
     },

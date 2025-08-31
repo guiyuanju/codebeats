@@ -74,39 +74,39 @@
       "description": "or, open, overlay - fourteenth"
     },
     "I": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
-      "description": "if, insert, interactive - double octave"
+      "description": "if, insert, interactive - octave"
     },
     "P": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
-      "description": "point, progn, provide - high second"
+      "description": "point, progn, provide - ninth"
     },
     "H": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
-      "description": "hook, help - high third"
+      "description": "hook, help - tenth"
     },
     "W": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
-      "description": "with, window, when - high fourth"
+      "description": "with, window, when - eleventh"
     },
     "V": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
-      "description": "var, vector, value - high fifth"
+      "description": "var, vector, value - twelfth"
     },
     "G": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
-      "description": "goto, global, get - high sixth"
+      "description": "goto, global, get - thirteenth"
     },
     "Y": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.15,
-      "description": "y-or-n-p, yank - high seventh"
+      "description": "y-or-n-p, yank - fourteenth"
     },
     "K": {
       "note": "C4",
@@ -289,7 +289,7 @@
       "description": "Division, file paths"
     },
     "Question": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.3,
       "description": "Shift+/ - predicate suffix convention"
     },
@@ -299,7 +299,7 @@
       "description": "Character literals, escape sequences"
     },
     "Pipe": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
       "description": "Shift+\\ - rarely used"
     },
@@ -439,27 +439,27 @@
       "description": "Debug step"
     },
     "F8": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Continue debugging"
     },
     "F9": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Toggle breakpoint"
     },
     "F10": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Menu bar"
     },
     "F11": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Full screen"
     },
     "F12": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "IELM (Emacs Lisp shell)"
     },

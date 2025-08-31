@@ -74,39 +74,39 @@
       "description": "Common consonant - major fourteenth"
     },
     "W": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.15,
-      "description": "Less frequent - double octave"
+      "description": "Less frequent - octave"
     },
     "F": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.15,
-      "description": "Less frequent - high major second"
+      "description": "Less frequent - major ninth"
     },
     "G": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.15,
-      "description": "Less frequent - high major third"
+      "description": "Less frequent - major tenth"
     },
     "Y": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.15,
-      "description": "Less frequent - high perfect fourth"
+      "description": "Less frequent - perfect eleventh"
     },
     "P": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.15,
-      "description": "Less frequent - high perfect fifth"
+      "description": "Less frequent - perfect twelfth"
     },
     "B": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.15,
-      "description": "Less frequent - high major sixth"
+      "description": "Less frequent - major thirteenth"
     },
     "V": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.1,
-      "description": "Infrequent - high major seventh"
+      "description": "Infrequent - major fourteenth"
     },
     "K": {
       "note": "C4",
@@ -209,7 +209,7 @@
       "description": "Number - octave"
     },
     "Ampersand": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Shift+7 - ampersand"
     },
@@ -219,7 +219,7 @@
       "description": "Number - ninth"
     },
     "Asterisk": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
       "description": "Shift+8 - asterisk"
     },
@@ -229,7 +229,7 @@
       "description": "Number - tenth"
     },
     "LeftParen": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.25,
       "description": "Shift+9 - left parenthesis"
     },
@@ -289,7 +289,7 @@
       "description": "Slash - punctuation"
     },
     "Question": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.3,
       "description": "Shift+/ - question mark emphasis"
     },
@@ -299,7 +299,7 @@
       "description": "Backslash - rarely used"
     },
     "Pipe": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Shift+\\ - pipe symbol"
     },
@@ -309,7 +309,7 @@
       "description": "Comma - very common in English"
     },
     "LessThan": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Shift+, - less than"
     },
@@ -319,7 +319,7 @@
       "description": "Period - sentence endings (important)"
     },
     "GreaterThan": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Shift+. - greater than"
     },
@@ -329,7 +329,7 @@
       "description": "Apostrophe - contractions, possessives (critical in English)"
     },
     "DoubleQuote": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.3,
       "description": "Shift+' - quotation marks (emphasis)"
     },
@@ -339,7 +339,7 @@
       "description": "Grave accent - rarely used"
     },
     "Tilde": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.15,
       "description": "Shift+` - tilde (rarely used)"
     },
@@ -439,27 +439,27 @@
       "description": "Function key"
     },
     "F8": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F9": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F10": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F11": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F12": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.15,
       "description": "Function key"
     },

@@ -59,49 +59,49 @@
       "description": "println, partial - eleventh"
     },
     "S": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "seq, str, symbol - twelfth"
     },
     "I": {
-      "note": "Db6",
+      "note": "Db5",
       "volume": 0.25,
-      "description": "if, inc, into - minor thirteenth (jazz)"
+      "description": "if, inc, into - minor ninth (jazz)"
     },
     "C": {
-      "note": "Eb6",
+      "note": "Eb5",
       "volume": 0.2,
-      "description": "conj, concat, cond - high minor seventh"
+      "description": "conj, concat, cond - minor seventh"
     },
     "U": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
-      "description": "update, use - high octave"
+      "description": "update, use - octave"
     },
     "V": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
-      "description": "vector, var, val - high ninth"
+      "description": "vector, var, val - ninth"
     },
     "W": {
-      "note": "Ab6",
+      "note": "Ab5",
       "volume": 0.2,
-      "description": "when, with - high minor ninth"
+      "description": "when, with - minor ninth"
     },
     "B": {
-      "note": "Bb6",
+      "note": "Bb5",
       "volume": 0.2,
-      "description": "binding, boolean - high eleventh"
+      "description": "binding, boolean - eleventh"
     },
     "H": {
-      "note": "C7",
+      "note": "C5",
       "volume": 0.2,
-      "description": "hash-map, hash - high twelfth"
+      "description": "hash-map, hash - twelfth"
     },
     "G": {
-      "note": "Db7",
+      "note": "Db5",
       "volume": 0.15,
-      "description": "get, group-by - high minor thirteenth"
+      "description": "get, group-by - minor ninth"
     },
     "K": {
       "note": "F4",
@@ -179,7 +179,7 @@
       "description": "Numeric literal - fifth"
     },
     "Dollar": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.3,
       "description": "Shift+4 - rarely used"
     },
@@ -189,7 +189,7 @@
       "description": "Numeric literal - sixth"
     },
     "Percent": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.3,
       "description": "Shift+5 - anonymous function args"
     },
@@ -199,7 +199,7 @@
       "description": "Numeric literal - minor seventh"
     },
     "Caret": {
-      "note": "Eb6",
+      "note": "Eb5",
       "volume": 0.35,
       "description": "Shift+6 - metadata (important)"
     },
@@ -209,7 +209,7 @@
       "description": "Numeric literal - octave"
     },
     "Ampersand": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.35,
       "description": "Shift+7 - variadic functions"
     },
@@ -219,7 +219,7 @@
       "description": "Numeric literal - ninth"
     },
     "Asterisk": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.35,
       "description": "Shift+8 - multiplication, earmuffs"
     },
@@ -249,7 +249,7 @@
       "description": "Vector closing"
     },
     "RightBrace": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.35,
       "description": "Shift+] - map closing"
     },
@@ -299,7 +299,7 @@
       "description": "Character literals"
     },
     "Pipe": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.3,
       "description": "Shift+\\ - rarely used"
     },
@@ -424,42 +424,42 @@
       "description": "Go to definition"
     },
     "F5": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Run Clojure REPL"
     },
     "F6": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Load file in REPL"
     },
     "F7": {
-      "note": "Eb6",
+      "note": "Eb5",
       "volume": 0.2,
       "description": "Debug step"
     },
     "F8": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Continue debugging"
     },
     "F9": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Toggle breakpoint"
     },
     "F10": {
-      "note": "Ab6",
+      "note": "Ab5",
       "volume": 0.2,
       "description": "Step over"
     },
     "F11": {
-      "note": "Bb6",
+      "note": "Bb5",
       "volume": 0.2,
       "description": "Step into"
     },
     "F12": {
-      "note": "C7",
+      "note": "C5",
       "volume": 0.2,
       "description": "Clojure REPL"
     },

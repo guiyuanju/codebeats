@@ -74,34 +74,34 @@
       "description": "Common Pinyin initial - fourteenth (mei, ma, men)"
     },
     "F": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
-      "description": "Common Pinyin initial - double octave (fei, fa, fang)"
+      "description": "Common Pinyin initial - octave (fei, fa, fang)"
     },
     "P": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
-      "description": "Common Pinyin initial - high second (pai, peng, pu)"
+      "description": "Common Pinyin initial - ninth (pai, peng, pu)"
     },
     "K": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.15,
-      "description": "Less frequent Pinyin - high third (kai, ke, kong)"
+      "description": "Less frequent Pinyin - tenth (kai, ke, kong)"
     },
     "N": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
-      "description": "Common Pinyin initial - high fourth (ni, nian, neng)"
+      "description": "Common Pinyin initial - eleventh (ni, nian, neng)"
     },
     "R": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.15,
-      "description": "Less frequent Pinyin - high fifth (ren, rang, ri)"
+      "description": "Less frequent Pinyin - twelfth (ren, rang, ri)"
     },
     "C": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.15,
-      "description": "Less frequent Pinyin - high sixth (cai, cong, chu)"
+      "description": "Less frequent Pinyin - thirteenth (cai, cong, chu)"
     },
     "A": {
       "note": "F#4",
@@ -209,7 +209,7 @@
       "description": "Number - octave"
     },
     "Ampersand": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Shift+7 - ampersand"
     },
@@ -219,7 +219,7 @@
       "description": "Number - ninth"
     },
     "Asterisk": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
       "description": "Shift+8 - asterisk"
     },
@@ -229,7 +229,7 @@
       "description": "Number - tenth"
     },
     "LeftParen": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.25,
       "description": "Shift+9 - left parenthesis"
     },
@@ -289,7 +289,7 @@
       "description": "Slash - punctuation"
     },
     "Question": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
       "description": "Shift+/ - question mark"
     },
@@ -299,7 +299,7 @@
       "description": "Backslash"
     },
     "Pipe": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Shift+\\ - pipe symbol"
     },
@@ -309,7 +309,7 @@
       "description": "Comma - common in Chinese text"
     },
     "LessThan": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Shift+, - less than"
     },
@@ -319,7 +319,7 @@
       "description": "Period - sentence endings"
     },
     "GreaterThan": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Shift+. - greater than"
     },
@@ -329,7 +329,7 @@
       "description": "Apostrophe - less common in Chinese"
     },
     "DoubleQuote": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.25,
       "description": "Shift+' - quotation marks"
     },
@@ -339,7 +339,7 @@
       "description": "Grave accent - rarely used"
     },
     "Tilde": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.15,
       "description": "Shift+` - tilde"
     },
@@ -439,27 +439,27 @@
       "description": "Function key"
     },
     "F8": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F9": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F10": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F11": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F12": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.15,
       "description": "Function key"
     },

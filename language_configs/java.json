@@ -74,39 +74,39 @@
       "description": "void, value, volatile - fourteenth"
     },
     "D": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
-      "description": "double, default, data - double octave"
+      "description": "double, default, data - octave"
     },
     "M": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
-      "description": "main, method, map - high second"
+      "description": "main, method, map - ninth"
     },
     "F": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
-      "description": "for, final, float - high third"
+      "description": "for, final, float - tenth"
     },
     "H": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
-      "description": "hashCode, handler - high fourth"
+      "description": "hashCode, handler - eleventh"
     },
     "W": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
-      "description": "while, write, wrapper - high fifth"
+      "description": "while, write, wrapper - twelfth"
     },
     "G": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
-      "description": "get, generic, global - high sixth"
+      "description": "get, generic, global - thirteenth"
     },
     "Y": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.15,
-      "description": "yield, type - high seventh"
+      "description": "yield, type - fourteenth"
     },
     "K": {
       "note": "C4",
@@ -289,7 +289,7 @@
       "description": "Division, comments"
     },
     "Question": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Shift+/ - ternary operator"
     },
@@ -439,27 +439,27 @@
       "description": "Debug step"
     },
     "F8": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Continue debugging"
     },
     "F9": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Toggle breakpoint"
     },
     "F10": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Step over"
     },
     "F11": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Step into"
     },
     "F12": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Java shell/JShell"
     },

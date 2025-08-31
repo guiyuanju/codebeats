@@ -74,39 +74,39 @@
       "description": "Less frequent consonant - fourteenth (wa, wi, we, wo)"
     },
     "G": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
-      "description": "Common consonant - double octave (ga, gi, gu, ge, go)"
+      "description": "Common consonant - octave (ga, gi, gu, ge, go)"
     },
     "Z": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
-      "description": "Common consonant - high second (za, ji, zu, ze, zo)"
+      "description": "Common consonant - ninth (za, ji, zu, ze, zo)"
     },
     "D": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
-      "description": "Common consonant - high third (da, ji, zu, de, do)"
+      "description": "Common consonant - tenth (da, ji, zu, de, do)"
     },
     "B": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
-      "description": "Common consonant - high fourth (ba, bi, bu, be, bo)"
+      "description": "Common consonant - eleventh (ba, bi, bu, be, bo)"
     },
     "P": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.15,
-      "description": "Less frequent consonant - high fifth (pa, pi, pu, pe, po)"
+      "description": "Less frequent consonant - twelfth (pa, pi, pu, pe, po)"
     },
     "F": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.15,
-      "description": "Less frequent - high sixth (fa, fi, fu, fe, fo)"
+      "description": "Less frequent - thirteenth (fa, fi, fu, fe, fo)"
     },
     "V": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.1,
-      "description": "Rare in Japanese - high seventh (va, vi, vu, ve, vo)"
+      "description": "Rare in Japanese - fourteenth (va, vi, vu, ve, vo)"
     },
     "J": {
       "note": "C#5",
@@ -209,7 +209,7 @@
       "description": "Number - octave"
     },
     "Ampersand": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Shift+7 - ampersand"
     },
@@ -219,7 +219,7 @@
       "description": "Number - ninth"
     },
     "Asterisk": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
       "description": "Shift+8 - asterisk"
     },
@@ -229,7 +229,7 @@
       "description": "Number - tenth"
     },
     "LeftParen": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.25,
       "description": "Shift+9 - left parenthesis"
     },
@@ -289,7 +289,7 @@
       "description": "Slash - punctuation"
     },
     "Question": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.25,
       "description": "Shift+/ - question mark"
     },
@@ -299,7 +299,7 @@
       "description": "Backslash"
     },
     "Pipe": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Shift+\\ - pipe symbol"
     },
@@ -309,7 +309,7 @@
       "description": "Comma - common in Japanese text"
     },
     "LessThan": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Shift+, - less than"
     },
@@ -319,7 +319,7 @@
       "description": "Period - sentence endings"
     },
     "GreaterThan": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Shift+. - greater than"
     },
@@ -329,7 +329,7 @@
       "description": "Apostrophe - less common in Japanese"
     },
     "DoubleQuote": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.25,
       "description": "Shift+' - quotation marks"
     },
@@ -339,7 +339,7 @@
       "description": "Grave accent - rarely used"
     },
     "Tilde": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.15,
       "description": "Shift+` - tilde (wave dash in Japanese)"
     },
@@ -439,27 +439,27 @@
       "description": "Function key - often katakana conversion"
     },
     "F8": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.15,
       "description": "Function key - often hiragana conversion"
     },
     "F9": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.15,
       "description": "Function key - often romaji conversion"
     },
     "F10": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.15,
       "description": "Function key - often alphanumeric"
     },
     "F11": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.15,
       "description": "Function key"
     },
     "F12": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.15,
       "description": "Function key"
     },
