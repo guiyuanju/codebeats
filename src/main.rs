@@ -13,12 +13,13 @@
 
 mod audio;
 mod keyboard;
+mod scale_comparison;
 mod waveform;
 
 use audio::AudioState;
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use device_query::{DeviceQuery, DeviceState, Keycode};
-use keyboard::{get_frequency_and_volume, get_frequency_and_volume_with_config, KeyboardConfig};
+use keyboard::{get_frequency_and_volume_with_config, KeyboardConfig};
 use std::env;
 use std::sync::{Arc, Mutex};
 use std::thread;
@@ -37,7 +38,7 @@ impl AppConfig {
     fn from_args() -> Result<Self, String> {
         let args: Vec<String> = env::args().collect();
 
-        let initial_waveform = if args.len() > 1 {
+        let initial_waveform = if args.len() > 1 && args[1] != "config" {
             Waveform::from_str(&args[1]).unwrap_or_else(|| {
                 println!("Available waveforms: natural, electronic, saw, square, cyberpunk");
                 println!("Using default: electronic");
@@ -68,10 +69,12 @@ impl AppConfig {
 
         match KeyboardConfig::load_from_file(config_path) {
             Ok(config) => {
-                println!(
-                    "✅ Loaded custom keyboard configuration from {}",
-                    config_path
-                );
+                if config_path != "keyboard_config.json" {
+                    println!(
+                        "✅ Loaded custom keyboard configuration from {}",
+                        config_path
+                    );
+                }
                 config
             }
             Err(_) => {
@@ -306,13 +309,13 @@ struct PianoApp {
 
 impl PianoApp {
     /// Create and initialize the piano application
-    fn new() -> Result<Self, Box<dyn std::error::Error>> {
-        let mut config = AppConfig::from_args()?;
-        let audio_system = AudioSystem::new(&mut config)?;
+    fn new(config: AppConfig) -> Result<Self, Box<dyn std::error::Error>> {
+        let mut app_config = config;
+        let audio_system = AudioSystem::new(&mut app_config)?;
         let keyboard_processor = KeyboardProcessor::new();
 
         // Show welcome screen
-        UIManager::show_welcome(config.initial_waveform, &config.keyboard_config);
+        UIManager::show_welcome(app_config.initial_waveform, &app_config.keyboard_config);
 
         Ok(Self {
             audio_system,
@@ -348,8 +351,8 @@ impl PianoApp {
             if key_debug.contains("Meta")
                 || key_debug.contains("Cmd")
                 || key_debug.contains("Command")
-                || key_debug.contains("Win")
-                || key_debug.contains("Super")
+                || key_debug.contains("LWin")
+                || key_debug.contains("RWin")
             {
                 println!("🔍 Detected potential Command key: {:?}", key);
                 println!("   (This key is not currently mapped to a musical note)");
@@ -428,17 +431,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         return AppConfig::generate_config_file();
     }
 
+    // Handle scale comparison command
+    if args.len() > 1 && args[1] == "compare-scales" {
+        return scale_comparison::demonstrate_scale_system();
+    }
+
     // Show help for config command
     if args.len() > 1 && args[1] == "config" && args.len() < 3 {
         println!("Usage: cargo run config <config_file>");
         println!("Example: cargo run config example_configs/piano_layout.json");
+        println!("Special commands:");
+        println!("  cargo run generate-config   - Generate default config");
+        println!("  cargo run compare-scales     - Show language scale comparison");
         return Ok(());
     }
 
     let config = AppConfig::from_args()?;
     let keyboard_config = config.keyboard_config.clone();
 
-    let mut app = PianoApp::new()?;
+    let mut app = PianoApp::new(config)?;
     app.run(&keyboard_config)
 }
 

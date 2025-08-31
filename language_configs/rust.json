@@ -5,182 +5,182 @@
     "R": {
       "note": "C4",
       "volume": 0.2,
-      "description": "Rust keyword foundation"
+      "description": "Rust keyword foundation - C minor pentatonic root"
     },
     "S": {
-      "note": "D4",
+      "note": "Eb4",
       "volume": 0.2,
-      "description": "Common in Rust keywords (struct, self, static)"
+      "description": "Common in Rust keywords (struct, self, static) - minor third"
     },
     "T": {
-      "note": "E4",
-      "volume": 0.2,
-      "description": "Common in type annotations"
-    },
-    "F": {
       "note": "F4",
       "volume": 0.2,
-      "description": "fn keyword foundation"
+      "description": "Common in type annotations - perfect fourth"
     },
-    "N": {
+    "F": {
       "note": "G4",
       "volume": 0.2,
-      "description": "fn, enum, main - essential keywords"
+      "description": "fn keyword foundation - perfect fifth"
+    },
+    "N": {
+      "note": "Bb4",
+      "volume": 0.2,
+      "description": "fn, enum, main - essential keywords - minor seventh"
     },
     "L": {
-      "note": "A4",
-      "volume": 0.2,
-      "description": "let, impl, loop keywords"
-    },
-    "E": {
-      "note": "B4",
-      "volume": 0.2,
-      "description": "Very common in Rust syntax"
-    },
-    "A": {
       "note": "C5",
       "volume": 0.2,
-      "description": "match, trait, static"
+      "description": "let, impl, loop keywords - octave"
     },
-    "I": {
-      "note": "D5",
+    "E": {
+      "note": "Eb5",
       "volume": 0.2,
-      "description": "impl, if, trait"
+      "description": "Very common in Rust syntax - minor third high"
     },
-    "O": {
-      "note": "E5",
-      "volume": 0.2,
-      "description": "Common in flow control"
-    },
-    "U": {
+    "A": {
       "note": "F5",
       "volume": 0.2,
-      "description": "mut, pub, struct"
+      "description": "match, trait, static - fourth high"
     },
-    "M": {
+    "I": {
       "note": "G5",
       "volume": 0.2,
-      "description": "match, impl, main"
+      "description": "impl, if, trait - fifth high"
     },
-    "P": {
-      "note": "A5",
+    "O": {
+      "note": "Bb5",
       "volume": 0.2,
-      "description": "pub, impl patterns"
+      "description": "Common in flow control - seventh high"
     },
-    "C": {
-      "note": "B5",
-      "volume": 0.2,
-      "description": "match, struct, macro"
-    },
-    "H": {
+    "U": {
       "note": "C6",
       "volume": 0.2,
-      "description": "match, char, hash"
+      "description": "mut, pub, struct - double octave"
     },
-    "D": {
-      "note": "D6",
+    "M": {
+      "note": "Eb6",
       "volume": 0.2,
-      "description": "mod, field access"
+      "description": "match, impl, main - minor third very high"
     },
-    "V": {
-      "note": "E6",
-      "volume": 0.2,
-      "description": "move, value semantics"
-    },
-    "W": {
+    "P": {
       "note": "F6",
       "volume": 0.2,
-      "description": "where, while clauses"
+      "description": "pub, impl patterns - fourth very high"
+    },
+    "C": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "match, struct, macro - fifth"
+    },
+    "H": {
+      "note": "Bb4",
+      "volume": 0.2,
+      "description": "match, char, hash - seventh"
+    },
+    "D": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "mod, field access - octave"
+    },
+    "V": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "move, value semantics - high minor third"
+    },
+    "W": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "where, while clauses - high fourth"
     },
     "Y": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
-      "description": "type, async, yield"
+      "description": "type, async, yield - high fifth"
     },
     "B": {
-      "note": "A6",
+      "note": "Bb5",
       "volume": 0.2,
-      "description": "bool, break, pub"
+      "description": "bool, break, pub - high seventh"
     },
     "G": {
-      "note": "B6",
+      "note": "C6",
       "volume": 0.2,
-      "description": "Generic parameters"
+      "description": "Generic parameters - double octave"
     },
     "K": {
-      "note": "C7",
+      "note": "Eb4",
       "volume": 0.2,
-      "description": "keyword patterns"
+      "description": "keyword patterns - reuse minor third"
     },
     "J": {
-      "note": "D7",
+      "note": "F4",
       "volume": 0.2,
-      "description": "Less common in Rust"
+      "description": "Less common in Rust - reuse fourth"
     },
     "Q": {
-      "note": "E7",
+      "note": "G4",
       "volume": 0.2,
-      "description": "Rare in Rust syntax"
+      "description": "Rare in Rust syntax - reuse fifth"
     },
     "X": {
-      "note": "F7",
+      "note": "Bb4",
       "volume": 0.2,
-      "description": "Hex literals, extern"
+      "description": "Hex literals, extern - reuse seventh"
     },
     "Z": {
-      "note": "G7",
+      "note": "C5",
       "volume": 0.2,
-      "description": "Size operations"
+      "description": "Size operations - reuse octave"
     },
     "Key0": {
       "note": "C4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - pentatonic root"
     },
     "Key1": {
-      "note": "D4",
+      "note": "Eb4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - pentatonic minor third"
     },
     "Key2": {
-      "note": "E4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key3": {
       "note": "F4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - pentatonic fourth"
     },
-    "Key4": {
+    "Key3": {
       "note": "G4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - pentatonic fifth"
+    },
+    "Key4": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Numeric literal - pentatonic seventh"
     },
     "Key5": {
-      "note": "A4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key6": {
-      "note": "B4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key7": {
       "note": "C5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - pentatonic octave"
+    },
+    "Key6": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Numeric literal - pentatonic minor third high"
+    },
+    "Key7": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Numeric literal - pentatonic fourth high"
     },
     "Key8": {
-      "note": "D5",
+      "note": "G5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - pentatonic fifth high"
     },
     "Key9": {
-      "note": "E5",
+      "note": "Bb5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - pentatonic seventh high"
     },
     "LeftBracket": {
       "note": "C3",
@@ -192,90 +192,31 @@
       "volume": 0.3,
       "description": "Array/slice syntax - closing"
     },
-    "LeftBrace": {
-      "note": "F3",
-      "volume": 0.25,
-      "description": "Block opening - structural"
-    },
-    "RightBrace": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Block closing - structural"
-    },
-    "LeftParen": {
-      "note": "G3",
-      "volume": 0.25,
-      "description": "Function calls, tuples - opening"
-    },
-    "RightParen": {
-      "note": "G4",
-      "volume": 0.25,
-      "description": "Function calls, tuples - closing"
-    },
+
     "Semicolon": {
       "note": "G3",
       "volume": 0.2,
       "description": "Statement terminator - gentle resolution"
     },
-    "Colon": {
-      "note": "C4",
-      "volume": 0.3,
-      "description": "Type annotations - important"
-    },
-    "DoubleColon": {
-      "note": "G4",
-      "volume": 0.35,
-      "description": "Path separator :: - distinctive"
-    },
     "Equal": {
-      "note": "D4",
+      "note": "Eb4",
       "volume": 0.25,
-      "description": "Assignment operator"
-    },
-    "Plus": {
-      "note": "E4",
-      "volume": 0.3,
-      "description": "Addition, trait bounds"
+      "description": "Assignment operator - minor third"
     },
     "Minus": {
-      "note": "D4",
+      "note": "F4",
       "volume": 0.3,
-      "description": "Subtraction, negative"
+      "description": "Subtraction, negative - fourth power"
     },
-    "Asterisk": {
-      "note": "G2",
-      "volume": 0.35,
-      "description": "Dereference, multiply - deep bass for pointer ops"
-    },
-    "Ampersand": {
-      "note": "C2",
-      "volume": 0.35,
-      "description": "Reference operator - foundational bass"
-    },
-    "Pipe": {
-      "note": "E4",
-      "volume": 0.3,
-      "description": "Match arms, closure params"
-    },
-    "LessThan": {
-      "note": "A4",
-      "volume": 0.3,
-      "description": "Generic parameters, comparison"
-    },
-    "GreaterThan": {
-      "note": "C5",
-      "volume": 0.3,
-      "description": "Generic parameters, comparison"
-    },
-    "Arrow": {
-      "note": "G4",
-      "volume": 0.35,
-      "description": "Function return type -> distinctive"
+    "BackSlash": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Escape sequences - fifth high"
     },
     "Dot": {
       "note": "F4",
       "volume": 0.25,
-      "description": "Method calls, field access"
+      "description": "Method calls, field access - fourth"
     },
     "Comma": {
       "note": "E3",
@@ -283,79 +224,19 @@
       "description": "Parameter separator - gentle"
     },
     "Apostrophe": {
-      "note": "E6",
-      "volume": 0.35,
-      "description": "Lifetimes - bright and distinctive"
-    },
-    "Exclamation": {
-      "note": "F#5",
-      "volume": 0.4,
-      "description": "Macro invocation - sharp accent"
-    },
-    "Question": {
-      "note": "A5",
-      "volume": 0.35,
-      "description": "Error propagation operator"
-    },
-    "Underscore": {
-      "note": "D4",
-      "volume": 0.25,
-      "description": "Pattern matching wildcard"
-    },
-    "Hash": {
-      "note": "E6",
-      "volume": 0.3,
-      "description": "Attributes, derive macros"
-    },
-    "At": {
       "note": "C6",
       "volume": 0.35,
-      "description": "Pattern binding @"
-    },
-    "Dollar": {
-      "note": "B5",
-      "volume": 0.35,
-      "description": "Macro syntax"
-    },
-    "Percent": {
-      "note": "F5",
-      "volume": 0.3,
-      "description": "Modulo operator"
-    },
-    "Caret": {
-      "note": "A5",
-      "volume": 0.3,
-      "description": "XOR, exponentiation"
-    },
-    "Tilde": {
-      "note": "B5",
-      "volume": 0.3,
-      "description": "Bitwise NOT"
+      "description": "Lifetimes - bright but not shrill"
     },
     "Slash": {
-      "note": "C5",
+      "note": "Bb4",
       "volume": 0.25,
-      "description": "Division, comments"
+      "description": "Division, comments - seventh"
     },
-    "BackSlash": {
-      "note": "D5",
-      "volume": 0.25,
-      "description": "Escape sequences"
-    },
-    "DoubleQuote": {
-      "note": "A4",
-      "volume": 0.25,
-      "description": "String literals"
-    },
-    "SingleQuote": {
-      "note": "B4",
-      "volume": 0.25,
-      "description": "Character literals"
-    },
-    "Backtick": {
+    "Grave": {
       "note": "C5",
       "volume": 0.3,
-      "description": "Raw strings, identifiers"
+      "description": "Raw strings, identifiers - octave"
     },
     "Space": {
       "note": "C2",

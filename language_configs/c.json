@@ -1,213 +1,203 @@
 {
   "version": "1.0",
-  "description": "C programming language optimized keyboard mapping - Systems programming foundation",
+  "description": "C programming language optimized keyboard mapping - A natural minor scale for serious systems programming",
   "mappings": {
     "I": {
-      "note": "C4",
+      "note": "A4",
       "volume": 0.2,
-      "description": "int, if, include - core C"
+      "description": "int, if, include - A minor root"
     },
     "N": {
-      "note": "D4",
+      "note": "B4",
       "volume": 0.2,
-      "description": "int, include, main"
+      "description": "int, include, main - major second"
     },
     "T": {
-      "note": "E4",
+      "note": "C5",
       "volume": 0.2,
-      "description": "int, struct, return"
+      "description": "int, struct, return - minor third"
     },
     "C": {
-      "note": "F4",
+      "note": "D5",
       "volume": 0.2,
-      "description": "char, include, struct"
+      "description": "char, include, struct - perfect fourth"
     },
     "L": {
-      "note": "G4",
+      "note": "E5",
       "volume": 0.2,
-      "description": "include, long, null"
+      "description": "include, long, null - perfect fifth"
     },
     "U": {
-      "note": "A4",
-      "volume": 0.2,
-      "description": "include, struct, return"
-    },
-    "D": {
-      "note": "B4",
-      "volume": 0.2,
-      "description": "include, void, define"
-    },
-    "E": {
-      "note": "C5",
-      "volume": 0.2,
-      "description": "Very common in C keywords"
-    },
-    "S": {
-      "note": "D5",
-      "volume": 0.2,
-      "description": "struct, sizeof, static"
-    },
-    "R": {
-      "note": "E5",
-      "volume": 0.2,
-      "description": "return, register, char"
-    },
-    "O": {
       "note": "F5",
       "volume": 0.2,
-      "description": "void, for, float"
+      "description": "include, struct, return - minor sixth"
     },
-    "F": {
+    "D": {
       "note": "G5",
       "volume": 0.2,
-      "description": "for, if, float"
+      "description": "include, void, define - minor seventh"
     },
-    "M": {
+    "E": {
       "note": "A5",
       "volume": 0.2,
-      "description": "main, sizeof"
+      "description": "Very common in C keywords - octave"
     },
-    "A": {
+    "S": {
       "note": "B5",
       "volume": 0.2,
-      "description": "char, main, static"
+      "description": "struct, sizeof, static - ninth"
     },
-    "H": {
+    "R": {
       "note": "C6",
       "volume": 0.2,
-      "description": "char, switch"
+      "description": "return, register, char - minor tenth"
     },
-    "V": {
+    "O": {
       "note": "D6",
       "volume": 0.2,
-      "description": "void, argv"
+      "description": "void, for, float - eleventh"
     },
-    "P": {
+    "F": {
       "note": "E6",
       "volume": 0.2,
-      "description": "printf, pointer operations"
+      "description": "for, if, float - twelfth"
     },
-    "G": {
+    "M": {
       "note": "F6",
       "volume": 0.2,
-      "description": "goto, register"
+      "description": "main, sizeof - minor thirteenth"
     },
-    "W": {
+    "A": {
       "note": "G6",
       "volume": 0.2,
-      "description": "while, switch"
+      "description": "char, main, static - minor fourteenth"
     },
-    "B": {
+    "H": {
       "note": "A6",
       "volume": 0.2,
-      "description": "break, double"
+      "description": "char, switch - double octave"
+    },
+    "V": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "void, argv - reuse root high"
+    },
+    "P": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "printf, pointer operations - reuse second high"
+    },
+    "G": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "goto, register - comfortable high"
+    },
+    "W": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "while, switch - reuse fourth high"
+    },
+    "B": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "bool, break - reuse fifth high"
     },
     "Y": {
-      "note": "B6",
+      "note": "F6",
       "volume": 0.2,
-      "description": "typedef, array"
+      "description": "typedef, array - reuse sixth high"
     },
     "K": {
-      "note": "C7",
+      "note": "A4",
       "volume": 0.2,
-      "description": "break, make"
+      "description": "break, make - reuse root"
     },
     "J": {
-      "note": "D7",
+      "note": "B4",
       "volume": 0.2,
-      "description": "Less common in C"
+      "description": "Less common in C - reuse second"
     },
     "Q": {
-      "note": "E7",
+      "note": "C5",
       "volume": 0.2,
-      "description": "Rare in C"
+      "description": "Rare in C - reuse third"
     },
     "X": {
-      "note": "F7",
+      "note": "D5",
       "volume": 0.2,
-      "description": "extern, exit"
+      "description": "extern, exit - reuse fourth"
     },
     "Z": {
-      "note": "G7",
+      "note": "E5",
       "volume": 0.2,
-      "description": "sizeof operations"
+      "description": "sizeof operations - reuse fifth"
     },
     "Key0": {
-      "note": "C4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key1": {
-      "note": "D4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key2": {
-      "note": "E4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key3": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key4": {
-      "note": "G4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key5": {
       "note": "A4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - minor root"
     },
-    "Key6": {
+    "Key1": {
       "note": "B4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - second"
     },
-    "Key7": {
+    "Key2": {
       "note": "C5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - minor third"
     },
-    "Key8": {
+    "Key3": {
       "note": "D5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - fourth"
     },
-    "Key9": {
+    "Key4": {
       "note": "E5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - fifth"
     },
-    "LeftBrace": {
+    "Key5": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Numeric literal - minor sixth"
+    },
+    "Key6": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric literal - minor seventh"
+    },
+    "Key7": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Key8": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Key9": {
+      "note": "C6",
+      "volume": 0.25,
+      "description": "Numeric literal - minor tenth"
+    },
+    "LeftBracket": {
       "note": "C4",
       "volume": 0.25,
       "description": "Code blocks - structural opening"
     },
-    "RightBrace": {
+    "RightBracket": {
       "note": "C5",
       "volume": 0.25,
       "description": "Code blocks - structural closing (octave)"
     },
-    "LeftParen": {
-      "note": "G3",
-      "volume": 0.25,
-      "description": "Function calls, expressions"
-    },
-    "RightParen": {
-      "note": "G4",
-      "volume": 0.25,
-      "description": "Function calls, expressions"
-    },
-    "LeftBracket": {
+    "Grave": {
       "note": "F3",
       "volume": 0.25,
       "description": "Array indexing"
     },
-    "RightBracket": {
+    "Minus": {
       "note": "F4",
       "volume": 0.25,
       "description": "Array indexing"
@@ -217,125 +207,35 @@
       "volume": 0.2,
       "description": "Statement terminator - essential in C"
     },
-    "Hash": {
-      "note": "E6",
-      "volume": 0.35,
-      "description": "Preprocessor directives - bright standout"
-    },
     "Equal": {
-      "note": "D4",
+      "note": "D5",
       "volume": 0.25,
-      "description": "Assignment operator"
-    },
-    "DoubleEqual": {
-      "note": "E4",
-      "volume": 0.3,
-      "description": "Equality comparison"
-    },
-    "Plus": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Addition, increment"
-    },
-    "Minus": {
-      "note": "E4",
-      "volume": 0.25,
-      "description": "Subtraction, decrement"
-    },
-    "Asterisk": {
-      "note": "C2",
-      "volume": 0.35,
-      "description": "Pointer dereference - deep bass foundation"
-    },
-    "Ampersand": {
-      "note": "G2",
-      "volume": 0.35,
-      "description": "Address operator - bass foundation"
-    },
-    "Arrow": {
-      "note": "C3",
-      "volume": 0.35,
-      "description": "Structure pointer access -> bass"
+      "description": "Assignment operator - fourth"
     },
     "Slash": {
-      "note": "A4",
+      "note": "F5",
       "volume": 0.25,
-      "description": "Division, comments"
+      "description": "Division, comments - minor sixth"
     },
-    "Percent": {
-      "note": "B4",
-      "volume": 0.3,
-      "description": "Modulo, printf format"
-    },
-    "LessThan": {
+    "Apostrophe": {
       "note": "C5",
-      "volume": 0.3,
-      "description": "Comparison, includes"
-    },
-    "GreaterThan": {
-      "note": "D5",
-      "volume": 0.3,
-      "description": "Comparison, includes"
-    },
-    "Exclamation": {
-      "note": "F#5",
-      "volume": 0.3,
-      "description": "Logical NOT"
-    },
-    "Question": {
-      "note": "A5",
-      "volume": 0.3,
-      "description": "Ternary operator"
-    },
-    "Colon": {
-      "note": "B4",
       "volume": 0.25,
-      "description": "Labels, ternary"
+      "description": "Character literals - minor third"
     },
-    "Dot": {
-      "note": "F4",
+    "BackSlash": {
+      "note": "G5",
       "volume": 0.25,
-      "description": "Structure member access"
+      "description": "Escape sequences - minor seventh"
     },
     "Comma": {
       "note": "E3",
       "volume": 0.2,
       "description": "Parameter separator"
     },
-    "DoubleQuote": {
-      "note": "A4",
-      "volume": 0.25,
-      "description": "String literals"
-    },
-    "SingleQuote": {
-      "note": "B4",
-      "volume": 0.25,
-      "description": "Character literals"
-    },
-    "BackSlash": {
-      "note": "C5",
-      "volume": 0.25,
-      "description": "Escape sequences"
-    },
-    "Underscore": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Variable naming convention"
-    },
-    "Pipe": {
-      "note": "D5",
-      "volume": 0.3,
-      "description": "Bitwise OR"
-    },
-    "Caret": {
+    "Dot": {
       "note": "E5",
-      "volume": 0.3,
-      "description": "XOR operator"
-    },
-    "Tilde": {
-      "note": "F5",
-      "volume": 0.3,
-      "description": "Bitwise NOT"
+      "volume": 0.25,
+      "description": "Structure member access - fifth"
     },
     "Space": {
       "note": "C2",

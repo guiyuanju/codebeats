@@ -7,5 +7,5 @@
 pub mod config;
 pub mod mapping;
 
-pub use config::{KeyMapping, KeyboardConfig};
+pub use config::KeyboardConfig;
 pub use mapping::{get_frequency_and_volume, get_frequency_and_volume_with_config};

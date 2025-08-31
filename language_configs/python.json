@@ -1,0 +1,401 @@
+{
+  "version": "1.0",
+  "description": "Python programming language optimized keyboard mapping - F major scale for friendly, readable programming",
+  "mappings": {
+    "D": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "def keyword foundation - F major root"
+    },
+    "E": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "def, return, except - major second"
+    },
+    "F": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "def, for, if - major third"
+    },
+    "P": {
+      "note": "Bb4",
+      "volume": 0.2,
+      "description": "print, import, pass - perfect fourth"
+    },
+    "R": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "return, range, import - perfect fifth"
+    },
+    "I": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "if, import, in, is - major sixth"
+    },
+    "N": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "in, and, not, None - major seventh"
+    },
+    "T": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "return, not, int - octave"
+    },
+    "A": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "and, as, lambda - ninth"
+    },
+    "S": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "self, class, as - tenth"
+    },
+    "L": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "lambda, len, elif - eleventh"
+    },
+    "O": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "for, not, from - twelfth"
+    },
+    "C": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "class, except, dict - thirteenth"
+    },
+    "M": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "import, lambda, method - fourteenth"
+    },
+    "U": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "True, tuple, function - double octave"
+    },
+    "Y": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "try, type, yield - high second"
+    },
+    "H": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "with, while, hash - high third"
+    },
+    "W": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "with, while, where - high fourth"
+    },
+    "B": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "break, bool, global - comfortable high fifth"
+    },
+    "V": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "value, var, eval - comfortable high sixth"
+    },
+    "G": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "global, get, args - comfortable high seventh"
+    },
+    "K": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "keyword, key, kwargs - reuse root"
+    },
+    "J": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "join, json - reuse second"
+    },
+    "Q": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "Rare in Python - reuse third"
+    },
+    "X": {
+      "note": "Bb4",
+      "volume": 0.2,
+      "description": "exec, hex, max - reuse fourth"
+    },
+    "Z": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "zip, size operations - reuse fifth"
+    },
+    "Key0": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Numeric literal - F major root"
+    },
+    "Key1": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
+    "Key2": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
+    },
+    "Key3": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fourth"
+    },
+    "Key4": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Key5": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Key6": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - major seventh"
+    },
+    "Key7": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Key8": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Key9": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Numeric literal - tenth"
+    },
+    "LeftBracket": {
+      "note": "F3",
+      "volume": 0.3,
+      "description": "List/dict access [ and { (Shift+[) - low foundation"
+    },
+    "RightBracket": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "List/dict access ] and } (Shift+]) - octave closure"
+    },
+    "Semicolon": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Colon : (Shift+;) for dict/function definitions - rare semicolon"
+    },
+    "Equal": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Assignment operator - fifth"
+    },
+    "Minus": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Subtraction, underscore _ (Shift+-) - sixth"
+    },
+    "Slash": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Division /, comments - fourth"
+    },
+    "BackSlash": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Escape sequences \\ and pipe | (Shift+\\) - seventh"
+    },
+    "Comma": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Parameter separator, list items - gentle second"
+    },
+    "Dot": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Method calls, attribute access - third"
+    },
+    "Apostrophe": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "String literals ' and \" (Shift+') - third"
+    },
+    "Grave": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Rarely used in Python - fourth"
+    },
+    "Space": {
+      "note": "F2",
+      "volume": 0.15,
+      "description": "Significant whitespace - structural foundation"
+    },
+    "Tab": {
+      "note": "F2",
+      "volume": 0.15,
+      "description": "Indentation - critical in Python structure"
+    },
+    "Enter": {
+      "note": "F3",
+      "volume": 0.2,
+      "description": "Line breaks - important for Python structure"
+    },
+    "Backspace": {
+      "note": "D2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "E2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "Bb2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "C3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "D3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "Bb6",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Run/execute Python"
+    },
+    "F6": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "Python interactive"
+    },
+    "F7": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Python REPL"
+    },
+    "Up": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "F3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "Bb3",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "F3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "C4",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page navigation up"
+    },
+    "PageDown": {
+      "note": "D4",
+      "volume": 0.15,
+      "description": "Page navigation down"
+    }
+  }
+}

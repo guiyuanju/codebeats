@@ -1,367 +1,245 @@
 {
   "version": "1.0",
-  "description": "JavaScript programming language optimized keyboard mapping - Web development harmony",
+  "description": "JavaScript programming language optimized keyboard mapping - D Mixolydian mode for dynamic web development (comfortable frequency range)",
   "mappings": {
     "F": {
-      "note": "C4",
+      "note": "D4",
       "volume": 0.2,
-      "description": "function keyword foundation"
+      "description": "function keyword foundation - D Mixolydian root"
     },
     "U": {
-      "note": "D4",
+      "note": "E4",
       "volume": 0.2,
-      "description": "function, const, return"
+      "description": "function, const, return - major second"
     },
     "N": {
-      "note": "E4",
+      "note": "F#4",
       "volume": 0.2,
-      "description": "function, const, undefined"
+      "description": "function, const, undefined - major third"
     },
     "C": {
-      "note": "F4",
+      "note": "G4",
       "volume": 0.2,
-      "description": "const, class, constructor"
+      "description": "const, class, constructor - perfect fourth"
     },
     "T": {
-      "note": "G4",
+      "note": "A4",
       "volume": 0.2,
-      "description": "const, let, return, true"
+      "description": "const, let, return, true - perfect fifth"
     },
     "I": {
-      "note": "A4",
+      "note": "B4",
       "volume": 0.2,
-      "description": "if, this, require"
+      "description": "if, this, require - major sixth"
     },
     "O": {
-      "note": "B4",
+      "note": "C5",
       "volume": 0.2,
-      "description": "console, object, for"
+      "description": "console, object, for - minor seventh (Mixolydian characteristic)"
     },
     "R": {
-      "note": "C5",
+      "note": "D5",
       "volume": 0.2,
-      "description": "return, var, for, require"
+      "description": "return, var, for, require - octave"
     },
     "E": {
-      "note": "D5",
+      "note": "E4",
       "volume": 0.2,
-      "description": "Very common in JS keywords"
+      "description": "Very common in JS keywords - reuse major second"
     },
     "A": {
-      "note": "E5",
+      "note": "F#4",
       "volume": 0.2,
-      "description": "var, class, array, await"
+      "description": "var, class, array, await - reuse major third"
     },
     "S": {
-      "note": "F5",
+      "note": "G4",
       "volume": 0.2,
-      "description": "const, class, async"
+      "description": "const, class, async - reuse fourth"
     },
     "L": {
-      "note": "G5",
+      "note": "A4",
       "volume": 0.2,
-      "description": "let, null, console.log"
+      "description": "let, null, console.log - reuse fifth"
     },
     "V": {
-      "note": "A5",
+      "note": "B4",
       "volume": 0.2,
-      "description": "var, void, event"
+      "description": "var, void, event - reuse sixth"
     },
     "M": {
-      "note": "B5",
+      "note": "C5",
       "volume": 0.2,
-      "description": "import, module, method"
+      "description": "import, module, method - reuse seventh"
     },
     "P": {
-      "note": "C6",
+      "note": "D5",
       "volume": 0.2,
-      "description": "import, prototype, promise"
+      "description": "import, prototype, promise - octave"
     },
     "D": {
-      "note": "D6",
+      "note": "E5",
       "volume": 0.2,
-      "description": "undefined, document"
+      "description": "undefined, document - high second"
     },
     "H": {
-      "note": "E6",
+      "note": "F#5",
       "volume": 0.2,
-      "description": "this, catch, push"
+      "description": "this, catch, push - high third"
     },
     "W": {
-      "note": "F6",
+      "note": "G5",
       "volume": 0.2,
-      "description": "window, while, with"
+      "description": "window, while, with - high fourth"
     },
     "Y": {
-      "note": "G6",
+      "note": "A5",
       "volume": 0.2,
-      "description": "async, try, type"
+      "description": "async, try, type - high fifth"
     },
     "B": {
-      "note": "A6",
+      "note": "B5",
       "volume": 0.2,
-      "description": "break, boolean, object"
+      "description": "break, boolean, object - high sixth"
     },
     "G": {
-      "note": "B6",
+      "note": "C6",
       "volume": 0.2,
-      "description": "log, get, global"
+      "description": "log, get, global - high seventh"
     },
     "K": {
-      "note": "C7",
+      "note": "D4",
       "volume": 0.2,
-      "description": "break, make, key"
+      "description": "break, make, key - reuse root"
     },
     "J": {
-      "note": "D7",
+      "note": "E4",
       "volume": 0.2,
-      "description": "JSON, object keys"
+      "description": "JSON, object keys - reuse second"
     },
     "Q": {
-      "note": "E7",
+      "note": "F#4",
       "volume": 0.2,
-      "description": "require, query"
+      "description": "require, query - reuse third"
     },
     "X": {
-      "note": "F7",
+      "note": "G4",
       "volume": 0.2,
-      "description": "export, extend, index"
+      "description": "export, extend, index - reuse fourth"
     },
     "Z": {
-      "note": "G7",
+      "note": "A4",
       "volume": 0.2,
-      "description": "size, zero"
+      "description": "size, zero - reuse fifth"
     },
     "Key0": {
-      "note": "C4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key1": {
       "note": "D4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - Mixolydian root"
     },
-    "Key2": {
+    "Key1": {
       "note": "E4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - major second"
+    },
+    "Key2": {
+      "note": "F#4",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
     },
     "Key3": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key4": {
       "note": "G4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - perfect fourth"
     },
-    "Key5": {
+    "Key4": {
       "note": "A4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - perfect fifth"
     },
-    "Key6": {
+    "Key5": {
       "note": "B4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - major sixth"
     },
-    "Key7": {
+    "Key6": {
       "note": "C5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - minor seventh (Mixolydian characteristic)"
     },
-    "Key8": {
+    "Key7": {
       "note": "D5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - octave"
     },
-    "Key9": {
+    "Key8": {
       "note": "E5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - ninth"
+    },
+    "Key9": {
+      "note": "F#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major tenth"
     },
     "LeftBracket": {
       "note": "C3",
       "volume": 0.3,
-      "description": "Array access, destructuring - opening"
+      "description": "Array access [ and object destructuring { (Shift+[)"
     },
     "RightBracket": {
       "note": "C4",
       "volume": 0.3,
-      "description": "Array access, destructuring - closing"
-    },
-    "LeftBrace": {
-      "note": "F3",
-      "volume": 0.3,
-      "description": "Object literals, blocks - opening"
-    },
-    "RightBrace": {
-      "note": "F4",
-      "volume": 0.3,
-      "description": "Object literals, blocks - closing"
-    },
-    "LeftParen": {
-      "note": "G3",
-      "volume": 0.25,
-      "description": "Function calls, expressions - opening"
-    },
-    "RightParen": {
-      "note": "G4",
-      "volume": 0.25,
-      "description": "Function calls, expressions - closing"
+      "description": "Array access ] and object destructuring } (Shift+])"
     },
     "Semicolon": {
       "note": "G3",
       "volume": 0.2,
-      "description": "Statement terminator - gentle"
-    },
-    "Colon": {
-      "note": "D4",
-      "volume": 0.3,
-      "description": "Object properties, ternary"
+      "description": "Statement terminator ; and object properties : (Shift+;)"
     },
     "Equal": {
-      "note": "C4",
+      "note": "G4",
       "volume": 0.25,
-      "description": "Assignment operator"
-    },
-    "DoubleEqual": {
-      "note": "D4",
-      "volume": 0.3,
-      "description": "Equality comparison"
-    },
-    "TripleEqual": {
-      "note": "E4",
-      "volume": 0.35,
-      "description": "Strict equality - distinctive"
-    },
-    "Plus": {
-      "note": "F4",
-      "volume": 0.3,
-      "description": "Addition, concatenation"
+      "description": "Assignment = and addition + (Shift+=) - fourth"
     },
     "Minus": {
-      "note": "E4",
+      "note": "F#4",
       "volume": 0.3,
-      "description": "Subtraction, negative"
-    },
-    "Asterisk": {
-      "note": "G4",
-      "volume": 0.3,
-      "description": "Multiplication, spread"
+      "description": "Subtraction - and underscore _ (Shift+-) - major third"
     },
     "Slash": {
-      "note": "A4",
-      "volume": 0.25,
-      "description": "Division, regex, comments"
-    },
-    "Percent": {
       "note": "B4",
-      "volume": 0.3,
-      "description": "Modulo operator"
+      "volume": 0.25,
+      "description": "Division /, regex, comments and question ? (Shift+/) - sixth"
     },
-    "Ampersand": {
+
+    "BackSlash": {
       "note": "C5",
       "volume": 0.3,
-      "description": "Logical AND &&"
+      "description": "Backslash \\ and pipe | (Shift+\\) - minor seventh"
     },
-    "Pipe": {
-      "note": "D5",
+    "Comma": {
+      "note": "E4",
       "volume": 0.3,
-      "description": "Logical OR ||"
-    },
-    "LessThan": {
-      "note": "E5",
-      "volume": 0.3,
-      "description": "Comparison, JSX"
-    },
-    "GreaterThan": {
-      "note": "F5",
-      "volume": 0.3,
-      "description": "Comparison, JSX, arrow functions"
-    },
-    "Arrow": {
-      "note": "G5",
-      "volume": 0.35,
-      "description": "Arrow functions => - leap to higher octave"
+      "description": "Comma , and less than < (Shift+,) - second"
     },
     "Dot": {
       "note": "A4",
       "volume": 0.25,
-      "description": "Property access, method calls"
+      "description": "Property access, method calls . and greater than > (Shift+.) - fifth"
     },
-    "DotDotDot": {
-      "note": "A5",
-      "volume": 0.35,
-      "description": "Spread operator ... - flowing"
-    },
-    "Comma": {
-      "note": "E3",
-      "volume": 0.2,
-      "description": "Parameter separator - gentle"
-    },
-    "DoubleQuote": {
-      "note": "B4",
+
+    "Apostrophe": {
+      "note": "F#4",
       "volume": 0.25,
-      "description": "String literals"
+      "description": "Single quote ' and double quote \" (Shift+') - major third"
     },
-    "SingleQuote": {
-      "note": "C5",
-      "volume": 0.25,
-      "description": "String literals"
-    },
-    "Backtick": {
-      "note": "A#4",
+    "Grave": {
+      "note": "G#4",
       "volume": 0.3,
-      "description": "Template literals - unique timbre"
+      "description": "Template literals ` and tilde ~ (Shift+`) - unique augmented fourth"
     },
-    "Dollar": {
-      "note": "D#5",
-      "volume": 0.35,
-      "description": "Template literal expressions ${}"
-    },
-    "Exclamation": {
-      "note": "F#5",
-      "volume": 0.3,
-      "description": "Negation operator !"
-    },
-    "Question": {
-      "note": "A5",
-      "volume": 0.3,
-      "description": "Ternary operator, optional chaining"
-    },
-    "At": {
-      "note": "C6",
-      "volume": 0.35,
-      "description": "Decorators (future JS)"
-    },
-    "Hash": {
-      "note": "D6",
-      "volume": 0.3,
-      "description": "Private fields #"
-    },
-    "Underscore": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Variable names, lodash"
-    },
-    "Caret": {
-      "note": "G5",
-      "volume": 0.3,
-      "description": "XOR, exponentiation"
-    },
-    "Tilde": {
-      "note": "A#5",
-      "volume": 0.3,
-      "description": "Bitwise NOT"
-    },
-    "BackSlash": {
-      "note": "B4",
-      "volume": 0.25,
-      "description": "Escape sequences, regex"
-    },
+
     "Space": {
       "note": "C2",
       "volume": 0.1,

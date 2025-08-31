@@ -1,371 +1,241 @@
 {
   "version": "1.0",
-  "description": "Go programming language optimized keyboard mapping - Simple, efficient harmony",
+  "description": "Go programming language optimized keyboard mapping - G major pentatonic scale for simple, efficient coding",
   "mappings": {
     "G": {
-      "note": "C4",
-      "volume": 0.2,
-      "description": "Go language foundation"
-    },
-    "O": {
-      "note": "F4",
-      "volume": 0.2,
-      "description": "Go keyword, for, package"
-    },
-    "F": {
-      "note": "C4",
-      "volume": 0.2,
-      "description": "func keyword foundation"
-    },
-    "U": {
-      "note": "D4",
-      "volume": 0.2,
-      "description": "func, return, struct"
-    },
-    "N": {
-      "note": "E4",
-      "volume": 0.2,
-      "description": "func, interface, int"
-    },
-    "C": {
-      "note": "F4",
-      "volume": 0.2,
-      "description": "func, package, interface"
-    },
-    "P": {
       "note": "G4",
       "volume": 0.2,
-      "description": "package keyword"
+      "description": "Go language foundation - G pentatonic root"
     },
-    "A": {
+    "O": {
       "note": "A4",
       "volume": 0.2,
-      "description": "package, var, range"
+      "description": "Go keyword, for, package - major second"
     },
-    "K": {
+    "F": {
       "note": "B4",
       "volume": 0.2,
-      "description": "package, make"
+      "description": "func keyword foundation - major third"
     },
-    "E": {
-      "note": "C5",
-      "volume": 0.2,
-      "description": "Very common in Go keywords"
-    },
-    "I": {
+    "U": {
       "note": "D5",
       "volume": 0.2,
-      "description": "if, interface, import"
+      "description": "func, return, struct - perfect fifth"
     },
-    "M": {
+    "N": {
       "note": "E5",
       "volume": 0.2,
-      "description": "import, main, make"
+      "description": "func, interface, int - major sixth"
     },
-    "R": {
-      "note": "F5",
-      "volume": 0.2,
-      "description": "return, range, error"
-    },
-    "T": {
+    "C": {
       "note": "G5",
       "volume": 0.2,
-      "description": "struct, type, interface"
+      "description": "func, package, interface - octave"
     },
-    "S": {
+    "P": {
       "note": "A5",
       "volume": 0.2,
-      "description": "struct, string, slice"
+      "description": "package keyword - ninth"
     },
-    "V": {
+    "A": {
       "note": "B5",
       "volume": 0.2,
-      "description": "var, value"
+      "description": "package, var, range - tenth"
     },
-    "L": {
-      "note": "C6",
-      "volume": 0.2,
-      "description": "nil, slice, len"
-    },
-    "D": {
+    "K": {
       "note": "D6",
       "volume": 0.2,
-      "description": "defer, default"
+      "description": "package, make - twelfth"
     },
-    "H": {
+    "E": {
       "note": "E6",
       "volume": 0.2,
-      "description": "chan, switch"
+      "description": "Very common in Go keywords - thirteenth"
+    },
+    "I": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "if, interface, import - double octave"
+    },
+    "M": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "import, main, make - high ninth"
+    },
+    "R": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "return, range, error - high tenth"
+    },
+    "T": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "struct, type, interface - high twelfth"
+    },
+    "S": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "struct, string, slice - high thirteenth"
+    },
+    "V": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "var, value - high octave"
+    },
+    "L": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "nil, slice, len - high second"
+    },
+    "D": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "defer, default - high third"
+    },
+    "H": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "chan, switch - comfortable high fifth"
     },
     "W": {
-      "note": "F6",
+      "note": "E6",
       "volume": 0.2,
-      "description": "switch, while patterns"
+      "description": "switch, while patterns - comfortable high sixth"
     },
     "Y": {
       "note": "G6",
       "volume": 0.2,
-      "description": "type declarations"
+      "description": "type declarations - comfortable double octave"
     },
     "B": {
-      "note": "A6",
+      "note": "G4",
       "volume": 0.2,
-      "description": "bool, break"
+      "description": "bool, break - reuse root"
     },
     "J": {
-      "note": "B6",
+      "note": "A4",
       "volume": 0.2,
-      "description": "Less common in Go"
+      "description": "Less common in Go - reuse second"
     },
     "Q": {
-      "note": "C7",
+      "note": "B4",
       "volume": 0.2,
-      "description": "Rare in Go syntax"
+      "description": "Rare in Go syntax - reuse third"
     },
     "X": {
-      "note": "D7",
+      "note": "D5",
       "volume": 0.2,
-      "description": "context, hex"
+      "description": "context, hex - reuse fifth"
     },
     "Z": {
-      "note": "E7",
+      "note": "E5",
       "volume": 0.2,
-      "description": "Size operations"
+      "description": "Size operations - reuse sixth"
     },
     "Key0": {
-      "note": "C4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key1": {
-      "note": "D4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key2": {
-      "note": "E4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key3": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "Key4": {
       "note": "G4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - pentatonic root"
     },
-    "Key5": {
+    "Key1": {
       "note": "A4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - major second"
     },
-    "Key6": {
+    "Key2": {
       "note": "B4",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - major third"
+    },
+    "Key3": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Key4": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Key5": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric literal - pentatonic octave"
+    },
+    "Key6": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Numeric literal - high ninth"
     },
     "Key7": {
-      "note": "C5",
+      "note": "B5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - high tenth"
     },
     "Key8": {
       "note": "D5",
       "volume": 0.25,
-      "description": "Numeric literal"
+      "description": "Numeric literal - comfortable high fifth"
     },
     "Key9": {
       "note": "E5",
       "volume": 0.25,
-      "description": "Numeric literal"
-    },
-    "LeftBrace": {
-      "note": "F3",
-      "volume": 0.3,
-      "description": "Block opening - very common in Go"
-    },
-    "RightBrace": {
-      "note": "F4",
-      "volume": 0.3,
-      "description": "Block closing - very common in Go"
-    },
-    "LeftParen": {
-      "note": "G3",
-      "volume": 0.25,
-      "description": "Function calls, parameters"
-    },
-    "RightParen": {
-      "note": "G4",
-      "volume": 0.25,
-      "description": "Function calls, parameters"
+      "description": "Numeric literal - comfortable high sixth"
     },
     "LeftBracket": {
-      "note": "A3",
-      "volume": 0.25,
-      "description": "Slice/array access"
+      "note": "G3",
+      "volume": 0.3,
+      "description": "Block opening - pentatonic foundation"
     },
     "RightBracket": {
-      "note": "A4",
-      "volume": 0.25,
-      "description": "Slice/array access"
-    },
-    "ColonEqual": {
-      "note": "C4",
-      "volume": 0.35,
-      "description": "Short declaration := - distinctive Go feature"
-    },
-    "Colon": {
-      "note": "D4",
-      "volume": 0.25,
-      "description": "Type annotations, labels"
-    },
-    "Equal": {
-      "note": "E4",
-      "volume": 0.25,
-      "description": "Assignment operator"
-    },
-    "DoubleEqual": {
-      "note": "F4",
-      "volume": 0.3,
-      "description": "Equality comparison"
-    },
-    "ExclamationEqual": {
       "note": "G4",
       "volume": 0.3,
-      "description": "Not equal comparison"
+      "description": "Block closing - pentatonic octave"
     },
-    "Plus": {
-      "note": "A4",
+    "Grave": {
+      "note": "A3",
       "volume": 0.25,
-      "description": "Addition, string concatenation"
+      "description": "Array indexing - second low"
     },
     "Minus": {
-      "note": "B4",
+      "note": "B3",
       "volume": 0.25,
-      "description": "Subtraction, negative"
+      "description": "Array indexing - third low"
     },
-    "Asterisk": {
-      "note": "C5",
-      "volume": 0.3,
-      "description": "Multiplication, pointer dereference"
-    },
-    "Slash": {
-      "note": "D5",
+    "Equal": {
+      "note": "D4",
       "volume": 0.25,
-      "description": "Division, comments"
-    },
-    "Percent": {
-      "note": "E5",
-      "volume": 0.3,
-      "description": "Modulo operator"
-    },
-    "Ampersand": {
-      "note": "F5",
-      "volume": 0.3,
-      "description": "Address operator, logical AND"
-    },
-    "Pipe": {
-      "note": "G5",
-      "volume": 0.3,
-      "description": "Bitwise OR, logical OR"
-    },
-    "Caret": {
-      "note": "A5",
-      "volume": 0.3,
-      "description": "XOR operator"
-    },
-    "LessThan": {
-      "note": "B5",
-      "volume": 0.3,
-      "description": "Less than, channel receive"
-    },
-    "GreaterThan": {
-      "note": "C6",
-      "volume": 0.3,
-      "description": "Greater than"
-    },
-    "LeftArrow": {
-      "note": "D6",
-      "volume": 0.35,
-      "description": "Channel operator <- distinctive"
-    },
-    "Dot": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Method calls, field access"
-    },
-    "DotDotDot": {
-      "note": "F5",
-      "volume": 0.35,
-      "description": "Variadic parameters ... - flowing"
-    },
-    "Comma": {
-      "note": "E3",
-      "volume": 0.2,
-      "description": "Parameter separator"
+      "description": "Assignment operator - fifth low"
     },
     "Semicolon": {
       "note": "G3",
       "volume": 0.15,
       "description": "Optional in Go - gentle when used"
     },
-    "DoubleQuote": {
+    "Apostrophe": {
       "note": "A4",
       "volume": 0.25,
       "description": "String literals"
     },
-    "Backtick": {
-      "note": "B4",
-      "volume": 0.3,
-      "description": "Raw string literals - distinctive"
+    "Comma": {
+      "note": "E3",
+      "volume": 0.2,
+      "description": "Parameter separator"
     },
-    "SingleQuote": {
-      "note": "C5",
-      "volume": 0.25,
-      "description": "Rune literals"
-    },
-    "Exclamation": {
-      "note": "D#5",
-      "volume": 0.3,
-      "description": "Negation operator"
-    },
-    "Question": {
-      "note": "E#5",
-      "volume": 0.25,
-      "description": "Less common in Go"
-    },
-    "Underscore": {
+    "Dot": {
       "note": "F4",
       "volume": 0.25,
-      "description": "Blank identifier _ - important in Go"
+      "description": "Method calls, field access"
     },
-    "Hash": {
-      "note": "G6",
+    "Slash": {
+      "note": "D5",
       "volume": 0.25,
-      "description": "Build constraints, comments"
+      "description": "Division, comments"
     },
     "BackSlash": {
       "note": "A5",
       "volume": 0.25,
       "description": "Escape sequences"
-    },
-    "Tilde": {
-      "note": "B5",
-      "volume": 0.3,
-      "description": "Bitwise NOT"
-    },
-    "At": {
-      "note": "C6",
-      "volume": 0.25,
-      "description": "Rare in Go"
-    },
-    "Dollar": {
-      "note": "D6",
-      "volume": 0.25,
-      "description": "Rare in Go"
     },
     "Space": {
       "note": "C2",

@@ -9,7 +9,7 @@
 use crate::keyboard::config::KeyboardConfig;
 use device_query::Keycode;
 use std::collections::HashMap;
-
+use std::collections::HashSet;
 use std::time::{Duration, Instant};
 
 /// Rate limiter for preventing annoying high-pitched sounds from rapid key presses
@@ -109,15 +109,115 @@ pub fn get_frequency_from_note(note: &str) -> Option<f32> {
     Some(frequency)
 }
 
+/// Keyboard state tracker for handling shifted characters
+pub struct KeyboardStateTracker {
+    shift_pressed: bool,
+    pressed_keys: HashSet<Keycode>,
+}
+
+impl KeyboardStateTracker {
+    pub fn new() -> Self {
+        Self {
+            shift_pressed: false,
+            pressed_keys: HashSet::new(),
+        }
+    }
+
+    /// Update keyboard state based on pressed and released keys
+    pub fn update(&mut self, pressed_keys: &[Keycode], released_keys: &[Keycode]) {
+        // Update shift state
+        for key in pressed_keys {
+            if matches!(key, Keycode::LShift | Keycode::RShift) {
+                self.shift_pressed = true;
+            }
+            self.pressed_keys.insert(*key);
+        }
+
+        for key in released_keys {
+            if matches!(key, Keycode::LShift | Keycode::RShift) {
+                // Check if any shift key is still pressed
+                self.shift_pressed = self.pressed_keys.contains(&Keycode::LShift)
+                    || self.pressed_keys.contains(&Keycode::RShift);
+            }
+            self.pressed_keys.remove(key);
+        }
+    }
+
+    /// Get the virtual keycode for shifted characters
+    pub fn get_virtual_keycode(&self, physical_key: Keycode) -> Option<VirtualKeycode> {
+        if !self.shift_pressed {
+            return Some(VirtualKeycode::Physical(physical_key));
+        }
+
+        // Map shifted characters
+        let shifted_key = match physical_key {
+            Keycode::Key1 => VirtualKeycode::Shifted("Exclamation"),
+            Keycode::Key2 => VirtualKeycode::Shifted("At"),
+            Keycode::Key3 => VirtualKeycode::Shifted("Hash"),
+            Keycode::Key4 => VirtualKeycode::Shifted("Dollar"),
+            Keycode::Key5 => VirtualKeycode::Shifted("Percent"),
+            Keycode::Key6 => VirtualKeycode::Shifted("Caret"),
+            Keycode::Key7 => VirtualKeycode::Shifted("Ampersand"),
+            Keycode::Key8 => VirtualKeycode::Shifted("Asterisk"),
+            Keycode::Key9 => VirtualKeycode::Shifted("LeftParen"),
+            Keycode::Key0 => VirtualKeycode::Shifted("RightParen"),
+            Keycode::Minus => VirtualKeycode::Shifted("Underscore"),
+            Keycode::Equal => VirtualKeycode::Shifted("Plus"),
+            Keycode::LeftBracket => VirtualKeycode::Shifted("LeftBrace"),
+            Keycode::RightBracket => VirtualKeycode::Shifted("RightBrace"),
+            Keycode::BackSlash => VirtualKeycode::Shifted("Pipe"),
+            Keycode::Semicolon => VirtualKeycode::Shifted("Colon"),
+            Keycode::Apostrophe => VirtualKeycode::Shifted("DoubleQuote"),
+            Keycode::Comma => VirtualKeycode::Shifted("LessThan"),
+            Keycode::Dot => VirtualKeycode::Shifted("GreaterThan"),
+            Keycode::Slash => VirtualKeycode::Shifted("Question"),
+            Keycode::Grave => VirtualKeycode::Shifted("Tilde"),
+            // Don't shift modifier keys themselves
+            Keycode::LShift | Keycode::RShift => VirtualKeycode::Physical(physical_key),
+            // Regular letters get capitalized when shift is pressed, but we treat them the same
+            _ => VirtualKeycode::Physical(physical_key),
+        };
+
+        Some(shifted_key)
+    }
+}
+
+/// Virtual keycode that can represent both physical keys and shifted characters
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub enum VirtualKeycode {
+    Physical(Keycode),
+    Shifted(&'static str),
+}
+
+impl VirtualKeycode {
+    pub fn to_string(&self) -> String {
+        match self {
+            VirtualKeycode::Physical(keycode) => format!("{:?}", keycode),
+            VirtualKeycode::Shifted(name) => name.to_string(),
+        }
+    }
+}
+
+/// Get frequency and volume for a virtual keycode using the provided keyboard configuration
+/// Returns (frequency, volume, note_name) for a given virtual keycode
+pub fn get_frequency_and_volume_with_config_virtual(
+    virtual_keycode: &VirtualKeycode,
+    config: &KeyboardConfig,
+) -> Option<(f32, f32, String)> {
+    let key_name = virtual_keycode.to_string();
+    let mapping = config.mappings.get(&key_name)?;
+    let frequency = get_frequency_from_note(&mapping.note)?;
+    Some((frequency, mapping.volume, mapping.note.clone()))
+}
+
 /// Get frequency and volume for a keycode using the provided keyboard configuration
 /// Returns (frequency, volume, note_name) for a given keycode
 pub fn get_frequency_and_volume_with_config(
     keycode: Keycode,
     config: &KeyboardConfig,
 ) -> Option<(f32, f32, String)> {
-    let mapping = config.get_mapping(keycode)?;
-    let frequency = get_frequency_from_note(&mapping.note)?;
-    Some((frequency, mapping.volume, mapping.note.clone()))
+    let virtual_key = VirtualKeycode::Physical(keycode);
+    get_frequency_and_volume_with_config_virtual(&virtual_key, config)
 }
 
 /// Programming-optimized keyboard mapping (using default config)
