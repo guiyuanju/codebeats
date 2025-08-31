@@ -59,6 +59,9 @@ struct Cli {
         help = "Low-pass filter cutoff frequency in Hz (200-8000, default: 1200)"
     )]
     filter_cutoff: Option<f32>,
+
+    #[arg(long = "verbose", help = "Enable verbose terminal logging")]
+    verbose: bool,
 }
 
 fn load_keyboard_config(cli: &Cli) -> KeyboardConfig {
@@ -67,20 +70,29 @@ fn load_keyboard_config(cli: &Cli) -> KeyboardConfig {
     if let Some(path) = config_path {
         match KeyboardConfig::load_from_file(path) {
             Ok(config) => {
-                println!("✅ Loaded: {}", path);
+                if cli.verbose {
+                    println!("✓ Loaded keyboard config from: {}", path);
+                }
                 return config;
             }
-            Err(_) => {
-                println!("❌ Could not load: {}", path);
+            Err(e) => {
+                if cli.verbose {
+                    println!("✗ Failed to load config from {}: {}", path, e);
+                }
             }
         }
     } else if let Ok(config) =
         KeyboardConfig::load_from_file("language_configs/general_programming_language.json")
     {
+        if cli.verbose {
+            println!("✓ Loaded default programming language config");
+        }
         return config;
     }
 
-    println!("📝 Using default configuration");
+    if cli.verbose {
+        println!("✓ Using built-in default keyboard config");
+    }
     KeyboardConfig::default()
 }
 
@@ -124,6 +136,7 @@ fn handle_key_press(
     virtual_key: &VirtualKeycode,
     config: &KeyboardConfig,
     audio_state: &Arc<Mutex<AudioState>>,
+    verbose: bool,
 ) {
     let key_id = virtual_key.to_string();
 
@@ -133,19 +146,16 @@ fn handle_key_press(
         let mut state = audio_state.lock().unwrap();
         let actual_volume = state.start_note_with_id(&key_id, frequency, volume);
 
-        if actual_volume > 0.0 {
-            // For now, we don't have proper rate limiting implemented for virtual keys
-            // So we just show the normal playing message
+        if verbose {
             println!(
-                "Playing: {} -> {} ({:.2} Hz, vol: {:.2})",
+                "🎵 Key: {} → {} ({:.1}Hz, vol: {:.2})",
                 key_id, note, frequency, actual_volume
             );
-        } else {
-            println!("Silenced: {} -> {} (too rapid)", key_id, note);
         }
     } else {
-        println!("🔍 Detected unmapped key: {}", virtual_key.to_string());
-        println!("💡 Add it to keyboard_config.json to assign a sound");
+        if verbose {
+            println!("⚪ Key: {} (unmapped)", key_id);
+        }
     }
 }
 
@@ -153,12 +163,15 @@ fn handle_key_release(
     virtual_key: &VirtualKeycode,
     config: &KeyboardConfig,
     audio_state: &Arc<Mutex<AudioState>>,
+    verbose: bool,
 ) {
     if let Some((_, _, note)) = get_frequency_and_volume_with_config_virtual(virtual_key, config) {
         let mut state = audio_state.lock().unwrap();
         let key_id = virtual_key.to_string();
         state.stop_note_with_id(&key_id);
-        println!("Stopped: {} -> {}", key_id, note);
+        if verbose {
+            println!("🔇 Key: {} → {} (released)", key_id, note);
+        }
     }
 }
 
@@ -169,17 +182,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let filter_cutoff = cli.filter_cutoff.unwrap_or(1200.0).clamp(200.0, 8000.0);
     let keyboard_config = load_keyboard_config(&cli);
 
+    if cli.verbose {
+        println!(
+            "🔊 Audio settings: volume={:.1}, filter={:.0}Hz",
+            master_volume, filter_cutoff
+        );
+    }
+
     // Determine waveform: CLI arg > language config > default
     let initial_waveform = if let Some(waveform_str) = &cli.waveform {
-        Waveform::from_str(waveform_str).unwrap_or_else(|| {
-            println!(
-                "Invalid waveform '{}', using default: electronic",
-                waveform_str
-            );
-            Waveform::Electronic
-        })
+        Waveform::from_str(waveform_str).unwrap_or(Waveform::Electronic)
     } else if let Some(config_waveform) = keyboard_config.get_waveform() {
-        println!("Using waveform from config: {:?}", config_waveform);
         config_waveform
     } else {
         Waveform::Electronic
@@ -190,12 +203,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Show welcome
     println!(
-        "🎵 CodeBeats ({:?}) - {}",
-        initial_waveform, keyboard_config.description
+        "🎵 CodeBeats - {} ({})",
+        keyboard_config.description, initial_waveform
     );
-
-    if filter_cutoff != 1200.0 {
-        println!("🎛️ Low-pass filter: {:.0}Hz", filter_cutoff);
+    if cli.verbose {
+        println!("🎹 Verbose logging enabled");
     }
     println!("Press Ctrl+C to exit");
 
@@ -228,14 +240,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // Handle pressed keys
         for key in pressed_keys {
             if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode_for_press(key) {
-                handle_key_press(&virtual_key, &keyboard_config, &audio_state);
+                handle_key_press(&virtual_key, &keyboard_config, &audio_state, cli.verbose);
             }
         }
 
         // Handle released keys
         for key in released_keys {
             if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode_for_release(key) {
-                handle_key_release(&virtual_key, &keyboard_config, &audio_state);
+                handle_key_release(&virtual_key, &keyboard_config, &audio_state, cli.verbose);
             }
         }
 
@@ -263,5 +275,23 @@ mod tests {
     fn test_keyboard_config_loading() {
         let keyboard_config = KeyboardConfig::default();
         assert!(!keyboard_config.description.is_empty());
+    }
+
+    #[test]
+    fn test_verbose_flag_parsing() {
+        use clap::Parser;
+
+        // Test verbose flag enabled
+        let cli = Cli::try_parse_from(&["codebeats", "--verbose"]).unwrap();
+        assert!(cli.verbose);
+
+        // Test verbose flag disabled (default)
+        let cli = Cli::try_parse_from(&["codebeats"]).unwrap();
+        assert!(!cli.verbose);
+
+        // Test verbose with other options
+        let cli = Cli::try_parse_from(&["codebeats", "--verbose", "--volume", "0.5"]).unwrap();
+        assert!(cli.verbose);
+        assert_eq!(cli.volume, Some(0.5));
     }
 }
