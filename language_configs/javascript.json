@@ -184,9 +184,9 @@
       "description": "Shift+` - bitwise NOT (~) (octave up)"
     },
     "Comma": {
-      "note": "G3",
-      "volume": 0.2,
-      "description": "Parameter separator, array items"
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Comma , and less than < (Shift+,) - second"
     },
     "LessThan": {
       "note": "G4",
@@ -196,7 +196,7 @@
     "Dot": {
       "note": "A4",
       "volume": 0.25,
-      "description": "Method calls, property access"
+      "description": "Property access, method calls . and greater than > (Shift+.) - fifth"
     },
     "GreaterThan": {
       "note": "A5",
@@ -204,9 +204,9 @@
       "description": "Shift+. - comparison operator (>)"
     },
     "BackSlash": {
-      "note": "B4",
-      "volume": 0.25,
-      "description": "Escape sequences in strings"
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Backslash \\ and pipe | (Shift+\\) - minor seventh"
     },
     "Pipe": {
       "note": "B5",
@@ -333,23 +333,6 @@
       "volume": 0.3,
       "description": "Shift+/ - ternary operator (?) (octave up)"
     },
-
-    "BackSlash": {
-      "note": "C5",
-      "volume": 0.3,
-      "description": "Backslash \\ and pipe | (Shift+\\) - minor seventh"
-    },
-    "Comma": {
-      "note": "E4",
-      "volume": 0.3,
-      "description": "Comma , and less than < (Shift+,) - second"
-    },
-    "Dot": {
-      "note": "A4",
-      "volume": 0.25,
-      "description": "Property access, method calls . and greater than > (Shift+.) - fifth"
-    },
-
     "Apostrophe": {
       "note": "A4",
       "volume": 0.25,
@@ -360,7 +343,6 @@
       "volume": 0.3,
       "description": "Shift+' - string literals (\") (octave up)"
     },
-
     "Space": {
       "note": "C2",
       "volume": 0.1,

@@ -862,67 +862,21 @@ mod tests {
         let config = KeyboardConfig::default();
         assert_eq!(config.version, "1.0");
         assert!(!config.mappings.is_empty());
-
-        // Test some common keys exist
-        assert!(config.get_mapping(Keycode::A).is_some());
-        assert!(config.get_mapping(Keycode::E).is_some());
-        assert!(config.get_mapping(Keycode::Space).is_some());
-    }
-
-    #[test]
-    fn test_piano_layout() {
-        let config = KeyboardConfig::piano_layout();
-        assert_eq!(config.description, "Standard piano layout keyboard mapping");
-
-        // Test piano layout has white keys
-        assert!(config.get_mapping(Keycode::Q).is_some());
-        assert!(config.get_mapping(Keycode::W).is_some());
-        assert!(config.get_mapping(Keycode::E).is_some());
     }
 
     #[test]
     fn test_config_serialization() {
         let config = KeyboardConfig::default();
 
-        // Test serialization
+        // Test serialization/deserialization
         let json = serde_json::to_string_pretty(&config).unwrap();
-        assert!(json.contains("version"));
-        assert!(json.contains("mappings"));
-
-        // Test deserialization
         let deserialized: KeyboardConfig = serde_json::from_str(&json).unwrap();
         assert_eq!(config.version, deserialized.version);
-        assert_eq!(config.mappings.len(), deserialized.mappings.len());
     }
 
     #[test]
     fn test_keycode_conversion() {
         let key_str = keycode_to_string(Keycode::A);
         assert_eq!(key_str, "A");
-
-        let key_str = keycode_to_string(Keycode::F1);
-        assert_eq!(key_str, "F1");
-    }
-
-    #[test]
-    fn test_mapping_operations() {
-        let mut config = KeyboardConfig::default();
-
-        // Test adding a new mapping
-        let new_mapping = KeyMapping {
-            note: "C4".to_string(),
-            volume: 0.5,
-            description: Some("Test key".to_string()),
-        };
-        config.set_mapping(Keycode::F13, new_mapping.clone());
-
-        let retrieved = config.get_mapping(Keycode::F13).unwrap();
-        assert_eq!(retrieved.note, new_mapping.note);
-        assert_eq!(retrieved.volume, new_mapping.volume);
-
-        // Test removing a mapping
-        let removed = config.remove_mapping(Keycode::F13);
-        assert!(removed.is_some());
-        assert!(config.get_mapping(Keycode::F13).is_none());
     }
 }

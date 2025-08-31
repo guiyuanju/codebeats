@@ -134,56 +134,6 @@
       "description": "sizeof operations - reuse fifth"
     },
     "Key0": {
-      "note": "A4",
-      "volume": 0.25,
-      "description": "Numeric literal - minor root"
-    },
-    "RightParen": {
-      "note": "A5",
-      "volume": 0.3,
-      "description": "Shift+0 - function call closing (octave)"
-    },
-    "Key1": {
-      "note": "B4",
-      "volume": 0.25,
-      "description": "Numeric literal - major second"
-    },
-    "Exclamation": {
-      "note": "B5",
-      "volume": 0.3,
-      "description": "Shift+1 - emphasis (octave)"
-    },
-    "Key2": {
-      "note": "C5",
-      "volume": 0.25,
-      "description": "Numeric literal - minor third"
-    },
-    "At": {
-      "note": "C6",
-      "volume": 0.3,
-      "description": "Shift+2 - preprocessor macros (octave)"
-    },
-    "Key3": {
-      "note": "D5",
-      "volume": 0.25,
-      "description": "Numeric literal - fourth"
-    },
-    "Hash": {
-      "note": "D6",
-      "volume": 0.3,
-      "description": "Shift+3 - preprocessor directives (octave)"
-    },
-    "Key9": {
-      "note": "E5",
-      "volume": 0.25,
-      "description": "Numeric literal - comfortable high sixth"
-    },
-    "LeftParen": {
-      "note": "A5",
-      "volume": 0.3,
-      "description": "Shift+9 - function calls"
-    },
-    "Key0": {
       "note": "F4",
       "volume": 0.25,
       "description": "Numeric literal - minor sixth"
@@ -193,90 +143,35 @@
       "volume": 0.3,
       "description": "Shift+0 - function call closing (same harmony)"
     },
+    "Key1": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
     "Exclamation": {
       "note": "A5",
       "volume": 0.3,
       "description": "Shift+1 - logical NOT (shares harmony)"
+    },
+    "Key2": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal - minor third"
     },
     "At": {
       "note": "B4",
       "volume": 0.25,
       "description": "Shift+2 - rarely used (minor second)"
     },
+    "Key3": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - fourth"
+    },
     "Hash": {
       "note": "C5",
       "volume": 0.3,
       "description": "Shift+3 - preprocessor directives (octave)"
-    },
-    "Dollar": {
-      "note": "D5",
-      "volume": 0.25,
-      "description": "Shift+4 - rarely used (fourth)"
-    },
-    "Percent": {
-      "note": "E5",
-      "volume": 0.3,
-      "description": "Shift+5 - modulo operator (fifth)"
-    },
-    "Caret": {
-      "note": "F5",
-      "volume": 0.25,
-      "description": "Shift+6 - XOR operator (sixth)"
-    },
-    "Ampersand": {
-      "note": "G4",
-      "volume": 0.35,
-      "description": "Shift+7 - address operator (important in C)"
-    },
-    "Asterisk": {
-      "note": "A4",
-      "volume": 0.35,
-      "description": "Shift+8 - pointer dereference (critical in C)"
-    },
-    "Dollar": {
-      "note": "E6",
-      "volume": 0.3,
-      "description": "Shift+4 - string formatting (octave)"
-    },
-    "Key5": {
-      "note": "F5",
-      "volume": 0.25,
-      "description": "Numeric literal - minor sixth"
-    },
-    "Percent": {
-      "note": "F6",
-      "volume": 0.3,
-      "description": "Shift+5 - modulo operator (octave)"
-    },
-    "Key6": {
-      "note": "G5",
-      "volume": 0.25,
-      "description": "Numeric literal - minor seventh"
-    },
-    "Caret": {
-      "note": "G5",
-      "volume": 0.25,
-      "description": "Shift+6 - XOR operator (shares pitch)"
-    },
-    "Key7": {
-      "note": "A5",
-      "volume": 0.25,
-      "description": "Numeric literal - octave"
-    },
-    "Ampersand": {
-      "note": "A4",
-      "volume": 0.3,
-      "description": "Shift+7 - address operator (pleasant range)"
-    },
-    "Key8": {
-      "note": "B5",
-      "volume": 0.25,
-      "description": "Numeric literal - ninth"
-    },
-    "Asterisk": {
-      "note": "B5",
-      "volume": 0.35,
-      "description": "Shift+8 - pointer dereference (emphasized)"
     },
     "Key9": {
       "note": "C6",
@@ -288,10 +183,50 @@
       "volume": 0.3,
       "description": "Shift+9 - function calls (shares pitch)"
     },
-    "LeftBracket": {
-      "note": "A3",
+    "Dollar": {
+      "note": "E6",
       "volume": 0.3,
-      "description": "Array indexing - foundation"
+      "description": "Shift+4 - string formatting (octave)"
+    },
+    "Percent": {
+      "note": "F6",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
+    },
+    "Caret": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
+    "Ampersand": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Shift+7 - address operator (pleasant range)"
+    },
+    "Asterisk": {
+      "note": "B5",
+      "volume": 0.35,
+      "description": "Shift+8 - pointer dereference (emphasized)"
+    },
+    "Key5": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Numeric literal - minor sixth"
+    },
+    "Key6": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric literal - minor seventh"
+    },
+    "Key7": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Key8": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
     },
     "LeftBracket": {
       "note": "A3",
@@ -307,11 +242,6 @@
       "note": "B3",
       "volume": 0.3,
       "description": "Array access closing"
-    },
-    "RightBrace": {
-      "note": "B4",
-      "volume": 0.35,
-      "description": "Shift+] - struct/block closing (octave up)"
     },
     "RightBrace": {
       "note": "A5",
@@ -334,11 +264,6 @@
       "description": "Subtraction operator - minor third"
     },
     "Underscore": {
-      "note": "C5",
-      "volume": 0.25,
-      "description": "Shift+- - variable names (octave up)"
-    },
-    "Underscore": {
       "note": "F5",
       "volume": 0.3,
       "description": "Shift+- - variable names (shares pitch)"
@@ -351,22 +276,12 @@
     "Colon": {
       "note": "G4",
       "volume": 0.25,
-      "description": "Shift+; - labels, ternary operator (octave up)"
-    },
-    "Colon": {
-      "note": "G4",
-      "volume": 0.25,
       "description": "Shift+; - labels and ternary (octave up)"
     },
     "Equal": {
       "note": "B3",
       "volume": 0.25,
       "description": "Assignment operator - minor second"
-    },
-    "Plus": {
-      "note": "B4",
-      "volume": 0.25,
-      "description": "Shift+= - addition operator (octave up)"
     },
     "Plus": {
       "note": "E5",
@@ -379,11 +294,6 @@
       "description": "Division, comments - perfect fourth"
     },
     "Question": {
-      "note": "D5",
-      "volume": 0.25,
-      "description": "Shift+/ - ternary operator (octave up)"
-    },
-    "Question": {
       "note": "B5",
       "volume": 0.25,
       "description": "Shift+/ - ternary operator (octave up)"
@@ -394,11 +304,6 @@
       "description": "Character literals - minor seventh"
     },
     "DoubleQuote": {
-      "note": "G5",
-      "volume": 0.3,
-      "description": "Shift+' - string literals (octave up)"
-    },
-    "DoubleQuote": {
       "note": "C5",
       "volume": 0.3,
       "description": "Shift+' - string literals (pleasant range)"
@@ -407,11 +312,6 @@
       "note": "E4",
       "volume": 0.25,
       "description": "Escape sequences - perfect fifth"
-    },
-    "Pipe": {
-      "note": "E5",
-      "volume": 0.3,
-      "description": "Shift+\\ - bitwise OR (octave up)"
     },
     "Pipe": {
       "note": "G5",
