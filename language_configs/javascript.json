@@ -104,9 +104,9 @@
       "description": "break, boolean, object - high sixth"
     },
     "G": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
-      "description": "log, get, global - high seventh"
+      "description": "log, get, global - seventh"
     },
     "K": {
       "note": "D4",
@@ -179,7 +179,7 @@
       "description": "Template literals - octave"
     },
     "Tilde": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Shift+` - bitwise NOT (~) (octave up)"
     },
@@ -404,62 +404,62 @@
       "description": "Command escape"
     },
     "F1": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Help/documentation"
     },
     "F2": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Rename/refactor"
     },
     "F3": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Search/find next"
     },
     "F4": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Go to definition"
     },
     "F5": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Refresh/reload"
     },
     "F6": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
       "description": "Focus address bar"
     },
     "F7": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.2,
       "description": "Caret browsing"
     },
     "F8": {
-      "note": "C7",
+      "note": "C5",
       "volume": 0.2,
       "description": "Dev tools"
     },
     "F9": {
-      "note": "D7",
+      "note": "D5",
       "volume": 0.2,
       "description": "Toggle breakpoint"
     },
     "F10": {
-      "note": "E7",
+      "note": "E5",
       "volume": 0.2,
       "description": "Step over"
     },
     "F11": {
-      "note": "F7",
+      "note": "F5",
       "volume": 0.2,
       "description": "Full screen"
     },
     "F12": {
-      "note": "G7",
+      "note": "G5",
       "volume": 0.2,
       "description": "Developer tools"
     },

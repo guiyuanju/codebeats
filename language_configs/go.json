@@ -44,39 +44,39 @@
       "description": "package, var, range - tenth"
     },
     "K": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "package, make - twelfth"
     },
     "E": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Very common in Go keywords - thirteenth"
     },
     "I": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "if, interface, import - double octave"
     },
     "M": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
-      "description": "import, main, make - high ninth"
+      "description": "import, main, make - ninth"
     },
     "R": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.2,
-      "description": "return, range, error - high tenth"
+      "description": "return, range, error - tenth"
     },
     "T": {
-      "note": "D7",
+      "note": "D5",
       "volume": 0.2,
-      "description": "struct, type, interface - high twelfth"
+      "description": "struct, type, interface - twelfth"
     },
     "S": {
-      "note": "E7",
+      "note": "E5",
       "volume": 0.2,
-      "description": "struct, string, slice - high thirteenth"
+      "description": "struct, string, slice - thirteenth"
     },
     "V": {
       "note": "G5",
@@ -94,17 +94,17 @@
       "description": "defer, default - high third"
     },
     "H": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
-      "description": "chan, switch - comfortable high fifth"
+      "description": "chan, switch - comfortable fifth"
     },
     "W": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
-      "description": "switch, while patterns - comfortable high sixth"
+      "description": "switch, while patterns - comfortable sixth"
     },
     "Y": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "type declarations - comfortable double octave"
     },
@@ -169,7 +169,7 @@
       "description": "Numeric literal - perfect fifth"
     },
     "Hash": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.3,
       "description": "Shift+3 - comments (octave)"
     },
@@ -179,7 +179,7 @@
       "description": "Numeric literal - major sixth"
     },
     "Dollar": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.3,
       "description": "Shift+4 - string formatting (octave)"
     },
@@ -189,7 +189,7 @@
       "description": "Numeric literal - pentatonic octave"
     },
     "Percent": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.3,
       "description": "Shift+5 - modulo operator (octave)"
     },
@@ -219,7 +219,7 @@
       "description": "Numeric literal - comfortable high fifth"
     },
     "Asterisk": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.35,
       "description": "Shift+8 - pointer dereference (emphasized)"
     },
@@ -229,7 +229,7 @@
       "description": "Numeric literal - comfortable high sixth"
     },
     "LeftParen": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.3,
       "description": "Shift+9 - function calls (octave)"
     },
@@ -339,7 +339,7 @@
       "description": "Escape sequences"
     },
     "Pipe": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.3,
       "description": "Shift+\\ - bitwise OR (octave up)"
     },
@@ -404,62 +404,62 @@
       "description": "Command escape"
     },
     "F1": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Help/documentation"
     },
     "F2": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Rename/refactor"
     },
     "F3": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Search/find next"
     },
     "F4": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Go to definition"
     },
     "F5": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Run/build"
     },
     "F6": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
       "description": "Go build"
     },
     "F7": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.2,
       "description": "Go test"
     },
     "F8": {
-      "note": "C7",
+      "note": "C5",
       "volume": 0.2,
       "description": "Go run"
     },
     "F9": {
-      "note": "D7",
+      "note": "D5",
       "volume": 0.2,
       "description": "Toggle breakpoint"
     },
     "F10": {
-      "note": "E7",
+      "note": "E5",
       "volume": 0.2,
       "description": "Step over"
     },
     "F11": {
-      "note": "F7",
+      "note": "F5",
       "volume": 0.2,
       "description": "Step into"
     },
     "F12": {
-      "note": "G7",
+      "note": "G5",
       "volume": 0.2,
       "description": "Go to implementation"
     },

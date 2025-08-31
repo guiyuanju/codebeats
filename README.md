@@ -10,7 +10,7 @@ A programming music simulator that transforms your coding workflow into a harmon
 - **Programming-Optimized Mapping**: Keyboard layout based on coding key frequency analysis
 - **Language-Specific Scales**: Different musical scales for different programming languages
 - **ADSR Envelope System**: Natural attack/decay/sustain/release for realistic sound
-- **Rate Limiting**: Prevents harsh sounds from rapid key presses
+- **Smart Rate Limiting**: Volume gradually decreases for rapid successive key presses
 
 ## Quick Start
 
@@ -20,6 +20,9 @@ cargo run
 
 # With specific waveform and language
 cargo run -- --waveform cyberpunk --language language_configs/rust.json --volume 0.7
+
+# With low-pass filter to reduce harsh high frequencies
+cargo run -- --filter-cutoff 800 --volume 0.7
 
 # See all options
 cargo run -- --help
@@ -52,11 +55,11 @@ cargo run -- --help
 # Cyberpunk Rust experience
 cargo run -- -w cyberpunk -l language_configs/rust.json -v 0.8
 
-# Quiet Python coding
-cargo run -- -w natural -l language_configs/python.json -v 0.3
+# Quiet Python coding with gentle filtering
+cargo run -- -w natural -l language_configs/python.json -v 0.3 --filter-cutoff 1000
 
-# Custom configuration
-cargo run -- -c my_custom_config.json
+# Custom configuration with filtering
+cargo run -- -c my_custom_config.json --filter-cutoff 600
 ```
 
 ## Shifted Key Support
@@ -87,6 +90,7 @@ The keyboard mappings use music theory principles:
 - **Less common keys** get higher or lower notes to avoid frequency clashes
 - **Shifted characters** typically play higher octaves of their base keys
 - **Programming symbols** create harmonic relationships (brackets, operators)
+- **Rate limiting** reduces volume by 30% for each rapid successive press within 500ms
 
 ## Commands
 
@@ -101,6 +105,7 @@ The keyboard mappings use music theory principles:
 - `--language` / `-l`: Path to language configuration file
 - `--config` / `-c`: Custom keyboard mapping file
 - `--volume` / `-v`: Master volume (0.0-1.0, default: 1.0)
+- `--filter-cutoff`: Low-pass filter cutoff frequency in Hz (200-8000, default: 1200)
 
 ## Requirements
 
@@ -142,7 +147,9 @@ language_configs/        # Pre-built language configurations
 - Start with lower volume (0.3-0.5) and adjust to preference
 - Try different language configs to find your preferred musical style
 - Experiment with shifted keys (`!@#$%^&*(){}:"<>?`) for richer melodies
-- The system learns your typing patterns - rapid key presses are automatically quieted
+- Use `--filter-cutoff` to reduce harsh high frequencies (try 800-1000Hz for gentler sound)
+- All frequency mappings have been optimized for comfort - no more harsh high-pitched sounds!
+- **Rate limiting** automatically prevents audio overload during rapid typing - volume decreases smoothly with repeated key presses
 
 ## Troubleshooting
 
@@ -150,6 +157,7 @@ language_configs/        # Pre-built language configurations
 - **"Unmapped key"**: Key isn't in current config (this is normal for some keys)
 - **Too loud/quiet**: Use `--volume` flag to adjust
 - **Config not loading**: Check file path and JSON syntax
+- **Sound too harsh/shrill**: Lower the filter cutoff frequency (try `--filter-cutoff 800`)
 
 ---
 

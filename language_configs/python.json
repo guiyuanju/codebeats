@@ -59,22 +59,22 @@
       "description": "lambda, len, elif - eleventh"
     },
     "O": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "for, not, from - twelfth"
     },
     "C": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "class, except, dict - thirteenth"
     },
     "M": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "import, lambda, method - fourteenth"
     },
     "U": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "True, tuple, function - double octave"
     },
@@ -94,19 +94,19 @@
       "description": "with, while, where - high fourth"
     },
     "B": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
-      "description": "break, bool, global - comfortable high fifth"
+      "description": "break, bool, global - comfortable fifth"
     },
     "V": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
-      "description": "value, var, eval - comfortable high sixth"
+      "description": "value, var, eval - comfortable sixth"
     },
     "G": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
-      "description": "global, get, args - comfortable high seventh"
+      "description": "global, get, args - comfortable seventh"
     },
     "K": {
       "note": "F4",
@@ -179,7 +179,7 @@
       "description": "Numeric literal - perfect fifth"
     },
     "Dollar": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.3,
       "description": "Shift+4 - string formatting (octave)"
     },
@@ -189,7 +189,7 @@
       "description": "Numeric literal - major sixth"
     },
     "Percent": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.3,
       "description": "Shift+5 - modulo operator (octave)"
     },
@@ -404,42 +404,42 @@
       "description": "Command escape"
     },
     "F1": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Help/documentation"
     },
     "F2": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Rename/refactor"
     },
     "F3": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
       "description": "Search/find next"
     },
     "F4": {
-      "note": "Bb6",
+      "note": "Bb5",
       "volume": 0.2,
       "description": "Go to definition"
     },
     "F5": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Run/execute Python"
     },
     "F6": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Python interactive"
     },
     "F7": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Debug step"
     },
     "F8": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Continue debugging"
     },
@@ -459,7 +459,7 @@
       "description": "Step into"
     },
     "F12": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Python REPL"
     },

@@ -52,6 +52,13 @@ struct Cli {
         help = "Master volume (0.0-1.0)"
     )]
     volume: Option<f32>,
+
+    #[arg(
+        long = "filter-cutoff",
+        value_name = "FREQUENCY",
+        help = "Low-pass filter cutoff frequency in Hz (200-8000, default: 1200)"
+    )]
+    filter_cutoff: Option<f32>,
 }
 
 fn load_keyboard_config(cli: &Cli) -> KeyboardConfig {
@@ -80,6 +87,7 @@ fn load_keyboard_config(cli: &Cli) -> KeyboardConfig {
 fn setup_audio(
     initial_waveform: Waveform,
     master_volume: f32,
+    filter_cutoff: f32,
 ) -> Result<Arc<Mutex<AudioState>>, Box<dyn std::error::Error>> {
     let host = cpal::default_host();
     let device = host
@@ -88,7 +96,7 @@ fn setup_audio(
     let device_config = device.default_output_config()?;
 
     let sample_rate = device_config.sample_rate().0 as f32;
-    let audio_state = AudioState::new(sample_rate, initial_waveform, master_volume);
+    let audio_state = AudioState::new(sample_rate, initial_waveform, master_volume, filter_cutoff);
     let audio_state = Arc::new(Mutex::new(audio_state));
     let audio_state_clone = audio_state.clone();
 
@@ -126,17 +134,12 @@ fn handle_key_press(
         let actual_volume = state.start_note_with_id(&key_id, frequency, volume);
 
         if actual_volume > 0.0 {
-            if actual_volume < volume {
-                println!(
-                    "Playing: {} -> {} ({:.2} Hz, vol: {:.2}) [Rate Limited]",
-                    key_id, note, frequency, actual_volume
-                );
-            } else {
-                println!(
-                    "Playing: {} -> {} ({:.2} Hz, vol: {:.2})",
-                    key_id, note, frequency, actual_volume
-                );
-            }
+            // For now, we don't have proper rate limiting implemented for virtual keys
+            // So we just show the normal playing message
+            println!(
+                "Playing: {} -> {} ({:.2} Hz, vol: {:.2})",
+                key_id, note, frequency, actual_volume
+            );
         } else {
             println!("Silenced: {} -> {} (too rapid)", key_id, note);
         }
@@ -163,6 +166,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let cli = Cli::parse();
 
     let master_volume = cli.volume.unwrap_or(1.0).clamp(0.0, 1.0);
+    let filter_cutoff = cli.filter_cutoff.unwrap_or(1200.0).clamp(200.0, 8000.0);
     let keyboard_config = load_keyboard_config(&cli);
 
     // Determine waveform: CLI arg > language config > default
@@ -182,13 +186,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     // Setup audio
-    let audio_state = setup_audio(initial_waveform, master_volume)?;
+    let audio_state = setup_audio(initial_waveform, master_volume, filter_cutoff)?;
 
     // Show welcome
     println!(
         "🎵 CodeBeats ({:?}) - {}",
         initial_waveform, keyboard_config.description
     );
+
+    if filter_cutoff != 1200.0 {
+        println!("🎛️ Low-pass filter: {:.0}Hz", filter_cutoff);
+    }
     println!("Press Ctrl+C to exit");
 
     // Setup keyboard input

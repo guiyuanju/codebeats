@@ -1,9 +1,49 @@
 //! Audio engine with ADSR envelope system and state management
 
-use crate::keyboard_mapping::KeyRateLimiter;
 use crate::waveforms::Waveform;
 use device_query::Keycode;
 use std::collections::HashMap;
+use std::time::{Duration, Instant};
+
+/// Rate limiter to reduce volume for rapid successive key presses
+pub struct RateLimiter {
+    press_history: HashMap<String, Vec<Instant>>,
+    window_duration: Duration,
+    volume_reduction_factor: f32,
+}
+
+impl RateLimiter {
+    pub fn new() -> Self {
+        Self {
+            press_history: HashMap::new(),
+            window_duration: Duration::from_millis(500), // 500ms window
+            volume_reduction_factor: 0.7,                // Each rapid press reduces volume by 30%
+        }
+    }
+
+    /// Record a key press and return volume multiplier based on recent press frequency
+    pub fn record_press_and_get_volume_multiplier(&mut self, key_id: &str) -> f32 {
+        let now = Instant::now();
+
+        // Get or create press history for this key
+        let history = self
+            .press_history
+            .entry(key_id.to_string())
+            .or_insert_with(Vec::new);
+
+        // Remove old presses outside the window
+        history.retain(|&press_time| now.duration_since(press_time) <= self.window_duration);
+
+        // Calculate volume multiplier based on recent presses
+        let rapid_press_count = history.len() as f32;
+        let volume_multiplier = self.volume_reduction_factor.powf(rapid_press_count);
+
+        // Record this press
+        history.push(now);
+
+        volume_multiplier
+    }
+}
 
 #[derive(Clone, Debug)]
 pub enum EnvelopeState {
@@ -180,19 +220,6 @@ impl NoteState {
         }
     }
 
-    /// Calculate volume reduction based on how long key has been held (for testing)
-    #[cfg(test)]
-    fn calculate_hold_volume_reduction(&self, hold_duration: f32) -> f32 {
-        match hold_duration {
-            t if t < 0.5 => 1.0, // Normal volume for first 0.5 seconds
-            t if t < 1.0 => 0.8, // Slight reduction after 0.5s
-            t if t < 2.0 => 0.6, // More reduction after 1s
-            t if t < 3.0 => 0.4, // Significant reduction after 2s
-            t if t < 5.0 => 0.2, // Very quiet after 3s
-            _ => 0.1,            // Almost silent after 5s
-        }
-    }
-
     /// Start release phase
     pub fn release(&mut self) {
         if !matches!(self.envelope_state, EnvelopeState::Release) {
@@ -213,13 +240,18 @@ pub struct AudioState {
     sample_rate: f32,
     current_waveform: Waveform,
     default_adsr: ADSRParams,
-    #[allow(dead_code)]
-    rate_limiter: KeyRateLimiter,
     master_volume: f32,
+    filter_cutoff: f32,
+    rate_limiter: RateLimiter,
 }
 
 impl AudioState {
-    pub fn new(sample_rate: f32, waveform: Waveform, master_volume: f32) -> Self {
+    pub fn new(
+        sample_rate: f32,
+        waveform: Waveform,
+        master_volume: f32,
+        filter_cutoff: f32,
+    ) -> Self {
         let default_adsr = match waveform {
             Waveform::Natural => ADSRParams::natural(),
             Waveform::Electronic => ADSRParams::electronic(),
@@ -233,8 +265,9 @@ impl AudioState {
             sample_rate,
             current_waveform: waveform,
             default_adsr,
-            rate_limiter: KeyRateLimiter::new(),
             master_volume: master_volume.clamp(0.0, 1.0),
+            filter_cutoff,
+            rate_limiter: RateLimiter::new(),
         }
     }
 
@@ -260,11 +293,19 @@ impl AudioState {
         }
     }
 
+    pub fn stop_note_with_id(&mut self, key_id: &str) {
+        if let Some(note_state) = self.active_notes_by_id.get_mut(key_id) {
+            note_state.release();
+        }
+    }
+
     /// Start a note with string-based identifier (for virtual keys)
     pub fn start_note_with_id(&mut self, key_id: &str, frequency: f32, volume: f32) -> f32 {
-        // For rate limiting, we'll use a dummy keycode approach or skip rate limiting for virtual keys
-        // Since virtual keys might not map to physical keys, we'll apply a basic rate limit
-        let adjusted_volume = volume * self.master_volume;
+        // Apply rate limiting - get volume multiplier based on recent press frequency
+        let rate_limit_multiplier = self
+            .rate_limiter
+            .record_press_and_get_volume_multiplier(key_id);
+        let adjusted_volume = volume * self.master_volume * rate_limit_multiplier;
 
         let note_state = NoteState::new(
             frequency,
@@ -276,13 +317,6 @@ impl AudioState {
             .insert(key_id.to_string(), note_state);
 
         adjusted_volume
-    }
-
-    /// Stop a note with string-based identifier
-    pub fn stop_note_with_id(&mut self, key_id: &str) {
-        if let Some(note_state) = self.active_notes_by_id.get_mut(key_id) {
-            note_state.release();
-        }
     }
 
     /// Generate a single audio sample (main synthesis loop)
@@ -350,16 +384,14 @@ mod tests {
 
     #[test]
     fn test_audio_state_creation() {
-        use crate::waveforms::Waveform;
-        let state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
+        let state = AudioState::new(44100.0, Waveform::Electronic, 1.0, 1200.0);
         assert_eq!(state.sample_rate, 44100.0);
-        assert_eq!(state.active_notes.len(), 0);
     }
 
     #[test]
     fn test_note_lifecycle() {
-        use crate::waveforms::Waveform;
-        let mut state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
+        use device_query::Keycode;
+        let mut state = AudioState::new(44100.0, Waveform::Electronic, 1.0, 1200.0);
 
         // Start note
         state.start_note(Keycode::A, 440.0, 0.5);
@@ -367,36 +399,24 @@ mod tests {
 
         // Stop note
         state.stop_note(Keycode::A);
-        // Note should still be active (in release phase)
+        // Note should still exist but be in release phase
         assert_eq!(state.active_notes.len(), 1);
     }
 
     #[test]
-    fn test_hold_duration_volume_reduction() {
-        use crate::waveforms::Waveform;
+    fn test_rate_limiter() {
+        let mut limiter = RateLimiter::new();
 
-        let mut state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
+        // First press should have full volume
+        let vol1 = limiter.record_press_and_get_volume_multiplier("test_key");
+        assert_eq!(vol1, 1.0);
 
-        // Start a note
-        state.start_note(Keycode::J, 440.0, 0.5);
+        // Rapid second press should have reduced volume (0.7)
+        let vol2 = limiter.record_press_and_get_volume_multiplier("test_key");
+        assert!((vol2 - 0.7).abs() < 0.01);
 
-        // Get the note to test hold duration calculation
-        let note = state.active_notes.get(&Keycode::J).unwrap();
-
-        // Test initial volume (should be 1.0 for first 0.5s)
-        let initial_reduction = note.calculate_hold_volume_reduction(0.1);
-        assert_eq!(initial_reduction, 1.0);
-
-        // Test volume reduction after 1 second
-        let one_sec_reduction = note.calculate_hold_volume_reduction(1.0);
-        assert_eq!(one_sec_reduction, 0.6);
-
-        // Test volume reduction after 3 seconds
-        let three_sec_reduction = note.calculate_hold_volume_reduction(3.0);
-        assert_eq!(three_sec_reduction, 0.2);
-
-        // Test volume reduction after 6 seconds
-        let six_sec_reduction = note.calculate_hold_volume_reduction(6.0);
-        assert_eq!(six_sec_reduction, 0.1);
+        // Different key should start fresh
+        let vol_other = limiter.record_press_and_get_volume_multiplier("other_key");
+        assert_eq!(vol_other, 1.0);
     }
 }

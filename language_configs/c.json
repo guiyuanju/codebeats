@@ -49,32 +49,32 @@
       "description": "struct, sizeof, static - ninth"
     },
     "R": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "return, register, char - minor tenth"
     },
     "O": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "void, for, float - eleventh"
     },
     "F": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "for, if, float - twelfth"
     },
     "M": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "main, sizeof - minor thirteenth"
     },
     "A": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "char, main, static - minor fourteenth"
     },
     "H": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
       "description": "char, switch - double octave"
     },
@@ -89,22 +89,22 @@
       "description": "printf, pointer operations - reuse second high"
     },
     "G": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "goto, register - comfortable high"
     },
     "W": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "while, switch - reuse fourth high"
     },
     "B": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "bool, break - reuse fifth high"
     },
     "Y": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "typedef, array - reuse sixth high"
     },
@@ -174,22 +174,22 @@
       "description": "Shift+3 - preprocessor directives (octave)"
     },
     "Key9": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Numeric literal - tenth"
     },
     "LeftParen": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.3,
       "description": "Shift+9 - function calls (shares pitch)"
     },
     "Dollar": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.3,
       "description": "Shift+4 - string formatting (octave)"
     },
     "Percent": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.3,
       "description": "Shift+5 - modulo operator (octave)"
     },
@@ -399,62 +399,62 @@
       "description": "Command escape"
     },
     "F1": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Help"
     },
     "F2": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Rename"
     },
     "F3": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Find next"
     },
     "F4": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Go to definition"
     },
     "F5": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Compile/run"
     },
     "F6": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
       "description": "Build"
     },
     "F7": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.2,
       "description": "Debug step"
     },
     "F8": {
-      "note": "C7",
+      "note": "C5",
       "volume": 0.2,
       "description": "Continue"
     },
     "F9": {
-      "note": "D7",
+      "note": "D5",
       "volume": 0.2,
       "description": "Breakpoint"
     },
     "F10": {
-      "note": "E7",
+      "note": "E5",
       "volume": 0.2,
       "description": "Step over"
     },
     "F11": {
-      "note": "F7",
+      "note": "F5",
       "volume": 0.2,
       "description": "Step into"
     },
     "F12": {
-      "note": "G7",
+      "note": "G5",
       "volume": 0.2,
       "description": "Go to"
     },

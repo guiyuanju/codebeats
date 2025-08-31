@@ -94,7 +94,7 @@
       "description": "Very common letter"
     },
     "P": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Letter"
     },
@@ -209,9 +209,9 @@
       "description": "Number key"
     },
     "Asterisk": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.4,
-      "description": "Shift+8 - bright star note (pleasant high)"
+      "description": "Shift+8 - star note (pleasant high)"
     },
     "Key9": {
       "note": "D5",
@@ -274,17 +274,17 @@
       "description": "Shift+] - block closing (shares B5 for harmony)"
     },
     "BackSlash": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Programming symbol"
     },
     "Pipe": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.3,
-      "description": "Shift+\\ - pipe flow (pleasant high C)"
+      "description": "Shift+\\ - pipe flow (pleasant C)"
     },
     "Semicolon": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Programming symbol"
     },
@@ -294,7 +294,7 @@
       "description": "Shift+; - statement emphasis (shares D5)"
     },
     "Apostrophe": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Programming symbol"
     },
@@ -304,7 +304,7 @@
       "description": "Shift+' - string delimiter (shares E5)"
     },
     "Comma": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Programming symbol"
     },
@@ -314,7 +314,7 @@
       "description": "Shift+, - comparison (pleasant fourth)"
     },
     "Dot": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Programming symbol"
     },
@@ -324,7 +324,7 @@
       "description": "Shift+. - comparison (shares G4 fifth)"
     },
     "Slash": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
       "description": "Programming symbol"
     },
@@ -449,62 +449,62 @@
       "description": "Navigation - down page"
     },
     "F1": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F2": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F3": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F4": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F5": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F6": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F7": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F8": {
-      "note": "C7",
+      "note": "C5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F9": {
-      "note": "D7",
+      "note": "D5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F10": {
-      "note": "E7",
+      "note": "E5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F11": {
-      "note": "F7",
+      "note": "F5",
       "volume": 0.2,
       "description": "Function key"
     },
     "F12": {
-      "note": "G7",
+      "note": "G5",
       "volume": 0.2,
       "description": "Function key"
     }

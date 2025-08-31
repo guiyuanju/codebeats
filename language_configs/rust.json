@@ -54,19 +54,19 @@
       "description": "Common in flow control - seventh high"
     },
     "U": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "mut, pub, struct - double octave"
     },
     "M": {
-      "note": "Eb6",
+      "note": "Eb5",
       "volume": 0.2,
-      "description": "match, impl, main - minor third very high"
+      "description": "match, impl, main - minor third pleasant"
     },
     "P": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
-      "description": "pub, impl patterns - fourth very high"
+      "description": "pub, impl patterns - fourth pleasant"
     },
     "C": {
       "note": "G4",
@@ -104,7 +104,7 @@
       "description": "bool, break, pub - high seventh"
     },
     "G": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Generic parameters - double octave"
     },
@@ -184,7 +184,7 @@
       "description": "Numeric literal - pentatonic seventh high"
     },
     "Exclamation": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.3,
       "description": "Shift+1 - panic! macro (emphasized)"
     },
@@ -209,7 +209,7 @@
       "description": "Shift+5 - modulo operator"
     },
     "Caret": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Shift+6 - XOR operator"
     },
@@ -289,7 +289,7 @@
       "description": "Escape sequences - fifth high"
     },
     "Pipe": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.3,
       "description": "Shift+\\ - bitwise OR"
     },
@@ -314,7 +314,7 @@
       "description": "Shift+, - generics, comparison"
     },
     "Apostrophe": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.35,
       "description": "Lifetimes - bright but not shrill"
     },
@@ -339,7 +339,7 @@
       "description": "Raw strings, identifiers - octave"
     },
     "Tilde": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.25,
       "description": "Shift+` - bitwise NOT"
     },
@@ -404,62 +404,62 @@
       "description": "Command escape"
     },
     "F1": {
-      "note": "C6",
+      "note": "C5",
       "volume": 0.2,
       "description": "Help/documentation"
     },
     "F2": {
-      "note": "D6",
+      "note": "D5",
       "volume": 0.2,
       "description": "Rename/refactor"
     },
     "F3": {
-      "note": "E6",
+      "note": "E5",
       "volume": 0.2,
       "description": "Search/find next"
     },
     "F4": {
-      "note": "F6",
+      "note": "F5",
       "volume": 0.2,
       "description": "Go to definition"
     },
     "F5": {
-      "note": "G6",
+      "note": "G5",
       "volume": 0.2,
       "description": "Run/debug"
     },
     "F6": {
-      "note": "A6",
+      "note": "A5",
       "volume": 0.2,
       "description": "Build/compile"
     },
     "F7": {
-      "note": "B6",
+      "note": "B5",
       "volume": 0.2,
       "description": "Step debugging"
     },
     "F8": {
-      "note": "C7",
+      "note": "C5",
       "volume": 0.2,
       "description": "Continue debugging"
     },
     "F9": {
-      "note": "D7",
+      "note": "D5",
       "volume": 0.2,
       "description": "Toggle breakpoint"
     },
     "F10": {
-      "note": "E7",
+      "note": "E5",
       "volume": 0.2,
       "description": "Step over"
     },
     "F11": {
-      "note": "F7",
+      "note": "F5",
       "volume": 0.2,
       "description": "Step into"
     },
     "F12": {
-      "note": "G7",
+      "note": "G5",
       "volume": 0.2,
       "description": "Go to implementation"
     },
