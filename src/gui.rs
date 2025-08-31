@@ -62,8 +62,11 @@ impl CodeBeatsGui {
         // Add default option
         configs.push(("Default (Built-in)".to_string(), "".to_string()));
 
+        // Find language_configs directory relative to executable
+        let config_dir = Self::find_config_directory().unwrap_or_else(|| "language_configs".into());
+
         // Scan language_configs directory
-        if let Ok(entries) = std::fs::read_dir("language_configs") {
+        if let Ok(entries) = std::fs::read_dir(&config_dir) {
             for entry in entries {
                 if let Ok(entry) = entry {
                     let path = entry.path();
@@ -80,6 +83,27 @@ impl CodeBeatsGui {
         // Sort by display name
         configs.sort_by(|a, b| a.0.cmp(&b.0));
         configs
+    }
+
+    /// Find the language_configs directory relative to the GUI executable
+    fn find_config_directory() -> Option<std::path::PathBuf> {
+        // Get the directory where the GUI executable is located
+        if let Ok(exe_path) = std::env::current_exe() {
+            if let Some(exe_dir) = exe_path.parent() {
+                let config_path = exe_dir.join("language_configs");
+                if config_path.exists() {
+                    return Some(config_path);
+                }
+            }
+        }
+
+        // Fallback: look in current working directory
+        let cwd_path = std::path::Path::new("language_configs");
+        if cwd_path.exists() {
+            Some(cwd_path.to_path_buf())
+        } else {
+            None
+        }
     }
 
     /// Format language filename into readable display name
@@ -122,27 +146,21 @@ impl CodeBeatsGui {
             return;
         }
 
-        // Try to use release binary first, fall back to cargo run
-        let mut cmd = if std::path::Path::new("target/release/codebeats").exists() {
-            Command::new("./target/release/codebeats")
-        } else if std::path::Path::new("target/debug/codebeats").exists() {
-            Command::new("./target/debug/codebeats")
-        } else {
-            let mut cargo_cmd = Command::new("cargo");
-            cargo_cmd.arg("run").arg("--bin").arg("codebeats").arg("--");
-            cargo_cmd
-        };
-
-        // Only add -- separator if using cargo
-        let using_cargo = cmd.get_program() == "cargo";
-        if !using_cargo {
-            // For direct binary execution, no -- separator needed
+        // Find the CLI binary relative to the GUI executable
+        let cli_binary_path = self.find_cli_binary();
+        if cli_binary_path.is_none() {
+            self.status_message = "Error: CodeBeats CLI binary not found. Make sure 'codebeats' or 'codebeats.exe' is in the same directory.".to_string();
+            return;
         }
+
+        let mut cmd = Command::new(cli_binary_path.unwrap());
 
         // Add language config if not default
         if !self.selected_language.is_empty() {
-            cmd.arg("-l")
-                .arg(format!("language_configs/{}", self.selected_language));
+            let config_dir =
+                Self::find_config_directory().unwrap_or_else(|| "language_configs".into());
+            let config_path = config_dir.join(&self.selected_language);
+            cmd.arg("-l").arg(config_path);
         }
 
         // Add waveform
@@ -160,15 +178,8 @@ impl CodeBeatsGui {
             cmd.arg("--verbose");
         }
 
-        let binary_type = if cmd.get_program() == "cargo" {
-            "cargo"
-        } else {
-            "binary"
-        };
-
         self.status_message = format!(
-            "Starting CodeBeats ({}) with: {} waveform, {} language, volume {:.1}, filter {:.0}Hz{}",
-            binary_type,
+            "Starting CodeBeats with: {} waveform, {} language, volume {:.1}, filter {:.0}Hz{}",
             self.selected_waveform,
             self.get_selected_language_display(),
             self.volume,
@@ -215,6 +226,33 @@ impl CodeBeatsGui {
             .find(|(_, path)| path == &self.selected_language)
             .map(|(display, _)| display.clone())
             .unwrap_or_else(|| self.selected_language.clone())
+    }
+
+    /// Find the CLI binary relative to the GUI executable
+    fn find_cli_binary(&self) -> Option<std::path::PathBuf> {
+        // Get the directory where the GUI executable is located
+        let exe_path = std::env::current_exe().ok()?;
+        let exe_dir = exe_path.parent()?;
+
+        // Look for the CLI binary in the same directory
+        let binary_name = if cfg!(windows) {
+            "codebeats.exe"
+        } else {
+            "codebeats"
+        };
+        let cli_path = exe_dir.join(binary_name);
+
+        if cli_path.exists() {
+            Some(cli_path)
+        } else {
+            // Fallback: look in current working directory
+            let cwd_path = std::path::Path::new(binary_name);
+            if cwd_path.exists() {
+                Some(cwd_path.to_path_buf())
+            } else {
+                None
+            }
+        }
     }
 
     /// Check if the running process is still alive

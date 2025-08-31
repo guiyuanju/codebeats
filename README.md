@@ -98,6 +98,7 @@ cargo run -- -w fart -v 0.3
 
 ## Installation
 
+### For Developers
 ```bash
 git clone <repository>
 cd sound
@@ -111,6 +112,16 @@ cargo build --release --bin codebeats        # CLI version
 ```
 
 **Requirements:** Rust 1.70+, audio output device
+
+### For End Users (Standalone Packages)
+
+**No Rust installation required!** Download pre-built packages:
+
+- **Windows**: Extract `codebeats-windows-x64.zip`, double-click `codebeats-gui.exe`
+- **macOS**: Extract `codebeats-macos-x64.tar.gz`, double-click `codebeats-gui`  
+- **Linux**: Extract `codebeats-linux-x64.tar.gz`, run `./codebeats-gui`
+
+Each package includes both GUI and CLI versions with all assets bundled.
 
 ### Running the Applications
 
@@ -206,7 +217,13 @@ This implementation provides a complete cross-platform GUI solution that preserv
 
 ### 🚀 How to Use
 
-**For Beginners (GUI):**
+**For End Users (No Rust Required):**
+```bash
+# Download and extract platform package, then:
+./Start-CodeBeats-GUI.sh    # Double-click in file manager
+```
+
+**For Developers (GUI):**
 ```bash
 ./run.sh                    # Launch GUI
 # or: cargo run --bin codebeats-gui
@@ -218,9 +235,10 @@ This implementation provides a complete cross-platform GUI solution that preserv
 # or: cargo run --bin codebeats -- -w cyberpunk -v 0.5
 ```
 
-**Build Both Versions:**
+**Build Deployment Packages:**
 ```bash
-./run.sh build
+./deploy.sh                 # Quick single-platform package
+./build-release.sh all      # Multi-platform packages
 ```
 
 ### 🏗️ Architecture Benefits
@@ -232,6 +250,70 @@ This implementation provides a complete cross-platform GUI solution that preserv
 - **Simplicity**: Follows project rule of "prefer simple even stupid code"
 
 The GUI serves as an intuitive configuration interface while preserving all the power and flexibility of your original command-line tool.
+
+## Deployment & Distribution
+
+### Quick Deployment (Recommended)
+
+Create a ready-to-use package for your platform:
+
+```bash
+./deploy.sh
+```
+
+This creates `releases/codebeats-[platform].tar.gz` with:
+- Both GUI and CLI binaries
+- All configuration files and audio assets
+- User-friendly launcher scripts (`Start-CodeBeats-GUI.sh`)
+- Simple instructions (`HOW-TO-RUN.txt`)
+
+### Multi-Platform Building
+
+Create packages for multiple platforms:
+
+```bash
+# Build for current platform
+./build-release.sh local
+
+# Build for specific platforms  
+./build-release.sh windows    # Windows x64
+./build-release.sh macos      # macOS x64
+./build-release.sh linux      # Linux x64
+
+# Build for all platforms
+./build-release.sh all
+```
+
+### End User Experience
+
+**No installation required!** Users just:
+
+1. **Download**: Get the `.tar.gz` or `.zip` for their platform
+2. **Extract**: Unzip/untar the package anywhere
+3. **Run**: Double-click `Start-CodeBeats-GUI.sh` (or `.exe` on Windows)
+4. **Enjoy**: Configure and start making music!
+
+### Package Contents
+- `codebeats-gui` + `Start-CodeBeats-GUI.sh` - Graphical interface
+- `codebeats` + `Start-CodeBeats-CLI.sh` - Command-line interface  
+- `language_configs/` - All programming language musical scales
+- `effects/` - Audio sample files (fart sounds, etc.)
+- `HOW-TO-RUN.txt` - Simple user instructions
+- `README.md` - Complete documentation
+
+### Distribution Formats
+- **Windows**: `codebeats-windows-x64.zip` (~20MB)
+- **macOS**: `codebeats-macos-x64.tar.gz` (~15MB)
+- **Linux**: `codebeats-linux-x64.tar.gz` (~18MB)
+
+### Deployment Architecture
+
+The GUI intelligently finds and launches the CLI binary:
+- **Development**: Uses `cargo run --bin codebeats` 
+- **Deployment**: Uses bundled binary in same directory
+- **Fallback**: Graceful error handling if binary not found
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions and cross-compilation setup.
 
 ---
 

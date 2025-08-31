@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "Go programming language optimized keyboard mapping - G major pentatonic scale with shifted key harmonies",
+  "waveform": "square",
+  "mappings": {
+    "G": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "Go language foundation - G pentatonic root"
+    },
+    "O": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "Go keyword, for, package - major second"
+    },
+    "F": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "func keyword foundation - major third"
+    },
+    "U": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "func, return, struct - perfect fifth"
+    },
+    "N": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "func, interface, int - major sixth"
+    },
+    "C": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "func, package, interface - octave"
+    },
+    "P": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "package keyword - ninth"
+    },
+    "A": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "package, var, range - tenth"
+    },
+    "K": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "package, make - twelfth"
+    },
+    "E": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Very common in Go keywords - thirteenth"
+    },
+    "I": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "if, interface, import - double octave"
+    },
+    "M": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "import, main, make - ninth"
+    },
+    "R": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "return, range, error - tenth"
+    },
+    "T": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "struct, type, interface - twelfth"
+    },
+    "S": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "struct, string, slice - thirteenth"
+    },
+    "V": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "var, value - high octave"
+    },
+    "L": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "nil, slice, len - high second"
+    },
+    "D": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "defer, default - high third"
+    },
+    "H": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "chan, switch - comfortable fifth"
+    },
+    "W": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "switch, while patterns - comfortable sixth"
+    },
+    "Y": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "type declarations - comfortable double octave"
+    },
+    "B": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "bool, break - reuse root"
+    },
+    "J": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "Less common in Go - reuse second"
+    },
+    "Q": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "Rare in Go syntax - reuse third"
+    },
+    "X": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "context, hex - reuse fifth"
+    },
+    "Z": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Size operations - reuse sixth"
+    },
+    "Key0": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal - pentatonic root"
+    },
+    "RightParen": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
+    "Key1": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+1 - emphasis (octave)"
+    },
+    "Key2": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
+    },
+    "At": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+2 - Go struct tags (octave)"
+    },
+    "Key3": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Hash": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+3 - comments (octave)"
+    },
+    "Key4": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Dollar": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+4 - string formatting (octave)"
+    },
+    "Key5": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric literal - pentatonic octave"
+    },
+    "Percent": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
+    },
+    "Key6": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Numeric literal - high ninth"
+    },
+    "Caret": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
+    "Key7": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "Numeric literal - high tenth"
+    },
+    "Ampersand": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Shift+7 - address operator (pleasant range)"
+    },
+    "Key8": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - comfortable high fifth"
+    },
+    "Asterisk": {
+      "note": "D5",
+      "volume": 0.35,
+      "description": "Shift+8 - pointer dereference (emphasized)"
+    },
+    "Key9": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - comfortable high sixth"
+    },
+    "LeftParen": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (octave)"
+    },
+    "LeftBracket": {
+      "note": "G3",
+      "volume": 0.3,
+      "description": "Slice/array access - foundation"
+    },
+    "LeftBrace": {
+      "note": "G4",
+      "volume": 0.35,
+      "description": "Shift+[ - struct/map literals (octave up)"
+    },
+    "RightBracket": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Slice/array closing"
+    },
+    "RightBrace": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Shift+] - struct/map closing (octave up)"
+    },
+    "Grave": {
+      "note": "A3",
+      "volume": 0.25,
+      "description": "Backtick - rarely used"
+    },
+    "Tilde": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (octave up)"
+    },
+    "Minus": {
+      "note": "B3",
+      "volume": 0.25,
+      "description": "Subtraction operator"
+    },
+    "Underscore": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Shift+- - blank identifier (octave up)"
+    },
+    "Equal": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Assignment operator"
+    },
+    "Plus": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+= - addition (octave up)"
+    },
+    "Semicolon": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Optional in Go - gentle when used"
+    },
+    "Colon": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+; - short variable declarations (octave up)"
+    },
+    "Apostrophe": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Rune literals"
+    },
+    "DoubleQuote": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (octave up)"
+    },
+    "Comma": {
+      "note": "E3",
+      "volume": 0.2,
+      "description": "Parameter separator"
+    },
+    "LessThan": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison operator (octave up)"
+    },
+    "Dot": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Method calls, field access"
+    },
+    "GreaterThan": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+. - comparison operator (octave up)"
+    },
+    "Slash": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Division, comments"
+    },
+    "Question": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Shift+/ - ternary operator (pleasant range)"
+    },
+    "BackSlash": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Escape sequences"
+    },
+    "Pipe": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+\\ - bitwise OR (octave up)"
+    },
+    "Space": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Whitespace - clean Go style"
+    },
+    "Tab": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Go standard indentation"
+    },
+    "Enter": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Line breaks - clean structure"
+    },
+    "Backspace": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Run/build"
+    },
+    "F6": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Go build"
+    },
+    "F7": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Go test"
+    },
+    "F8": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Go run"
+    },
+    "F9": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Go to implementation"
+    },
+    "Up": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Navigation - upward"
+    },
+    "Down": {
+      "note": "D3",
+      "volume": 0.15,
+      "description": "Navigation - downward"
+    },
+    "Left": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation - left"
+    },
+    "Right": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation - right"
+    },
+    "Home": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Line beginning"
+    },
+    "End": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Line end"
+    },
+    "PageUp": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Page up"
+    },
+    "PageDown": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page down"
+    }
+  }
+}

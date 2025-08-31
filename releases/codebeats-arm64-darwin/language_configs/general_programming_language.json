@@ -1,0 +1,512 @@
+{
+  "version": "2.0",
+  "description": "Programming-optimized keyboard mapping with pentatonic scale and shifted key harmonies",
+  "waveform": "electronic",
+  "mappings": {
+    "A": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "Most common letter - root note"
+    },
+    "S": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "D": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "F": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "Letter - perfect fifth"
+    },
+    "G": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "Letter - relative minor"
+    },
+    "H": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Very common letter - octave"
+    },
+    "J": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Letter"
+    },
+    "K": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Letter"
+    },
+    "L": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "Q": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "Letter - fourth"
+    },
+    "W": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "Letter - leading tone"
+    },
+    "E": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Very common letter - octave"
+    },
+    "R": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "T": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "Y": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Letter"
+    },
+    "U": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "I": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "O": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "P": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Letter"
+    },
+    "Z": {
+      "note": "F3",
+      "volume": 0.2,
+      "description": "Letter - lower register"
+    },
+    "X": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Letter"
+    },
+    "C": {
+      "note": "A3",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "V": {
+      "note": "B3",
+      "volume": 0.2,
+      "description": "Letter"
+    },
+    "B": {
+      "note": "D3",
+      "volume": 0.2,
+      "description": "Letter"
+    },
+    "N": {
+      "note": "E3",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "M": {
+      "note": "F3",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "Key1": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Number key - root"
+    },
+    "Exclamation": {
+      "note": "C5",
+      "volume": 0.35,
+      "description": "Shift+1 - octave emphasis (pleasant range)"
+    },
+    "Key2": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "At": {
+      "note": "D5",
+      "volume": 0.35,
+      "description": "Shift+2 - high harmony (pleasant range)"
+    },
+    "Key3": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Hash": {
+      "note": "E5",
+      "volume": 0.35,
+      "description": "Shift+3 - bright accent (pleasant range)"
+    },
+    "Key4": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Dollar": {
+      "note": "F5",
+      "volume": 0.35,
+      "description": "Shift+4 - high fourth (pleasant range)"
+    },
+    "Key5": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Percent": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Shift+5 - perfect fifth high (pleasant range)"
+    },
+    "Key6": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Caret": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Shift+6 - high sixth (shares pitch with other A5 keys)"
+    },
+    "Key7": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Ampersand": {
+      "note": "B4",
+      "volume": 0.35,
+      "description": "Shift+7 - leading tone (pleasant mid-range)"
+    },
+    "Key8": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Asterisk": {
+      "note": "C5",
+      "volume": 0.4,
+      "description": "Shift+8 - star note (pleasant high)"
+    },
+    "Key9": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "LeftParen": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+9 - opening chord (shares D5 harmony)"
+    },
+    "Key0": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "RightParen": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+0 - closing chord (shares E5 harmony)"
+    },
+    "Minus": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "Underscore": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+- - emphasized connection (shares F5)"
+    },
+    "Equal": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "Plus": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+= - positive harmony (shares G5)"
+    },
+    "LeftBracket": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "LeftBrace": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+[ - block opening (shares A5 for harmony)"
+    },
+    "RightBracket": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "RightBrace": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+] - block closing (shares B5 for harmony)"
+    },
+    "BackSlash": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "Pipe": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+\\ - pipe flow (pleasant C)"
+    },
+    "Semicolon": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "Colon": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Shift+; - statement emphasis (shares D5)"
+    },
+    "Apostrophe": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "DoubleQuote": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Shift+' - string delimiter (shares E5)"
+    },
+    "Comma": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "LessThan": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison (pleasant fourth)"
+    },
+    "Dot": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "GreaterThan": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+. - comparison (shares G4 fifth)"
+    },
+    "Slash": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "Question": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+/ - inquiry tone (pleasant mid-range)"
+    },
+    "Grave": {
+      "note": "A4",
+      "volume": 0.15,
+      "description": "Backtick - quiet"
+    },
+    "Tilde": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Shift+` - wave motion (harmonious octave)"
+    },
+    "Space": {
+      "note": "C3",
+      "volume": 0.1,
+      "description": "Common key - quiet bass"
+    },
+    "Enter": {
+      "note": "C2",
+      "volume": 0.15,
+      "description": "Statement end - deep bass"
+    },
+    "Tab": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Indentation - quiet bass"
+    },
+    "Backspace": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Deletion - subtle bass"
+    },
+    "Delete": {
+      "note": "E2",
+      "volume": 0.1,
+      "description": "Forward delete - bass"
+    },
+    "Escape": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Cancel - very quiet"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "RShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "LControl": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "RControl": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "LAlt": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "RAlt": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "CapsLock": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "Up": {
+      "note": "C5",
+      "volume": 0.15,
+      "description": "Navigation - ascending"
+    },
+    "Down": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation - descending"
+    },
+    "Left": {
+      "note": "F4",
+      "volume": 0.15,
+      "description": "Navigation - back"
+    },
+    "Right": {
+      "note": "G4",
+      "volume": 0.15,
+      "description": "Navigation - forward"
+    },
+    "Home": {
+      "note": "C4",
+      "volume": 0.15,
+      "description": "Navigation - home base"
+    },
+    "End": {
+      "note": "C5",
+      "volume": 0.15,
+      "description": "Navigation - completion"
+    },
+    "PageUp": {
+      "note": "A4",
+      "volume": 0.15,
+      "description": "Navigation - up page"
+    },
+    "PageDown": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Navigation - down page"
+    },
+    "F1": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F2": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F3": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F4": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F5": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F6": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F7": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F8": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F9": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F10": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F11": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F12": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Function key"
+    }
+  }
+}
