@@ -209,6 +209,7 @@ impl NoteState {
 
 pub struct AudioState {
     pub active_notes: HashMap<Keycode, NoteState>,
+    pub active_notes_by_id: HashMap<String, NoteState>,
     sample_rate: f32,
     current_waveform: Waveform,
     default_adsr: ADSRParams,
@@ -227,6 +228,7 @@ impl AudioState {
 
         Self {
             active_notes: HashMap::new(),
+            active_notes_by_id: HashMap::new(),
             sample_rate,
             current_waveform: waveform,
             default_adsr,
@@ -261,13 +263,39 @@ impl AudioState {
         }
     }
 
+    /// Start a note with string-based identifier (for virtual keys)
+    pub fn start_note_with_id(&mut self, key_id: &str, frequency: f32, volume: f32) -> f32 {
+        // For rate limiting, we'll use a dummy keycode approach or skip rate limiting for virtual keys
+        // Since virtual keys might not map to physical keys, we'll apply a basic rate limit
+        let adjusted_volume = volume * self.master_volume;
+
+        let note_state = NoteState::new(
+            frequency,
+            adjusted_volume,
+            self.default_adsr.clone(),
+            self.current_waveform,
+        );
+        self.active_notes_by_id
+            .insert(key_id.to_string(), note_state);
+
+        adjusted_volume
+    }
+
+    /// Stop a note with string-based identifier
+    pub fn stop_note_with_id(&mut self, key_id: &str) {
+        if let Some(note_state) = self.active_notes_by_id.get_mut(key_id) {
+            note_state.release();
+        }
+    }
+
     /// Generate a single audio sample (main synthesis loop)
     pub fn generate_sample(&mut self) -> f32 {
         let mut sample = 0.0;
         let dt = 1.0 / self.sample_rate;
         let mut to_remove = Vec::new();
+        let mut to_remove_by_id = Vec::new();
 
-        // Process each active note
+        // Process each active note (keycode-based)
         for (keycode, note_state) in self.active_notes.iter_mut() {
             // Update envelope
             let envelope_multiplier = note_state.update_envelope(dt);
@@ -283,9 +311,28 @@ impl AudioState {
             sample += note_sample;
         }
 
+        // Process each active note (string ID-based)
+        for (key_id, note_state) in self.active_notes_by_id.iter_mut() {
+            // Update envelope
+            let envelope_multiplier = note_state.update_envelope(dt);
+
+            // Check if note should be removed
+            if note_state.is_finished(envelope_multiplier) {
+                to_remove_by_id.push(key_id.clone());
+                continue;
+            }
+
+            // Generate sample for this note
+            let note_sample = note_state.generate_sample(self.sample_rate, envelope_multiplier);
+            sample += note_sample;
+        }
+
         // Remove finished notes
         for keycode in to_remove {
             self.active_notes.remove(&keycode);
+        }
+        for key_id in to_remove_by_id {
+            self.active_notes_by_id.remove(&key_id);
         }
 
         // Global volume adjustment - normalized for comfortable listening

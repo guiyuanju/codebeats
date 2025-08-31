@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "description": "JavaScript programming language optimized keyboard mapping - D Mixolydian mode for dynamic web development (comfortable frequency range)",
+  "version": "2.0",
+  "description": "JavaScript programming language optimized keyboard mapping - D Mixolydian mode with shifted key harmonies",
   "waveform": "cyberpunk",
   "mappings": {
     "F": {
@@ -173,6 +173,46 @@
       "volume": 0.25,
       "description": "Numeric literal - octave"
     },
+    "Grave": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Template literals - octave"
+    },
+    "Tilde": {
+      "note": "C6",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (~) (octave up)"
+    },
+    "Comma": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Parameter separator, array items"
+    },
+    "LessThan": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison operator (<)"
+    },
+    "Dot": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Method calls, property access"
+    },
+    "GreaterThan": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Shift+. - comparison operator (>)"
+    },
+    "BackSlash": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Escape sequences in strings"
+    },
+    "Pipe": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+\\ - bitwise OR (|) (octave up)"
+    },
     "Key8": {
       "note": "E5",
       "volume": 0.25,
@@ -184,34 +224,114 @@
       "description": "Numeric literal - major tenth"
     },
     "LeftBracket": {
-      "note": "C3",
+      "note": "D3",
       "volume": 0.3,
-      "description": "Array access [ and object destructuring { (Shift+[)"
+      "description": "Array access [ - Mixolydian foundation"
+    },
+    "LeftBrace": {
+      "note": "D4",
+      "volume": 0.35,
+      "description": "Shift+[ - object literals (octave up)"
     },
     "RightBracket": {
-      "note": "C4",
+      "note": "E4",
       "volume": 0.3,
-      "description": "Array access ] and object destructuring } (Shift+])"
+      "description": "Array access ] - closure"
+    },
+    "RightBrace": {
+      "note": "E5",
+      "volume": 0.35,
+      "description": "Shift+] - object/function closing (octave up)"
+    },
+    "LeftParen": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls"
+    },
+    "RightParen": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
+    "Exclamation": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "Shift+1 - not operator (!)"
+    },
+    "At": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Shift+2 - decorators (@)"
+    },
+    "Hash": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Shift+3 - comments (#)"
+    },
+    "Dollar": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+4 - jQuery, template literals ($)"
+    },
+    "Percent": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Shift+5 - modulo operator (%)"
+    },
+    "Caret": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (^)"
+    },
+    "Ampersand": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+7 - logical AND (&&)"
+    },
+    "Asterisk": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Shift+8 - multiplication, spread operator (*)"
     },
     "Semicolon": {
       "note": "G3",
       "volume": 0.2,
-      "description": "Statement terminator ; and object properties : (Shift+;)"
+      "description": "Statement terminator - structural"
     },
-    "Equal": {
+    "Colon": {
       "note": "G4",
       "volume": 0.25,
-      "description": "Assignment = and addition + (Shift+=) - fourth"
+      "description": "Shift+; - object properties (:)"
+    },
+    "Equal": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Assignment operator - major third"
+    },
+    "Plus": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+= - addition operator (+)"
     },
     "Minus": {
-      "note": "F#4",
+      "note": "F4",
       "volume": 0.3,
-      "description": "Subtraction - and underscore _ (Shift+-) - major third"
+      "description": "Subtraction operator - perfect fourth"
+    },
+    "Underscore": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Shift+- - private variables (_) (shares pitch)"
     },
     "Slash": {
-      "note": "B4",
+      "note": "Bb4",
       "volume": 0.25,
-      "description": "Division /, regex, comments and question ? (Shift+/) - sixth"
+      "description": "Division, regex, comments - flat seventh"
+    },
+    "Question": {
+      "note": "Bb5",
+      "volume": 0.3,
+      "description": "Shift+/ - ternary operator (?) (octave up)"
     },
 
     "BackSlash": {
@@ -231,14 +351,14 @@
     },
 
     "Apostrophe": {
-      "note": "F#4",
+      "note": "A4",
       "volume": 0.25,
-      "description": "Single quote ' and double quote \" (Shift+') - major third"
+      "description": "String literals, template strings"
     },
-    "Grave": {
-      "note": "G#4",
+    "DoubleQuote": {
+      "note": "A5",
       "volume": 0.3,
-      "description": "Template literals ` and tilde ~ (Shift+`) - unique augmented fourth"
+      "description": "Shift+' - string literals (\") (octave up)"
     },
 
     "Space": {

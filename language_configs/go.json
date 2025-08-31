@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "description": "Go programming language optimized keyboard mapping - G major pentatonic scale for clean, simple programming",
+  "version": "2.0",
+  "description": "Go programming language optimized keyboard mapping - G major pentatonic scale with shifted key harmonies",
   "waveform": "square",
   "mappings": {
     "G": {
@@ -138,105 +138,210 @@
       "volume": 0.25,
       "description": "Numeric literal - pentatonic root"
     },
+    "RightParen": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
     "Key1": {
       "note": "A4",
       "volume": 0.25,
       "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+1 - emphasis (octave)"
     },
     "Key2": {
       "note": "B4",
       "volume": 0.25,
       "description": "Numeric literal - major third"
     },
+    "At": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+2 - Go struct tags (octave)"
+    },
     "Key3": {
       "note": "D5",
       "volume": 0.25,
       "description": "Numeric literal - perfect fifth"
+    },
+    "Hash": {
+      "note": "D6",
+      "volume": 0.3,
+      "description": "Shift+3 - comments (octave)"
     },
     "Key4": {
       "note": "E5",
       "volume": 0.25,
       "description": "Numeric literal - major sixth"
     },
+    "Dollar": {
+      "note": "E6",
+      "volume": 0.3,
+      "description": "Shift+4 - string formatting (octave)"
+    },
     "Key5": {
       "note": "G5",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic octave"
+    },
+    "Percent": {
+      "note": "G6",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
     },
     "Key6": {
       "note": "A5",
       "volume": 0.25,
       "description": "Numeric literal - high ninth"
     },
+    "Caret": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
     "Key7": {
       "note": "B5",
       "volume": 0.25,
       "description": "Numeric literal - high tenth"
+    },
+    "Ampersand": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Shift+7 - address operator (pleasant range)"
     },
     "Key8": {
       "note": "D5",
       "volume": 0.25,
       "description": "Numeric literal - comfortable high fifth"
     },
+    "Asterisk": {
+      "note": "D6",
+      "volume": 0.35,
+      "description": "Shift+8 - pointer dereference (emphasized)"
+    },
     "Key9": {
       "note": "E5",
       "volume": 0.25,
       "description": "Numeric literal - comfortable high sixth"
     },
+    "LeftParen": {
+      "note": "E6",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (octave)"
+    },
     "LeftBracket": {
       "note": "G3",
       "volume": 0.3,
-      "description": "Block opening - pentatonic foundation"
+      "description": "Slice/array access - foundation"
+    },
+    "LeftBrace": {
+      "note": "G4",
+      "volume": 0.35,
+      "description": "Shift+[ - struct/map literals (octave up)"
     },
     "RightBracket": {
-      "note": "G4",
+      "note": "A4",
       "volume": 0.3,
-      "description": "Block closing - pentatonic octave"
+      "description": "Slice/array closing"
+    },
+    "RightBrace": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Shift+] - struct/map closing (octave up)"
     },
     "Grave": {
       "note": "A3",
       "volume": 0.25,
-      "description": "Array indexing - second low"
+      "description": "Backtick - rarely used"
+    },
+    "Tilde": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (octave up)"
     },
     "Minus": {
       "note": "B3",
       "volume": 0.25,
-      "description": "Array indexing - third low"
+      "description": "Subtraction operator"
+    },
+    "Underscore": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Shift+- - blank identifier (octave up)"
     },
     "Equal": {
       "note": "D4",
       "volume": 0.25,
-      "description": "Assignment operator - fifth low"
+      "description": "Assignment operator"
+    },
+    "Plus": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+= - addition (octave up)"
     },
     "Semicolon": {
       "note": "G3",
       "volume": 0.15,
       "description": "Optional in Go - gentle when used"
     },
+    "Colon": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+; - short variable declarations (octave up)"
+    },
     "Apostrophe": {
       "note": "A4",
       "volume": 0.25,
-      "description": "String literals"
+      "description": "Rune literals"
+    },
+    "DoubleQuote": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (octave up)"
     },
     "Comma": {
       "note": "E3",
       "volume": 0.2,
       "description": "Parameter separator"
     },
+    "LessThan": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison operator (octave up)"
+    },
     "Dot": {
       "note": "F4",
       "volume": 0.25,
       "description": "Method calls, field access"
+    },
+    "GreaterThan": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+. - comparison operator (octave up)"
     },
     "Slash": {
       "note": "D5",
       "volume": 0.25,
       "description": "Division, comments"
     },
+    "Question": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Shift+/ - ternary operator (pleasant range)"
+    },
     "BackSlash": {
       "note": "A5",
       "volume": 0.25,
       "description": "Escape sequences"
+    },
+    "Pipe": {
+      "note": "A6",
+      "volume": 0.3,
+      "description": "Shift+\\ - bitwise OR (octave up)"
     },
     "Space": {
       "note": "C2",

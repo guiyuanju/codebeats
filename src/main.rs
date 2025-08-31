@@ -20,7 +20,10 @@ use audio::AudioState;
 use clap::{Parser, Subcommand};
 use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use device_query::{DeviceQuery, DeviceState, Keycode};
-use keyboard::{get_frequency_and_volume_with_config, KeyboardConfig};
+use keyboard::{
+    get_frequency_and_volume_with_config_virtual, KeyboardConfig, KeyboardStateTracker,
+    VirtualKeycode,
+};
 use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
@@ -112,7 +115,9 @@ impl AppConfig {
                     println!("❌ Could not load: {}", path);
                 }
             }
-        } else if let Ok(config) = KeyboardConfig::load_from_file("keyboard_config.json") {
+        } else if let Ok(config) =
+            KeyboardConfig::load_from_file("language_configs/general_programming_language.json")
+        {
             return config;
         }
 
@@ -184,10 +189,11 @@ impl UIManager {
     }
 }
 
-/// Keyboard input processor
+/// Keyboard input processor with shift detection
 pub struct KeyboardProcessor {
     pub device_state: DeviceState,
     prev_keys: Vec<Keycode>,
+    keyboard_tracker: KeyboardStateTracker,
 }
 
 impl KeyboardProcessor {
@@ -196,12 +202,13 @@ impl KeyboardProcessor {
         Self {
             device_state: DeviceState::new(),
             prev_keys: Vec::new(),
+            keyboard_tracker: KeyboardStateTracker::new(),
         }
     }
 
     /// Process keyboard input for one frame
-    /// Returns lists of newly pressed and released keys
-    fn process_input(&mut self) -> (Vec<Keycode>, Vec<Keycode>) {
+    /// Returns lists of newly pressed and released virtual keycodes
+    fn process_input(&mut self) -> (Vec<VirtualKeycode>, Vec<VirtualKeycode>) {
         let current_keys: Vec<Keycode> = self.device_state.get_keys();
 
         // Find newly pressed keys
@@ -219,9 +226,23 @@ impl KeyboardProcessor {
             .cloned()
             .collect();
 
+        // Update keyboard state tracker
+        self.keyboard_tracker.update(&pressed_keys, &released_keys);
+
+        // Convert physical keys to virtual keys (handles shift detection)
+        let virtual_pressed: Vec<VirtualKeycode> = pressed_keys
+            .iter()
+            .filter_map(|key| self.keyboard_tracker.get_virtual_keycode(*key))
+            .collect();
+
+        let virtual_released: Vec<VirtualKeycode> = released_keys
+            .iter()
+            .filter_map(|key| self.keyboard_tracker.get_virtual_keycode(*key))
+            .collect();
+
         self.prev_keys = current_keys;
 
-        (pressed_keys, released_keys)
+        (virtual_pressed, virtual_released)
     }
 }
 
@@ -247,50 +268,48 @@ impl PianoApp {
         })
     }
 
-    /// Handle a pressed key using the configured keyboard mapping
-    fn handle_key_press(&self, key: Keycode, config: &KeyboardConfig) {
+    /// Handle a pressed virtual key using the configured keyboard mapping
+    fn handle_key_press(&self, virtual_key: &VirtualKeycode, config: &KeyboardConfig) {
+        let key_id = virtual_key.to_string();
+
         // Handle musical keys using custom configuration
-        if let Some((frequency, volume, note)) = get_frequency_and_volume_with_config(key, config) {
+        if let Some((frequency, volume, note)) =
+            get_frequency_and_volume_with_config_virtual(virtual_key, config)
+        {
             let mut audio_state = self.audio_system.state().lock().unwrap();
-            let actual_volume = audio_state.start_note(key, frequency, volume);
+            let actual_volume = audio_state.start_note_with_id(&key_id, frequency, volume);
 
             if actual_volume > 0.0 {
                 if actual_volume < volume {
                     println!(
-                        "Playing: {:?} -> {} ({:.2} Hz, vol: {:.2}) [Rate Limited]",
-                        key, note, frequency, actual_volume
+                        "Playing: {} -> {} ({:.2} Hz, vol: {:.2}) [Rate Limited]",
+                        key_id, note, frequency, actual_volume
                     );
                 } else {
                     println!(
-                        "Playing: {:?} -> {} ({:.2} Hz, vol: {:.2})",
-                        key, note, frequency, actual_volume
+                        "Playing: {} -> {} ({:.2} Hz, vol: {:.2})",
+                        key_id, note, frequency, actual_volume
                     );
                 }
             } else {
-                println!("Silenced: {:?} -> {} (too rapid)", key, note);
+                println!("Silenced: {} -> {} (too rapid)", key_id, note);
             }
         } else {
-            // Check if this might be a Command key we want to detect
-            let key_debug = format!("{:?}", key);
-            if key_debug.contains("Meta")
-                || key_debug.contains("Cmd")
-                || key_debug.contains("Command")
-                || key_debug.contains("LWin")
-                || key_debug.contains("RWin")
-            {
-                println!("🔍 Detected potential Command key: {:?}", key);
-                println!("   (This key is not currently mapped to a musical note)");
-                println!("💡 Add it to keyboard_config.json to assign a sound");
-            }
+            // Check if this might be an unmapped key
+            println!("🔍 Detected unmapped key: {}", virtual_key.to_string());
+            println!("💡 Add it to keyboard_config.json to assign a sound");
         }
     }
 
-    /// Handle a released key using the configured keyboard mapping
-    fn handle_key_release(&self, key: Keycode, config: &KeyboardConfig) {
-        if let Some((_, _, note)) = get_frequency_and_volume_with_config(key, config) {
+    /// Handle a released virtual key using the configured keyboard mapping
+    fn handle_key_release(&self, virtual_key: &VirtualKeycode, config: &KeyboardConfig) {
+        if let Some((_, _, note)) =
+            get_frequency_and_volume_with_config_virtual(virtual_key, config)
+        {
             let mut audio_state = self.audio_system.state().lock().unwrap();
-            audio_state.stop_note(key);
-            println!("Stopped: {:?} -> {}", key, note);
+            let key_id = virtual_key.to_string();
+            audio_state.stop_note_with_id(&key_id);
+            println!("Stopped: {} -> {}", key_id, note);
         }
     }
 
@@ -299,12 +318,12 @@ impl PianoApp {
         loop {
             let (pressed_keys, released_keys) = self.keyboard_processor.process_input();
 
-            for key in pressed_keys {
-                self.handle_key_press(key, config);
+            for virtual_key in pressed_keys {
+                self.handle_key_press(&virtual_key, config);
             }
 
-            for key in released_keys {
-                self.handle_key_release(key, config);
+            for virtual_key in released_keys {
+                self.handle_key_release(&virtual_key, config);
             }
 
             thread::sleep(Duration::from_millis(10));

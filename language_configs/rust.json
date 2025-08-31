@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "description": "Rust programming language optimized keyboard mapping - Systems programming harmony",
+  "version": "2.0",
+  "description": "Rust programming language optimized keyboard mapping - Systems programming harmony with shifted key support",
   "waveform": "electronic",
   "mappings": {
     "R": {
@@ -138,60 +138,185 @@
       "volume": 0.25,
       "description": "Numeric literal - pentatonic root"
     },
+    "RightParen": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
     "Key1": {
       "note": "Eb4",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic minor third"
+    },
+    "Exclamation": {
+      "note": "Eb5",
+      "volume": 0.3,
+      "description": "Shift+1 - macro emphasis (octave)"
     },
     "Key2": {
       "note": "F4",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic fourth"
     },
+    "At": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+2 - attributes/decorators (octave)"
+    },
     "Key3": {
       "note": "G4",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic fifth"
+    },
+    "Hash": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+3 - comments/attributes (octave)"
     },
     "Key4": {
       "note": "Bb4",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic seventh"
     },
+    "Dollar": {
+      "note": "Bb5",
+      "volume": 0.3,
+      "description": "Shift+4 - string formatting (octave)"
+    },
     "Key5": {
       "note": "C5",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic octave"
+    },
+    "Percent": {
+      "note": "C6",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
     },
     "Key6": {
       "note": "Eb5",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic minor third high"
     },
+    "Caret": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
     "Key7": {
       "note": "F5",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic fourth high"
+    },
+    "Ampersand": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Shift+7 - reference operator (pleasant range)"
     },
     "Key8": {
       "note": "G5",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic fifth high"
     },
+    "Asterisk": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Shift+8 - dereference operator (emphasized)"
+    },
     "Key9": {
       "note": "Bb5",
       "volume": 0.25,
       "description": "Numeric literal - pentatonic seventh high"
+    },
+    "LeftParen": {
+      "note": "Bb5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (shares pitch)"
+    },
+    "LeftParen": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (octave)"
+    },
+    "Key0": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Numeric literal - root"
+    },
+    "RightParen": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+0 - function calls closing (octave)"
+    },
+    "Exclamation": {
+      "note": "C6",
+      "volume": 0.3,
+      "description": "Shift+1 - panic! macro (emphasized)"
+    },
+    "At": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Shift+2 - rarely used (octave)"
+    },
+    "Hash": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+3 - attributes (octave)"
+    },
+    "Dollar": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Shift+4 - macros (octave)"
+    },
+    "Percent": {
+      "note": "Bb5",
+      "volume": 0.25,
+      "description": "Shift+5 - modulo (octave)"
+    },
+    "Caret": {
+      "note": "C6",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (double octave)"
+    },
+    "Ampersand": {
+      "note": "Eb4",
+      "volume": 0.3,
+      "description": "Shift+7 - reference operator (important in Rust)"
+    },
+    "Asterisk": {
+      "note": "F5",
+      "volume": 0.35,
+      "description": "Shift+8 - dereference operator (emphasized)"
     },
     "LeftBracket": {
       "note": "C3",
       "volume": 0.3,
       "description": "Array/slice syntax - opening"
     },
+    "LeftBrace": {
+      "note": "C4",
+      "volume": 0.35,
+      "description": "Shift+[ - struct/block opening (octave up)"
+    },
+    "LeftBrace": {
+      "note": "C4",
+      "volume": 0.35,
+      "description": "Shift+[ - struct/block literals (octave up)"
+    },
     "RightBracket": {
       "note": "C4",
       "volume": 0.3,
       "description": "Array/slice syntax - closing"
+    },
+    "RightBrace": {
+      "note": "C5",
+      "volume": 0.35,
+      "description": "Shift+] - struct/block closing (octave up)"
+    },
+    "RightBrace": {
+      "note": "Eb5",
+      "volume": 0.35,
+      "description": "Shift+] - struct/block closing (octave up)"
     },
 
     "Semicolon": {
@@ -199,45 +324,140 @@
       "volume": 0.2,
       "description": "Statement terminator - gentle resolution"
     },
+    "Colon": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+; - type annotations (octave up)"
+    },
+    "Colon": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+; - type annotations (octave up)"
+    },
     "Equal": {
       "note": "Eb4",
       "volume": 0.25,
       "description": "Assignment operator - minor third"
+    },
+    "Plus": {
+      "note": "Eb5",
+      "volume": 0.3,
+      "description": "Shift+= - addition (octave up)"
+    },
+    "Plus": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Shift+= - addition (octave up)"
     },
     "Minus": {
       "note": "F4",
       "volume": 0.3,
       "description": "Subtraction, negative - fourth power"
     },
+    "Underscore": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+- - unused variable (octave up)"
+    },
+    "Underscore": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+- - unused bindings (octave up)"
+    },
     "BackSlash": {
       "note": "G5",
       "volume": 0.25,
       "description": "Escape sequences - fifth high"
+    },
+    "Pipe": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+\\ - bitwise OR (shares pitch)"
+    },
+    "Pipe": {
+      "note": "G6",
+      "volume": 0.3,
+      "description": "Shift+\\ - bitwise OR (octave up)"
     },
     "Dot": {
       "note": "F4",
       "volume": 0.25,
       "description": "Method calls, field access - fourth"
     },
+    "GreaterThan": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+. - comparison (octave up)"
+    },
     "Comma": {
       "note": "E3",
       "volume": 0.2,
       "description": "Parameter separator - gentle"
+    },
+    "LessThan": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison (octave up)"
+    },
+    "LessThan": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Shift+, - generics, comparison (octave up)"
     },
     "Apostrophe": {
       "note": "C6",
       "volume": 0.35,
       "description": "Lifetimes - bright but not shrill"
     },
+    "DoubleQuote": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (pleasant range)"
+    },
+    "DoubleQuote": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (octave down for comfort)"
+    },
     "Slash": {
       "note": "Bb4",
       "volume": 0.25,
       "description": "Division, comments - seventh"
     },
+    "Question": {
+      "note": "Bb5",
+      "volume": 0.25,
+      "description": "Shift+/ - ternary operator (pleasant range)"
+    },
+    "Question": {
+      "note": "Bb5",
+      "volume": 0.25,
+      "description": "Shift+/ - Option<T>, Result<T> (octave up)"
+    },
     "Grave": {
       "note": "C5",
       "volume": 0.3,
       "description": "Raw strings, identifiers - octave"
+    },
+    "Tilde": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (shares pitch)"
+    },
+    "Tilde": {
+      "note": "C6",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (octave up)"
+    },
+    "Dot": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Method calls, field access - fourth"
+    },
+    "GreaterThan": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+. - generics, comparison (octave up)"
     },
     "Space": {
       "note": "C2",

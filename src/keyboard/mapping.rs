@@ -125,27 +125,27 @@ impl KeyboardStateTracker {
 
     /// Update keyboard state based on pressed and released keys
     pub fn update(&mut self, pressed_keys: &[Keycode], released_keys: &[Keycode]) {
-        // Update shift state
+        // First, add all newly pressed keys
         for key in pressed_keys {
-            if matches!(key, Keycode::LShift | Keycode::RShift) {
-                self.shift_pressed = true;
-            }
             self.pressed_keys.insert(*key);
         }
 
+        // Then, remove all released keys
         for key in released_keys {
-            if matches!(key, Keycode::LShift | Keycode::RShift) {
-                // Check if any shift key is still pressed
-                self.shift_pressed = self.pressed_keys.contains(&Keycode::LShift)
-                    || self.pressed_keys.contains(&Keycode::RShift);
-            }
             self.pressed_keys.remove(key);
         }
+
+        // Update shift state based on current pressed keys
+        self.shift_pressed = self.pressed_keys.contains(&Keycode::LShift)
+            || self.pressed_keys.contains(&Keycode::RShift);
     }
 
     /// Get the virtual keycode for shifted characters
     pub fn get_virtual_keycode(&self, physical_key: Keycode) -> Option<VirtualKeycode> {
-        if !self.shift_pressed {
+        // Check if shift is currently pressed (including keys pressed in this frame)
+        let shift_currently_pressed = self.shift_pressed;
+
+        if !shift_currently_pressed {
             return Some(VirtualKeycode::Physical(physical_key));
         }
 

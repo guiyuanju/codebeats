@@ -8,4 +8,6 @@ pub mod config;
 pub mod mapping;
 
 pub use config::KeyboardConfig;
-pub use mapping::get_frequency_and_volume_with_config;
+pub use mapping::{
+    get_frequency_and_volume_with_config_virtual, KeyboardStateTracker, VirtualKeycode,
+};

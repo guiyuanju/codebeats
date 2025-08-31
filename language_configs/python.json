@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "description": "Python programming language optimized keyboard mapping - F major scale for friendly, readable programming",
+  "version": "2.0",
+  "description": "Python programming language optimized keyboard mapping - F major scale with shifted key harmonies",
   "waveform": "natural",
   "mappings": {
     "D": {
@@ -138,105 +138,210 @@
       "volume": 0.25,
       "description": "Numeric literal - F major root"
     },
+    "RightParen": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
     "Key1": {
       "note": "G4",
       "volume": 0.25,
       "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+1 - emphasis (octave)"
     },
     "Key2": {
       "note": "A4",
       "volume": 0.25,
       "description": "Numeric literal - major third"
     },
+    "At": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+2 - decorators (octave)"
+    },
     "Key3": {
       "note": "Bb4",
       "volume": 0.25,
       "description": "Numeric literal - perfect fourth"
+    },
+    "Hash": {
+      "note": "Bb5",
+      "volume": 0.3,
+      "description": "Shift+3 - comments (octave)"
     },
     "Key4": {
       "note": "C5",
       "volume": 0.25,
       "description": "Numeric literal - perfect fifth"
     },
+    "Dollar": {
+      "note": "C6",
+      "volume": 0.3,
+      "description": "Shift+4 - string formatting (octave)"
+    },
     "Key5": {
       "note": "D5",
       "volume": 0.25,
       "description": "Numeric literal - major sixth"
+    },
+    "Percent": {
+      "note": "D6",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
     },
     "Key6": {
       "note": "E5",
       "volume": 0.25,
       "description": "Numeric literal - major seventh"
     },
+    "Caret": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
     "Key7": {
       "note": "F5",
       "volume": 0.25,
       "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Shift+7 - bitwise AND (shares root)"
     },
     "Key8": {
       "note": "G5",
       "volume": 0.25,
       "description": "Numeric literal - ninth"
     },
+    "Asterisk": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Shift+8 - args/kwargs unpacking (emphasized)"
+    },
     "Key9": {
       "note": "A5",
       "volume": 0.25,
       "description": "Numeric literal - tenth"
     },
+    "LeftParen": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (emphasized)"
+    },
     "LeftBracket": {
       "note": "F3",
       "volume": 0.3,
-      "description": "List/dict access [ and { (Shift+[) - low foundation"
+      "description": "List/dict access - low foundation"
+    },
+    "LeftBrace": {
+      "note": "F4",
+      "volume": 0.35,
+      "description": "Shift+[ - dict/set literals (octave up)"
     },
     "RightBracket": {
       "note": "F4",
       "volume": 0.3,
-      "description": "List/dict access ] and } (Shift+]) - octave closure"
+      "description": "List/dict access - closure"
+    },
+    "RightBrace": {
+      "note": "F5",
+      "volume": 0.35,
+      "description": "Shift+] - dict/set closing (octave up)"
     },
     "Semicolon": {
       "note": "G3",
       "volume": 0.15,
-      "description": "Colon : (Shift+;) for dict/function definitions - rare semicolon"
+      "description": "Rare semicolon in Python"
+    },
+    "Colon": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "Shift+; - function/class definitions (critical in Python)"
     },
     "Equal": {
       "note": "C5",
       "volume": 0.25,
       "description": "Assignment operator - fifth"
     },
+    "Plus": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+= - addition (shares pitch, emphasized)"
+    },
     "Minus": {
       "note": "D5",
       "volume": 0.3,
-      "description": "Subtraction, underscore _ (Shift+-) - sixth"
+      "description": "Subtraction - sixth"
+    },
+    "Underscore": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Shift+- - variable names (lower register)"
     },
     "Slash": {
       "note": "Bb4",
       "volume": 0.25,
-      "description": "Division /, comments - fourth"
+      "description": "Division, comments - fourth"
+    },
+    "Question": {
+      "note": "Bb5",
+      "volume": 0.25,
+      "description": "Shift+/ - ternary (pleasant range)"
     },
     "BackSlash": {
       "note": "E5",
       "volume": 0.3,
-      "description": "Escape sequences \\ and pipe | (Shift+\\) - seventh"
+      "description": "Escape sequences - seventh"
+    },
+    "Pipe": {
+      "note": "E5",
+      "volume": 0.35,
+      "description": "Shift+\\ - bitwise OR (shares pitch, emphasized)"
     },
     "Comma": {
       "note": "G3",
       "volume": 0.2,
-      "description": "Parameter separator, list items - gentle second"
+      "description": "Parameter separator, list items - gentle"
+    },
+    "LessThan": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison operator (octave up)"
     },
     "Dot": {
       "note": "A4",
       "volume": 0.25,
       "description": "Method calls, attribute access - third"
     },
+    "GreaterThan": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Shift+. - comparison (shares pitch)"
+    },
     "Apostrophe": {
       "note": "A4",
       "volume": 0.25,
-      "description": "String literals ' and \" (Shift+') - third"
+      "description": "String literals - third"
+    },
+    "DoubleQuote": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (octave up)"
     },
     "Grave": {
       "note": "Bb4",
       "volume": 0.25,
       "description": "Rarely used in Python - fourth"
+    },
+    "Tilde": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (shares pitch)"
     },
     "Space": {
       "note": "F2",

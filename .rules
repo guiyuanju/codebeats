@@ -1,2 +1,3 @@
 1. prefer simple even stupid code, avoid using complex structures and premuture optimizations
 2. very briefly describe the approach you want take before doing any code change
+3. put general description, feature, and instruction in README.md, put important implementation details and structure in IMPLEMENTATION.md, do not create extra md file, just append text, if files get too long, summarize them.
