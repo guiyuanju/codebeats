@@ -43,6 +43,7 @@ cargo run -- -w cyberpunk -v 0.5
 - `harmonic` - Mathematical overtones
 - `triangle` - Smooth electronic
 - `saw` / `square` - Classic electronic
+- `fart` - Real fart audio sample playback (effects/fart-quick-short.wav)
 
 ## Options
 
@@ -71,6 +72,12 @@ cargo run -- -l language_configs/chinese.json --filter-cutoff 800
 
 # Debug mode with verbose logging
 cargo run -- --verbose -w electronic
+
+# For the adventurous... 💨 (plays real fart audio file for maximum realism!)
+cargo run -- -w fart -v 0.3
+
+# Easter egg: Type "oppokokoppokosuttenten" (Japanese: おっぽこ　こっぽこ　すってんてん)
+# to trigger a special fart sound effect! 🎉
 ```
 
 ## Installation
@@ -83,6 +90,13 @@ cargo build --release
 
 **Requirements:** Rust 1.70+, audio output device
 
+### Dependencies
+- `cpal` - Cross-platform audio library
+- `device_query` - Keyboard input detection
+- `hound` - WAV file loading for audio samples
+- `serde`/`serde_json` - Configuration file parsing
+- `clap` - Command-line argument parsing
+
 ## Key Features
 
 - Real-time polyphonic synthesis
@@ -91,6 +105,18 @@ cargo build --release
 - Rate limiting for rapid typing
 - Low-pass filtering option
 - Cross-platform audio support
+- Real audio sample playback (fart waveform uses actual WAV file)
+- Easter egg: Hidden sequence detection for special sound effects
+
+## Easter Eggs 🥚
+
+### Japanese Fart Sequence
+Type the romaji sequence `oppokokoppokosuttenten` (Japanese: **おっぽこ　こっぽこ　すってんてん**) anywhere in the program to trigger a special fart sound effect! 
+
+- Works in any waveform mode
+- Ignores spaces and non-letter keys
+- Anti-spam protection prevents repeated triggering
+- Use `--verbose` mode to see when it triggers
 
 ---
 

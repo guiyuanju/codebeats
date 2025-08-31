@@ -1,5 +1,6 @@
 //! Audio engine with ADSR envelope system and state management
 
+use crate::audio_samples::{AudioSample, SamplePlayback};
 use crate::waveforms::Waveform;
 use device_query::Keycode;
 use std::collections::HashMap;
@@ -96,6 +97,16 @@ impl ADSRParams {
             decay_time: 0.15,
             sustain_level: 0.65,
             release_time: 0.25,
+        }
+    }
+
+    /// Create fart ADSR (quick attack, irregular sustain, longer release)
+    pub fn fart() -> Self {
+        Self {
+            attack_time: 0.01,
+            decay_time: 0.08,
+            sustain_level: 0.75,
+            release_time: 0.3,
         }
     }
 }
@@ -243,6 +254,10 @@ pub struct AudioState {
     master_volume: f32,
     filter_cutoff: f32,
     rate_limiter: RateLimiter,
+    // Sample playback support
+    fart_sample: Option<AudioSample>,
+    active_sample_playbacks: Vec<SamplePlayback>,
+    global_time: f32,
 }
 
 impl AudioState {
@@ -261,7 +276,13 @@ impl AudioState {
             Waveform::Sine => ADSRParams::electronic(),
             Waveform::Sawtooth => ADSRParams::punchy(),
             Waveform::Triangle => ADSRParams::electronic(),
+            Waveform::Fart => ADSRParams::fart(),
         };
+
+        // Try to load the fart sample
+        let fart_sample = AudioSample::load_from_file("effects/fart-quick-short.wav")
+            .map_err(|e| eprintln!("Warning: Could not load fart sample: {}", e))
+            .ok();
 
         Self {
             active_notes: HashMap::new(),
@@ -269,9 +290,12 @@ impl AudioState {
             sample_rate,
             current_waveform: waveform,
             default_adsr,
-            master_volume: master_volume.clamp(0.0, 1.0),
+            master_volume,
             filter_cutoff,
             rate_limiter: RateLimiter::new(),
+            fart_sample,
+            active_sample_playbacks: Vec::new(),
+            global_time: 0.0,
         }
     }
 
@@ -297,9 +321,14 @@ impl AudioState {
         }
     }
 
-    pub fn stop_note_with_id(&mut self, key_id: &str) {
-        if let Some(note_state) = self.active_notes_by_id.get_mut(key_id) {
-            note_state.release();
+    pub fn stop_note_with_id(&mut self, id: &str) {
+        // For fart waveform, samples play to completion, no need to stop
+        if matches!(self.current_waveform, Waveform::Fart) {
+            return;
+        }
+
+        if let Some(note) = self.active_notes_by_id.get_mut(id) {
+            note.release();
         }
     }
 
@@ -310,6 +339,17 @@ impl AudioState {
             .rate_limiter
             .record_press_and_get_volume_multiplier(key_id);
         let adjusted_volume = volume * self.master_volume * rate_limit_multiplier;
+
+        // Handle fart waveform with audio sample
+        if matches!(self.current_waveform, Waveform::Fart) {
+            if let Some(ref fart_sample) = self.fart_sample {
+                let playback =
+                    SamplePlayback::new(fart_sample.clone(), self.global_time, adjusted_volume);
+                self.active_sample_playbacks.push(playback);
+                return adjusted_volume;
+            }
+            // Fallback to synthetic if sample loading failed
+        }
 
         let note_state = NoteState::new(
             frequency,
@@ -329,6 +369,9 @@ impl AudioState {
         let dt = 1.0 / self.sample_rate;
         let mut to_remove = Vec::new();
         let mut to_remove_by_id = Vec::new();
+
+        // Update global time
+        self.global_time += dt;
 
         // Process each active note (keycode-based)
         for (keycode, note_state) in self.active_notes.iter_mut() {
@@ -362,6 +405,23 @@ impl AudioState {
             sample += note_sample;
         }
 
+        // Process active sample playbacks (for fart sounds)
+        let mut samples_to_remove = Vec::new();
+        for (i, playback) in self.active_sample_playbacks.iter_mut().enumerate() {
+            if playback.is_finished(self.global_time, self.sample_rate) {
+                samples_to_remove.push(i);
+                continue;
+            }
+
+            let sample_val = playback.get_current_sample(self.global_time, self.sample_rate);
+            sample += sample_val;
+        }
+
+        // Remove finished sample playbacks (in reverse order to maintain indices)
+        for &i in samples_to_remove.iter().rev() {
+            self.active_sample_playbacks.remove(i);
+        }
+
         // Remove finished notes
         for keycode in to_remove {
             self.active_notes.remove(&keycode);
@@ -372,6 +432,21 @@ impl AudioState {
 
         // Global volume adjustment - normalized for comfortable listening
         sample
+    }
+
+    /// Get reference to fart sample for Easter egg
+    pub fn get_fart_sample(&self) -> &Option<AudioSample> {
+        &self.fart_sample
+    }
+
+    /// Get current global time for Easter egg
+    pub fn get_global_time(&self) -> f32 {
+        self.global_time
+    }
+
+    /// Add sample playback for Easter egg
+    pub fn add_sample_playback(&mut self, playback: SamplePlayback) {
+        self.active_sample_playbacks.push(playback);
     }
 }
 
@@ -384,6 +459,30 @@ mod tests {
         let adsr = ADSRParams::natural();
         assert_eq!(adsr.attack_time, 0.02);
         assert_eq!(adsr.sustain_level, 0.7);
+    }
+
+    #[test]
+    fn test_fart_sample_loading() {
+        use crate::waveforms::Waveform;
+
+        // Test AudioState creation with fart waveform
+        let audio_state = AudioState::new(44100.0, Waveform::Fart, 1.0, 1200.0);
+
+        // Should create successfully regardless of whether sample file exists
+        assert_eq!(audio_state.sample_rate, 44100.0);
+        assert_eq!(audio_state.current_waveform, Waveform::Fart);
+
+        // Test sample playback mechanism
+        if audio_state.fart_sample.is_some() {
+            // File exists - should be able to trigger sample playback
+            println!("Fart sample loaded successfully!");
+        } else {
+            // File doesn't exist - should fall back to synthetic generation
+            println!("Fart sample not found, will use synthetic fallback");
+        }
+
+        // Verify sample playback list is initialized empty
+        assert_eq!(audio_state.active_sample_playbacks.len(), 0);
     }
 
     #[test]

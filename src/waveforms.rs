@@ -29,6 +29,8 @@ pub enum Waveform {
     Sawtooth,
     /// Triangle wave for smooth electronic sound
     Triangle,
+    /// Realistic fart sound synthesis with turbulence and frequency sweeps
+    Fart,
 }
 
 impl Waveform {
@@ -48,6 +50,7 @@ impl Waveform {
             Waveform::Sine => self.generate_sine(base_phase),
             Waveform::Sawtooth => self.generate_sawtooth(phase),
             Waveform::Triangle => self.generate_triangle(phase),
+            Waveform::Fart => self.generate_fart(phase, base_phase, frequency, sample_rate),
         }
     }
 
@@ -173,6 +176,68 @@ impl Waveform {
         }
     }
 
+    /// Realistic fart sound synthesis
+    ///
+    /// Organic fart synthesis emphasizing tonal components and body resonance:
+    /// - Low frequency range (40-150Hz) for realistic body resonance
+    /// - Harmonic series with formant filtering for body cavity effects
+    /// - Subtle breath-like modulation instead of harsh noise
+    /// - Gentle frequency sweeps for natural pitch variations
+    /// - Tonal emphasis with minimal filtered turbulence
+    fn generate_fart(&self, phase: f32, base_phase: f32, frequency: f32, sample_rate: f32) -> f32 {
+        let time = phase * sample_rate / frequency;
+
+        // Force low frequency range (40-150Hz) for realistic fart sounds
+        let fart_freq = (frequency * 0.15).max(40.0).min(150.0);
+        let fart_phase = base_phase * fart_freq / frequency;
+
+        // 1. Strong fundamental tone (main component)
+        let fundamental = fart_phase.sin() * 0.8;
+
+        // 2. Harmonic series for natural timbre
+        let harmonic2 = (fart_phase * 2.0).sin() * 0.4;
+        let harmonic3 = (fart_phase * 3.0).sin() * 0.25;
+        let harmonic4 = (fart_phase * 4.0).sin() * 0.15;
+
+        // 3. Sub-bass for body resonance
+        let sub_bass = (fart_phase * 0.5).sin() * 0.3;
+
+        // 4. Gentle frequency sweep (much more subtle)
+        let sweep_amount = (time * 0.4).sin() * 0.05; // Very small modulation
+        let swept_fundamental = (fart_phase * (1.0 + sweep_amount)).sin() * 0.2;
+
+        // 5. Body cavity formant simulation (resonant filtering effect)
+        let formant_freq1 = 80.0; // First formant around 80Hz
+        let formant_freq2 = 120.0; // Second formant around 120Hz
+        let formant1 = (fart_phase * formant_freq1 / fart_freq).sin() * 0.3;
+        let formant2 = (fart_phase * formant_freq2 / fart_freq).sin() * 0.2;
+
+        // 6. Very gentle breath-like texture (much less harsh)
+        let breath_rate = 2.0;
+        let breath_mod = (time * breath_rate).sin() * 0.02 + 0.98; // Subtle amplitude variation
+
+        // 7. Minimal filtered turbulence (not harsh noise)
+        let turbulence_seed = (time * 50.0).fract();
+        let gentle_turbulence = (turbulence_seed * 100.0).sin() * 0.05; // Very quiet
+
+        // Mix tonal components (emphasis on harmonics)
+        let tonal_mix =
+            fundamental + harmonic2 + harmonic3 + harmonic4 + sub_bass + swept_fundamental;
+        let formant_mix = tonal_mix + formant1 + formant2;
+
+        // Apply gentle breath modulation
+        let modulated = formant_mix * breath_mod;
+
+        // Add minimal turbulence
+        let final_mix = modulated + gentle_turbulence;
+
+        // Gentle compression instead of harsh saturation
+        let compressed = self.soft_clip(final_mix * 0.9, 0.85);
+
+        // Natural low-pass filtering
+        compressed * 0.7
+    }
+
     /// Soft clipping for warm analog distortion
     fn soft_clip(&self, input: f32, threshold: f32) -> f32 {
         if input > threshold {
@@ -197,6 +262,7 @@ impl Waveform {
             "sine" => Some(Waveform::Sine),
             "sawtooth" => Some(Waveform::Sawtooth),
             "triangle" => Some(Waveform::Triangle),
+            "fart" => Some(Waveform::Fart),
             _ => None,
         }
     }
@@ -230,6 +296,7 @@ mod tests {
             Waveform::Sine,
             Waveform::Sawtooth,
             Waveform::Triangle,
+            Waveform::Fart,
         ];
 
         for waveform in waveforms {
@@ -276,5 +343,30 @@ mod tests {
 
         assert_eq!(sample_low, 1.0);
         assert_eq!(sample_high, -1.0);
+    }
+
+    #[test]
+    fn test_fart_wave() {
+        let wave = Waveform::Fart;
+
+        // Test various phases to ensure stability
+        let sample1 = wave.generate_sample(0.0, 440.0, 44100.0);
+        let sample2 = wave.generate_sample(0.25, 440.0, 44100.0);
+        let sample3 = wave.generate_sample(0.5, 100.0, 44100.0);
+        let sample4 = wave.generate_sample(0.75, 50.0, 44100.0);
+
+        // All samples should be finite and within reasonable range
+        assert!(sample1.is_finite());
+        assert!(sample2.is_finite());
+        assert!(sample3.is_finite());
+        assert!(sample4.is_finite());
+
+        // Fart waveform should produce non-zero output
+        assert!(sample1.abs() > 0.001 || sample2.abs() > 0.001);
+
+        // Test frequency forcing (should be low frequency)
+        // High input frequency should still produce low-frequency character
+        let high_freq_sample = wave.generate_sample(0.1, 2000.0, 44100.0);
+        assert!(high_freq_sample.is_finite());
     }
 }

@@ -12,8 +12,10 @@
 //! - Real-time waveform switching with function keys
 
 mod audio_engine;
+mod audio_samples;
 mod keyboard_config;
 mod keyboard_mapping;
+mod sequence_detector;
 mod waveforms;
 
 use audio_engine::AudioState;
@@ -24,6 +26,7 @@ use keyboard_config::KeyboardConfig;
 use keyboard_mapping::{
     get_frequency_and_volume_with_config_virtual, KeyboardStateTracker, VirtualKeycode,
 };
+use sequence_detector::SequenceDetector;
 use std::sync::{Arc, Mutex};
 use std::thread;
 use std::time::Duration;
@@ -208,6 +211,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     );
     if cli.verbose {
         println!("🎹 Verbose logging enabled");
+        println!("💡 Easter egg hint: Try typing 'oppokokoppokosuttenten' for a surprise! 🎉");
     }
     println!("Press Ctrl+C to exit");
 
@@ -215,6 +219,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let device_state = DeviceState::new();
     let mut prev_keys: Vec<Keycode> = Vec::new();
     let mut keyboard_tracker = KeyboardStateTracker::new();
+    let mut sequence_detector = SequenceDetector::new();
 
     // Main loop
     loop {
@@ -239,6 +244,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         // Handle pressed keys
         for key in pressed_keys {
+            // Check for Easter egg sequence (Japanese: おっぽこ　こっぽこ　すってんてん)
+            if sequence_detector.process_input(key) {
+                // Trigger fart sound Easter egg!
+                if cli.verbose {
+                    println!("🎉 Easter egg triggered: おっぽこ　こっぽこ　すってんてん! 💨");
+                }
+                // Force play fart sample regardless of current waveform
+                let mut state = audio_state.lock().unwrap();
+                if let Some(ref fart_sample) = state.get_fart_sample() {
+                    let playback = audio_samples::SamplePlayback::new(
+                        fart_sample.clone(),
+                        state.get_global_time(),
+                        0.7, // Easter egg volume
+                    );
+                    state.add_sample_playback(playback);
+                } else if cli.verbose {
+                    println!("⚠️ Fart sample not available for Easter egg");
+                }
+            }
+
             if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode_for_press(key) {
                 handle_key_press(&virtual_key, &keyboard_config, &audio_state, cli.verbose);
             }
@@ -266,6 +291,7 @@ mod tests {
         assert_eq!(Waveform::from_str("natural"), Some(Waveform::Natural));
         assert_eq!(Waveform::from_str("electronic"), Some(Waveform::Electronic));
         assert_eq!(Waveform::from_str("cyberpunk"), Some(Waveform::Cyberpunk));
+        assert_eq!(Waveform::from_str("fart"), Some(Waveform::Fart));
 
         // Test invalid waveform
         assert_eq!(Waveform::from_str("invalid"), None);

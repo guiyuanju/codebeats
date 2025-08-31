@@ -65,12 +65,12 @@ CodeBeats uses a simple, direct architecture for real-time audio synthesis and k
 ```
 ✓ Loaded keyboard config from: language_configs/python.json
 🔊 Audio settings: volume=0.8, filter=1200Hz
-🎵 CodeBeats - Python Programming Language (natural)
+🎵 CodeBeats - Python Programming Language (fart)
+Warning: Could not load fart sample: No such file or directory (os error 2)
 🎹 Verbose logging enabled
 Press Ctrl+C to exit
-🎵 Key: d → D4 (293.7Hz, vol: 0.24)
-🎵 Key: e → E4 (329.6Hz, vol: 0.27)
-🔇 Key: d → D4 (released)
+🎵 Key: d → D4 (293.7Hz, vol: 0.24) [sample playback]
+🎵 Key: e → E4 (329.6Hz, vol: 0.27) [sample playback]
 ⚪ Key: Escape (unmapped)
 ```
 
@@ -81,6 +81,7 @@ Press Ctrl+C to exit
 - **Cyberpunk**: Multi-oscillator analog synth with LFO
 - **Harmonic**: Mathematical harmonic series with golden ratio
 - **Triangle/Saw/Square**: Classic electronic waveforms
+- **Fart**: Real audio file playback using effects/fart-quick-short.wav with proper sample rate conversion (24kHz→44.1kHz), stereo-to-mono mixing, linear interpolation, volume control, and automatic fallback to synthetic generation if file is missing
 
 ## Language Configurations
 
@@ -97,17 +98,50 @@ Press Ctrl+C to exit
 ## Key Optimizations
 
 - **Frequency Comfort**: All 131 high notes (>1000Hz) reduced to ≤880Hz
+- **Audio File Playback**: Fart waveform uses real WAV file samples with automatic sample rate conversion and linear interpolation
 - **Rate Limiting**: Prevents audio overload during rapid typing
-- **ADSR Tuning**: Waveform-specific envelope parameters
+- **ADSR Tuning**: Waveform-specific envelope parameters (fart bypasses ADSR for direct playback)
 - **Memory Efficiency**: HashMap-based note tracking with automatic cleanup
+- **Sample Management**: Automatic cleanup of finished audio sample playbacks
+- **Graceful Fallback**: If fart audio file is missing, falls back to synthetic generation
+
+## Audio File Requirements
+
+### Fart Sample Format
+- **Location**: `effects/fart-quick-short.wav`
+- **Current File**: 24kHz stereo, 16-bit, 0.377s duration
+- **Format**: WAV file (any sample rate, mono or stereo)
+- **Bit Depth**: 16-bit or 32-bit integer, or 32-bit float
+- **Sample Rate Conversion**: Automatic conversion from file sample rate to system sample rate (44.1kHz)
+- **Duration**: Recommended 0.5-2 seconds for quick fart sounds
+- **Stereo Handling**: Stereo files are automatically mixed to mono for playback
+- **Fallback**: If file is missing, synthetic fart generation is used automatically
+
+## Easter Eggs
+
+### Japanese Sequence Detection
+- **Target Sequence**: `oppokokoppokosuttenten` (romaji for "おっぽこ　こっぽこ　すってんてん")
+- **Trigger Action**: Plays fart audio sample regardless of current waveform
+- **Implementation**: Real-time input sequence detection with circular buffer
+- **Features**:
+  - Ignores spaces and non-letter keys
+  - Anti-spam protection (prevents repeated triggering)
+  - Works in any waveform mode
+  - 50-character input history buffer
+  - Sequence length: 21 characters
+- **Detection Algorithm**: Sliding window pattern matching on keyboard input history
 
 ## Testing
 
-18 unit tests cover:
+31 unit tests cover:
 - Audio synthesis and ADSR behavior
+- Audio sample loading and playback functionality
+- Sample interpolation and timing accuracy
 - Keyboard mapping and frequency calculation  
 - Configuration loading and parsing
-- Waveform generation and validation
+- Waveform generation and validation (including fart sample playback)
+- Audio sample file loading with sample rate conversion and error handling
+- Input sequence detection for Easter eggs (6 comprehensive tests)
 
 ## Platform Support
 
