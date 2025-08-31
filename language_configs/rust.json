@@ -1,0 +1,521 @@
+{
+  "version": "1.0",
+  "description": "Rust programming language optimized keyboard mapping - Systems programming harmony",
+  "mappings": {
+    "R": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "Rust keyword foundation"
+    },
+    "S": {
+      "note": "D4",
+      "volume": 0.2,
+      "description": "Common in Rust keywords (struct, self, static)"
+    },
+    "T": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "Common in type annotations"
+    },
+    "F": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "fn keyword foundation"
+    },
+    "N": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "fn, enum, main - essential keywords"
+    },
+    "L": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "let, impl, loop keywords"
+    },
+    "E": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "Very common in Rust syntax"
+    },
+    "A": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "match, trait, static"
+    },
+    "I": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "impl, if, trait"
+    },
+    "O": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Common in flow control"
+    },
+    "U": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "mut, pub, struct"
+    },
+    "M": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "match, impl, main"
+    },
+    "P": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "pub, impl patterns"
+    },
+    "C": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "match, struct, macro"
+    },
+    "H": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "match, char, hash"
+    },
+    "D": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "mod, field access"
+    },
+    "V": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "move, value semantics"
+    },
+    "W": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "where, while clauses"
+    },
+    "Y": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "type, async, yield"
+    },
+    "B": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "bool, break, pub"
+    },
+    "G": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "Generic parameters"
+    },
+    "K": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "keyword patterns"
+    },
+    "J": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "Less common in Rust"
+    },
+    "Q": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "Rare in Rust syntax"
+    },
+    "X": {
+      "note": "F7",
+      "volume": 0.2,
+      "description": "Hex literals, extern"
+    },
+    "Z": {
+      "note": "G7",
+      "volume": 0.2,
+      "description": "Size operations"
+    },
+    "Key0": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key1": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key2": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key3": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key4": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key5": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key6": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key7": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key8": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key9": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "LeftBracket": {
+      "note": "C3",
+      "volume": 0.3,
+      "description": "Array/slice syntax - opening"
+    },
+    "RightBracket": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "Array/slice syntax - closing"
+    },
+    "LeftBrace": {
+      "note": "F3",
+      "volume": 0.25,
+      "description": "Block opening - structural"
+    },
+    "RightBrace": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Block closing - structural"
+    },
+    "LeftParen": {
+      "note": "G3",
+      "volume": 0.25,
+      "description": "Function calls, tuples - opening"
+    },
+    "RightParen": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Function calls, tuples - closing"
+    },
+    "Semicolon": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Statement terminator - gentle resolution"
+    },
+    "Colon": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "Type annotations - important"
+    },
+    "DoubleColon": {
+      "note": "G4",
+      "volume": 0.35,
+      "description": "Path separator :: - distinctive"
+    },
+    "Equal": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Assignment operator"
+    },
+    "Plus": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Addition, trait bounds"
+    },
+    "Minus": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Subtraction, negative"
+    },
+    "Asterisk": {
+      "note": "G2",
+      "volume": 0.35,
+      "description": "Dereference, multiply - deep bass for pointer ops"
+    },
+    "Ampersand": {
+      "note": "C2",
+      "volume": 0.35,
+      "description": "Reference operator - foundational bass"
+    },
+    "Pipe": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Match arms, closure params"
+    },
+    "LessThan": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Generic parameters, comparison"
+    },
+    "GreaterThan": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Generic parameters, comparison"
+    },
+    "Arrow": {
+      "note": "G4",
+      "volume": 0.35,
+      "description": "Function return type -> distinctive"
+    },
+    "Dot": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Method calls, field access"
+    },
+    "Comma": {
+      "note": "E3",
+      "volume": 0.2,
+      "description": "Parameter separator - gentle"
+    },
+    "Apostrophe": {
+      "note": "E6",
+      "volume": 0.35,
+      "description": "Lifetimes - bright and distinctive"
+    },
+    "Exclamation": {
+      "note": "F#5",
+      "volume": 0.4,
+      "description": "Macro invocation - sharp accent"
+    },
+    "Question": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Error propagation operator"
+    },
+    "Underscore": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Pattern matching wildcard"
+    },
+    "Hash": {
+      "note": "E6",
+      "volume": 0.3,
+      "description": "Attributes, derive macros"
+    },
+    "At": {
+      "note": "C6",
+      "volume": 0.35,
+      "description": "Pattern binding @"
+    },
+    "Dollar": {
+      "note": "B5",
+      "volume": 0.35,
+      "description": "Macro syntax"
+    },
+    "Percent": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Modulo operator"
+    },
+    "Caret": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "XOR, exponentiation"
+    },
+    "Tilde": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Bitwise NOT"
+    },
+    "Slash": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Division, comments"
+    },
+    "BackSlash": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Escape sequences"
+    },
+    "DoubleQuote": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "String literals"
+    },
+    "SingleQuote": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Character literals"
+    },
+    "Backtick": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Raw strings, identifiers"
+    },
+    "Space": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Whitespace - soft foundation"
+    },
+    "Tab": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Indentation - structural"
+    },
+    "Enter": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Line breaks - gentle structure"
+    },
+    "Backspace": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "Run/debug"
+    },
+    "F6": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "Build/compile"
+    },
+    "F7": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "Step debugging"
+    },
+    "F8": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "F7",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "G7",
+      "volume": 0.2,
+      "description": "Go to implementation"
+    },
+    "Up": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "D3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Page navigation"
+    },
+    "PageDown": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page navigation"
+    }
+  }
+}

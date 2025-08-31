@@ -1,0 +1,526 @@
+{
+  "version": "1.0",
+  "description": "JavaScript programming language optimized keyboard mapping - Web development harmony",
+  "mappings": {
+    "F": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "function keyword foundation"
+    },
+    "U": {
+      "note": "D4",
+      "volume": 0.2,
+      "description": "function, const, return"
+    },
+    "N": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "function, const, undefined"
+    },
+    "C": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "const, class, constructor"
+    },
+    "T": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "const, let, return, true"
+    },
+    "I": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "if, this, require"
+    },
+    "O": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "console, object, for"
+    },
+    "R": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "return, var, for, require"
+    },
+    "E": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Very common in JS keywords"
+    },
+    "A": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "var, class, array, await"
+    },
+    "S": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "const, class, async"
+    },
+    "L": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "let, null, console.log"
+    },
+    "V": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "var, void, event"
+    },
+    "M": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "import, module, method"
+    },
+    "P": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "import, prototype, promise"
+    },
+    "D": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "undefined, document"
+    },
+    "H": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "this, catch, push"
+    },
+    "W": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "window, while, with"
+    },
+    "Y": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "async, try, type"
+    },
+    "B": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "break, boolean, object"
+    },
+    "G": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "log, get, global"
+    },
+    "K": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "break, make, key"
+    },
+    "J": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "JSON, object keys"
+    },
+    "Q": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "require, query"
+    },
+    "X": {
+      "note": "F7",
+      "volume": 0.2,
+      "description": "export, extend, index"
+    },
+    "Z": {
+      "note": "G7",
+      "volume": 0.2,
+      "description": "size, zero"
+    },
+    "Key0": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key1": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key2": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key3": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key4": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key5": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key6": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key7": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key8": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key9": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "LeftBracket": {
+      "note": "C3",
+      "volume": 0.3,
+      "description": "Array access, destructuring - opening"
+    },
+    "RightBracket": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "Array access, destructuring - closing"
+    },
+    "LeftBrace": {
+      "note": "F3",
+      "volume": 0.3,
+      "description": "Object literals, blocks - opening"
+    },
+    "RightBrace": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Object literals, blocks - closing"
+    },
+    "LeftParen": {
+      "note": "G3",
+      "volume": 0.25,
+      "description": "Function calls, expressions - opening"
+    },
+    "RightParen": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Function calls, expressions - closing"
+    },
+    "Semicolon": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Statement terminator - gentle"
+    },
+    "Colon": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Object properties, ternary"
+    },
+    "Equal": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Assignment operator"
+    },
+    "DoubleEqual": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Equality comparison"
+    },
+    "TripleEqual": {
+      "note": "E4",
+      "volume": 0.35,
+      "description": "Strict equality - distinctive"
+    },
+    "Plus": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Addition, concatenation"
+    },
+    "Minus": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Subtraction, negative"
+    },
+    "Asterisk": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "Multiplication, spread"
+    },
+    "Slash": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Division, regex, comments"
+    },
+    "Percent": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Modulo operator"
+    },
+    "Ampersand": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Logical AND &&"
+    },
+    "Pipe": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Logical OR ||"
+    },
+    "LessThan": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Comparison, JSX"
+    },
+    "GreaterThan": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Comparison, JSX, arrow functions"
+    },
+    "Arrow": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Arrow functions => - leap to higher octave"
+    },
+    "Dot": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Property access, method calls"
+    },
+    "DotDotDot": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Spread operator ... - flowing"
+    },
+    "Comma": {
+      "note": "E3",
+      "volume": 0.2,
+      "description": "Parameter separator - gentle"
+    },
+    "DoubleQuote": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "String literals"
+    },
+    "SingleQuote": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "String literals"
+    },
+    "Backtick": {
+      "note": "A#4",
+      "volume": 0.3,
+      "description": "Template literals - unique timbre"
+    },
+    "Dollar": {
+      "note": "D#5",
+      "volume": 0.35,
+      "description": "Template literal expressions ${}"
+    },
+    "Exclamation": {
+      "note": "F#5",
+      "volume": 0.3,
+      "description": "Negation operator !"
+    },
+    "Question": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Ternary operator, optional chaining"
+    },
+    "At": {
+      "note": "C6",
+      "volume": 0.35,
+      "description": "Decorators (future JS)"
+    },
+    "Hash": {
+      "note": "D6",
+      "volume": 0.3,
+      "description": "Private fields #"
+    },
+    "Underscore": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Variable names, lodash"
+    },
+    "Caret": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "XOR, exponentiation"
+    },
+    "Tilde": {
+      "note": "A#5",
+      "volume": 0.3,
+      "description": "Bitwise NOT"
+    },
+    "BackSlash": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Escape sequences, regex"
+    },
+    "Space": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Whitespace - soft foundation"
+    },
+    "Tab": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Indentation - structural"
+    },
+    "Enter": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Line breaks - gentle structure"
+    },
+    "Backspace": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "Refresh/reload"
+    },
+    "F6": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "Focus address bar"
+    },
+    "F7": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "Caret browsing"
+    },
+    "F8": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "Dev tools"
+    },
+    "F9": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "F7",
+      "volume": 0.2,
+      "description": "Full screen"
+    },
+    "F12": {
+      "note": "G7",
+      "volume": 0.2,
+      "description": "Developer tools"
+    },
+    "Up": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "D3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Page navigation"
+    },
+    "PageDown": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page navigation"
+    }
+  }
+}

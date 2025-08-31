@@ -1,0 +1,501 @@
+{
+  "version": "1.0",
+  "description": "C programming language optimized keyboard mapping - Systems programming foundation",
+  "mappings": {
+    "I": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "int, if, include - core C"
+    },
+    "N": {
+      "note": "D4",
+      "volume": 0.2,
+      "description": "int, include, main"
+    },
+    "T": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "int, struct, return"
+    },
+    "C": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "char, include, struct"
+    },
+    "L": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "include, long, null"
+    },
+    "U": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "include, struct, return"
+    },
+    "D": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "include, void, define"
+    },
+    "E": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Very common in C keywords"
+    },
+    "S": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "struct, sizeof, static"
+    },
+    "R": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "return, register, char"
+    },
+    "O": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "void, for, float"
+    },
+    "F": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "for, if, float"
+    },
+    "M": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "main, sizeof"
+    },
+    "A": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "char, main, static"
+    },
+    "H": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "char, switch"
+    },
+    "V": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "void, argv"
+    },
+    "P": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "printf, pointer operations"
+    },
+    "G": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "goto, register"
+    },
+    "W": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "while, switch"
+    },
+    "B": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "break, double"
+    },
+    "Y": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "typedef, array"
+    },
+    "K": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "break, make"
+    },
+    "J": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "Less common in C"
+    },
+    "Q": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "Rare in C"
+    },
+    "X": {
+      "note": "F7",
+      "volume": 0.2,
+      "description": "extern, exit"
+    },
+    "Z": {
+      "note": "G7",
+      "volume": 0.2,
+      "description": "sizeof operations"
+    },
+    "Key0": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key1": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key2": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key3": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key4": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key5": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key6": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key7": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key8": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key9": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "LeftBrace": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Code blocks - structural opening"
+    },
+    "RightBrace": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Code blocks - structural closing (octave)"
+    },
+    "LeftParen": {
+      "note": "G3",
+      "volume": 0.25,
+      "description": "Function calls, expressions"
+    },
+    "RightParen": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Function calls, expressions"
+    },
+    "LeftBracket": {
+      "note": "F3",
+      "volume": 0.25,
+      "description": "Array indexing"
+    },
+    "RightBracket": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Array indexing"
+    },
+    "Semicolon": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Statement terminator - essential in C"
+    },
+    "Hash": {
+      "note": "E6",
+      "volume": 0.35,
+      "description": "Preprocessor directives - bright standout"
+    },
+    "Equal": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Assignment operator"
+    },
+    "DoubleEqual": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Equality comparison"
+    },
+    "Plus": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Addition, increment"
+    },
+    "Minus": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Subtraction, decrement"
+    },
+    "Asterisk": {
+      "note": "C2",
+      "volume": 0.35,
+      "description": "Pointer dereference - deep bass foundation"
+    },
+    "Ampersand": {
+      "note": "G2",
+      "volume": 0.35,
+      "description": "Address operator - bass foundation"
+    },
+    "Arrow": {
+      "note": "C3",
+      "volume": 0.35,
+      "description": "Structure pointer access -> bass"
+    },
+    "Slash": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Division, comments"
+    },
+    "Percent": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Modulo, printf format"
+    },
+    "LessThan": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Comparison, includes"
+    },
+    "GreaterThan": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Comparison, includes"
+    },
+    "Exclamation": {
+      "note": "F#5",
+      "volume": 0.3,
+      "description": "Logical NOT"
+    },
+    "Question": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Ternary operator"
+    },
+    "Colon": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Labels, ternary"
+    },
+    "Dot": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Structure member access"
+    },
+    "Comma": {
+      "note": "E3",
+      "volume": 0.2,
+      "description": "Parameter separator"
+    },
+    "DoubleQuote": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "String literals"
+    },
+    "SingleQuote": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Character literals"
+    },
+    "BackSlash": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Escape sequences"
+    },
+    "Underscore": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Variable naming convention"
+    },
+    "Pipe": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Bitwise OR"
+    },
+    "Caret": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "XOR operator"
+    },
+    "Tilde": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Bitwise NOT"
+    },
+    "Space": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Whitespace - foundation"
+    },
+    "Tab": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Indentation"
+    },
+    "Enter": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Line breaks"
+    },
+    "Backspace": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Editing"
+    },
+    "Delete": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Deletion"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier"
+    },
+    "RShift": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier"
+    },
+    "LControl": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier"
+    },
+    "RControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier"
+    },
+    "LAlt": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier"
+    },
+    "RAlt": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier"
+    },
+    "Escape": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Help"
+    },
+    "F2": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "Rename"
+    },
+    "F3": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "Find next"
+    },
+    "F4": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "Compile/run"
+    },
+    "F6": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "Build"
+    },
+    "F7": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "Continue"
+    },
+    "F9": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "Breakpoint"
+    },
+    "F10": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "F7",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "G7",
+      "volume": 0.2,
+      "description": "Go to"
+    },
+    "Up": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Navigation up"
+    },
+    "Down": {
+      "note": "D3",
+      "volume": 0.15,
+      "description": "Navigation down"
+    },
+    "Left": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation left"
+    },
+    "Right": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation right"
+    },
+    "Home": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Line start"
+    },
+    "End": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Line end"
+    },
+    "PageUp": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Page up"
+    },
+    "PageDown": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page down"
+    }
+  }
+}

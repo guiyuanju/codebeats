@@ -1,13 +1,15 @@
 //! Keyboard mapping and note calculation module
 //!
 //! This module handles:
-//! - Mapping keyboard keys to musical notes
+//! - Mapping keyboard keys to musical notes using configurable mappings
 //! - Note frequency calculation using standard tuning
 //! - Programming-optimized key assignments for pleasant coding experience
 //! - Rate limiting to prevent high-pitched sounds from rapid key presses
 
+use crate::keyboard::config::KeyboardConfig;
 use device_query::Keycode;
 use std::collections::HashMap;
+
 use std::time::{Duration, Instant};
 
 /// Rate limiter for preventing annoying high-pitched sounds from rapid key presses
@@ -107,130 +109,81 @@ pub fn get_frequency_from_note(note: &str) -> Option<f32> {
     Some(frequency)
 }
 
-/// Programming-optimized keyboard mapping
+/// Get frequency and volume for a keycode using the provided keyboard configuration
+/// Returns (frequency, volume, note_name) for a given keycode
+pub fn get_frequency_and_volume_with_config(
+    keycode: Keycode,
+    config: &KeyboardConfig,
+) -> Option<(f32, f32, String)> {
+    let mapping = config.get_mapping(keycode)?;
+    let frequency = get_frequency_from_note(&mapping.note)?;
+    Some((frequency, mapping.volume, mapping.note.clone()))
+}
+
+/// Programming-optimized keyboard mapping (using default config)
 /// Returns (frequency, volume, note_name) for a given keycode
 ///
-/// The mapping is designed to:
-/// - Map frequent programming keys to pleasant pentatonic scales
-/// - Use lower volumes for common keys to avoid disrupting concentration
-/// - Create harmonic relationships between related keys
-/// - Include Mac Command keys (Meta keys) if available
+/// This function maintains backward compatibility by using the default configuration.
+/// For customizable mappings, use get_frequency_and_volume_with_config instead.
 pub fn get_frequency_and_volume(keycode: Keycode) -> Option<(f32, f32, &'static str)> {
-    let (note, volume) = match keycode {
-        // Most common programming letters - pleasant pentatonic scale
-        Keycode::E => ("E4", 0.3), // Very common
-        Keycode::T => ("G4", 0.3), // Very common
-        Keycode::A => ("C4", 0.3), // Most common
-        Keycode::O => ("D4", 0.3), // Very common
-        Keycode::I => ("A4", 0.3), // Very common
-        Keycode::N => ("E5", 0.3), // Very common
-        Keycode::S => ("G5", 0.3), // Very common
-        Keycode::H => ("C5", 0.3), // Very common
-        Keycode::R => ("D5", 0.3), // Very common
+    // Use a static default config for backward compatibility
+    use std::sync::OnceLock;
+    static DEFAULT_CONFIG: OnceLock<KeyboardConfig> = OnceLock::new();
+    let config = DEFAULT_CONFIG.get_or_init(|| KeyboardConfig::default());
 
-        // Second tier common letters
-        Keycode::L => ("F4", 0.25), // Common
-        Keycode::U => ("A3", 0.25), // Common
-        Keycode::D => ("F5", 0.25), // Common
-        Keycode::C => ("B4", 0.25), // Common
-        Keycode::M => ("B3", 0.25), // Common
-
-        // Less common letters - still harmonious
-        Keycode::F => ("C3", 0.2),
-        Keycode::P => ("D3", 0.2),
-        Keycode::B => ("E3", 0.2),
-        Keycode::V => ("G3", 0.2),
-        Keycode::K => ("A5", 0.2),
-        Keycode::W => ("F3", 0.2),
-        Keycode::Y => ("B5", 0.2),
-        Keycode::G => ("C6", 0.2),
-        Keycode::J => ("D6", 0.2),
-        Keycode::Q => ("E6", 0.2),
-        Keycode::X => ("F6", 0.2),
-        Keycode::Z => ("G6", 0.2),
-
-        // Numbers - same scale as common letters for consistency
-        Keycode::Key0 => ("C4", 0.25),
-        Keycode::Key1 => ("E4", 0.25),
-        Keycode::Key2 => ("G4", 0.25),
-        Keycode::Key3 => ("A4", 0.25),
-        Keycode::Key4 => ("D4", 0.25),
-        Keycode::Key5 => ("F4", 0.25),
-        Keycode::Key6 => ("C5", 0.25),
-        Keycode::Key7 => ("E5", 0.25),
-        Keycode::Key8 => ("G5", 0.25),
-        Keycode::Key9 => ("A5", 0.25),
-
-        // Programming symbols - gentle harmonics
-        Keycode::Semicolon => ("C4", 0.2),
-        Keycode::LeftBracket => ("E4", 0.2),
-        Keycode::RightBracket => ("G4", 0.2),
-        Keycode::Comma => ("A4", 0.2),
-        Keycode::Dot => ("D4", 0.2),
-        Keycode::Slash => ("F4", 0.2),
-        Keycode::BackSlash => ("B4", 0.2),
-        Keycode::Apostrophe => ("C5", 0.2),
-        Keycode::Equal => ("D5", 0.2),
-        Keycode::Minus => ("E5", 0.2),
-
-        // Common keys - quiet to not disrupt
-        Keycode::Space => ("C3", 0.1),
-        Keycode::Backspace => ("G2", 0.1),
-        Keycode::Enter => ("C3", 0.1),
-        Keycode::Tab => ("F2", 0.1),
-        Keycode::Delete => ("A2", 0.1),
-
-        // Modifiers - very quiet
-        Keycode::LShift => ("C2", 0.05),
-        Keycode::RShift => ("E2", 0.05),
-        Keycode::LControl => ("G2", 0.05),
-        Keycode::RControl => ("A2", 0.05),
-        Keycode::LAlt => ("D2", 0.05),
-        Keycode::RAlt => ("F2", 0.05),
-        Keycode::CapsLock => ("B1", 0.05),
-        Keycode::Escape => ("C2", 0.05),
-
-        // Navigation - comfortable low range
-        Keycode::Up => ("E3", 0.15),
-        Keycode::Down => ("D3", 0.15),
-        Keycode::Left => ("C3", 0.15),
-        Keycode::Right => ("G3", 0.15),
-        Keycode::Home => ("C3", 0.15),
-        Keycode::End => ("G3", 0.15),
-        Keycode::PageUp => ("E3", 0.15),
-        Keycode::PageDown => ("A3", 0.15),
-
-        // Function keys - bright harmonics
-        Keycode::F1 => ("C6", 0.2),
-        Keycode::F2 => ("D6", 0.2),
-        Keycode::F3 => ("E6", 0.2),
-        Keycode::F4 => ("F6", 0.2),
-        Keycode::F5 => ("G6", 0.2),
-        Keycode::F6 => ("A6", 0.2),
-        Keycode::F7 => ("B6", 0.2),
-        Keycode::F8 => ("C7", 0.2),
-        Keycode::F9 => ("D7", 0.2),
-        Keycode::F10 => ("E7", 0.2),
-        Keycode::F11 => ("F7", 0.2),
-        Keycode::F12 => ("G7", 0.2),
-
-        // Try to detect Mac Command keys (these may or may not be available in device_query)
-        // Using a broader pattern match to catch potential Meta/Command key variants
-        keycode
-            if format!("{:?}", keycode).contains("Meta")
-                || format!("{:?}", keycode).contains("Cmd")
-                || format!("{:?}", keycode).contains("Command")
-                || format!("{:?}", keycode).contains("LWin")
-                || format!("{:?}", keycode).contains("RWin") =>
-        {
-            // Map Command keys to gentle bass notes like other modifiers
-            ("D2", 0.05)
-        }
-
-        _ => return None,
-    };
-
-    get_frequency_from_note(note).map(|freq| (freq, volume, note))
+    if let Some((freq, vol, note)) = get_frequency_and_volume_with_config(keycode, config) {
+        // We need to return a &'static str, so we'll need to handle the string conversion
+        // For now, let's use a simple approach - we know our default config uses standard notes
+        let note_static = match note.as_str() {
+            "C2" => "C2",
+            "D2" => "D2",
+            "E2" => "E2",
+            "F2" => "F2",
+            "G2" => "G2",
+            "A2" => "A2",
+            "B2" => "B2",
+            "C3" => "C3",
+            "D3" => "D3",
+            "E3" => "E3",
+            "F3" => "F3",
+            "G3" => "G3",
+            "A3" => "A3",
+            "B3" => "B3",
+            "C4" => "C4",
+            "D4" => "D4",
+            "E4" => "E4",
+            "F4" => "F4",
+            "G4" => "G4",
+            "A4" => "A4",
+            "B4" => "B4",
+            "C5" => "C5",
+            "D5" => "D5",
+            "E5" => "E5",
+            "F5" => "F5",
+            "G5" => "G5",
+            "A5" => "A5",
+            "B5" => "B5",
+            "C6" => "C6",
+            "D6" => "D6",
+            "E6" => "E6",
+            "F6" => "F6",
+            "G6" => "G6",
+            "A6" => "A6",
+            "B6" => "B6",
+            "C7" => "C7",
+            "D7" => "D7",
+            "E7" => "E7",
+            "F7" => "F7",
+            "G7" => "G7",
+            "A7" => "A7",
+            "B7" => "B7",
+            "B1" => "B1",
+            _ => "C4", // Fallback to middle C
+        };
+        Some((freq, vol, note_static))
+    } else {
+        None
+    }
 }
 
 #[cfg(test)]

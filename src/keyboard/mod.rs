@@ -4,6 +4,8 @@
 //! functionality, including programming-optimized key assignments and
 //! waveform switching controls.
 
+pub mod config;
 pub mod mapping;
 
-pub use mapping::get_frequency_and_volume;
+pub use config::{KeyMapping, KeyboardConfig};
+pub use mapping::{get_frequency_and_volume, get_frequency_and_volume_with_config};

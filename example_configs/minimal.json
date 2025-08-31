@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "description": "Minimal keyboard configuration - just the essentials",
+  "mappings": {
+    "A": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "Most common letter - Middle C"
+    },
+    "S": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Common letter - D"
+    },
+    "D": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Common letter - E"
+    },
+    "F": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Common letter - F"
+    },
+    "G": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "Common letter - G"
+    },
+    "H": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Common letter - A"
+    },
+    "J": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Common letter - B"
+    },
+    "K": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Common letter - High C"
+    },
+    "Space": {
+      "note": "C3",
+      "volume": 0.1,
+      "description": "Quiet bass note"
+    },
+    "Enter": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Deep bass note"
+    }
+  }
+}

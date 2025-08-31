@@ -4,14 +4,14 @@ CodeBeats is a programming-optimized keyboard music simulator that transforms yo
 
 ## Features
 
-- **🎹 Smart Keyboard Mapping**: Every key mapped to musical notes based on coding frequency
-- **⌨️ Programming-Optimized**: Common keys use pleasant pentatonic scales, quiet enough not to distract
+- **🎹 Customizable Keyboard Mapping**: Fully configurable keyboard-to-sound mappings via JSON files
+- **⌨️ Programming-Optimized**: Default config uses pleasant pentatonic scales, quiet enough not to distract
 - **🎵 Multiple Waveforms**: Electronic (default), Natural piano, Saw, Square, and Cyberpunk synth
-- **🔊 Volume Intelligence**: Frequently used keys are quieter to maintain coding flow
+- **🔊 Volume Intelligence**: Configurable volume levels for each key
 - **⚡ Real-time Audio**: Low-latency audio synthesis with ADSR envelopes
 - **🌍 Cross-Platform**: Works on macOS, Windows, and Linux
 - **🎚️ Command-line Control**: Set your preferred waveform at startup
-- **⌘ Mac Command Key Support**: Auto-detects and maps Mac Command keys (⌘) to gentle bass notes
+- **📝 Easy Configuration**: Generate and edit JSON config files to customize any key mapping
 - **🎛️ Smart Rate Limiting**: Prevents high-pitched sounds from rapid key presses (perfect for vim users!)
 
 ## Quick Start
@@ -33,7 +33,7 @@ cargo build --release
 ### Usage
 
 ```bash
-# Default (Electronic waveform)
+# Default (Electronic waveform with default keyboard mapping)
 cargo run
 
 # Or choose a specific waveform
@@ -42,16 +42,30 @@ cargo run electronic   # Pure sine wave (default)
 cargo run saw          # Bright sawtooth wave
 cargo run square       # Retro 8-bit square wave
 cargo run cyberpunk    # Blade Runner 2049 style analog synth
+
+# Keyboard configuration commands
+cargo run -- generate-config           # Generate default keyboard_config.json
+cargo run config <config_file>         # Use specific config file
+cargo run config example_configs/piano_layout.json  # Use piano layout
+
+# Language-specific configurations
+cargo run config language_configs/rust.json        # Rust systems programming
+cargo run config language_configs/javascript.json  # Web development  
+cargo run config language_configs/go.json          # Go simplicity
+cargo run config language_configs/c.json           # C foundation
 ```
 
-This starts the global keyboard listener. Every key you press will play a musical note in real-time.
+This starts the global keyboard listener. Every key you press will play a musical note in real-time based on your configuration.
 
 ### 🆕 New Features
 
-#### Mac Command Key Support ⌘
-- Mac Command keys are automatically detected and mapped to subtle bass notes
-- Works alongside other modifier keys without disrupting your workflow
-- Compatible with Windows keys and Meta keys on other platforms
+#### Fully Customizable Keyboard Mapping 📝
+- **JSON Configuration**: Edit `keyboard_config.json` to customize any key mapping
+- **Multiple Layouts**: Switch between different keyboard configurations
+- **Easy Setup**: `cargo run -- generate-config` creates a customizable config file
+- **Live Examples**: Pre-built configs for piano layout, minimal setup, and more
+- **Note Flexibility**: Map any key to any musical note (C4, F#5, Bb3, etc.)
+- **Volume Control**: Set individual volume levels for each key (0.0-1.0)
 
 #### Smart Rate Limiting for Vim Users 🎛️
 - **Problem**: Rapid key presses (like `jjjj` for vim navigation) create annoying high-pitched sounds
@@ -86,6 +100,73 @@ While the program is running, press these keys to change waveforms:
 - **F11** - Saw Wave (bright electronic)
 - **F12** - Square Wave (retro gaming)
 
+## 📝 Keyboard Configuration
+
+### Quick Setup
+```bash
+# Generate default configuration file
+cargo run -- generate-config
+
+# Edit the generated keyboard_config.json file
+# Then run normally - config is loaded automatically
+cargo run
+```
+
+### Configuration File Format
+```json
+{
+  "version": "1.0",
+  "description": "My custom keyboard layout",
+  "mappings": {
+    "A": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "Middle C for letter A"
+    },
+    "Space": {
+      "note": "C3",
+      "volume": 0.1,
+      "description": "Quiet bass note"
+    }
+  }
+}
+```
+
+### Using Different Configurations
+```bash
+# Use a specific config file
+cargo run config example_configs/piano_layout.json
+
+# Combine with waveforms
+cargo run cyberpunk config example_configs/minimal.json
+```
+
+### Available Example Configurations
+- **`example_configs/piano_layout.json`**: Traditional piano layout with QWERTY row as white keys
+- **`example_configs/minimal.json`**: Simple configuration with just essential keys
+- **Default**: Programming-optimized layout with pentatonic scales
+
+### Language-Specific Configurations
+- **`language_configs/rust.json`**: Rust systems programming - Emphasis on ownership operators (&, *), lifetimes ('), and macros (!)
+- **`language_configs/javascript.json`**: Web development harmony - Arrow functions (=>), template literals (`), and object syntax
+- **`language_configs/go.json`**: Go simplicity - Clean intervals for Go's minimalist syntax, distinctive := operator
+- **`language_configs/c.json`**: C foundation - Deep bass for pointers (*), bright preprocessor (#), structural braces
+
+### Supported Note Format
+- **Basic notes**: C, D, E, F, G, A, B
+- **Sharps**: C#, D#, F#, G#, A#
+- **Flats**: Db, Eb, Gb, Ab, Bb
+- **Octaves**: 0-9 (e.g., C4 = middle C, A4 = 440Hz)
+
+### Key Names Reference
+- **Letters**: A, B, C, ..., Z
+- **Numbers**: Key0, Key1, ..., Key9
+- **Special**: Space, Enter, Backspace, Tab, Escape
+- **Modifiers**: LShift, RShift, LControl, RControl, LAlt, RAlt
+- **Functions**: F1, F2, ..., F12
+- **Navigation**: Up, Down, Left, Right, Home, End, PageUp, PageDown
+- **Symbols**: Semicolon, Comma, Dot, Slash, LeftBracket, RightBracket, etc.
+
 ## 🎵 Waveform Types
 
 ### 1. 🎹 Natural Piano (Default)
@@ -118,26 +199,24 @@ While the program is running, press these keys to change waveforms:
 - **Best For**: Sci-fi projects, night coding, immersive atmosphere
 - **ADSR**: Slow pad attack (80ms), long atmospheric release (400ms)
 
-## Keyboard Mapping
+## Default Keyboard Mapping
 
-The keyboard is mapped to create pleasant harmonies during programming:
+The default configuration creates pleasant harmonies during programming:
 
-### Common Letters (Pentatonic Scale - Pleasant & Harmonious)
-- **Most frequent**: `E=E4`, `T=G4`, `A=C4`, `O=D4`, `I=A4` - Middle range, moderate volume
-- **Very common**: `N=E5`, `S=G5`, `H=C5`, `R=D5` - Higher octave
-- **Common**: `L=F4`, `U=A3`, `D=F5`, `C=B4`, `M=B3` - Mixed range
+### Programming-Optimized Layout
+- **Common letters**: Use pentatonic scales in middle range with moderate volume
+- **Numbers**: Mapped to the same harmonic pattern as letters for consistency
+- **Programming symbols**: Gentle harmonics in comfortable frequency ranges
+- **Special keys**: Quieter bass notes to avoid disruption
+- **Modifiers**: Very quiet bass tones that don't interfere with workflow
 
-### Numbers (Same harmonic pattern as letters)
-- `0-9` mapped to the same notes as common letters for consistency
+### Customization Philosophy
+- **Frequency-based**: Common coding keys get pleasant, non-disruptive notes
+- **Volume-aware**: Frequently used keys are quieter to maintain focus
+- **Harmonically designed**: Keys that are often pressed together create pleasant chords
+- **Fully customizable**: Every aspect can be changed via the configuration file
 
-### Programming Symbols (Gentle harmonics)
-- `;`, `[`, `]`, `,`, `.`, `/`, `\`, `'`, `=`, `-` - All in comfortable range
-
-### Special Keys (Quieter to avoid disruption)
-- **Space, Enter, Tab, Backspace** - Very quiet bass notes
-- **Arrow keys, Home/End** - Comfortable low range
-- **Modifiers (Shift, Ctrl, Alt)** - Barely audible bass
-- **Function keys** - Bright harmonics for special actions
+*Note: The exact mappings are fully customizable. Use `cargo run -- generate-config` to see and modify the complete default layout.*
 
 ## ⚙️ Technical Details
 
@@ -221,29 +300,35 @@ Each waveform has carefully tuned Attack/Decay/Sustain/Release parameters:
 - **Volume Control**: Use your system volume to adjust overall loudness
 - **Key Combinations**: Hold multiple keys for chords
 - **Programming Flow**: Let the music enhance your coding rhythm
-- **Focus Mode**: Common keys are intentionally quiet to not break concentration
+- **Custom Layouts**: Create different configs for different projects or moods
 - **Waveform Switching**: Press F8-F12 to change sound in real-time
 
-### 🆕 Enhanced Vim Experience
-- **Normal navigation**: `j`, `k`, `h`, `l` play pleasant notes
-- **Rapid navigation**: `jjjj` automatically gets quieter to prevent ear fatigue
-- **Mixed movement**: Each key tracked independently for optimal experience
-- **No configuration needed**: Rate limiting works automatically
+### Configuration Tips
+- **Volume Levels**: 0.2-0.3 for common keys, 0.1-0.15 for special keys, 0.05-0.1 for modifiers
+- **Note Selection**: Use pentatonic scales (C, D, E, G, A) for harmonious combinations
+- **Testing**: Press keys while editing config to hear changes immediately
+- **Backup**: Keep multiple config files for different use cases
 
-### Command Key Usage
-- **Mac**: Command key (⌘) plays subtle D2 bass note
-- **Windows**: Windows key works similarly  
-- **Detection**: Command keys are automatically detected when pressed
+### 🆕 Enhanced Vim Experience
+- **Customizable**: Map vim navigation keys (j, k, h, l) to your preferred notes
+- **Rate limiting**: Rapid key presses automatically get quieter
+- **Independent tracking**: Each key has its own rate limiting
+- **Easy setup**: Default config already optimized for coding workflows
 
 ## Contributing
 
 The codebase balances simplicity with rich functionality:
 - Core audio engine and waveform synthesis in `main.rs`
+- Configurable keyboard mapping system in `src/keyboard/`
+- JSON-based configuration with full validation
 - Advanced ADSR envelope system
 - Multiple waveform types with distinct characteristics  
 - Easy to understand architecture
-- Extensible waveform system for adding new sounds
-- See `WAVEFORM_GUIDE.md` for detailed technical documentation
+- Extensible configuration system
+- Example configurations for different use cases
+- Language-specific configurations optimized for syntax patterns
+- See `KEYBOARD_CONFIG.md` for configuration documentation
+- See `LANGUAGE_CONFIGS.md` for language-specific design philosophy
 
 ## License
 

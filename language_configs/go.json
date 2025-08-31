@@ -1,0 +1,531 @@
+{
+  "version": "1.0",
+  "description": "Go programming language optimized keyboard mapping - Simple, efficient harmony",
+  "mappings": {
+    "G": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "Go language foundation"
+    },
+    "O": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "Go keyword, for, package"
+    },
+    "F": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "func keyword foundation"
+    },
+    "U": {
+      "note": "D4",
+      "volume": 0.2,
+      "description": "func, return, struct"
+    },
+    "N": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "func, interface, int"
+    },
+    "C": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "func, package, interface"
+    },
+    "P": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "package keyword"
+    },
+    "A": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "package, var, range"
+    },
+    "K": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "package, make"
+    },
+    "E": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Very common in Go keywords"
+    },
+    "I": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "if, interface, import"
+    },
+    "M": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "import, main, make"
+    },
+    "R": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "return, range, error"
+    },
+    "T": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "struct, type, interface"
+    },
+    "S": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "struct, string, slice"
+    },
+    "V": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "var, value"
+    },
+    "L": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "nil, slice, len"
+    },
+    "D": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "defer, default"
+    },
+    "H": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "chan, switch"
+    },
+    "W": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "switch, while patterns"
+    },
+    "Y": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "type declarations"
+    },
+    "B": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "bool, break"
+    },
+    "J": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "Less common in Go"
+    },
+    "Q": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "Rare in Go syntax"
+    },
+    "X": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "context, hex"
+    },
+    "Z": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "Size operations"
+    },
+    "Key0": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key1": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key2": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key3": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key4": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key5": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key6": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key7": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key8": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "Key9": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal"
+    },
+    "LeftBrace": {
+      "note": "F3",
+      "volume": 0.3,
+      "description": "Block opening - very common in Go"
+    },
+    "RightBrace": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Block closing - very common in Go"
+    },
+    "LeftParen": {
+      "note": "G3",
+      "volume": 0.25,
+      "description": "Function calls, parameters"
+    },
+    "RightParen": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Function calls, parameters"
+    },
+    "LeftBracket": {
+      "note": "A3",
+      "volume": 0.25,
+      "description": "Slice/array access"
+    },
+    "RightBracket": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Slice/array access"
+    },
+    "ColonEqual": {
+      "note": "C4",
+      "volume": 0.35,
+      "description": "Short declaration := - distinctive Go feature"
+    },
+    "Colon": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Type annotations, labels"
+    },
+    "Equal": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Assignment operator"
+    },
+    "DoubleEqual": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Equality comparison"
+    },
+    "ExclamationEqual": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "Not equal comparison"
+    },
+    "Plus": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Addition, string concatenation"
+    },
+    "Minus": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Subtraction, negative"
+    },
+    "Asterisk": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Multiplication, pointer dereference"
+    },
+    "Slash": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Division, comments"
+    },
+    "Percent": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Modulo operator"
+    },
+    "Ampersand": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Address operator, logical AND"
+    },
+    "Pipe": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Bitwise OR, logical OR"
+    },
+    "Caret": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "XOR operator"
+    },
+    "LessThan": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Less than, channel receive"
+    },
+    "GreaterThan": {
+      "note": "C6",
+      "volume": 0.3,
+      "description": "Greater than"
+    },
+    "LeftArrow": {
+      "note": "D6",
+      "volume": 0.35,
+      "description": "Channel operator <- distinctive"
+    },
+    "Dot": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Method calls, field access"
+    },
+    "DotDotDot": {
+      "note": "F5",
+      "volume": 0.35,
+      "description": "Variadic parameters ... - flowing"
+    },
+    "Comma": {
+      "note": "E3",
+      "volume": 0.2,
+      "description": "Parameter separator"
+    },
+    "Semicolon": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Optional in Go - gentle when used"
+    },
+    "DoubleQuote": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "String literals"
+    },
+    "Backtick": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Raw string literals - distinctive"
+    },
+    "SingleQuote": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Rune literals"
+    },
+    "Exclamation": {
+      "note": "D#5",
+      "volume": 0.3,
+      "description": "Negation operator"
+    },
+    "Question": {
+      "note": "E#5",
+      "volume": 0.25,
+      "description": "Less common in Go"
+    },
+    "Underscore": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Blank identifier _ - important in Go"
+    },
+    "Hash": {
+      "note": "G6",
+      "volume": 0.25,
+      "description": "Build constraints, comments"
+    },
+    "BackSlash": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Escape sequences"
+    },
+    "Tilde": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Bitwise NOT"
+    },
+    "At": {
+      "note": "C6",
+      "volume": 0.25,
+      "description": "Rare in Go"
+    },
+    "Dollar": {
+      "note": "D6",
+      "volume": 0.25,
+      "description": "Rare in Go"
+    },
+    "Space": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Whitespace - clean Go style"
+    },
+    "Tab": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Go standard indentation"
+    },
+    "Enter": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Line breaks - clean structure"
+    },
+    "Backspace": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "Run/build"
+    },
+    "F6": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "Go build"
+    },
+    "F7": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "Go test"
+    },
+    "F8": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "Go run"
+    },
+    "F9": {
+      "note": "D7",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "F7",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "G7",
+      "volume": 0.2,
+      "description": "Go to implementation"
+    },
+    "Up": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Navigation - upward"
+    },
+    "Down": {
+      "note": "D3",
+      "volume": 0.15,
+      "description": "Navigation - downward"
+    },
+    "Left": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation - left"
+    },
+    "Right": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation - right"
+    },
+    "Home": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Line beginning"
+    },
+    "End": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Line end"
+    },
+    "PageUp": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Page up"
+    },
+    "PageDown": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page down"
+    }
+  }
+}
