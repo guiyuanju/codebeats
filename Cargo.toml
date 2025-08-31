@@ -22,6 +22,10 @@ categories = ["multimedia::audio", "development-tools"]
 name = "codebeats"
 path = "src/main.rs"
 
+[[bin]]
+name = "codebeats-gui"
+path = "src/gui_main.rs"
+
 [dependencies]
 cpal = "0.15"
 device_query = "2.0"
@@ -29,3 +33,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 clap = { version = "4.4", features = ["derive"] }
 hound = "3.5"
+eframe = "0.24"
+egui = "0.24"
+tokio = { version = "1.0", features = ["process"] }
+env_logger = "0.10"

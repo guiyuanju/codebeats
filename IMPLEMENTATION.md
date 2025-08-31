@@ -2,7 +2,7 @@
 
 ## Architecture
 
-CodeBeats uses a simple, direct architecture for real-time audio synthesis and keyboard input.
+CodeBeats uses a simple, direct architecture for real-time audio synthesis and keyboard input, with both command-line and GUI interfaces.
 
 ### Core Components
 
@@ -10,6 +10,7 @@ CodeBeats uses a simple, direct architecture for real-time audio synthesis and k
 - **KeyboardConfig** - JSON-based key-to-note mapping with language-specific scales
 - **Waveforms** - 8 waveform types (natural, electronic, cyberpunk, harmonic, etc.)
 - **VirtualKeycode** - Handles both physical keys and shifted characters
+- **GUI Module** - Cross-platform graphical interface using egui/eframe
 
 ### Audio System
 
@@ -24,6 +25,39 @@ CodeBeats uses a simple, direct architecture for real-time audio synthesis and k
 2. **Real-time Processing**: 10ms polling, lock-free audio where possible
 3. **Musical Comfort**: All frequencies optimized to 65-880Hz range (no harsh high notes)
 4. **Language Optimization**: Each config targets specific language patterns
+
+## GUI Architecture
+
+### Design Philosophy
+The GUI serves as a configuration launcher for the CLI application rather than reimplementing the audio engine. This approach:
+- Preserves the existing CLI interface completely
+- Ensures consistent behavior between GUI and CLI
+- Simplifies maintenance and reduces code duplication
+- Allows advanced users to continue using CLI while providing beginners with an easy interface
+
+### Components
+- **CodeBeatsGui** - Main application state with configuration options
+- **Process Management** - Spawns and manages CLI process instances
+- **Configuration Discovery** - Automatically scans language_configs directory
+- **Real-time Status** - Monitors running process health
+
+### GUI Features
+- **Language Selection** - Dropdown with formatted display names for all .json configs
+- **Waveform Selection** - All available waveforms with descriptions
+- **Volume Control** - Real-time slider (0.0-1.0)
+- **Filter Cutoff** - Low-pass filter frequency slider (200-8000Hz)
+- **Verbose Logging** - Toggle for detailed terminal output
+- **Process Control** - Start/stop functionality with status monitoring
+- **Built-in Help** - Collapsible help section with usage tips and Easter egg hints
+
+### Technical Implementation
+- **Framework**: egui 0.24 for immediate mode GUI
+- **Process Spawning**: std::process::Command to launch CLI with parameters
+- **Binary Execution**: Automatic detection of release/debug binaries, falls back to `cargo run --bin codebeats`
+- **Cross-platform**: Native window management via eframe
+- **State Management**: Simple struct-based configuration state
+- **File Discovery**: Runtime scanning of language_configs directory
+- **Widget ID Management**: Explicit IDs for all interactive widgets to prevent collisions
 
 ## Configuration System
 
@@ -145,7 +179,34 @@ Press Ctrl+C to exit
 
 ## Platform Support
 
+### Audio Engine (CLI and GUI)
 Cross-platform via CPAL:
 - macOS: Core Audio
 - Windows: WASAPI  
 - Linux: ALSA/PulseAudio
+
+### GUI Framework
+Cross-platform via egui/eframe:
+- **macOS**: Native Cocoa integration
+- **Windows**: Native Win32 integration  
+- **Linux**: X11/Wayland support
+- **Rendering**: OpenGL/Vulkan backend with automatic fallback
+
+## Binary Targets
+
+### Command-Line Interface
+- **Binary**: `codebeats`
+- **Entry Point**: `src/main.rs`
+- **Usage**: Direct audio synthesis with keyboard input
+- **Dependencies**: Core audio and keyboard libraries only
+
+### Graphical Interface
+- **Binary**: `codebeats-gui` 
+- **Entry Point**: `src/gui_main.rs`
+- **Usage**: Configuration launcher that spawns CLI processes
+- **Dependencies**: GUI frameworks plus CLI dependencies
+- **Architecture**: Separate binary to keep CLI lightweight
+- **Execution Strategy**: 
+  1. Prefers `target/release/codebeats` if available (fastest)
+  2. Falls back to `target/debug/codebeats` if available  
+  3. Uses `cargo run --bin codebeats` as final fallback (development)
