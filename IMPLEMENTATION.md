@@ -14,7 +14,7 @@ CodeBeats uses a simple, direct architecture focused on real-time audio synthesi
 
 ### Keyboard System (`keyboard_mapping.rs`, `keyboard_config.rs`)
 - **VirtualKeycode**: Handles both physical keys and shifted characters
-- **KeyboardStateTracker**: Real-time shift state detection
+- **KeyboardStateTracker**: Real-time shift state detection with press/release virtual keycode mapping
 - **KeyboardConfig**: JSON-based keyboard-to-note mapping configuration
 - **Frequency Calculation**: Standard musical tuning (A4=440Hz)
 
@@ -124,6 +124,16 @@ Common programming keys get pleasant mid-range frequencies:
 - Brackets: `[` (A5) → `{` (A6) - octave pairs
 - Operators: `+`, `=` share G5 - mathematical unity
 - Punctuation: `;` (D6) → `:` (D7) - emphasis relationship
+
+### Keyboard State Tracking Fix
+- **Problem**: When pressing Shift+9 (creating "(") then releasing Shift before releasing 9, the sound would continue forever
+- **Root Cause**: Virtual keycode determination was based on current shift state, causing press and release events to use different key IDs
+- **Solution**: `KeyboardStateTracker` now remembers which virtual keycode was used for each physical key press and uses the same virtual keycode for the corresponding release
+- **Implementation**: 
+  - Added `pressed_virtual_keys` HashMap to track virtual keycodes
+  - Separate methods for press (`get_virtual_keycode_for_press`) and release (`get_virtual_keycode_for_release`) events
+  - **Timing Fix**: The release method removes the virtual keycode from tracking (not the update method) to ensure proper sequencing
+  - This ensures every key press gets a matching release with the same virtual keycode, regardless of modifier key release order
 
 ## Error Handling
 

@@ -116,6 +116,8 @@ pub fn get_frequency_from_note(note: &str) -> Option<f32> {
 pub struct KeyboardStateTracker {
     shift_pressed: bool,
     pressed_keys: HashSet<Keycode>,
+    /// Track which virtual keycode was used when each physical key was pressed
+    pressed_virtual_keys: HashMap<Keycode, VirtualKeycode>,
 }
 
 impl KeyboardStateTracker {
@@ -123,6 +125,7 @@ impl KeyboardStateTracker {
         Self {
             shift_pressed: false,
             pressed_keys: HashSet::new(),
+            pressed_virtual_keys: HashMap::new(),
         }
     }
 
@@ -133,7 +136,9 @@ impl KeyboardStateTracker {
             self.pressed_keys.insert(*key);
         }
 
-        // Then, remove all released keys
+        // Then, remove all released keys from pressed_keys only
+        // We DON'T remove from pressed_virtual_keys here because we need them
+        // for the release event handling that happens after this update
         for key in released_keys {
             self.pressed_keys.remove(key);
         }
@@ -143,45 +148,62 @@ impl KeyboardStateTracker {
             || self.pressed_keys.contains(&Keycode::RShift);
     }
 
-    /// Get the virtual keycode for shifted characters
-    pub fn get_virtual_keycode(&self, physical_key: Keycode) -> Option<VirtualKeycode> {
+    /// Get the virtual keycode for key press events
+    pub fn get_virtual_keycode_for_press(
+        &mut self,
+        physical_key: Keycode,
+    ) -> Option<VirtualKeycode> {
         // Check if shift is currently pressed (including keys pressed in this frame)
         let shift_currently_pressed = self.shift_pressed;
 
-        if !shift_currently_pressed {
-            return Some(VirtualKeycode::Physical(physical_key));
-        }
-
-        // Map shifted characters
-        let shifted_key = match physical_key {
-            Keycode::Key1 => VirtualKeycode::Shifted("Exclamation"),
-            Keycode::Key2 => VirtualKeycode::Shifted("At"),
-            Keycode::Key3 => VirtualKeycode::Shifted("Hash"),
-            Keycode::Key4 => VirtualKeycode::Shifted("Dollar"),
-            Keycode::Key5 => VirtualKeycode::Shifted("Percent"),
-            Keycode::Key6 => VirtualKeycode::Shifted("Caret"),
-            Keycode::Key7 => VirtualKeycode::Shifted("Ampersand"),
-            Keycode::Key8 => VirtualKeycode::Shifted("Asterisk"),
-            Keycode::Key9 => VirtualKeycode::Shifted("LeftParen"),
-            Keycode::Key0 => VirtualKeycode::Shifted("RightParen"),
-            Keycode::Minus => VirtualKeycode::Shifted("Underscore"),
-            Keycode::Equal => VirtualKeycode::Shifted("Plus"),
-            Keycode::LeftBracket => VirtualKeycode::Shifted("LeftBrace"),
-            Keycode::RightBracket => VirtualKeycode::Shifted("RightBrace"),
-            Keycode::BackSlash => VirtualKeycode::Shifted("Pipe"),
-            Keycode::Semicolon => VirtualKeycode::Shifted("Colon"),
-            Keycode::Apostrophe => VirtualKeycode::Shifted("DoubleQuote"),
-            Keycode::Comma => VirtualKeycode::Shifted("LessThan"),
-            Keycode::Dot => VirtualKeycode::Shifted("GreaterThan"),
-            Keycode::Slash => VirtualKeycode::Shifted("Question"),
-            Keycode::Grave => VirtualKeycode::Shifted("Tilde"),
-            // Don't shift modifier keys themselves
-            Keycode::LShift | Keycode::RShift => VirtualKeycode::Physical(physical_key),
-            // Regular letters get capitalized when shift is pressed, but we treat them the same
-            _ => VirtualKeycode::Physical(physical_key),
+        let virtual_key = if !shift_currently_pressed {
+            VirtualKeycode::Physical(physical_key)
+        } else {
+            // Map shifted characters
+            match physical_key {
+                Keycode::Key1 => VirtualKeycode::Shifted("Exclamation"),
+                Keycode::Key2 => VirtualKeycode::Shifted("At"),
+                Keycode::Key3 => VirtualKeycode::Shifted("Hash"),
+                Keycode::Key4 => VirtualKeycode::Shifted("Dollar"),
+                Keycode::Key5 => VirtualKeycode::Shifted("Percent"),
+                Keycode::Key6 => VirtualKeycode::Shifted("Caret"),
+                Keycode::Key7 => VirtualKeycode::Shifted("Ampersand"),
+                Keycode::Key8 => VirtualKeycode::Shifted("Asterisk"),
+                Keycode::Key9 => VirtualKeycode::Shifted("LeftParen"),
+                Keycode::Key0 => VirtualKeycode::Shifted("RightParen"),
+                Keycode::Minus => VirtualKeycode::Shifted("Underscore"),
+                Keycode::Equal => VirtualKeycode::Shifted("Plus"),
+                Keycode::LeftBracket => VirtualKeycode::Shifted("LeftBrace"),
+                Keycode::RightBracket => VirtualKeycode::Shifted("RightBrace"),
+                Keycode::BackSlash => VirtualKeycode::Shifted("Pipe"),
+                Keycode::Semicolon => VirtualKeycode::Shifted("Colon"),
+                Keycode::Apostrophe => VirtualKeycode::Shifted("DoubleQuote"),
+                Keycode::Comma => VirtualKeycode::Shifted("LessThan"),
+                Keycode::Dot => VirtualKeycode::Shifted("GreaterThan"),
+                Keycode::Slash => VirtualKeycode::Shifted("Question"),
+                Keycode::Grave => VirtualKeycode::Shifted("Tilde"),
+                // Don't shift modifier keys themselves
+                Keycode::LShift | Keycode::RShift => VirtualKeycode::Physical(physical_key),
+                // Regular letters get capitalized when shift is pressed, but we treat them the same
+                _ => VirtualKeycode::Physical(physical_key),
+            }
         };
 
-        Some(shifted_key)
+        // Remember which virtual keycode was used for this physical key
+        self.pressed_virtual_keys
+            .insert(physical_key, virtual_key.clone());
+
+        Some(virtual_key)
+    }
+
+    /// Get the virtual keycode for key release events - returns the same virtual keycode that was used for press
+    pub fn get_virtual_keycode_for_release(
+        &mut self,
+        physical_key: Keycode,
+    ) -> Option<VirtualKeycode> {
+        // Use the same virtual keycode that was used when the key was pressed
+        // and remove it from tracking since the key is now released
+        self.pressed_virtual_keys.remove(&physical_key)
     }
 }
 

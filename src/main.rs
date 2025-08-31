@@ -219,14 +219,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         // Handle pressed keys
         for key in pressed_keys {
-            if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode(key) {
+            if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode_for_press(key) {
                 handle_key_press(&virtual_key, &keyboard_config, &audio_state);
             }
         }
 
         // Handle released keys
         for key in released_keys {
-            if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode(key) {
+            if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode_for_release(key) {
                 handle_key_release(&virtual_key, &keyboard_config, &audio_state);
             }
         }
