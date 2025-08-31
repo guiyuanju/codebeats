@@ -17,9 +17,6 @@ keywords = [
 ]
 categories = ["multimedia::audio", "development-tools"]
 
-[lib]
-name = "codebeats"
-path = "src/lib.rs"
 
 [[bin]]
 name = "codebeats"

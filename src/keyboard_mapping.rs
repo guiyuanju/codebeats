@@ -6,7 +6,7 @@
 //! - Programming-optimized key assignments for pleasant coding experience
 //! - Rate limiting to prevent high-pitched sounds from rapid key presses
 
-use crate::keyboard::config::KeyboardConfig;
+use crate::keyboard_config::KeyboardConfig;
 use device_query::Keycode;
 use std::collections::HashMap;
 use std::collections::HashSet;
@@ -14,7 +14,9 @@ use std::time::{Duration, Instant};
 
 /// Rate limiter for preventing annoying high-pitched sounds from rapid key presses
 pub struct KeyRateLimiter {
+    #[allow(dead_code)]
     last_press_times: HashMap<Keycode, Instant>,
+    #[allow(dead_code)]
     press_counts: HashMap<Keycode, u32>,
 }
 
@@ -27,6 +29,7 @@ impl KeyRateLimiter {
     }
 
     /// Check if a key press should be allowed (returns adjusted volume multiplier)
+    #[allow(dead_code)]
     pub fn check_key_press(&mut self, keycode: Keycode) -> f32 {
         let now = Instant::now();
         let min_interval = Duration::from_millis(150); // Minimum 150ms between same key presses
@@ -212,6 +215,7 @@ pub fn get_frequency_and_volume_with_config_virtual(
 
 /// Get frequency and volume for a keycode using the provided keyboard configuration
 /// Returns (frequency, volume, note_name) for a given keycode
+#[allow(dead_code)]
 pub fn get_frequency_and_volume_with_config(
     keycode: Keycode,
     config: &KeyboardConfig,
@@ -225,6 +229,7 @@ pub fn get_frequency_and_volume_with_config(
 ///
 /// This function maintains backward compatibility by using the default configuration.
 /// For customizable mappings, use get_frequency_and_volume_with_config instead.
+#[allow(dead_code)]
 pub fn get_frequency_and_volume(keycode: Keycode) -> Option<(f32, f32, &'static str)> {
     // Use a static default config for backward compatibility
     use std::sync::OnceLock;

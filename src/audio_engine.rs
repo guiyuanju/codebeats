@@ -1,7 +1,7 @@
 //! Audio engine with ADSR envelope system and state management
 
-use crate::keyboard::mapping::KeyRateLimiter;
-use crate::waveform::types::Waveform;
+use crate::keyboard_mapping::KeyRateLimiter;
+use crate::waveforms::Waveform;
 use device_query::Keycode;
 use std::collections::HashMap;
 
@@ -213,6 +213,7 @@ pub struct AudioState {
     sample_rate: f32,
     current_waveform: Waveform,
     default_adsr: ADSRParams,
+    #[allow(dead_code)]
     rate_limiter: KeyRateLimiter,
     master_volume: f32,
 }
@@ -237,14 +238,9 @@ impl AudioState {
         }
     }
 
+    #[allow(dead_code)]
     pub fn start_note(&mut self, keycode: Keycode, frequency: f32, volume: f32) -> f32 {
-        let volume_multiplier = self.rate_limiter.check_key_press(keycode);
-
-        if volume_multiplier <= 0.01 {
-            return 0.0;
-        }
-
-        let adjusted_volume = volume * volume_multiplier * self.master_volume;
+        let adjusted_volume = volume * self.master_volume;
 
         let note_state = NoteState::new(
             frequency,
@@ -257,6 +253,7 @@ impl AudioState {
         adjusted_volume
     }
 
+    #[allow(dead_code)]
     pub fn stop_note(&mut self, keycode: Keycode) {
         if let Some(note_state) = self.active_notes.get_mut(&keycode) {
             note_state.release();
@@ -353,7 +350,7 @@ mod tests {
 
     #[test]
     fn test_audio_state_creation() {
-        use crate::waveform::Waveform;
+        use crate::waveforms::Waveform;
         let state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
         assert_eq!(state.sample_rate, 44100.0);
         assert_eq!(state.active_notes.len(), 0);
@@ -361,7 +358,7 @@ mod tests {
 
     #[test]
     fn test_note_lifecycle() {
-        use crate::waveform::Waveform;
+        use crate::waveforms::Waveform;
         let mut state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
 
         // Start note
@@ -376,7 +373,7 @@ mod tests {
 
     #[test]
     fn test_hold_duration_volume_reduction() {
-        use crate::waveform::Waveform;
+        use crate::waveforms::Waveform;
 
         let mut state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
 

@@ -1,71 +1,156 @@
 # CodeBeats 🎵
 
-Programming music simulator with language-specific scales and real-time audio synthesis.
+A programming music simulator that transforms your coding workflow into a harmonious musical experience. Every keystroke becomes a note, creating beautiful melodies while you code.
+
+## Features
+
+- **Real-time Audio Synthesis**: Low-latency polyphonic sound generation
+- **Multiple Waveforms**: Electronic, Natural piano, Saw, Square, and Cyberpunk synth
+- **Smart Key Detection**: Supports both physical keys (`1`, `[`) and shifted keys (`!`, `{`)
+- **Programming-Optimized Mapping**: Keyboard layout based on coding key frequency analysis
+- **Language-Specific Scales**: Different musical scales for different programming languages
+- **ADSR Envelope System**: Natural attack/decay/sustain/release for realistic sound
+- **Rate Limiting**: Prevents harsh sounds from rapid key presses
 
 ## Quick Start
 
 ```bash
-# Basic usage
+# Basic usage with default settings
 cargo run
 
-# With options
+# With specific waveform and language
 cargo run -- --waveform cyberpunk --language language_configs/rust.json --volume 0.7
 
-# Help
+# See all options
 cargo run -- --help
 ```
 
-## Options
+## Waveforms
 
-- `--waveform`: natural, electronic, saw, square, cyberpunk (overrides language config)
-- `--language`: Path to language config (python.json, rust.json, etc.)
-- `--config`: Custom keyboard config file (optional - built-in default available)
-- `--volume`: Master volume (0.0-1.0)
+| Waveform | Description | Best For |
+|----------|-------------|----------|
+| `electronic` | Pure sine wave, clean sound | Default, general use |
+| `natural` | Piano-like with harmonics | Warm, organic feel |
+| `cyberpunk` | Blade Runner style analog synth | Atmospheric coding |
+| `saw` | Bright sawtooth wave | Electronic music feel |
+| `square` | Retro 8-bit sound | Nostalgic programming |
 
-## Configuration System
+## Language Configurations
 
-### Built-in Default Configuration
-- **No setup required** - programming-optimized keyboard mapping included
-- Uses electronic waveform and pentatonic scale by default
-- Automatically loads if no config files are specified
-
-### Waveform Priority
-1. **CLI argument** (`--waveform`) - highest priority
-2. **Language config** (specified in .json files) - medium priority  
-3. **Built-in default** (electronic) - lowest priority
-
-## Language Scales
-
-| Language | Scale | Waveform | Character |
-|----------|-------|----------|-----------|
-| Python | F Major | Natural | Warm, friendly |
-| Rust | C Minor Pentatonic | Electronic | Powerful, direct |
-| JavaScript | D Mixolydian | Cyberpunk | Modern, dynamic |
-| C | A Natural Minor | Saw | Serious, precise |
-| Go | G Major Pentatonic | Square | Clean, simple |
-
-## Commands
-
-```bash
-# Compare language-specific scales
-cargo run -- compare-scales
-
-# No configuration needed - built-in defaults work out of the box
-cargo run
-```
+| Language | Scale | Character | Config File |
+|----------|-------|-----------|-------------|
+| General | Pentatonic | Balanced, pleasant | `general_programming_language.json` |
+| Python | F Major | Warm, friendly | `python.json` |
+| Rust | C Minor Pentatonic | Powerful, direct | `rust.json` |
+| JavaScript | D Mixolydian | Modern, dynamic | `javascript.json` |
+| C | A Natural Minor | Serious, precise | `c.json` |
+| Go | G Major Pentatonic | Clean, simple | `go.json` |
 
 ## Examples
 
 ```bash
-# Cyberpunk Rust
+# Cyberpunk Rust experience
 cargo run -- -w cyberpunk -l language_configs/rust.json -v 0.8
 
-# Quiet Python
+# Quiet Python coding
 cargo run -- -w natural -l language_configs/python.json -v 0.3
 
-# Full volume
-cargo run -- -w electronic -l language_configs/rust.json -v 1.0
-
-# Custom config
-cargo run -- -c my_config.json -v 0.5
+# Custom configuration
+cargo run -- -c my_custom_config.json
 ```
+
+## Shifted Key Support
+
+The system intelligently detects shifted characters, creating richer musical experiences:
+
+- **Number pairs**: `1`→C4 vs `!`→C6 (octave relationship)
+- **Bracket pairs**: `[`→A5 vs `{`→A6 (harmonic step up)
+- **Punctuation**: `;`→D6 vs `:`→D7 (emphasis relationship)
+
+Try typing code with lots of symbols to hear the musical relationships:
+```javascript
+function test() { return [1, 2, 3]; }
+if (x > 0) { print("Hello World!"); }
+```
+
+## Configuration Priority
+
+1. **CLI argument** (`--waveform`) - highest priority
+2. **Language config file** - medium priority  
+3. **Built-in default** (electronic) - fallback
+
+## Musical Design
+
+The keyboard mappings use music theory principles:
+
+- **Common keys** (E, T, A, O, I, N, S, R) get pleasant mid-range notes
+- **Less common keys** get higher or lower notes to avoid frequency clashes
+- **Shifted characters** typically play higher octaves of their base keys
+- **Programming symbols** create harmonic relationships (brackets, operators)
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `cargo run` | Start with default settings |
+| `cargo run -- --help` | Show all available options |
+
+## Options
+
+- `--waveform` / `-w`: Choose waveform (natural, electronic, saw, square, cyberpunk)
+- `--language` / `-l`: Path to language configuration file
+- `--config` / `-c`: Custom keyboard mapping file
+- `--volume` / `-v`: Master volume (0.0-1.0, default: 1.0)
+
+## Requirements
+
+- Rust 1.70+
+- Audio output device
+- Keyboard input
+
+## Installation
+
+```bash
+git clone <repository>
+cd sound
+cargo build --release
+cargo run -- --help
+```
+
+## Project Structure
+
+```
+src/
+├── main.rs              # Main application and CLI
+├── audio_engine.rs      # Audio synthesis and ADSR envelopes
+├── keyboard_config.rs   # Keyboard configuration management
+├── keyboard_mapping.rs  # Key-to-note mapping logic
+└── waveforms.rs         # Waveform synthesis algorithms
+
+language_configs/        # Pre-built language configurations
+├── general_programming_language.json
+├── python.json
+├── rust.json
+├── javascript.json
+├── c.json
+└── go.json
+```
+
+## Tips
+
+- Use headphones or speakers for the best experience
+- Start with lower volume (0.3-0.5) and adjust to preference
+- Try different language configs to find your preferred musical style
+- Experiment with shifted keys (`!@#$%^&*(){}:"<>?`) for richer melodies
+- The system learns your typing patterns - rapid key presses are automatically quieted
+
+## Troubleshooting
+
+- **No sound**: Check audio device and volume settings
+- **"Unmapped key"**: Key isn't in current config (this is normal for some keys)
+- **Too loud/quiet**: Use `--volume` flag to adjust
+- **Config not loading**: Check file path and JSON syntax
+
+---
+
+**Happy coding and music making!** 🎵💻✨

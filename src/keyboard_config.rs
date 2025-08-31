@@ -3,7 +3,7 @@
 //! This module handles loading and managing customizable keyboard mappings
 //! from configuration files, allowing users to define their own key-to-sound mappings.
 
-use crate::waveform::Waveform;
+use crate::waveforms::Waveform;
 use device_query::Keycode;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -718,36 +718,15 @@ impl KeyboardConfig {
     }
 
     /// Save configuration to a JSON file
+    #[allow(dead_code)]
     pub fn save_to_file<P: AsRef<Path>>(&self, path: P) -> Result<(), Box<dyn std::error::Error>> {
-        let content = serde_json::to_string_pretty(self)?;
-        fs::write(path, content)?;
+        let json = serde_json::to_string_pretty(self)?;
+        fs::write(path, json)?;
         Ok(())
     }
 
-    /// Get key mapping for a specific keycode
-    pub fn get_mapping(&self, keycode: Keycode) -> Option<&KeyMapping> {
-        let key_name = format!("{:?}", keycode);
-        self.mappings.get(&key_name)
-    }
-
-    /// Add or update a key mapping
-    pub fn set_mapping(&mut self, keycode: Keycode, mapping: KeyMapping) {
-        let key_name = format!("{:?}", keycode);
-        self.mappings.insert(key_name, mapping);
-    }
-
-    /// Remove a key mapping
-    pub fn remove_mapping(&mut self, keycode: Keycode) -> Option<KeyMapping> {
-        let key_name = format!("{:?}", keycode);
-        self.mappings.remove(&key_name)
-    }
-
-    /// Get all available key mappings
-    pub fn get_all_mappings(&self) -> &HashMap<String, KeyMapping> {
-        &self.mappings
-    }
-
     /// Create a simple piano layout configuration (chromatic scale)
+    #[allow(dead_code)]
     pub fn piano_layout() -> Self {
         let mut mappings = HashMap::new();
 
@@ -869,6 +848,7 @@ impl KeyboardConfig {
 }
 
 /// Convert a keycode to its string representation for config lookup
+#[allow(dead_code)]
 pub fn keycode_to_string(keycode: Keycode) -> String {
     format!("{:?}", keycode)
 }
