@@ -21,6 +21,14 @@ pub enum Waveform {
     Square,
     /// Blade Runner 2049 style analog synthesizer
     Cyberpunk,
+    /// Mathematical harmonic series with precise overtones
+    Harmonic,
+    /// Pure sine wave (alias for Electronic)
+    Sine,
+    /// Sawtooth wave (alias for Saw)
+    Sawtooth,
+    /// Triangle wave for smooth electronic sound
+    Triangle,
 }
 
 impl Waveform {
@@ -36,6 +44,10 @@ impl Waveform {
             Waveform::Cyberpunk => {
                 self.generate_cyberpunk(phase, base_phase, frequency, sample_rate)
             }
+            Waveform::Harmonic => self.generate_harmonic(base_phase),
+            Waveform::Sine => self.generate_sine(base_phase),
+            Waveform::Sawtooth => self.generate_sawtooth(phase),
+            Waveform::Triangle => self.generate_triangle(phase),
         }
     }
 
@@ -124,6 +136,43 @@ impl Waveform {
         saturated + detune1 + detune2
     }
 
+    /// Mathematical harmonic series with precise overtones
+    fn generate_harmonic(&self, base_phase: f32) -> f32 {
+        // Pure harmonic series based on mathematical ratios
+        let fundamental = base_phase.sin();
+        let harmonic2 = (base_phase * 2.0).sin() * 0.5; // Octave (2:1)
+        let harmonic3 = (base_phase * 3.0).sin() * 0.333; // Perfect fifth (3:2)
+        let harmonic4 = (base_phase * 4.0).sin() * 0.25; // Double octave (4:1)
+        let harmonic5 = (base_phase * 5.0).sin() * 0.2; // Major third (5:4)
+        let harmonic6 = (base_phase * 6.0).sin() * 0.167; // Perfect fifth + octave (3:1)
+        let harmonic7 = (base_phase * 7.0).sin() * 0.143; // Harmonic seventh (7:4)
+        let harmonic8 = (base_phase * 8.0).sin() * 0.125; // Triple octave (8:1)
+
+        // Mathematical precision with golden ratio influence
+        let phi = 1.618034; // Golden ratio
+        let phi_harmonic = (base_phase * phi).sin() * 0.1;
+
+        fundamental
+            + harmonic2
+            + harmonic3
+            + harmonic4
+            + harmonic5
+            + harmonic6
+            + harmonic7
+            + harmonic8
+            + phi_harmonic
+    }
+
+    /// Triangle wave generation
+    fn generate_triangle(&self, phase: f32) -> f32 {
+        let t = phase % 1.0;
+        if t < 0.5 {
+            4.0 * t - 1.0
+        } else {
+            3.0 - 4.0 * t
+        }
+    }
+
     /// Soft clipping for warm analog distortion
     fn soft_clip(&self, input: f32, threshold: f32) -> f32 {
         if input > threshold {
@@ -144,6 +193,10 @@ impl Waveform {
             "saw" => Some(Waveform::Saw),
             "square" => Some(Waveform::Square),
             "cyberpunk" => Some(Waveform::Cyberpunk),
+            "harmonic" => Some(Waveform::Harmonic),
+            "sine" => Some(Waveform::Sine),
+            "sawtooth" => Some(Waveform::Sawtooth),
+            "triangle" => Some(Waveform::Triangle),
             _ => None,
         }
     }
@@ -173,6 +226,10 @@ mod tests {
             Waveform::Saw,
             Waveform::Square,
             Waveform::Cyberpunk,
+            Waveform::Harmonic,
+            Waveform::Sine,
+            Waveform::Sawtooth,
+            Waveform::Triangle,
         ];
 
         for waveform in waveforms {

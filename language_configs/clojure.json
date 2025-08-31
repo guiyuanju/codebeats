@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "Clojure programming language optimized keyboard mapping - jazz-influenced harmonies with Lisp elegance",
+  "waveform": "sine",
+  "mappings": {
+    "D": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "defn, def keyword foundation - F major root"
+    },
+    "E": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "defn, let, each - major second"
+    },
+    "F": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "defn, fn, for - major third"
+    },
+    "N": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "defn, fn, not - perfect fourth"
+    },
+    "L": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "let, loop, list - perfect fifth"
+    },
+    "O": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "do, or, loop - major sixth"
+    },
+    "T": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "let, true, type - minor seventh (jazz)"
+    },
+    "R": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "require, reduce, range - octave"
+    },
+    "M": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "map, meta, macro - ninth"
+    },
+    "A": {
+      "note": "Ab5",
+      "volume": 0.25,
+      "description": "and, apply, assoc - minor ninth (jazz)"
+    },
+    "P": {
+      "note": "Bb5",
+      "volume": 0.25,
+      "description": "println, partial - eleventh"
+    },
+    "S": {
+      "note": "C6",
+      "volume": 0.25,
+      "description": "seq, str, symbol - twelfth"
+    },
+    "I": {
+      "note": "Db6",
+      "volume": 0.25,
+      "description": "if, inc, into - minor thirteenth (jazz)"
+    },
+    "C": {
+      "note": "Eb6",
+      "volume": 0.2,
+      "description": "conj, concat, cond - high minor seventh"
+    },
+    "U": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "update, use - high octave"
+    },
+    "V": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "vector, var, val - high ninth"
+    },
+    "W": {
+      "note": "Ab6",
+      "volume": 0.2,
+      "description": "when, with - high minor ninth"
+    },
+    "B": {
+      "note": "Bb6",
+      "volume": 0.2,
+      "description": "binding, boolean - high eleventh"
+    },
+    "H": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "hash-map, hash - high twelfth"
+    },
+    "G": {
+      "note": "Db7",
+      "volume": 0.15,
+      "description": "get, group-by - high minor thirteenth"
+    },
+    "K": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "keyword, keys - reuse root"
+    },
+    "J": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "juxt, join - reuse second"
+    },
+    "Q": {
+      "note": "A4",
+      "volume": 0.15,
+      "description": "quote, quoted - reuse third"
+    },
+    "X": {
+      "note": "Bb4",
+      "volume": 0.15,
+      "description": "ex-info, extend - reuse fourth"
+    },
+    "Y": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "yield, yes - reuse fifth"
+    },
+    "Z": {
+      "note": "D5",
+      "volume": 0.15,
+      "description": "zipmap, zero - reuse sixth"
+    },
+    "Key0": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Numeric literal - root"
+    },
+    "RightParen": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+0 - s-expression closing (critical)"
+    },
+    "Key1": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal - second"
+    },
+    "Exclamation": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Shift+1 - emphasis, not="
+    },
+    "Key2": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal - third"
+    },
+    "At": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Shift+2 - deref reader macro"
+    },
+    "Key3": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Numeric literal - fourth"
+    },
+    "Hash": {
+      "note": "Bb5",
+      "volume": 0.35,
+      "description": "Shift+3 - dispatch macro (critical in Clojure)"
+    },
+    "Key4": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal - fifth"
+    },
+    "Dollar": {
+      "note": "C6",
+      "volume": 0.3,
+      "description": "Shift+4 - rarely used"
+    },
+    "Key5": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - sixth"
+    },
+    "Percent": {
+      "note": "D6",
+      "volume": 0.3,
+      "description": "Shift+5 - anonymous function args"
+    },
+    "Key6": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Numeric literal - minor seventh"
+    },
+    "Caret": {
+      "note": "Eb6",
+      "volume": 0.35,
+      "description": "Shift+6 - metadata (important)"
+    },
+    "Key7": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "F6",
+      "volume": 0.35,
+      "description": "Shift+7 - variadic functions"
+    },
+    "Key8": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Asterisk": {
+      "note": "G6",
+      "volume": 0.35,
+      "description": "Shift+8 - multiplication, earmuffs"
+    },
+    "Key9": {
+      "note": "Ab5",
+      "volume": 0.25,
+      "description": "Numeric literal - minor ninth"
+    },
+    "LeftParen": {
+      "note": "Ab5",
+      "volume": 0.35,
+      "description": "Shift+9 - s-expression opening (critical)"
+    },
+    "LeftBracket": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "Vector literals - foundational"
+    },
+    "LeftBrace": {
+      "note": "C5",
+      "volume": 0.35,
+      "description": "Shift+[ - map literals (important)"
+    },
+    "RightBracket": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Vector closing"
+    },
+    "RightBrace": {
+      "note": "C6",
+      "volume": 0.35,
+      "description": "Shift+] - map closing"
+    },
+    "Semicolon": {
+      "note": "Eb4",
+      "volume": 0.2,
+      "description": "Comments - minor third"
+    },
+    "Colon": {
+      "note": "Eb5",
+      "volume": 0.35,
+      "description": "Shift+; - keywords (critical in Clojure)"
+    },
+    "Equal": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Equality - second"
+    },
+    "Plus": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+= - addition"
+    },
+    "Minus": {
+      "note": "Ab4",
+      "volume": 0.3,
+      "description": "Subtraction, negative - minor second"
+    },
+    "Underscore": {
+      "note": "Ab3",
+      "volume": 0.25,
+      "description": "Shift+- - destructuring placeholder"
+    },
+    "Slash": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Division, namespace separator"
+    },
+    "Question": {
+      "note": "Bb5",
+      "volume": 0.3,
+      "description": "Shift+/ - predicate suffix convention"
+    },
+    "BackSlash": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Character literals"
+    },
+    "Pipe": {
+      "note": "D6",
+      "volume": 0.3,
+      "description": "Shift+\\ - rarely used"
+    },
+    "Comma": {
+      "note": "F3",
+      "volume": 0.15,
+      "description": "Whitespace in collections - gentle"
+    },
+    "LessThan": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison"
+    },
+    "Dot": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Java interop - gentle bass"
+    },
+    "GreaterThan": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+. - comparison"
+    },
+    "Apostrophe": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Quote reader macro (important)"
+    },
+    "DoubleQuote": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals"
+    },
+    "Grave": {
+      "note": "Bb4",
+      "volume": 0.3,
+      "description": "Syntax quote reader macro (important)"
+    },
+    "Tilde": {
+      "note": "Bb5",
+      "volume": 0.35,
+      "description": "Shift+` - unquote (important in macros)"
+    },
+    "Space": {
+      "note": "F2",
+      "volume": 0.08,
+      "description": "S-expression separation - foundational"
+    },
+    "Tab": {
+      "note": "F2",
+      "volume": 0.08,
+      "description": "Indentation - structural"
+    },
+    "Enter": {
+      "note": "F3",
+      "volume": 0.12,
+      "description": "Form separation"
+    },
+    "Backspace": {
+      "note": "Eb2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "D2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "Bb2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "C3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "D3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Run Clojure REPL"
+    },
+    "F6": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "Load file in REPL"
+    },
+    "F7": {
+      "note": "Eb6",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "Ab6",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "Bb6",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "Clojure REPL"
+    },
+    "Up": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "F3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "Eb3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "F3",
+      "volume": 0.15,
+      "description": "Beginning of form"
+    },
+    "End": {
+      "note": "C4",
+      "volume": 0.15,
+      "description": "End of form"
+    },
+    "PageUp": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page navigation up"
+    },
+    "PageDown": {
+      "note": "D4",
+      "volume": 0.15,
+      "description": "Page navigation down"
+    }
+  }
+}

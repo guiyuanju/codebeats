@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "Emacs Lisp programming language optimized keyboard mapping - editor-optimized scale with extensibility focus",
+  "waveform": "sawtooth",
+  "mappings": {
+    "D": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "defun, defvar keyword foundation - root"
+    },
+    "E": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "defun, eval, each - second"
+    },
+    "F": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "defun, function, find - third"
+    },
+    "U": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "defun, user, unless - fourth"
+    },
+    "N": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "defun, nil, not - fifth"
+    },
+    "L": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "let, lambda, list - sixth"
+    },
+    "A": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "lambda, and, add-hook - seventh"
+    },
+    "M": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "lambda, mode, message - octave"
+    },
+    "B": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "buffer, bind, beginning - ninth"
+    },
+    "T": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "let, t, text - tenth"
+    },
+    "C": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "car, cdr, current - eleventh"
+    },
+    "R": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "car, cdr, require - twelfth"
+    },
+    "S": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "setq, save, string - thirteenth"
+    },
+    "O": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "or, open, overlay - fourteenth"
+    },
+    "I": {
+      "note": "C6",
+      "volume": 0.25,
+      "description": "if, insert, interactive - double octave"
+    },
+    "P": {
+      "note": "D6",
+      "volume": 0.25,
+      "description": "point, progn, provide - high second"
+    },
+    "H": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "hook, help - high third"
+    },
+    "W": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "with, window, when - high fourth"
+    },
+    "V": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "var, vector, value - high fifth"
+    },
+    "G": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "goto, global, get - high sixth"
+    },
+    "Y": {
+      "note": "B6",
+      "volume": 0.15,
+      "description": "y-or-n-p, yank - high seventh"
+    },
+    "K": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "key, kill - reuse root"
+    },
+    "J": {
+      "note": "D4",
+      "volume": 0.2,
+      "description": "jump, join - reuse second"
+    },
+    "Q": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "quote, query - reuse third"
+    },
+    "X": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "execute-extended-command - reuse fourth"
+    },
+    "Z": {
+      "note": "G4",
+      "volume": 0.15,
+      "description": "zerop, zone - reuse fifth"
+    },
+    "Key0": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Numeric literal - root"
+    },
+    "RightParen": {
+      "note": "C5",
+      "volume": 0.35,
+      "description": "Shift+0 - s-expression closing (critical)"
+    },
+    "Key1": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Numeric literal - second"
+    },
+    "Exclamation": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+1 - emphasis, shell commands"
+    },
+    "Key2": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Numeric literal - third"
+    },
+    "At": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+2 - rarely used"
+    },
+    "Key3": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Numeric literal - fourth"
+    },
+    "Hash": {
+      "note": "F5",
+      "volume": 0.35,
+      "description": "Shift+3 - hash tables, reader macros"
+    },
+    "Key4": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal - fifth"
+    },
+    "Dollar": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+4 - end of line in regex"
+    },
+    "Key5": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal - sixth"
+    },
+    "Percent": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+5 - format specifiers"
+    },
+    "Key6": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal - seventh"
+    },
+    "Caret": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+6 - beginning of line in regex"
+    },
+    "Key7": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+7 - optional args"
+    },
+    "Key8": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Asterisk": {
+      "note": "D5",
+      "volume": 0.35,
+      "description": "Shift+8 - multiplication, wildcards, dynamic vars"
+    },
+    "Key9": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - tenth"
+    },
+    "LeftParen": {
+      "note": "E5",
+      "volume": 0.35,
+      "description": "Shift+9 - s-expression opening (critical)"
+    },
+    "LeftBracket": {
+      "note": "F3",
+      "volume": 0.3,
+      "description": "Vector literals - foundation"
+    },
+    "LeftBrace": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Shift+[ - rarely used"
+    },
+    "RightBracket": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Vector closing"
+    },
+    "RightBrace": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+] - rarely used"
+    },
+    "Semicolon": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Comments - gentle bass"
+    },
+    "Colon": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "Shift+; - keywords"
+    },
+    "Equal": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Equality comparisons"
+    },
+    "Plus": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+= - addition"
+    },
+    "Minus": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Subtraction, negative"
+    },
+    "Underscore": {
+      "note": "B3",
+      "volume": 0.25,
+      "description": "Shift+- - identifier naming"
+    },
+    "Slash": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Division, file paths"
+    },
+    "Question": {
+      "note": "C6",
+      "volume": 0.3,
+      "description": "Shift+/ - predicate suffix convention"
+    },
+    "BackSlash": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Character literals, escape sequences"
+    },
+    "Pipe": {
+      "note": "D6",
+      "volume": 0.25,
+      "description": "Shift+\\ - rarely used"
+    },
+    "Comma": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Backquote unquote - gentle"
+    },
+    "LessThan": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison"
+    },
+    "Dot": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Dotted pairs, file extensions"
+    },
+    "GreaterThan": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+. - comparison"
+    },
+    "Apostrophe": {
+      "note": "G4",
+      "volume": 0.35,
+      "description": "Quote - critical in Lisp"
+    },
+    "DoubleQuote": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals"
+    },
+    "Grave": {
+      "note": "A4",
+      "volume": 0.35,
+      "description": "Backquote - important for macros"
+    },
+    "Tilde": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Shift+` - home directory, expansion"
+    },
+    "Space": {
+      "note": "C2",
+      "volume": 0.08,
+      "description": "S-expression separation - foundational"
+    },
+    "Tab": {
+      "note": "C2",
+      "volume": 0.08,
+      "description": "Indentation - structural"
+    },
+    "Enter": {
+      "note": "C3",
+      "volume": 0.12,
+      "description": "Form separation, command execution"
+    },
+    "Backspace": {
+      "note": "B1",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "A1",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "E2",
+      "volume": 0.08,
+      "description": "Control - important in Emacs"
+    },
+    "RControl": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "G2",
+      "volume": 0.08,
+      "description": "Meta key - critical in Emacs"
+    },
+    "RAlt": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Command escape, Meta prefix"
+    },
+    "F1": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Help system (C-h)"
+    },
+    "F2": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Eval buffer/region"
+    },
+    "F6": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Load file"
+    },
+    "F7": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "Menu bar"
+    },
+    "F11": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Full screen"
+    },
+    "F12": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "IELM (Emacs Lisp shell)"
+    },
+    "Up": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "F3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Beginning of line (C-a)"
+    },
+    "End": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "End of line (C-e)"
+    },
+    "PageUp": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page up (C-v)"
+    },
+    "PageDown": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Page down (M-v)"
+    }
+  }
+}

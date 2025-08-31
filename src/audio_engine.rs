@@ -257,6 +257,10 @@ impl AudioState {
             Waveform::Electronic => ADSRParams::electronic(),
             Waveform::Saw | Waveform::Square => ADSRParams::punchy(),
             Waveform::Cyberpunk => ADSRParams::cyberpunk(),
+            Waveform::Harmonic => ADSRParams::natural(),
+            Waveform::Sine => ADSRParams::electronic(),
+            Waveform::Sawtooth => ADSRParams::punchy(),
+            Waveform::Triangle => ADSRParams::electronic(),
         };
 
         Self {

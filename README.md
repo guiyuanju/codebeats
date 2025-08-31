@@ -37,8 +37,14 @@ cargo run -- --help
 | `cyberpunk` | Blade Runner style analog synth | Atmospheric coding |
 | `saw` | Bright sawtooth wave | Electronic music feel |
 | `square` | Retro 8-bit sound | Nostalgic programming |
+| `harmonic` | Mathematical harmonic series | Haskell, mathematical precision |
+| `sine` | Pure sine wave (alias for electronic) | Clean, minimal sound |
+| `sawtooth` | Sawtooth wave (alias for saw) | Bright electronic sound |
+| `triangle` | Smooth triangle wave | Gentle electronic sound |
 
 ## Language Configurations
+
+### Programming Languages
 
 | Language | Scale | Character | Config File |
 |----------|-------|-----------|-------------|
@@ -48,6 +54,19 @@ cargo run -- --help
 | JavaScript | D Mixolydian | Modern, dynamic | `javascript.json` |
 | C | A Natural Minor | Serious, precise | `c.json` |
 | Go | G Major Pentatonic | Clean, simple | `go.json` |
+| Haskell | Sophisticated Harmonic | Mathematical precision | `haskell.json` |
+| Java | Structured Enterprise | Systematic, corporate | `java.json` |
+| Clojure | Jazz-influenced | Lisp elegance with modern touches | `clojure.json` |
+| Scheme | Classical Lisp | Minimalist, elegant | `scheme.json` |
+| Emacs Lisp | Editor-optimized | Extensibility focus | `emacs-lisp.json` |
+
+### Human Languages
+
+| Language | Scale | Character | Config File |
+|----------|-------|-----------|-------------|
+| English | Letter Frequency Optimized | Based on English letter patterns | `english.json` |
+| Chinese | Pinyin-optimized | Focus on Pinyin input patterns | `chinese.json` |
+| Japanese | Romaji-optimized | Japanese phonetic patterns | `japanese.json` |
 
 ## Examples
 
@@ -57,6 +76,21 @@ cargo run -- -w cyberpunk -l language_configs/rust.json -v 0.8
 
 # Quiet Python coding with gentle filtering
 cargo run -- -w natural -l language_configs/python.json -v 0.3 --filter-cutoff 1000
+
+# Functional Haskell with sophisticated harmonies
+cargo run -- -l language_configs/haskell.json -v 0.6
+
+# Jazz-influenced Clojure coding
+cargo run -- -l language_configs/clojure.json -v 0.7
+
+# English writing with natural sounds
+cargo run -- -l language_configs/english.json -v 0.5
+
+# Chinese/Pinyin input with optimized mapping
+cargo run -- -l language_configs/chinese.json -v 0.6
+
+# Japanese/Romaji input
+cargo run -- -l language_configs/japanese.json -v 0.6
 
 # Custom configuration with filtering
 cargo run -- -c my_custom_config.json --filter-cutoff 600
@@ -101,7 +135,7 @@ The keyboard mappings use music theory principles:
 
 ## Options
 
-- `--waveform` / `-w`: Choose waveform (natural, electronic, saw, square, cyberpunk)
+- `--waveform` / `-w`: Choose waveform (natural, electronic, saw, square, cyberpunk, harmonic, sine, sawtooth, triangle)
 - `--language` / `-l`: Path to language configuration file
 - `--config` / `-c`: Custom keyboard mapping file
 - `--volume` / `-v`: Master volume (0.0-1.0, default: 1.0)
@@ -138,7 +172,15 @@ language_configs/        # Pre-built language configurations
 ├── rust.json
 ├── javascript.json
 ├── c.json
-└── go.json
+├── go.json
+├── haskell.json
+├── java.json
+├── clojure.json
+├── scheme.json
+├── emacs-lisp.json
+├── english.json
+├── chinese.json
+└── japanese.json
 ```
 
 ## Tips

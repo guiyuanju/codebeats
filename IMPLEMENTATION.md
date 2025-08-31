@@ -24,6 +24,10 @@ CodeBeats uses a simple, direct architecture focused on real-time audio synthesi
 - **Natural**: Piano-like with harmonics and subtle vibrato
 - **Cyberpunk**: Multi-oscillator analog synth emulation
 - **Saw/Square**: Classic electronic waveforms
+- **Harmonic**: Mathematical harmonic series with precise overtones and golden ratio influence
+- **Sine**: Pure sine wave (alias for Electronic)
+- **Sawtooth**: Sawtooth wave (alias for Saw)
+- **Triangle**: Smooth triangle wave for gentle electronic sound
 
 ## Key Technical Decisions
 
@@ -75,7 +79,7 @@ DeviceQuery → StateTracker → VirtualKeycode → frequency/vol → NoteState 
 ### Config Structure
 ```json
 {
-  "version": "1.0",
+  "version": "2.0",
   "description": "Language description",
   "waveform": "electronic",
   "mappings": {
@@ -87,6 +91,25 @@ DeviceQuery → StateTracker → VirtualKeycode → frequency/vol → NoteState 
   }
 }
 ```
+
+### Language-Specific Design Principles
+
+#### Programming Languages
+- **Haskell**: Sophisticated harmonic structure with mathematical precision using advanced chord progressions
+- **Java**: Structured enterprise scale with systematic harmonies reflecting corporate development patterns
+- **Clojure**: Jazz-influenced harmonies with Lisp elegance, featuring minor sevenths and ninths
+- **Scheme**: Classical Lisp minimalist scale focusing on elegant simplicity and pure functional concepts
+- **Emacs Lisp**: Editor-optimized scale with extensibility focus, emphasizing Control and Meta key usage
+
+#### Human Languages  
+- **English**: Optimized for English letter frequencies (E-T-A-O-I-N-S-H-R pattern) with comfortable mid-range mapping
+- **Chinese**: Pinyin input pattern optimization focusing on common initials (Z-S-D-L-G) and finals (A-O-E-I-U-V)
+- **Japanese**: Romaji input patterns emphasizing vowel sounds (A-I-U-E-O) and common consonant combinations (K-S-T-N-H-M)
+
+#### Musical Scale Characteristics
+- **Programming Languages**: Use structured scales (major, minor, pentatonic) matching language paradigms
+- **Human Languages**: Emphasize phonetic frequency patterns with harmonic relationships between vowels and consonants
+- **Waveform Selection**: Each language config includes recommended waveforms (harmonic, sine, triangle, etc.)
 
 ## Audio Processing
 
@@ -170,14 +193,27 @@ Common programming keys get pleasant mid-range frequencies:
   - Applied pleasant mid-range alternatives (220-880Hz) for comfort
 - **Results**: All configs now have comfortable frequency ranges while maintaining musical harmony
 
-### Testing Infrastructure
+### Language Configuration Expansion
+- **Programming Languages**: Added 5 new language configs (Haskell, Java, Clojure, Scheme, Emacs Lisp) with unique musical characteristics
+- **Human Languages**: Added 3 new language configs (English, Chinese, Japanese) optimized for natural language patterns
+- **Musical Diversity**: Each config uses different scales, waveforms, and harmonic structures matching language characteristics
+- **Frequency Optimization**: All new configs use comfortable frequency ranges (avoiding harsh high frequencies)
+- **Cultural Sensitivity**: Human language configs respect phonetic patterns and input method conventions
+
+### Waveform Implementation Expansion
+- **Harmonic Waveform**: Added sophisticated mathematical harmonic series with golden ratio influence for Haskell
+- **Sine/Sawtooth/Triangle**: Added alias and new waveforms to support all language configuration requirements
+- **ADSR Integration**: All new waveforms properly integrated with envelope system using appropriate parameters
+- **Comprehensive Testing**: All 8 waveforms tested and validated for audio generation and parsing
+
+### Testing Infrastructure  
 - **Test Methods Added**: Added `get_mapping`, `set_mapping`, and `remove_mapping` methods to `KeyboardConfig` for comprehensive testing
 - **Test Coverage**: All 20 unit tests now pass, covering ADSR envelopes, keyboard mapping, frequency calculation, configuration management, sustain duration, and low-pass filtering
 - **Test Cleanup**: Removed redundant tests (`test_piano_layout`, `test_mapping_operations`, `test_rate_limiter`) to focus on core functionality
 - **Code Cleanup**: Removed unused rate limiting system that was never properly implemented
-- **JSON Validation**: All language configuration files validated for correct JSON syntax and no duplicate keys
+- **JSON Validation**: All 11 language configuration files validated for correct JSON syntax and no duplicate keys
 - **JSON Cleanup**: Fixed duplicate key issues in `c.json` (20 duplicates) and `javascript.json` (3 duplicates)
-- **Frequency Optimization**: Systematically reduced 128 harsh high-frequency notes to comfortable ranges
+- **Frequency Optimization**: Systematically reduced 128 harsh high-frequency notes to comfortable ranges across all configs
 - **Note Harmonies**: Multiple keys intentionally map to the same notes to create musical harmonies (this is by design, not an error)
 - **Rate Limiting Implementation**: Added `RateLimiter` struct with sliding window press tracking and exponential volume reduction
 - **Volume Protection**: Automatic volume reduction prevents audio overload during rapid typing sessions
@@ -230,6 +266,26 @@ The simplified architecture makes it easy to:
 - **Windows**: Full support with WASAPI
 - **Linux**: Full support with ALSA/PulseAudio
 
+## Language Configuration Coverage
+
+### Programming Languages (8 total)
+1. **General** - Pentatonic, balanced programming
+2. **Python** - F Major, warm and friendly  
+3. **Rust** - C Minor Pentatonic, powerful and direct
+4. **JavaScript** - D Mixolydian, modern and dynamic
+5. **C** - A Natural Minor, serious and precise
+6. **Go** - G Major Pentatonic, clean and simple
+7. **Haskell** - Sophisticated harmonic, mathematical precision
+8. **Java** - Structured enterprise, systematic harmonies
+9. **Clojure** - Jazz-influenced, Lisp elegance
+10. **Scheme** - Classical Lisp, minimalist elegance
+11. **Emacs Lisp** - Editor-optimized, extensibility focus
+
+### Human Languages (3 total)
+1. **English** - Letter frequency optimized for English patterns
+2. **Chinese** - Pinyin input optimization for Chinese phonetics
+3. **Japanese** - Romaji input patterns for Japanese phonetics
+
 ## Key Simplifications Made
 
 1. **Removed wrapper structs**: AudioSystem, UIManager, KeyboardProcessor → direct functions
@@ -240,5 +296,6 @@ The simplified architecture makes it easy to:
 6. **Removed analysis tools**: scale_comparison.rs was demo code, not core functionality
 7. **Removed debug utilities**: test_keys.rs was a simple debugging tool
 8. **Streamlined CLI**: Removed subcommands, kept simple options only
+9. **Expanded language support**: Added 8 new language configurations covering major programming languages and human languages
 
-This architecture prioritizes simplicity and maintainability while preserving all core functionality.
+This architecture prioritizes simplicity and maintainability while providing comprehensive language support and preserving all core functionality.
