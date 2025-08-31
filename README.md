@@ -11,6 +11,8 @@ CodeBeats is a programming-optimized keyboard music simulator that transforms yo
 - **⚡ Real-time Audio**: Low-latency audio synthesis with ADSR envelopes
 - **🌍 Cross-Platform**: Works on macOS, Windows, and Linux
 - **🎚️ Command-line Control**: Set your preferred waveform at startup
+- **⌘ Mac Command Key Support**: Auto-detects and maps Mac Command keys (⌘) to gentle bass notes
+- **🎛️ Smart Rate Limiting**: Prevents high-pitched sounds from rapid key presses (perfect for vim users!)
 
 ## Quick Start
 
@@ -43,6 +45,37 @@ cargo run cyberpunk    # Blade Runner 2049 style analog synth
 ```
 
 This starts the global keyboard listener. Every key you press will play a musical note in real-time.
+
+### 🆕 New Features
+
+#### Mac Command Key Support ⌘
+- Mac Command keys are automatically detected and mapped to subtle bass notes
+- Works alongside other modifier keys without disrupting your workflow
+- Compatible with Windows keys and Meta keys on other platforms
+
+#### Smart Rate Limiting for Vim Users 🎛️
+- **Problem**: Rapid key presses (like `jjjj` for vim navigation) create annoying high-pitched sounds
+- **Solution**: Progressive volume reduction for rapid same-key presses
+  - 1st press: 100% volume
+  - 2nd rapid press: 70% volume  
+  - 3rd rapid press: 40% volume
+  - 4th-5th rapid press: 20% volume
+  - 6+ rapid presses: Silent until rate slows down
+- **Recovery**: Returns to normal volume after 1 second of no activity
+- **Per-key**: Each key has independent rate limiting
+
+#### Hold Duration Reduction 🕒
+- **Problem**: Holding down keys (like holding 'j' to scroll) also creates repetitive sounds
+- **Solution**: Progressive volume reduction for long key holds
+  - 0-0.5s: Normal volume (100%)
+  - 0.5-1s: Slightly reduced (80%)
+  - 1-2s: More reduced (60%)
+  - 2-3s: Significant reduction (40%)
+  - 3-5s: Very quiet (20%)
+  - 5s+: Almost silent (10%)
+- **Status updates**: Shows hold duration every 2 seconds for long-held keys
+
+
 
 ### Real-time Waveform Switching
 
@@ -190,6 +223,17 @@ Each waveform has carefully tuned Attack/Decay/Sustain/Release parameters:
 - **Programming Flow**: Let the music enhance your coding rhythm
 - **Focus Mode**: Common keys are intentionally quiet to not break concentration
 - **Waveform Switching**: Press F8-F12 to change sound in real-time
+
+### 🆕 Enhanced Vim Experience
+- **Normal navigation**: `j`, `k`, `h`, `l` play pleasant notes
+- **Rapid navigation**: `jjjj` automatically gets quieter to prevent ear fatigue
+- **Mixed movement**: Each key tracked independently for optimal experience
+- **No configuration needed**: Rate limiting works automatically
+
+### Command Key Usage
+- **Mac**: Command key (⌘) plays subtle D2 bass note
+- **Windows**: Windows key works similarly  
+- **Detection**: Command keys are automatically detected when pressed
 
 ## Contributing
 

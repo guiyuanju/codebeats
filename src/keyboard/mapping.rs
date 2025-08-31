@@ -4,8 +4,69 @@
 //! - Mapping keyboard keys to musical notes
 //! - Note frequency calculation using standard tuning
 //! - Programming-optimized key assignments for pleasant coding experience
+//! - Rate limiting to prevent high-pitched sounds from rapid key presses
 
 use device_query::Keycode;
+use std::collections::HashMap;
+use std::time::{Duration, Instant};
+
+/// Rate limiter for preventing annoying high-pitched sounds from rapid key presses
+pub struct KeyRateLimiter {
+    last_press_times: HashMap<Keycode, Instant>,
+    press_counts: HashMap<Keycode, u32>,
+}
+
+impl KeyRateLimiter {
+    pub fn new() -> Self {
+        Self {
+            last_press_times: HashMap::new(),
+            press_counts: HashMap::new(),
+        }
+    }
+
+    /// Check if a key press should be allowed (returns adjusted volume multiplier)
+    pub fn check_key_press(&mut self, keycode: Keycode) -> f32 {
+        let now = Instant::now();
+        let min_interval = Duration::from_millis(150); // Minimum 150ms between same key presses
+        let reset_interval = Duration::from_millis(1000); // Reset counter after 1 second of no presses
+
+        // Get current press count
+        let press_count = *self.press_counts.get(&keycode).unwrap_or(&0);
+
+        // Check if we should throttle based on recent presses
+        if let Some(last_press) = self.last_press_times.get(&keycode) {
+            let time_since_last = now.duration_since(*last_press);
+
+            if time_since_last < min_interval {
+                // Too frequent - reduce volume based on press count
+                let new_count = press_count + 1;
+                let volume_reduction = match new_count {
+                    1 => 1.0,     // First press normal
+                    2 => 0.7,     // Second press slightly reduced
+                    3 => 0.4,     // Third press half volume
+                    4..=5 => 0.2, // Very quiet
+                    _ => 0.0,     // Silent after too many rapid presses
+                };
+
+                self.press_counts.insert(keycode, new_count);
+                self.last_press_times.insert(keycode, now);
+
+                return volume_reduction;
+            } else if time_since_last > reset_interval {
+                // Reset counter after long pause
+                self.press_counts.insert(keycode, 1);
+                self.last_press_times.insert(keycode, now);
+                return 1.0;
+            }
+        }
+
+        // First press or normal interval
+        self.press_counts.insert(keycode, 1);
+        self.last_press_times.insert(keycode, now);
+
+        1.0 // Normal volume
+    }
+}
 
 /// Calculate frequency from musical note string (e.g., "C4", "F#5", "Bb3")
 pub fn get_frequency_from_note(note: &str) -> Option<f32> {
@@ -53,6 +114,7 @@ pub fn get_frequency_from_note(note: &str) -> Option<f32> {
 /// - Map frequent programming keys to pleasant pentatonic scales
 /// - Use lower volumes for common keys to avoid disrupting concentration
 /// - Create harmonic relationships between related keys
+/// - Include Mac Command keys (Meta keys) if available
 pub fn get_frequency_and_volume(keycode: Keycode) -> Option<(f32, f32, &'static str)> {
     let (note, volume) = match keycode {
         // Most common programming letters - pleasant pentatonic scale
@@ -152,6 +214,19 @@ pub fn get_frequency_and_volume(keycode: Keycode) -> Option<(f32, f32, &'static 
         Keycode::F11 => ("F7", 0.2),
         Keycode::F12 => ("G7", 0.2),
 
+        // Try to detect Mac Command keys (these may or may not be available in device_query)
+        // Using a broader pattern match to catch potential Meta/Command key variants
+        keycode
+            if format!("{:?}", keycode).contains("Meta")
+                || format!("{:?}", keycode).contains("Cmd")
+                || format!("{:?}", keycode).contains("Command")
+                || format!("{:?}", keycode).contains("LWin")
+                || format!("{:?}", keycode).contains("RWin") =>
+        {
+            // Map Command keys to gentle bass notes like other modifiers
+            ("D2", 0.05)
+        }
+
         _ => return None,
     };
 
@@ -184,6 +259,39 @@ mod tests {
         let cs4_freq = get_frequency_from_note("C#4").unwrap();
         let db4_freq = get_frequency_from_note("DB4").unwrap();
         assert!((cs4_freq - db4_freq).abs() < 0.01);
+    }
+
+    #[test]
+    fn test_rate_limiter() {
+        let mut limiter = KeyRateLimiter::new();
+
+        // First press should be full volume
+        let first_volume = limiter.check_key_press(Keycode::J);
+        println!("First press volume: {}", first_volume);
+        assert_eq!(first_volume, 1.0);
+
+        // Immediate second press should reduce volume (simulating rapid press)
+        let second_volume = limiter.check_key_press(Keycode::J);
+        println!("Second press volume: {}", second_volume);
+        assert!(
+            second_volume < 1.0,
+            "Expected reduced volume but got {}",
+            second_volume
+        );
+
+        // Third rapid press should reduce even more
+        let third_volume = limiter.check_key_press(Keycode::J);
+        println!("Third press volume: {}", third_volume);
+        assert!(
+            third_volume <= second_volume,
+            "Expected further reduction but got {}",
+            third_volume
+        );
+
+        // Different keys shouldn't interfere
+        let different_key_volume = limiter.check_key_press(Keycode::K);
+        println!("Different key volume: {}", different_key_volume);
+        assert_eq!(different_key_volume, 1.0);
     }
 
     #[test]

@@ -5,6 +5,7 @@
 //! - Polyphonic note management
 //! - Real-time audio synthesis
 
+use crate::keyboard::mapping::KeyRateLimiter;
 use crate::waveform::types::Waveform;
 use device_query::Keycode;
 use std::collections::HashMap;
@@ -78,6 +79,9 @@ pub struct NoteState {
     pub envelope_time: f32,
     pub adsr: ADSRParams,
     pub waveform: Waveform,
+    pub start_time: std::time::Instant,
+    pub current_hold_volume: f32,
+    pub target_hold_volume: f32,
 }
 
 impl NoteState {
@@ -91,6 +95,9 @@ impl NoteState {
             envelope_time: 0.0,
             adsr,
             waveform,
+            start_time: std::time::Instant::now(),
+            current_hold_volume: 1.0,
+            target_hold_volume: 1.0,
         }
     }
 
@@ -141,8 +148,12 @@ impl NoteState {
             .waveform
             .generate_sample(self.phase, self.frequency, sample_rate);
 
-        // Apply envelope and base volume
-        let final_sample = wave_sample * self.base_volume * envelope_multiplier;
+        // Update smooth hold duration volume
+        self.update_smooth_hold_volume(sample_rate);
+
+        // Apply envelope, base volume, and smooth hold duration reduction
+        let final_sample =
+            wave_sample * self.base_volume * envelope_multiplier * self.current_hold_volume;
 
         // Update phase
         self.phase += self.frequency / sample_rate;
@@ -151,6 +162,46 @@ impl NoteState {
         }
 
         final_sample
+    }
+
+    /// Update smooth hold duration volume to prevent audio crackling
+    fn update_smooth_hold_volume(&mut self, sample_rate: f32) {
+        let hold_duration = self.start_time.elapsed().as_secs_f32();
+
+        // Calculate target volume based on hold duration
+        self.target_hold_volume = match hold_duration {
+            t if t < 0.5 => 1.0, // Normal volume for first 0.5 seconds
+            t if t < 1.0 => 0.8, // Slight reduction after 0.5s
+            t if t < 2.0 => 0.6, // More reduction after 1s
+            t if t < 3.0 => 0.4, // Significant reduction after 2s
+            t if t < 5.0 => 0.2, // Very quiet after 3s
+            _ => 0.1,            // Almost silent after 5s
+        };
+
+        // Smoothly interpolate to target volume to prevent crackling
+        let volume_change_rate = 0.5; // Volume units per second (slower for smoother transitions)
+        let max_change_per_sample = volume_change_rate / sample_rate;
+
+        if self.current_hold_volume < self.target_hold_volume {
+            self.current_hold_volume =
+                (self.current_hold_volume + max_change_per_sample).min(self.target_hold_volume);
+        } else if self.current_hold_volume > self.target_hold_volume {
+            self.current_hold_volume =
+                (self.current_hold_volume - max_change_per_sample).max(self.target_hold_volume);
+        }
+    }
+
+    /// Calculate volume reduction based on how long key has been held (for testing)
+    #[cfg(test)]
+    fn calculate_hold_volume_reduction(&self, hold_duration: f32) -> f32 {
+        match hold_duration {
+            t if t < 0.5 => 1.0, // Normal volume for first 0.5 seconds
+            t if t < 1.0 => 0.8, // Slight reduction after 0.5s
+            t if t < 2.0 => 0.6, // More reduction after 1s
+            t if t < 3.0 => 0.4, // Significant reduction after 2s
+            t if t < 5.0 => 0.2, // Very quiet after 3s
+            _ => 0.1,            // Almost silent after 5s
+        }
     }
 
     /// Start release phase
@@ -169,10 +220,11 @@ impl NoteState {
 
 /// Main audio state manager
 pub struct AudioState {
-    active_notes: HashMap<Keycode, NoteState>,
+    pub active_notes: HashMap<Keycode, NoteState>,
     sample_rate: f32,
     current_waveform: Waveform,
     default_adsr: ADSRParams,
+    rate_limiter: KeyRateLimiter,
 }
 
 impl AudioState {
@@ -190,18 +242,32 @@ impl AudioState {
             sample_rate,
             current_waveform: waveform,
             default_adsr,
+            rate_limiter: KeyRateLimiter::new(),
         }
     }
 
-    /// Start a new note
-    pub fn start_note(&mut self, keycode: Keycode, frequency: f32, volume: f32) {
+    /// Start a new note with rate limiting
+    /// Returns the actual adjusted volume used for the note (for display purposes)
+    pub fn start_note(&mut self, keycode: Keycode, frequency: f32, volume: f32) -> f32 {
+        // Apply rate limiting to prevent high-pitched sounds from rapid key presses
+        let volume_multiplier = self.rate_limiter.check_key_press(keycode);
+
+        // Skip playing if volume is effectively zero (heavily rate limited)
+        if volume_multiplier <= 0.01 {
+            return 0.0;
+        }
+
+        let adjusted_volume = volume * volume_multiplier;
+
         let note_state = NoteState::new(
             frequency,
-            volume,
+            adjusted_volume,
             self.default_adsr.clone(),
             self.current_waveform,
         );
         self.active_notes.insert(keycode, note_state);
+
+        adjusted_volume
     }
 
     /// Stop a note (begin release phase)
@@ -241,6 +307,13 @@ impl AudioState {
         // Global volume adjustment
         sample * 0.3
     }
+
+    /// Get hold duration info for a key (for display purposes)
+    pub fn get_hold_duration(&self, keycode: Keycode) -> Option<f32> {
+        self.active_notes
+            .get(&keycode)
+            .map(|note| note.start_time.elapsed().as_secs_f32())
+    }
 }
 
 #[cfg(test)]
@@ -275,5 +348,34 @@ mod tests {
         state.stop_note(Keycode::A);
         // Note should still be active (in release phase)
         assert_eq!(state.active_notes.len(), 1);
+    }
+
+    #[test]
+    fn test_hold_duration_volume_reduction() {
+        use crate::waveform::Waveform;
+
+        let mut state = AudioState::new(44100.0, Waveform::Electronic);
+
+        // Start a note
+        state.start_note(Keycode::J, 440.0, 0.5);
+
+        // Get the note to test hold duration calculation
+        let note = state.active_notes.get(&Keycode::J).unwrap();
+
+        // Test initial volume (should be 1.0 for first 0.5s)
+        let initial_reduction = note.calculate_hold_volume_reduction(0.1);
+        assert_eq!(initial_reduction, 1.0);
+
+        // Test volume reduction after 1 second
+        let one_sec_reduction = note.calculate_hold_volume_reduction(1.0);
+        assert_eq!(one_sec_reduction, 0.6);
+
+        // Test volume reduction after 3 seconds
+        let three_sec_reduction = note.calculate_hold_volume_reduction(3.0);
+        assert_eq!(three_sec_reduction, 0.2);
+
+        // Test volume reduction after 6 seconds
+        let six_sec_reduction = note.calculate_hold_volume_reduction(6.0);
+        assert_eq!(six_sec_reduction, 0.1);
     }
 }

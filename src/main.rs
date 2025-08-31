@@ -22,7 +22,7 @@ use keyboard::get_frequency_and_volume;
 use std::env;
 use std::sync::{Arc, Mutex};
 use std::thread;
-use std::time::Duration;
+use std::time::{Duration, Instant};
 use waveform::Waveform;
 
 /// Application configuration and setup
@@ -106,7 +106,7 @@ impl AudioSystem {
 struct UIManager;
 
 impl UIManager {
-    /// Display welcome message and instructions
+    /// Show welcome message and instructions
     fn show_welcome(waveform: Waveform) {
         println!(
             "🎵 CodeBeats - Programming Music Simulator ({:?} Mode)",
@@ -115,8 +115,17 @@ impl UIManager {
         println!();
 
         Self::show_macos_permissions_info();
+        Self::show_command_key_info();
         Self::show_keyboard_layout();
         Self::show_usage_info();
+    }
+
+    /// Show Mac Command key detection info
+    fn show_command_key_info() {
+        println!("🔍 Mac Command key support: Auto-detected when pressed");
+        println!("⚡ Rate limiting enabled: Rapid key presses (like vim 'jjjj') will be quieted");
+        println!("📝 Volume shown in terminal reflects actual rate-limited volume");
+        println!();
     }
 
     /// Show macOS accessibility permissions information
@@ -187,8 +196,8 @@ impl UIManager {
 }
 
 /// Keyboard input processor
-struct KeyboardProcessor {
-    device_state: DeviceState,
+pub struct KeyboardProcessor {
+    pub device_state: DeviceState,
     prev_keys: Vec<Keycode>,
 }
 
@@ -254,11 +263,35 @@ impl PianoApp {
         // Handle musical keys
         if let Some((frequency, volume, note)) = get_frequency_and_volume(key) {
             let mut audio_state = self.audio_system.state().lock().unwrap();
-            audio_state.start_note(key, frequency, volume);
-            println!(
-                "Playing: {:?} -> {} ({:.2} Hz, vol: {:.2})",
-                key, note, frequency, volume
-            );
+            let actual_volume = audio_state.start_note(key, frequency, volume);
+
+            if actual_volume > 0.0 {
+                if actual_volume < volume {
+                    println!(
+                        "Playing: {:?} -> {} ({:.2} Hz, vol: {:.2}) [Rate Limited]",
+                        key, note, frequency, actual_volume
+                    );
+                } else {
+                    println!(
+                        "Playing: {:?} -> {} ({:.2} Hz, vol: {:.2})",
+                        key, note, frequency, actual_volume
+                    );
+                }
+            } else {
+                println!("Silenced: {:?} -> {} (too rapid)", key, note);
+            }
+        } else {
+            // Check if this might be a Command key we want to detect
+            let key_debug = format!("{:?}", key);
+            if key_debug.contains("Meta")
+                || key_debug.contains("Cmd")
+                || key_debug.contains("Command")
+                || key_debug.contains("Win")
+                || key_debug.contains("Super")
+            {
+                println!("🔍 Detected potential Command key: {:?}", key);
+                println!("   (This key is not currently mapped to a musical note)");
+            }
         }
     }
 
@@ -273,6 +306,8 @@ impl PianoApp {
 
     /// Main application loop
     fn run(&mut self) -> Result<(), Box<dyn std::error::Error>> {
+        let mut last_hold_check = Instant::now();
+
         loop {
             let (pressed_keys, released_keys) = self.keyboard_processor.process_input();
 
@@ -286,8 +321,37 @@ impl PianoApp {
                 self.handle_key_release(key);
             }
 
+            // Check for long-held keys every second
+            if last_hold_check.elapsed() > Duration::from_secs(1) {
+                self.check_long_held_keys();
+                last_hold_check = Instant::now();
+            }
+
             // Small delay to prevent excessive CPU usage
             thread::sleep(Duration::from_millis(10));
+        }
+    }
+
+    /// Check and report on keys that have been held for a long time
+    fn check_long_held_keys(&self) {
+        let current_keys: Vec<Keycode> = self.keyboard_processor.device_state.get_keys();
+        let audio_state = self.audio_system.state().lock().unwrap();
+
+        for key in current_keys {
+            if let Some(hold_duration) = audio_state.get_hold_duration(key) {
+                if hold_duration > 2.0 && hold_duration % 2.0 < 1.0 {
+                    // Report every 2 seconds after the initial 2 seconds
+                    if let Some((_, _, note)) = get_frequency_and_volume(key) {
+                        // Get the actual smooth volume from the note state
+                        if let Some(note_state) = audio_state.active_notes.get(&key) {
+                            println!(
+                                "Held: {:?} -> {} ({:.1}s, vol: {:.2})",
+                                key, note, hold_duration, note_state.current_hold_volume
+                            );
+                        }
+                    }
+                }
+            }
         }
     }
 }
