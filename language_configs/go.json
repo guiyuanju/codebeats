@@ -1,6 +1,7 @@
 {
   "version": "1.0",
-  "description": "Go programming language optimized keyboard mapping - G major pentatonic scale for simple, efficient coding",
+  "description": "Go programming language optimized keyboard mapping - G major pentatonic scale for clean, simple programming",
+  "waveform": "square",
   "mappings": {
     "G": {
       "note": "G4",

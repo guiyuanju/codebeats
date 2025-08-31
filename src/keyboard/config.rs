@@ -3,6 +3,7 @@
 //! This module handles loading and managing customizable keyboard mappings
 //! from configuration files, allowing users to define their own key-to-sound mappings.
 
+use crate::waveform::Waveform;
 use device_query::Keycode;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
@@ -27,6 +28,9 @@ pub struct KeyboardConfig {
     pub version: String,
     /// Description of this configuration
     pub description: String,
+    /// Default waveform for this configuration
+    #[serde(default)]
+    pub waveform: Option<String>,
     /// Key mappings - map from key name to sound configuration
     pub mappings: HashMap<String, KeyMapping>,
 }
@@ -694,9 +698,16 @@ impl KeyboardConfig {
 
         Self {
             version: "1.0".to_string(),
-            description: "Programming-optimized keyboard mapping with pentatonic scale".to_string(),
+            description: "Programming-optimized keyboard mapping with frequency analysis"
+                .to_string(),
+            waveform: None, // Use system default
             mappings,
         }
+    }
+
+    /// Get the waveform for this configuration, falling back to default if none specified
+    pub fn get_waveform(&self) -> Option<Waveform> {
+        self.waveform.as_ref().and_then(|w| Waveform::from_str(w))
     }
 
     /// Load configuration from a JSON file
@@ -850,7 +861,8 @@ impl KeyboardConfig {
 
         Self {
             version: "1.0".to_string(),
-            description: "Traditional piano keyboard layout".to_string(),
+            description: "Standard piano layout keyboard mapping".to_string(),
+            waveform: None, // Use system default
             mappings,
         }
     }
@@ -880,7 +892,7 @@ mod tests {
     #[test]
     fn test_piano_layout() {
         let config = KeyboardConfig::piano_layout();
-        assert_eq!(config.description, "Traditional piano keyboard layout");
+        assert_eq!(config.description, "Standard piano layout keyboard mapping");
 
         // Test piano layout has white keys
         assert!(config.get_mapping(Keycode::Q).is_some());

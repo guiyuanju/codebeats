@@ -1,6 +1,7 @@
 {
   "version": "1.0",
   "description": "C programming language optimized keyboard mapping - A natural minor scale for serious systems programming",
+  "waveform": "saw",
   "mappings": {
     "I": {
       "note": "A4",

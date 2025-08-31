@@ -56,7 +56,6 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    GenerateConfig,
     CompareScales,
 }
 
@@ -69,18 +68,28 @@ struct AppConfig {
 
 impl AppConfig {
     fn from_cli(cli: &Cli) -> Result<Self, String> {
-        let initial_waveform = if let Some(waveform_str) = &cli.waveform {
-            Waveform::from_str(waveform_str).unwrap_or_else(|| {
-                println!("Using default: electronic");
-                Waveform::Electronic
-            })
-        } else {
-            Waveform::Electronic
-        };
-
         let master_volume = cli.volume.unwrap_or(1.0).clamp(0.0, 1.0);
 
         let keyboard_config = Self::load_keyboard_config(cli);
+
+        // Determine waveform: CLI arg > language config > default
+        let initial_waveform = if let Some(waveform_str) = &cli.waveform {
+            // CLI argument takes highest priority
+            Waveform::from_str(waveform_str).unwrap_or_else(|| {
+                println!(
+                    "Invalid waveform '{}', using default: electronic",
+                    waveform_str
+                );
+                Waveform::Electronic
+            })
+        } else if let Some(config_waveform) = keyboard_config.get_waveform() {
+            // Use waveform from language config
+            println!("Using waveform from config: {:?}", config_waveform);
+            config_waveform
+        } else {
+            // Default fallback
+            Waveform::Electronic
+        };
 
         Ok(Self {
             initial_waveform,
@@ -109,13 +118,6 @@ impl AppConfig {
 
         println!("📝 Using default configuration");
         KeyboardConfig::default()
-    }
-
-    fn generate_config_file() -> Result<(), Box<dyn std::error::Error>> {
-        let config = KeyboardConfig::default();
-        config.save_to_file("keyboard_config.json")?;
-        println!("✅ Generated keyboard_config.json");
-        Ok(())
     }
 }
 
@@ -315,9 +317,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     if let Some(command) = &cli.command {
         match command {
-            Commands::GenerateConfig => {
-                return AppConfig::generate_config_file();
-            }
             Commands::CompareScales => {
                 return scale_comparison::demonstrate_scale_system();
             }
@@ -337,7 +336,8 @@ mod tests {
 
     #[test]
     fn test_app_config_default() {
-        let config = AppConfig::from_args().unwrap();
+        let cli = Cli::parse_from(&["codebeats"]);
+        let config = AppConfig::from_cli(&cli).unwrap();
         assert_eq!(config.initial_waveform, Waveform::Electronic);
     }
 

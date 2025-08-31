@@ -1,6 +1,7 @@
 {
   "version": "1.0",
   "description": "JavaScript programming language optimized keyboard mapping - D Mixolydian mode for dynamic web development (comfortable frequency range)",
+  "waveform": "cyberpunk",
   "mappings": {
     "F": {
       "note": "D4",

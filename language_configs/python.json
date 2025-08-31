@@ -1,6 +1,7 @@
 {
   "version": "1.0",
   "description": "Python programming language optimized keyboard mapping - F major scale for friendly, readable programming",
+  "waveform": "natural",
   "mappings": {
     "D": {
       "note": "F4",

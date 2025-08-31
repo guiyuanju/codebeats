@@ -288,8 +288,8 @@ impl AudioState {
             self.active_notes.remove(&keycode);
         }
 
-        // Global volume adjustment
-        sample * 0.3
+        // Global volume adjustment - normalized for comfortable listening
+        sample
     }
 }
 

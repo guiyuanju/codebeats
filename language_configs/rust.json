@@ -1,6 +1,7 @@
 {
   "version": "1.0",
   "description": "Rust programming language optimized keyboard mapping - Systems programming harmony",
+  "waveform": "electronic",
   "mappings": {
     "R": {
       "note": "C4",
