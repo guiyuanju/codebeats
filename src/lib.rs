@@ -19,7 +19,7 @@
 //! use device_query::Keycode;
 //!
 //! // Create audio state with electronic waveform
-//! let mut audio_state = AudioState::new(44100.0, Waveform::Electronic);
+//! let mut audio_state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
 //!
 //! // Waveform is set at initialization and cannot be changed at runtime
 //!
@@ -52,7 +52,7 @@ pub mod waveform;
 
 // Re-export main types for convenience
 pub use audio::AudioState;
-pub use keyboard::get_frequency_and_volume;
+
 pub use waveform::Waveform;
 
 /// Library version
@@ -80,7 +80,7 @@ mod tests {
 
     #[test]
     fn test_audio_state_creation() {
-        let _state = AudioState::new(44100.0, Waveform::Electronic);
+        let _state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
         // AudioState should be created successfully
         assert!(true);
     }

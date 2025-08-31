@@ -2,15 +2,285 @@
   "version": "1.0",
   "description": "Programming-optimized keyboard mapping with pentatonic scale",
   "mappings": {
+    "Delete": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Common key - quiet"
+    },
+    "RightBracket": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "Minus": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "I": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "Key3": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Key6": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Enter": {
+      "note": "C3",
+      "volume": 0.1,
+      "description": "Common key - quiet"
+    },
+    "F8": {
+      "note": "C7",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "Space": {
+      "note": "C3",
+      "volume": 0.1,
+      "description": "Common key - quiet"
+    },
+    "R": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "E": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "K": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": null
+    },
+    "Comma": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "F2": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "Right": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation key"
+    },
+    "BackSlash": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "Key7": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "H": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "Q": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": null
+    },
+    "Key8": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "P": {
+      "note": "D3",
+      "volume": 0.2,
+      "description": null
+    },
+    "Semicolon": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "F7": {
+      "note": "B6",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F11": {
+      "note": "F7",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "M": {
+      "note": "B3",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "Key1": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "LeftBracket": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "F5": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "Dot": {
+      "note": "D4",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "LAlt": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "X": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": null
+    },
+    "Key2": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "O": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "G": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": null
+    },
+    "N": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "F": {
+      "note": "C3",
+      "volume": 0.2,
+      "description": null
+    },
+    "Apostrophe": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "LControl": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "Z": {
+      "note": "G6",
+      "volume": 0.2,
+      "description": null
+    },
+    "Key9": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "W": {
+      "note": "F3",
+      "volume": 0.2,
+      "description": null
+    },
+    "U": {
+      "note": "A3",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "CapsLock": {
+      "note": "B1",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "Home": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation key"
+    },
     "V": {
       "note": "G3",
       "volume": 0.2,
       "description": null
     },
+    "Key5": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Number key"
+    },
+    "Slash": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
+    "Equal": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Programming symbol"
+    },
     "A": {
       "note": "C4",
       "volume": 0.3,
       "description": "Most common letter"
+    },
+    "RAlt": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "J": {
+      "note": "D6",
+      "volume": 0.2,
+      "description": null
+    },
+    "F10": {
+      "note": "E7",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "PageDown": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Navigation key"
+    },
+    "RControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "Left": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation key"
+    },
+    "PageUp": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Navigation key"
     },
     "D": {
       "note": "F5",
@@ -22,238 +292,8 @@
       "volume": 0.25,
       "description": "Number key"
     },
-    "Key6": {
-      "note": "C5",
-      "volume": 0.25,
-      "description": "Number key"
-    },
-    "Escape": {
-      "note": "C2",
-      "volume": 0.05,
-      "description": "Modifier - very quiet"
-    },
-    "J": {
-      "note": "D6",
-      "volume": 0.2,
-      "description": null
-    },
-    "F3": {
-      "note": "E6",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "F7": {
-      "note": "B6",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "F10": {
-      "note": "E7",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "Key5": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Number key"
-    },
-    "PageUp": {
-      "note": "E3",
-      "volume": 0.15,
-      "description": "Navigation key"
-    },
-    "B": {
-      "note": "E3",
-      "volume": 0.2,
-      "description": null
-    },
-    "Apostrophe": {
-      "note": "C5",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "F11": {
-      "note": "F7",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "Dot": {
-      "note": "D4",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "Delete": {
-      "note": "A2",
-      "volume": 0.1,
-      "description": "Common key - quiet"
-    },
-    "RShift": {
-      "note": "E2",
-      "volume": 0.05,
-      "description": "Modifier - very quiet"
-    },
-    "Key4": {
-      "note": "D4",
-      "volume": 0.25,
-      "description": "Number key"
-    },
-    "Left": {
-      "note": "C3",
-      "volume": 0.15,
-      "description": "Navigation key"
-    },
-    "LAlt": {
-      "note": "D2",
-      "volume": 0.05,
-      "description": "Modifier - very quiet"
-    },
-    "BackSlash": {
-      "note": "B4",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "F8": {
-      "note": "C7",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "Enter": {
-      "note": "C3",
-      "volume": 0.1,
-      "description": "Common key - quiet"
-    },
-    "Backspace": {
-      "note": "G2",
-      "volume": 0.1,
-      "description": "Common key - quiet"
-    },
-    "Key7": {
-      "note": "E5",
-      "volume": 0.25,
-      "description": "Number key"
-    },
-    "F": {
-      "note": "C3",
-      "volume": 0.2,
-      "description": null
-    },
-    "RAlt": {
-      "note": "F2",
-      "volume": 0.05,
-      "description": "Modifier - very quiet"
-    },
-    "LControl": {
-      "note": "G2",
-      "volume": 0.05,
-      "description": "Modifier - very quiet"
-    },
-    "Comma": {
-      "note": "A4",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "I": {
-      "note": "A4",
-      "volume": 0.3,
-      "description": "Very common letter"
-    },
-    "C": {
-      "note": "B4",
-      "volume": 0.25,
-      "description": "Common letter"
-    },
-    "Semicolon": {
-      "note": "C4",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "Home": {
-      "note": "C3",
-      "volume": 0.15,
-      "description": "Navigation key"
-    },
-    "RControl": {
-      "note": "A2",
-      "volume": 0.05,
-      "description": "Modifier - very quiet"
-    },
-    "K": {
-      "note": "A5",
-      "volume": 0.2,
-      "description": null
-    },
-    "Key3": {
-      "note": "A4",
-      "volume": 0.25,
-      "description": "Number key"
-    },
-    "S": {
-      "note": "G5",
-      "volume": 0.3,
-      "description": "Very common letter"
-    },
-    "Key2": {
-      "note": "G4",
-      "volume": 0.25,
-      "description": "Number key"
-    },
-    "CapsLock": {
-      "note": "B1",
-      "volume": 0.05,
-      "description": "Modifier - very quiet"
-    },
-    "PageDown": {
-      "note": "A3",
-      "volume": 0.15,
-      "description": "Navigation key"
-    },
-    "U": {
-      "note": "A3",
-      "volume": 0.25,
-      "description": "Common letter"
-    },
-    "F12": {
-      "note": "G7",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "Tab": {
-      "note": "F2",
-      "volume": 0.1,
-      "description": "Common key - quiet"
-    },
-    "F4": {
-      "note": "F6",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "F5": {
-      "note": "G6",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "L": {
-      "note": "F4",
-      "volume": 0.25,
-      "description": "Common letter"
-    },
-    "Down": {
-      "note": "D3",
-      "volume": 0.15,
-      "description": "Navigation key"
-    },
-    "H": {
-      "note": "C5",
-      "volume": 0.3,
-      "description": "Very common letter"
-    },
-    "Key8": {
-      "note": "G5",
-      "volume": 0.25,
-      "description": "Number key"
-    },
-    "Q": {
-      "note": "E6",
+    "Y": {
+      "note": "B5",
       "volume": 0.2,
       "description": null
     },
@@ -262,140 +302,100 @@
       "volume": 0.15,
       "description": "Navigation key"
     },
+    "F6": {
+      "note": "A6",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "Down": {
+      "note": "D3",
+      "volume": 0.15,
+      "description": "Navigation key"
+    },
+    "F12": {
+      "note": "G7",
+      "volume": 0.2,
+      "description": "Function key"
+    },
     "F9": {
       "note": "D7",
       "volume": 0.2,
       "description": "Function key"
     },
-    "N": {
-      "note": "E5",
-      "volume": 0.3,
-      "description": "Very common letter"
-    },
-    "W": {
-      "note": "F3",
-      "volume": 0.2,
-      "description": null
-    },
-    "LeftBracket": {
-      "note": "E4",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "Y": {
-      "note": "B5",
-      "volume": 0.2,
-      "description": null
-    },
-    "F1": {
-      "note": "C6",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "X": {
-      "note": "F6",
-      "volume": 0.2,
-      "description": null
-    },
-    "M": {
-      "note": "B3",
-      "volume": 0.25,
-      "description": "Common letter"
-    },
-    "O": {
-      "note": "D4",
-      "volume": 0.3,
-      "description": "Very common letter"
-    },
-    "Slash": {
-      "note": "F4",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "Up": {
-      "note": "E3",
-      "volume": 0.15,
-      "description": "Navigation key"
-    },
-    "P": {
-      "note": "D3",
-      "volume": 0.2,
-      "description": null
-    },
-    "Minus": {
-      "note": "E5",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "Space": {
-      "note": "C3",
-      "volume": 0.1,
-      "description": "Common key - quiet"
-    },
-    "E": {
-      "note": "E4",
-      "volume": 0.3,
-      "description": "Very common letter"
-    },
-    "Key1": {
-      "note": "E4",
-      "volume": 0.25,
-      "description": "Number key"
-    },
-    "Equal": {
-      "note": "D5",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "R": {
-      "note": "D5",
-      "volume": 0.3,
-      "description": "Very common letter"
-    },
-    "LShift": {
-      "note": "C2",
+    "RShift": {
+      "note": "E2",
       "volume": 0.05,
       "description": "Modifier - very quiet"
     },
-    "G": {
-      "note": "C6",
+    "L": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "B": {
+      "note": "E3",
       "volume": 0.2,
       "description": null
     },
-    "Z": {
-      "note": "G6",
-      "volume": 0.2,
-      "description": null
+    "Backspace": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Common key - quiet"
     },
     "T": {
       "note": "G4",
       "volume": 0.3,
       "description": "Very common letter"
     },
-    "Key9": {
-      "note": "A5",
+    "Tab": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Common key - quiet"
+    },
+    "F1": {
+      "note": "C6",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "F4": {
+      "note": "F6",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "S": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Very common letter"
+    },
+    "F3": {
+      "note": "E6",
+      "volume": 0.2,
+      "description": "Function key"
+    },
+    "Key4": {
+      "note": "D4",
       "volume": 0.25,
       "description": "Number key"
     },
-    "Right": {
-      "note": "G3",
+    "Escape": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "C": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Common letter"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - very quiet"
+    },
+    "Up": {
+      "note": "E3",
       "volume": 0.15,
       "description": "Navigation key"
-    },
-    "F2": {
-      "note": "D6",
-      "volume": 0.2,
-      "description": "Function key"
-    },
-    "RightBracket": {
-      "note": "G4",
-      "volume": 0.2,
-      "description": "Programming symbol"
-    },
-    "F6": {
-      "note": "A6",
-      "volume": 0.2,
-      "description": "Function key"
     }
   }
 }

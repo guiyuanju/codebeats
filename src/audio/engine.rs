@@ -1,16 +1,10 @@
 //! Audio engine with ADSR envelope system and state management
-//!
-//! This module provides the core audio generation capabilities including:
-//! - ADSR envelope processing
-//! - Polyphonic note management
-//! - Real-time audio synthesis
 
 use crate::keyboard::mapping::KeyRateLimiter;
 use crate::waveform::types::Waveform;
 use device_query::Keycode;
 use std::collections::HashMap;
 
-/// ADSR envelope states
 #[derive(Clone, Debug)]
 pub enum EnvelopeState {
     Attack,
@@ -19,17 +13,15 @@ pub enum EnvelopeState {
     Release,
 }
 
-/// ADSR parameters configuration
 #[derive(Clone, Debug)]
 pub struct ADSRParams {
-    pub attack_time: f32,   // seconds
-    pub decay_time: f32,    // seconds
-    pub sustain_level: f32, // 0.0 to 1.0
-    pub release_time: f32,  // seconds
+    pub attack_time: f32,
+    pub decay_time: f32,
+    pub sustain_level: f32,
+    pub release_time: f32,
 }
 
 impl ADSRParams {
-    /// Create natural piano ADSR
     pub fn natural() -> Self {
         Self {
             attack_time: 0.02,
@@ -39,7 +31,6 @@ impl ADSRParams {
         }
     }
 
-    /// Create electronic synth ADSR
     pub fn electronic() -> Self {
         Self {
             attack_time: 0.01,
@@ -53,19 +44,18 @@ impl ADSRParams {
     pub fn punchy() -> Self {
         Self {
             attack_time: 0.005,
-            decay_time: 0.08,
-            sustain_level: 0.75,
-            release_time: 0.12,
+            decay_time: 0.02,
+            sustain_level: 0.6,
+            release_time: 0.08,
         }
     }
 
-    /// Create cyberpunk atmospheric ADSR
     pub fn cyberpunk() -> Self {
         Self {
-            attack_time: 0.08,
-            decay_time: 0.3,
-            sustain_level: 0.6,
-            release_time: 0.4,
+            attack_time: 0.03,
+            decay_time: 0.15,
+            sustain_level: 0.65,
+            release_time: 0.25,
         }
     }
 }
@@ -85,15 +75,14 @@ pub struct NoteState {
 }
 
 impl NoteState {
-    /// Create a new note state
-    pub fn new(frequency: f32, volume: f32, adsr: ADSRParams, waveform: Waveform) -> Self {
+    pub fn new(frequency: f32, volume: f32, adsr_params: ADSRParams, waveform: Waveform) -> Self {
         Self {
             frequency,
             base_volume: volume,
             phase: 0.0,
             envelope_state: EnvelopeState::Attack,
             envelope_time: 0.0,
-            adsr,
+            adsr: adsr_params,
             waveform,
             start_time: std::time::Instant::now(),
             current_hold_volume: 1.0,
@@ -218,18 +207,17 @@ impl NoteState {
     }
 }
 
-/// Main audio state manager
 pub struct AudioState {
     pub active_notes: HashMap<Keycode, NoteState>,
     sample_rate: f32,
     current_waveform: Waveform,
     default_adsr: ADSRParams,
     rate_limiter: KeyRateLimiter,
+    master_volume: f32,
 }
 
 impl AudioState {
-    /// Create new audio state
-    pub fn new(sample_rate: f32, waveform: Waveform) -> Self {
+    pub fn new(sample_rate: f32, waveform: Waveform, master_volume: f32) -> Self {
         let default_adsr = match waveform {
             Waveform::Natural => ADSRParams::natural(),
             Waveform::Electronic => ADSRParams::electronic(),
@@ -243,21 +231,18 @@ impl AudioState {
             current_waveform: waveform,
             default_adsr,
             rate_limiter: KeyRateLimiter::new(),
+            master_volume: master_volume.clamp(0.0, 1.0),
         }
     }
 
-    /// Start a new note with rate limiting
-    /// Returns the actual adjusted volume used for the note (for display purposes)
     pub fn start_note(&mut self, keycode: Keycode, frequency: f32, volume: f32) -> f32 {
-        // Apply rate limiting to prevent high-pitched sounds from rapid key presses
         let volume_multiplier = self.rate_limiter.check_key_press(keycode);
 
-        // Skip playing if volume is effectively zero (heavily rate limited)
         if volume_multiplier <= 0.01 {
             return 0.0;
         }
 
-        let adjusted_volume = volume * volume_multiplier;
+        let adjusted_volume = volume * volume_multiplier * self.master_volume;
 
         let note_state = NoteState::new(
             frequency,
@@ -270,7 +255,6 @@ impl AudioState {
         adjusted_volume
     }
 
-    /// Stop a note (begin release phase)
     pub fn stop_note(&mut self, keycode: Keycode) {
         if let Some(note_state) = self.active_notes.get_mut(&keycode) {
             note_state.release();
@@ -307,13 +291,6 @@ impl AudioState {
         // Global volume adjustment
         sample * 0.3
     }
-
-    /// Get hold duration info for a key (for display purposes)
-    pub fn get_hold_duration(&self, keycode: Keycode) -> Option<f32> {
-        self.active_notes
-            .get(&keycode)
-            .map(|note| note.start_time.elapsed().as_secs_f32())
-    }
 }
 
 #[cfg(test)]
@@ -330,7 +307,7 @@ mod tests {
     #[test]
     fn test_audio_state_creation() {
         use crate::waveform::Waveform;
-        let state = AudioState::new(44100.0, Waveform::Electronic);
+        let state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
         assert_eq!(state.sample_rate, 44100.0);
         assert_eq!(state.active_notes.len(), 0);
     }
@@ -338,7 +315,7 @@ mod tests {
     #[test]
     fn test_note_lifecycle() {
         use crate::waveform::Waveform;
-        let mut state = AudioState::new(44100.0, Waveform::Electronic);
+        let mut state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
 
         // Start note
         state.start_note(Keycode::A, 440.0, 0.5);
@@ -354,7 +331,7 @@ mod tests {
     fn test_hold_duration_volume_reduction() {
         use crate::waveform::Waveform;
 
-        let mut state = AudioState::new(44100.0, Waveform::Electronic);
+        let mut state = AudioState::new(44100.0, Waveform::Electronic, 1.0);
 
         // Start a note
         state.start_note(Keycode::J, 440.0, 0.5);
