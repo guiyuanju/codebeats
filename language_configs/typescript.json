@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "TypeScript programming language optimized keyboard mapping - A major scale with type-focused harmonies",
+  "waveform": "cyberpunk",
+  "mappings": {
+    "T": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "type keyword foundation - A major root"
+    },
+    "Y": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "type, async, try - major second"
+    },
+    "P": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "type, private, public - major third"
+    },
+    "E": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "export, extends, enum - perfect fourth"
+    },
+    "I": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "interface, import, implements - perfect fifth"
+    },
+    "N": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "new, number, namespace - major sixth"
+    },
+    "S": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "string, static, super - major seventh"
+    },
+    "R": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "return, readonly, Record - octave"
+    },
+    "A": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "async, Array, abstract - ninth"
+    },
+    "F": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "function, for, from - tenth"
+    },
+    "C": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "class, const, constructor - eleventh"
+    },
+    "O": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "object, of, optional - twelfth"
+    },
+    "L": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "let, length, literal - thirteenth"
+    },
+    "U": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "union, undefined, utility - fourteenth"
+    },
+    "M": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "module, method, Map - double octave"
+    },
+    "D": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "declare, default, Date - high second"
+    },
+    "G": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "generic, get, global - high third"
+    },
+    "H": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "HTMLElement, hasOwnProperty - high fourth"
+    },
+    "V": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "void, var, value - comfortable fifth"
+    },
+    "B": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "boolean, break, bind - comfortable sixth"
+    },
+    "W": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "while, with, window - comfortable seventh"
+    },
+    "K": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "keyof, key, kind - reuse root"
+    },
+    "J": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "JSON, join - reuse second"
+    },
+    "Q": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "Quarantine rare usage - reuse third"
+    },
+    "X": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "extends, export, exec - reuse fourth"
+    },
+    "Z": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "zone operations - reuse fifth"
+    },
+    "Key0": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal - A major root"
+    },
+    "RightParen": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
+    "Key1": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+1 - non-null assertion (octave)"
+    },
+    "Key2": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
+    },
+    "At": {
+      "note": "C#5",
+      "volume": 0.3,
+      "description": "Shift+2 - decorators (octave)"
+    },
+    "Key3": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fourth"
+    },
+    "Hash": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+3 - private fields (octave)"
+    },
+    "Key4": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Dollar": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+4 - template literals (octave)"
+    },
+    "Key5": {
+      "note": "F#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Percent": {
+      "note": "F#5",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
+    },
+    "Key6": {
+      "note": "G#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major seventh"
+    },
+    "Caret": {
+      "note": "G#5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
+    "Key7": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Shift+7 - intersection types (shares root)"
+    },
+    "Key8": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Asterisk": {
+      "note": "B5",
+      "volume": 0.35,
+      "description": "Shift+8 - spread operator (emphasized)"
+    },
+    "Key9": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "Numeric literal - tenth"
+    },
+    "LeftParen": {
+      "note": "C#5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (emphasized)"
+    },
+    "LeftBracket": {
+      "note": "A3",
+      "volume": 0.3,
+      "description": "Array/index access - low foundation"
+    },
+    "LeftBrace": {
+      "note": "A4",
+      "volume": 0.35,
+      "description": "Shift+[ - object/type literals (octave up)"
+    },
+    "RightBracket": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Array/index access - closure"
+    },
+    "RightBrace": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Shift+] - object/type closing (octave up)"
+    },
+    "Semicolon": {
+      "note": "B3",
+      "volume": 0.2,
+      "description": "Statement termination"
+    },
+    "Colon": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Shift+; - type annotations (critical in TypeScript)"
+    },
+    "Equal": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Assignment operator - fifth"
+    },
+    "Plus": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+= - addition (shares pitch, emphasized)"
+    },
+    "Minus": {
+      "note": "F#5",
+      "volume": 0.3,
+      "description": "Subtraction - sixth"
+    },
+    "Underscore": {
+      "note": "F#4",
+      "volume": 0.3,
+      "description": "Shift+- - private convention (lower register)"
+    },
+    "Slash": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Division, comments - fourth"
+    },
+    "Question": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+/ - optional chaining (emphasized)"
+    },
+    "BackSlash": {
+      "note": "G#5",
+      "volume": 0.3,
+      "description": "Escape sequences - seventh"
+    },
+    "Pipe": {
+      "note": "G#5",
+      "volume": 0.35,
+      "description": "Shift+\\ - union types (shares pitch, emphasized)"
+    },
+    "Comma": {
+      "note": "B3",
+      "volume": 0.2,
+      "description": "Parameter separator, array items - gentle"
+    },
+    "LessThan": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Shift+, - generics opening (octave up)"
+    },
+    "Dot": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "Property access - third"
+    },
+    "GreaterThan": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "Shift+. - generics closing (shares pitch)"
+    },
+    "Apostrophe": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "String literals - third"
+    },
+    "DoubleQuote": {
+      "note": "C#5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (octave up)"
+    },
+    "Grave": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Template literals - fourth"
+    },
+    "Tilde": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (shares pitch)"
+    },
+    "Space": {
+      "note": "A2",
+      "volume": 0.15,
+      "description": "Whitespace - structural foundation"
+    },
+    "Tab": {
+      "note": "A2",
+      "volume": 0.15,
+      "description": "Indentation - code structure"
+    },
+    "Enter": {
+      "note": "A3",
+      "volume": 0.2,
+      "description": "Line breaks - statement structure"
+    },
+    "Backspace": {
+      "note": "F#2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "G#2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "B2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "C#3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "D3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "E3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "F#3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Run TypeScript"
+    },
+    "F6": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "TypeScript compile"
+    },
+    "F7": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "TypeScript services"
+    },
+    "Up": {
+      "note": "C#4",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "B3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "D4",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "E4",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "C#4",
+      "volume": 0.15,
+      "description": "Page navigation up"
+    },
+    "PageDown": {
+      "note": "F#4",
+      "volume": 0.15,
+      "description": "Page navigation down"
+    }
+  }
+}

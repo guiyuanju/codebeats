@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "description": "Clojure programming language optimized keyboard mapping - jazz-influenced harmonies with Lisp elegance",
-  "waveform": "sine",
+  "waveform": "electronic",
   "mappings": {
     "D": {
       "note": "F4",

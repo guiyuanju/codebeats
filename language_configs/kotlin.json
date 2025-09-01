@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "Kotlin programming language optimized keyboard mapping - Ab major scale with JVM/Android-focused harmonies",
+  "waveform": "triangle",
+  "mappings": {
+    "K": {
+      "note": "Ab4",
+      "volume": 0.25,
+      "description": "Kotlin keyword foundation - Ab major root"
+    },
+    "O": {
+      "note": "Bb4",
+      "volume": 0.2,
+      "description": "object, override, open - major second"
+    },
+    "T": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "this, true, throw - major third"
+    },
+    "L": {
+      "note": "Db5",
+      "volume": 0.2,
+      "description": "let, lambda, lateinit - perfect fourth"
+    },
+    "I": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "if, init, inner - perfect fifth"
+    },
+    "N": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "null, not, nullable - major sixth"
+    },
+    "F": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "fun, for, false - major seventh"
+    },
+    "U": {
+      "note": "Ab5",
+      "volume": 0.2,
+      "description": "unit, until, use - octave"
+    },
+    "A": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "abstract, also, apply - ninth"
+    },
+    "C": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "class, companion, catch - tenth"
+    },
+    "V": {
+      "note": "Db5",
+      "volume": 0.2,
+      "description": "val, var, void - eleventh"
+    },
+    "R": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "return, run, require - twelfth"
+    },
+    "P": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "private, package, public - thirteenth"
+    },
+    "E": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "else, enum, extension - fourteenth"
+    },
+    "S": {
+      "note": "Ab5",
+      "volume": 0.2,
+      "description": "suspend, sealed, super - double octave"
+    },
+    "D": {
+      "note": "Bb4",
+      "volume": 0.2,
+      "description": "data, default, delete - high second"
+    },
+    "W": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "when, while, with - high third"
+    },
+    "B": {
+      "note": "Db5",
+      "volume": 0.2,
+      "description": "break, boolean, by - high fourth"
+    },
+    "M": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "map, main, mutable - comfortable fifth"
+    },
+    "G": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "get, generic, group - comfortable sixth"
+    },
+    "H": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "hashCode, here - comfortable seventh"
+    },
+    "Y": {
+      "note": "Ab4",
+      "volume": 0.2,
+      "description": "yield operations - reuse root"
+    },
+    "J": {
+      "note": "Bb4",
+      "volume": 0.2,
+      "description": "java, join - reuse second"
+    },
+    "Q": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "query operations - reuse third"
+    },
+    "X": {
+      "note": "Db5",
+      "volume": 0.2,
+      "description": "xml, extension - reuse fourth"
+    },
+    "Z": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "zip operations - reuse fifth"
+    },
+    "Key0": {
+      "note": "Ab4",
+      "volume": 0.25,
+      "description": "Numeric literal - Ab major root"
+    },
+    "RightParen": {
+      "note": "Ab5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
+    "Key1": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "Bb5",
+      "volume": 0.3,
+      "description": "Shift+1 - not-null assertion (octave)"
+    },
+    "Key2": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
+    },
+    "At": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+2 - annotations (octave)"
+    },
+    "Key3": {
+      "note": "Db5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fourth"
+    },
+    "Hash": {
+      "note": "Db5",
+      "volume": 0.3,
+      "description": "Shift+3 - comments (octave)"
+    },
+    "Key4": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Dollar": {
+      "note": "Eb5",
+      "volume": 0.3,
+      "description": "Shift+4 - string templates (octave)"
+    },
+    "Key5": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Percent": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
+    },
+    "Key6": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric literal - major seventh"
+    },
+    "Caret": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
+    "Key7": {
+      "note": "Ab5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "Ab4",
+      "volume": 0.25,
+      "description": "Shift+7 - bitwise AND (shares root)"
+    },
+    "Key8": {
+      "note": "Bb5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Asterisk": {
+      "note": "Bb5",
+      "volume": 0.35,
+      "description": "Shift+8 - spread operator (emphasized)"
+    },
+    "Key9": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal - tenth"
+    },
+    "LeftParen": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (emphasized)"
+    },
+    "LeftBracket": {
+      "note": "Ab3",
+      "volume": 0.3,
+      "description": "Array access - low foundation"
+    },
+    "LeftBrace": {
+      "note": "Ab4",
+      "volume": 0.35,
+      "description": "Shift+[ - lambda/block literals (octave up)"
+    },
+    "RightBracket": {
+      "note": "Ab4",
+      "volume": 0.3,
+      "description": "Array access - closure"
+    },
+    "RightBrace": {
+      "note": "Ab5",
+      "volume": 0.35,
+      "description": "Shift+] - lambda/block closing (octave up)"
+    },
+    "Semicolon": {
+      "note": "Bb3",
+      "volume": 0.15,
+      "description": "Optional semicolon in Kotlin"
+    },
+    "Colon": {
+      "note": "Bb4",
+      "volume": 0.3,
+      "description": "Shift+; - type annotations (critical in Kotlin)"
+    },
+    "Equal": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Assignment operator - fifth"
+    },
+    "Plus": {
+      "note": "Eb5",
+      "volume": 0.3,
+      "description": "Shift+= - addition (shares pitch, emphasized)"
+    },
+    "Minus": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Subtraction - sixth"
+    },
+    "Underscore": {
+      "note": "F4",
+      "volume": 0.3,
+      "description": "Shift+- - unused parameters (lower register)"
+    },
+    "Slash": {
+      "note": "Db5",
+      "volume": 0.25,
+      "description": "Division, comments - fourth"
+    },
+    "Question": {
+      "note": "Db5",
+      "volume": 0.25,
+      "description": "Shift+/ - nullable types (octave up)"
+    },
+    "BackSlash": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Escape sequences - seventh"
+    },
+    "Pipe": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Shift+\\ - bitwise OR (shares pitch, emphasized)"
+    },
+    "Comma": {
+      "note": "Bb3",
+      "volume": 0.2,
+      "description": "Parameter separator - gentle"
+    },
+    "LessThan": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Shift+, - generics opening (octave up)"
+    },
+    "Dot": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Property access - third"
+    },
+    "GreaterThan": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Shift+. - generics closing (shares pitch)"
+    },
+    "Apostrophe": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Character literals - third"
+    },
+    "DoubleQuote": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (octave up)"
+    },
+    "Grave": {
+      "note": "Db5",
+      "volume": 0.25,
+      "description": "Rarely used in Kotlin - fourth"
+    },
+    "Tilde": {
+      "note": "Db5",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (shares pitch)"
+    },
+    "Space": {
+      "note": "Ab2",
+      "volume": 0.15,
+      "description": "Whitespace - structural foundation"
+    },
+    "Tab": {
+      "note": "Ab2",
+      "volume": 0.15,
+      "description": "Indentation - code structure"
+    },
+    "Enter": {
+      "note": "Ab3",
+      "volume": 0.2,
+      "description": "Line breaks - statement structure"
+    },
+    "Backspace": {
+      "note": "F2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "Ab2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "Bb2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "C3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "Db3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "Eb3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "F3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "Ab2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "Ab5",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "Db5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "Build/run Kotlin"
+    },
+    "F6": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Build Android project"
+    },
+    "F7": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "Ab5",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "Db5",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "Kotlin REPL"
+    },
+    "Up": {
+      "note": "C4",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "Bb3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "Ab3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "Db4",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "Ab3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "Eb4",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "C4",
+      "volume": 0.15,
+      "description": "Page navigation up"
+    },
+    "PageDown": {
+      "note": "F4",
+      "volume": 0.15,
+      "description": "Page navigation down"
+    }
+  }
+}

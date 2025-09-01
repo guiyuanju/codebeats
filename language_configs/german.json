@@ -1,0 +1,527 @@
+{
+  "version": "2.0",
+  "description": "German language optimized keyboard mapping - Bb major scale with German phonetics-focused harmonies",
+  "waveform": "electronic",
+  "mappings": {
+    "E": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Most frequent vowel - Bb major root"
+    },
+    "N": {
+      "note": "C5",
+      "volume": 0.22,
+      "description": "Second most frequent - major second"
+    },
+    "I": {
+      "note": "D5",
+      "volume": 0.21,
+      "description": "Third most frequent vowel - major third"
+    },
+    "S": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "sein, sich, sie - perfect fourth"
+    },
+    "R": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "er, der, wir - perfect fifth"
+    },
+    "T": {
+      "note": "G5",
+      "volume": 0.18,
+      "description": "nicht, mit, ist - major sixth"
+    },
+    "A": {
+      "note": "A5",
+      "volume": 0.18,
+      "description": "aber, auch, an - major seventh"
+    },
+    "H": {
+      "note": "Bb5",
+      "volume": 0.18,
+      "description": "haben, hier, ich - octave"
+    },
+    "U": {
+      "note": "C5",
+      "volume": 0.17,
+      "description": "und, zu, auf - ninth"
+    },
+    "D": {
+      "note": "D5",
+      "volume": 0.17,
+      "description": "das, die, du - tenth"
+    },
+    "L": {
+      "note": "Eb5",
+      "volume": 0.16,
+      "description": "alle, leben, will - eleventh"
+    },
+    "C": {
+      "note": "F5",
+      "volume": 0.15,
+      "description": "auch, ich, noch - twelfth"
+    },
+    "G": {
+      "note": "G5",
+      "volume": 0.15,
+      "description": "gegen, groß, gut - thirteenth"
+    },
+    "M": {
+      "note": "A5",
+      "volume": 0.14,
+      "description": "man, mit, dem - fourteenth"
+    },
+    "O": {
+      "note": "Bb5",
+      "volume": 0.13,
+      "description": "oder, von, so - double octave"
+    },
+    "W": {
+      "note": "C5",
+      "volume": 0.12,
+      "description": "was, wir, wie - high second"
+    },
+    "B": {
+      "note": "D5",
+      "volume": 0.12,
+      "description": "aber, bis, bei - high third"
+    },
+    "Z": {
+      "note": "Eb5",
+      "volume": 0.12,
+      "description": "zu, zum, zwei - high fourth"
+    },
+    "V": {
+      "note": "F5",
+      "volume": 0.12,
+      "description": "von, vor, viel - comfortable fifth"
+    },
+    "K": {
+      "note": "G5",
+      "volume": 0.11,
+      "description": "können, kein, kam - comfortable sixth"
+    },
+    "P": {
+      "note": "A5",
+      "volume": 0.11,
+      "description": "pro, problem - comfortable seventh"
+    },
+    "F": {
+      "note": "Bb4",
+      "volume": 0.1,
+      "description": "für, fahren - reuse root"
+    },
+    "J": {
+      "note": "C5",
+      "volume": 0.1,
+      "description": "ja, Jahr, jetzt - reuse second"
+    },
+    "Ä": {
+      "note": "D5",
+      "volume": 0.15,
+      "description": "Umlaut ä - distinctive German sound"
+    },
+    "Ö": {
+      "note": "Eb5",
+      "volume": 0.12,
+      "description": "Umlaut ö - distinctive German sound"
+    },
+    "Ü": {
+      "note": "F5",
+      "volume": 0.12,
+      "description": "Umlaut ü - distinctive German sound"
+    },
+    "ß": {
+      "note": "G5",
+      "volume": 0.15,
+      "description": "Eszett (sharp s) - distinctive German character"
+    },
+    "Q": {
+      "note": "A5",
+      "volume": 0.08,
+      "description": "Qualität - rare in German"
+    },
+    "X": {
+      "note": "Bb5",
+      "volume": 0.07,
+      "description": "extra - rare in German"
+    },
+    "Y": {
+      "note": "C5",
+      "volume": 0.08,
+      "description": "System, typ"
+    },
+    "Key0": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Numeric - Bb major root"
+    },
+    "RightParen": {
+      "note": "Bb5",
+      "volume": 0.3,
+      "description": "Shift+0 - punctuation (octave)"
+    },
+    "Key1": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric - major second"
+    },
+    "Exclamation": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+1 - Ausrufezeichen! (octave)"
+    },
+    "Key2": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric - major third"
+    },
+    "At": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+2 - @ symbol (octave)"
+    },
+    "Key3": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Numeric - perfect fourth"
+    },
+    "Hash": {
+      "note": "Eb5",
+      "volume": 0.3,
+      "description": "Shift+3 - # symbol (octave)"
+    },
+    "Key4": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Numeric - perfect fifth"
+    },
+    "Dollar": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+4 - $ symbol (octave)"
+    },
+    "Key5": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric - major sixth"
+    },
+    "Percent": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+5 - % symbol (octave)"
+    },
+    "Key6": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Numeric - major seventh"
+    },
+    "Caret": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Shift+6 - ^ symbol"
+    },
+    "Key7": {
+      "note": "Bb5",
+      "volume": 0.25,
+      "description": "Numeric - octave"
+    },
+    "Ampersand": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Shift+7 - & symbol"
+    },
+    "Key8": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric - ninth"
+    },
+    "Asterisk": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+8 - * symbol"
+    },
+    "Key9": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric - tenth"
+    },
+    "LeftParen": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+9 - ( symbol"
+    },
+    "LeftBracket": {
+      "note": "Bb3",
+      "volume": 0.2,
+      "description": "[ bracket - low foundation"
+    },
+    "LeftBrace": {
+      "note": "Bb4",
+      "volume": 0.25,
+      "description": "Shift+[ - { brace"
+    },
+    "RightBracket": {
+      "note": "Bb4",
+      "volume": 0.2,
+      "description": "] bracket closure"
+    },
+    "RightBrace": {
+      "note": "Bb5",
+      "volume": 0.25,
+      "description": "Shift+] - } brace closure"
+    },
+    "Semicolon": {
+      "note": "C4",
+      "volume": 0.15,
+      "description": "; Semikolon - punctuation"
+    },
+    "Colon": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Shift+; - : Doppelpunkt"
+    },
+    "Equal": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "= symbol"
+    },
+    "Plus": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+= - + symbol"
+    },
+    "Minus": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "- Bindestrich/hyphen"
+    },
+    "Underscore": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "Shift+- - _ Unterstrich"
+    },
+    "Slash": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "/ Schrägstrich"
+    },
+    "Question": {
+      "note": "Eb5",
+      "volume": 0.3,
+      "description": "Shift+/ - ? Fragezeichen"
+    },
+    "BackSlash": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "\\ Rückwärtsschrägstrich"
+    },
+    "Pipe": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Shift+\\ - | senkrechter Strich"
+    },
+    "Comma": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": ", Komma - gentle pause"
+    },
+    "LessThan": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Shift+, - < symbol"
+    },
+    "Dot": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": ". Punkt - sentence ending"
+    },
+    "GreaterThan": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Shift+. - > symbol"
+    },
+    "Apostrophe": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "' Apostroph"
+    },
+    "DoubleQuote": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Shift+' - \" Anführungszeichen"
+    },
+    "Grave": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "` Gravis-Akzent"
+    },
+    "Tilde": {
+      "note": "Eb5",
+      "volume": 0.25,
+      "description": "Shift+` - ~ Tilde"
+    },
+    "Space": {
+      "note": "Bb2",
+      "volume": 0.15,
+      "description": "Leerzeichen - word separation foundation"
+    },
+    "Tab": {
+      "note": "Bb2",
+      "volume": 0.15,
+      "description": "Tab - text formatting"
+    },
+    "Enter": {
+      "note": "Bb3",
+      "volume": 0.2,
+      "description": "Enter - Zeilenschaltung"
+    },
+    "Backspace": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Rücktaste - correction"
+    },
+    "Delete": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Entf - removal"
+    },
+    "LShift": {
+      "note": "Bb2",
+      "volume": 0.05,
+      "description": "Umschalt links - modifier"
+    },
+    "RShift": {
+      "note": "C3",
+      "volume": 0.05,
+      "description": "Umschalt rechts - modifier"
+    },
+    "LControl": {
+      "note": "D3",
+      "volume": 0.05,
+      "description": "Strg links - modifier"
+    },
+    "RControl": {
+      "note": "Eb3",
+      "volume": 0.05,
+      "description": "Strg rechts - modifier"
+    },
+    "LAlt": {
+      "note": "F3",
+      "volume": 0.05,
+      "description": "Alt links - modifier"
+    },
+    "RAlt": {
+      "note": "G3",
+      "volume": 0.05,
+      "description": "Alt Gr - special characters"
+    },
+    "Escape": {
+      "note": "Bb2",
+      "volume": 0.1,
+      "description": "Esc - command exit"
+    },
+    "F1": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "F1 - Hilfe"
+    },
+    "F2": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "F2 - umbenennen"
+    },
+    "F3": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "F3 - suchen"
+    },
+    "F4": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "F4 - Adressleiste"
+    },
+    "F5": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "F5 - aktualisieren"
+    },
+    "F6": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "F6 - navigieren"
+    },
+    "F7": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "F7 - Rechtschreibprüfung"
+    },
+    "F8": {
+      "note": "Bb5",
+      "volume": 0.2,
+      "description": "F8 - Auswahlmodus"
+    },
+    "F9": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "F9 - senden/empfangen"
+    },
+    "F10": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "F10 - Menü aktivieren"
+    },
+    "F11": {
+      "note": "Eb5",
+      "volume": 0.2,
+      "description": "F11 - Vollbild"
+    },
+    "F12": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "F12 - speichern unter"
+    },
+    "Up": {
+      "note": "D4",
+      "volume": 0.15,
+      "description": "Pfeil hoch - navigation"
+    },
+    "Down": {
+      "note": "C4",
+      "volume": 0.15,
+      "description": "Pfeil runter - navigation"
+    },
+    "Left": {
+      "note": "Bb3",
+      "volume": 0.15,
+      "description": "Pfeil links - navigation"
+    },
+    "Right": {
+      "note": "Eb4",
+      "volume": 0.15,
+      "description": "Pfeil rechts - navigation"
+    },
+    "Home": {
+      "note": "Bb3",
+      "volume": 0.15,
+      "description": "Pos1 - Zeilenanfang"
+    },
+    "End": {
+      "note": "F4",
+      "volume": 0.15,
+      "description": "Ende - Zeilenende"
+    },
+    "PageUp": {
+      "note": "D4",
+      "volume": 0.15,
+      "description": "Bild auf"
+    },
+    "PageDown": {
+      "note": "A4",
+      "volume": 0.15,
+      "description": "Bild ab"
+    }
+  }
+}

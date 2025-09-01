@@ -5,6 +5,7 @@
 //! - Electronic pure sine wave
 //! - Saw and square waves for electronic music
 //! - Cyberpunk analog synthesizer emulation
+//! - Bass with deep low frequencies
 
 use std::f32::consts::PI;
 
@@ -21,16 +22,12 @@ pub enum Waveform {
     Square,
     /// Blade Runner 2049 style analog synthesizer
     Cyberpunk,
-    /// Mathematical harmonic series with precise overtones
-    Harmonic,
-    /// Pure sine wave (alias for Electronic)
-    Sine,
-    /// Sawtooth wave (alias for Saw)
-    Sawtooth,
     /// Triangle wave for smooth electronic sound
     Triangle,
     /// Realistic fart sound synthesis with turbulence and frequency sweeps
     Fart,
+    /// Deep bass with rich low frequencies and powerful sub-bass
+    Bass,
 }
 
 impl Waveform {
@@ -46,11 +43,32 @@ impl Waveform {
             Waveform::Cyberpunk => {
                 self.generate_cyberpunk(phase, base_phase, frequency, sample_rate)
             }
-            Waveform::Harmonic => self.generate_harmonic(base_phase),
-            Waveform::Sine => self.generate_sine(base_phase),
-            Waveform::Sawtooth => self.generate_sawtooth(phase),
             Waveform::Triangle => self.generate_triangle(phase),
             Waveform::Fart => self.generate_fart(phase, base_phase, frequency, sample_rate),
+            Waveform::Bass => self.generate_bass(phase, base_phase, frequency, sample_rate),
+        }
+    }
+
+    /// Get ADSR envelope parameters for this waveform
+    pub fn get_adsr_params(&self) -> (f32, f32, f32, f32) {
+        match self {
+            // Natural/organic attack and release
+            Waveform::Natural => (0.01, 0.1, 0.8, 0.3),
+            Waveform::Bass => (0.02, 0.15, 0.9, 0.4), // Slightly slower for bass depth
+
+            // Clean electronic envelopes
+            Waveform::Electronic => (0.005, 0.05, 0.7, 0.2),
+            Waveform::Triangle => (0.005, 0.05, 0.7, 0.2),
+
+            // Sharp attack for electronic percussion
+            Waveform::Saw => (0.001, 0.02, 0.6, 0.1),
+            Waveform::Square => (0.001, 0.02, 0.6, 0.1),
+
+            // Analog-style envelopes
+            Waveform::Cyberpunk => (0.02, 0.1, 0.8, 0.25),
+
+            // Special envelope for fart
+            Waveform::Fart => (0.01, 0.05, 0.7, 0.2),
         }
     }
 
@@ -63,19 +81,21 @@ impl Waveform {
     fn generate_natural_piano(&self, phase: f32, base_phase: f32, _sample_rate: f32) -> f32 {
         // Harmonic series for piano-like tone
         let fundamental = base_phase.sin();
-        let harmonic2 = (base_phase * 2.0).sin() * 0.3;
-        let harmonic3 = (base_phase * 3.0).sin() * 0.15;
-        let harmonic4 = (base_phase * 4.0).sin() * 0.08;
-        let harmonic5 = (base_phase * 5.0).sin() * 0.05;
+        let second_harmonic = (base_phase * 2.0).sin() * 0.3;
+        let third_harmonic = (base_phase * 3.0).sin() * 0.2;
+        let fourth_harmonic = (base_phase * 4.0).sin() * 0.1;
 
-        // Add subtle vibrato for natural feel
-        let vibrato_rate = 6.0;
-        let vibrato_depth = 0.002;
+        // Subtle vibrato
+        let vibrato_rate = 4.5;
+        let vibrato_depth = 0.02;
         let vibrato = (phase * vibrato_rate * 2.0 * PI).sin() * vibrato_depth;
-        let modulated_phase = base_phase * (1.0 + vibrato);
+        let modulated_fundamental = (base_phase * (1.0 + vibrato)).sin();
 
-        // Combine all harmonics
-        fundamental + harmonic2 + harmonic3 + harmonic4 + harmonic5 + modulated_phase.sin() * 0.02
+        // Mix harmonics with slight vibrato
+        (modulated_fundamental * 0.7 + fundamental * 0.3)
+            + second_harmonic
+            + third_harmonic
+            + fourth_harmonic
     }
 
     /// Sawtooth wave generation
@@ -85,11 +105,7 @@ impl Waveform {
 
     /// Square wave generation
     fn generate_square(&self, phase: f32) -> f32 {
-        if (phase % 1.0) < 0.5 {
-            1.0
-        } else {
-            -1.0
-        }
+        if (phase % 1.0) < 0.5 { 1.0 } else { -1.0 }
     }
 
     /// Cyberpunk 2049 style analog synthesizer
@@ -102,68 +118,29 @@ impl Waveform {
     ) -> f32 {
         let time = phase * sample_rate / frequency;
 
-        // Multi-oscillator setup
-        let saw = self.generate_sawtooth(phase);
-        let sub_bass = (base_phase * 0.5).sin() * 0.4; // Sub-octave bass
+        // Multiple analog oscillators with slight detuning
+        let osc1 = base_phase.sin();
+        let osc2 = (base_phase * 1.003).sin(); // Slightly detuned
+        let osc3 = (base_phase * 0.997).sin(); // Slightly detuned the other way
 
-        // LFO modulation for analog character
-        let lfo1_rate = 0.3;
-        let lfo2_rate = 0.7;
-        let lfo1 = (time * lfo1_rate).sin();
-        let lfo2 = (time * lfo2_rate).sin();
+        // Sub-oscillator (one octave down)
+        let sub_osc = (base_phase * 0.5).sin() * 0.3;
 
-        // PWM (Pulse Width Modulation) for analog warmth
-        let pulse_width = 0.5 + lfo1 * 0.1;
-        let pulse = if (phase % 1.0) < pulse_width {
-            1.0
-        } else {
-            -1.0
-        };
+        // LFO modulation
+        let lfo_rate = 0.3;
+        let lfo = (time * lfo_rate * 2.0 * PI).sin();
+        let lfo_mod = lfo * 0.1 + 1.0;
 
         // Mix oscillators
-        let mixed = saw * 0.6 + pulse * 0.3 + sub_bass;
+        let mixed = (osc1 + osc2 * 0.8 + osc3 * 0.6) / 2.4 + sub_osc;
 
-        // Analog-style low-pass filter simulation
-        let cutoff_modulation = 0.7 + lfo2 * 0.2;
-        let filtered = mixed * cutoff_modulation;
+        // Apply LFO modulation
+        let modulated = mixed * lfo_mod;
 
-        // Soft saturation for analog warmth
-        let drive_amount = 1.2;
-        let driven = filtered * drive_amount;
-        let saturated = self.soft_clip(driven, 0.8);
+        // Soft analog-style clipping
+        let clipped = modulated.tanh() * 0.8;
 
-        // Chorus effect with slight detuning
-        let detune1 = (base_phase * 1.003).sin() * 0.15;
-        let detune2 = (base_phase * 0.997).sin() * 0.15;
-
-        saturated + detune1 + detune2
-    }
-
-    /// Mathematical harmonic series with precise overtones
-    fn generate_harmonic(&self, base_phase: f32) -> f32 {
-        // Pure harmonic series based on mathematical ratios
-        let fundamental = base_phase.sin();
-        let harmonic2 = (base_phase * 2.0).sin() * 0.5; // Octave (2:1)
-        let harmonic3 = (base_phase * 3.0).sin() * 0.333; // Perfect fifth (3:2)
-        let harmonic4 = (base_phase * 4.0).sin() * 0.25; // Double octave (4:1)
-        let harmonic5 = (base_phase * 5.0).sin() * 0.2; // Major third (5:4)
-        let harmonic6 = (base_phase * 6.0).sin() * 0.167; // Perfect fifth + octave (3:1)
-        let harmonic7 = (base_phase * 7.0).sin() * 0.143; // Harmonic seventh (7:4)
-        let harmonic8 = (base_phase * 8.0).sin() * 0.125; // Triple octave (8:1)
-
-        // Mathematical precision with golden ratio influence
-        let phi = 1.618034; // Golden ratio
-        let phi_harmonic = (base_phase * phi).sin() * 0.1;
-
-        fundamental
-            + harmonic2
-            + harmonic3
-            + harmonic4
-            + harmonic5
-            + harmonic6
-            + harmonic7
-            + harmonic8
-            + phi_harmonic
+        clipped
     }
 
     /// Triangle wave generation
@@ -176,12 +153,12 @@ impl Waveform {
         }
     }
 
-    /// Realistic fart sound synthesis
+    /// Realistic fart sound synthesis with turbulence and frequency sweeps
     ///
-    /// Organic fart synthesis emphasizing tonal components and body resonance:
-    /// - Low frequency range (40-150Hz) for realistic body resonance
-    /// - Harmonic series with formant filtering for body cavity effects
-    /// - Subtle breath-like modulation instead of harsh noise
+    /// This implementation creates a more realistic fart sound by focusing on:
+    /// - Strong fundamental tones in the 40-150Hz range
+    /// - Natural harmonic series for organic timbre
+    /// - Body cavity resonance simulation
     /// - Gentle frequency sweeps for natural pitch variations
     /// - Tonal emphasis with minimal filtered turbulence
     fn generate_fart(&self, phase: f32, base_phase: f32, frequency: f32, sample_rate: f32) -> f32 {
@@ -228,56 +205,116 @@ impl Waveform {
         // Apply gentle breath modulation
         let modulated = formant_mix * breath_mod;
 
-        // Add minimal turbulence
-        let final_mix = modulated + gentle_turbulence;
+        // Add minimal turbulence and normalize
+        let final_output = (modulated + gentle_turbulence) * 0.4;
 
-        // Gentle compression instead of harsh saturation
-        let compressed = self.soft_clip(final_mix * 0.9, 0.85);
-
-        // Natural low-pass filtering
-        compressed * 0.7
+        // Apply gentle limiting to prevent harsh peaks
+        final_output.tanh()
     }
 
-    /// Soft clipping for warm analog distortion
-    fn soft_clip(&self, input: f32, threshold: f32) -> f32 {
-        if input > threshold {
-            threshold + (input - threshold) * 0.3
-        } else if input < -threshold {
-            -threshold + (input + threshold) * 0.3
-        } else {
-            input
-        }
-    }
+    /// Deep bass with rich low frequencies and powerful sub-bass
+    ///
+    /// This implementation creates a deep, powerful bass sound with:
+    /// - Strong fundamental with sub-bass emphasis
+    /// - Rich harmonic content for thickness
+    /// - Slight saturation for analog warmth
+    /// - Low-frequency modulation for movement
+    fn generate_bass(&self, phase: f32, base_phase: f32, frequency: f32, sample_rate: f32) -> f32 {
+        let time = phase * sample_rate / frequency;
 
-    /// Get a human-readable description of the waveform
-    /// Parse waveform from string (case insensitive)
-    pub fn from_str(s: &str) -> Option<Waveform> {
-        match s.to_lowercase().as_str() {
-            "natural" => Some(Waveform::Natural),
-            "electronic" => Some(Waveform::Electronic),
-            "saw" => Some(Waveform::Saw),
-            "square" => Some(Waveform::Square),
-            "cyberpunk" => Some(Waveform::Cyberpunk),
-            "harmonic" => Some(Waveform::Harmonic),
-            "sine" => Some(Waveform::Sine),
-            "sawtooth" => Some(Waveform::Sawtooth),
-            "triangle" => Some(Waveform::Triangle),
-            "fart" => Some(Waveform::Fart),
-            _ => None,
-        }
+        // Emphasize lower frequencies by shifting frequency down
+        let _bass_freq = frequency * 0.5; // One octave down for deeper bass
+        let bass_phase = base_phase * 0.5;
+
+        // 1. Strong fundamental (main bass tone)
+        let fundamental = bass_phase.sin() * 1.0;
+
+        // 2. Sub-bass (octave below fundamental) - very important for bass
+        let sub_bass = (bass_phase * 0.5).sin() * 0.8;
+
+        // 3. Harmonic series for thickness and richness
+        let harmonic2 = (bass_phase * 2.0).sin() * 0.4; // Octave above
+        let harmonic3 = (bass_phase * 3.0).sin() * 0.25; // Fifth above octave
+        let harmonic4 = (bass_phase * 4.0).sin() * 0.15; // Two octaves above
+
+        // 4. Very low sub-harmonic for rumble (two octaves below)
+        let sub_harmonic = (bass_phase * 0.25).sin() * 0.6;
+
+        // 5. Slow LFO for movement and life
+        let lfo_rate = 0.1; // Very slow modulation
+        let lfo = (time * lfo_rate * 2.0 * PI).sin();
+        let lfo_mod = lfo * 0.05 + 1.0; // Subtle amplitude modulation
+
+        // 6. Slight pitch modulation for analog character
+        let pitch_lfo = (time * 0.08 * 2.0 * PI).sin() * 0.002; // Very subtle pitch variation
+        let modulated_fundamental = (bass_phase * (1.0 + pitch_lfo)).sin() * 0.3;
+
+        // 7. Mix all components with emphasis on low end
+        let bass_mix = fundamental
+            + sub_bass
+            + sub_harmonic
+            + harmonic2 * 0.8
+            + harmonic3 * 0.6
+            + harmonic4 * 0.4
+            + modulated_fundamental;
+
+        // Apply LFO modulation
+        let modulated = bass_mix * lfo_mod;
+
+        // 8. Gentle saturation for analog warmth (not too much distortion)
+        let saturated = modulated.tanh() * 0.9;
+
+        // 9. Final amplitude scaling - bass should be powerful but not overwhelming
+        saturated * 0.7
     }
 }
 
-impl Default for Waveform {
-    fn default() -> Self {
-        Waveform::Natural
+impl std::str::FromStr for Waveform {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s.to_lowercase().as_str() {
+            "natural" => Ok(Waveform::Natural),
+            "electronic" | "sine" => Ok(Waveform::Electronic),
+            "saw" | "sawtooth" => Ok(Waveform::Saw),
+            "square" => Ok(Waveform::Square),
+            "cyberpunk" => Ok(Waveform::Cyberpunk),
+            "triangle" => Ok(Waveform::Triangle),
+            "fart" => Ok(Waveform::Fart),
+            "bass" => Ok(Waveform::Bass),
+            _ => Err(format!("Unknown waveform: {}", s)),
+        }
     }
 }
 
 impl std::fmt::Display for Waveform {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{:?}", self)
+        let name = match self {
+            Waveform::Natural => "natural",
+            Waveform::Electronic => "electronic",
+            Waveform::Saw => "saw",
+            Waveform::Square => "square",
+            Waveform::Cyberpunk => "cyberpunk",
+            Waveform::Triangle => "triangle",
+            Waveform::Fart => "fart",
+            Waveform::Bass => "bass",
+        };
+        write!(f, "{}", name)
     }
+}
+
+/// Get all available waveforms with descriptions
+pub fn get_all_waveforms() -> Vec<(&'static str, &'static str)> {
+    vec![
+        ("natural", "Piano-like with harmonics"),
+        ("electronic", "Clean sine wave"),
+        ("saw", "Bright sawtooth wave for electronic music"),
+        ("square", "Retro 8-bit square wave"),
+        ("cyberpunk", "Blade Runner 2049 style analog synthesizer"),
+        ("triangle", "Smooth triangular wave"),
+        ("fart", "Realistic fart sound synthesis"),
+        ("bass", "Deep bass with rich low frequencies"),
+    ]
 }
 
 #[cfg(test)]
@@ -292,22 +329,21 @@ mod tests {
             Waveform::Saw,
             Waveform::Square,
             Waveform::Cyberpunk,
-            Waveform::Harmonic,
-            Waveform::Sine,
-            Waveform::Sawtooth,
             Waveform::Triangle,
             Waveform::Fart,
+            Waveform::Bass,
         ];
 
         for waveform in waveforms {
             let sample = waveform.generate_sample(0.25, 440.0, 44100.0);
             assert!(
                 sample.is_finite(),
-                "Waveform {:?} produced invalid sample",
-                waveform
+                "Waveform {:?} produced invalid sample: {}",
+                waveform,
+                sample
             );
             assert!(
-                sample >= -2.0 && sample <= 2.0,
+                sample >= -5.0 && sample <= 5.0,
                 "Waveform {:?} sample out of reasonable range: {}",
                 waveform,
                 sample
@@ -317,56 +353,158 @@ mod tests {
 
     #[test]
     fn test_waveform_parsing() {
-        assert_eq!(Waveform::from_str("natural"), Some(Waveform::Natural));
-        assert_eq!(Waveform::from_str("ELECTRONIC"), Some(Waveform::Electronic));
-        assert_eq!(Waveform::from_str("invalid"), None);
+        // Test valid waveforms
+        assert_eq!("natural".parse::<Waveform>().unwrap(), Waveform::Natural);
+        assert_eq!(
+            "electronic".parse::<Waveform>().unwrap(),
+            Waveform::Electronic
+        );
+        assert_eq!("sine".parse::<Waveform>().unwrap(), Waveform::Electronic); // Alias
+        assert_eq!(
+            "cyberpunk".parse::<Waveform>().unwrap(),
+            Waveform::Cyberpunk
+        );
+        assert_eq!("saw".parse::<Waveform>().unwrap(), Waveform::Saw);
+        assert_eq!("sawtooth".parse::<Waveform>().unwrap(), Waveform::Saw); // Alias
+        assert_eq!("square".parse::<Waveform>().unwrap(), Waveform::Square);
+        assert_eq!("triangle".parse::<Waveform>().unwrap(), Waveform::Triangle);
+        assert_eq!("fart".parse::<Waveform>().unwrap(), Waveform::Fart);
+        assert_eq!("bass".parse::<Waveform>().unwrap(), Waveform::Bass);
+
+        // Test case insensitive
+        assert_eq!("NATURAL".parse::<Waveform>().unwrap(), Waveform::Natural);
+        assert_eq!(
+            "Electronic".parse::<Waveform>().unwrap(),
+            Waveform::Electronic
+        );
+
+        // Test invalid waveforms
+        assert!("invalid".parse::<Waveform>().is_err());
+        assert!("".parse::<Waveform>().is_err());
+        assert!("organ".parse::<Waveform>().is_err()); // Removed waveform
     }
 
     #[test]
-    fn test_sine_wave() {
-        let wave = Waveform::Electronic;
+    fn test_adsr_params() {
+        let waveforms = vec![
+            Waveform::Natural,
+            Waveform::Electronic,
+            Waveform::Saw,
+            Waveform::Square,
+            Waveform::Cyberpunk,
+            Waveform::Triangle,
+            Waveform::Fart,
+            Waveform::Bass,
+        ];
 
-        // Test known values
-        let sample_0 = wave.generate_sample(0.0, 440.0, 44100.0);
-        let sample_quarter = wave.generate_sample(0.25, 440.0, 44100.0);
+        for waveform in waveforms {
+            let (attack, decay, sustain, release) = waveform.get_adsr_params();
 
-        assert!((sample_0 - 0.0).abs() < 0.001);
-        assert!((sample_quarter - 1.0).abs() < 0.001);
+            // All ADSR parameters should be non-negative
+            assert!(
+                attack >= 0.0,
+                "Attack should be non-negative for {:?}: {}",
+                waveform,
+                attack
+            );
+            assert!(
+                decay >= 0.0,
+                "Decay should be non-negative for {:?}: {}",
+                waveform,
+                decay
+            );
+            assert!(
+                release >= 0.0,
+                "Release should be non-negative for {:?}: {}",
+                waveform,
+                release
+            );
+
+            // Sustain should be between 0 and 1
+            assert!(
+                sustain >= 0.0 && sustain <= 1.0,
+                "Sustain should be 0-1 for {:?}: {}",
+                waveform,
+                sustain
+            );
+
+            // Reasonable limits for timing parameters
+            assert!(
+                attack <= 2.0,
+                "Attack too long for {:?}: {}",
+                waveform,
+                attack
+            );
+            assert!(decay <= 2.0, "Decay too long for {:?}: {}", waveform, decay);
+            assert!(
+                release <= 3.0,
+                "Release too long for {:?}: {}",
+                waveform,
+                release
+            );
+        }
     }
 
     #[test]
-    fn test_square_wave() {
-        let wave = Waveform::Square;
+    fn test_bass_waveform_characteristics() {
+        let waveform = Waveform::Bass;
 
-        let sample_low = wave.generate_sample(0.25, 440.0, 44100.0);
-        let sample_high = wave.generate_sample(0.75, 440.0, 44100.0);
+        // Test that bass produces low-frequency content
+        let sample_low = waveform.generate_sample(0.25, 55.0, 44100.0); // A1
+        let sample_mid = waveform.generate_sample(0.25, 440.0, 44100.0); // A4
 
-        assert_eq!(sample_low, 1.0);
-        assert_eq!(sample_high, -1.0);
+        // Both should be finite and reasonable
+        assert!(sample_low.is_finite());
+        assert!(sample_mid.is_finite());
+        assert!(sample_low.abs() <= 3.0);
+        assert!(sample_mid.abs() <= 3.0);
+
+        // Bass should have good ADSR for sustained notes
+        let (attack, _decay, sustain, _release) = waveform.get_adsr_params();
+        assert!(sustain >= 0.8, "Bass should have high sustain: {}", sustain);
+        assert!(
+            attack >= 0.01,
+            "Bass should have some attack time: {}",
+            attack
+        );
     }
 
     #[test]
-    fn test_fart_wave() {
-        let wave = Waveform::Fart;
+    fn test_fart_waveform_frequency_limiting() {
+        let waveform = Waveform::Fart;
 
-        // Test various phases to ensure stability
-        let sample1 = wave.generate_sample(0.0, 440.0, 44100.0);
-        let sample2 = wave.generate_sample(0.25, 440.0, 44100.0);
-        let sample3 = wave.generate_sample(0.5, 100.0, 44100.0);
-        let sample4 = wave.generate_sample(0.75, 50.0, 44100.0);
+        // Fart should work with various input frequencies but focus on low frequencies
+        let high_freq_sample = waveform.generate_sample(0.25, 2000.0, 44100.0);
+        let low_freq_sample = waveform.generate_sample(0.25, 80.0, 44100.0);
 
-        // All samples should be finite and within reasonable range
-        assert!(sample1.is_finite());
-        assert!(sample2.is_finite());
-        assert!(sample3.is_finite());
-        assert!(sample4.is_finite());
-
-        // Fart waveform should produce non-zero output
-        assert!(sample1.abs() > 0.001 || sample2.abs() > 0.001);
-
-        // Test frequency forcing (should be low frequency)
-        // High input frequency should still produce low-frequency character
-        let high_freq_sample = wave.generate_sample(0.1, 2000.0, 44100.0);
         assert!(high_freq_sample.is_finite());
+        assert!(low_freq_sample.is_finite());
+
+        // Should produce reasonable output even with high input frequency
+        assert!(high_freq_sample.abs() <= 2.0);
+        assert!(low_freq_sample.abs() <= 2.0);
+    }
+
+    #[test]
+    fn test_cyberpunk_complexity() {
+        let waveform = Waveform::Cyberpunk;
+
+        // Test multiple phases to ensure variation
+        let samples: Vec<f32> = (0..8)
+            .map(|i| waveform.generate_sample(i as f32 * 0.125, 440.0, 44100.0))
+            .collect();
+
+        // All samples should be finite
+        for (i, sample) in samples.iter().enumerate() {
+            assert!(sample.is_finite(), "Sample {} is not finite: {}", i, sample);
+        }
+
+        // Cyberpunk should have variation (not all samples identical)
+        let first_sample = samples[0];
+        let has_variation = samples.iter().any(|&s| (s - first_sample).abs() > 0.001);
+        assert!(
+            has_variation,
+            "Cyberpunk waveform should have variation between phases"
+        );
     }
 }

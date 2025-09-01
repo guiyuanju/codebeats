@@ -8,6 +8,7 @@
 
 pub mod audio_engine;
 pub mod audio_samples;
+pub mod embedded_configs;
 pub mod keyboard_config;
 pub mod keyboard_mapping;
 pub mod sequence_detector;

@@ -707,7 +707,7 @@ impl KeyboardConfig {
 
     /// Get the waveform for this configuration, falling back to default if none specified
     pub fn get_waveform(&self) -> Option<Waveform> {
-        self.waveform.as_ref().and_then(|w| Waveform::from_str(w))
+        self.waveform.as_ref().and_then(|w| w.parse().ok())
     }
 
     /// Load configuration from a JSON file

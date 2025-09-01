@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "Ruby programming language optimized keyboard mapping - F# major scale with elegant syntax-focused harmonies",
+  "waveform": "saw",
+  "mappings": {
+    "R": {
+      "note": "A#4",
+      "volume": 0.2,
+      "description": "require, raise, rescue - reuse third"
+    },
+    "U": {
+      "note": "G#4",
+      "volume": 0.2,
+      "description": "Ruby, unless, until - major second"
+    },
+    "B": {
+      "note": "A#4",
+      "volume": 0.2,
+      "description": "block, begin, break - major third"
+    },
+    "Y": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "yield, symbol access - fourteenth"
+    },
+    "D": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "def, do, defined - perfect fifth"
+    },
+    "E": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "else, empty - reuse sixth"
+    },
+    "F": {
+      "note": "E#5",
+      "volume": 0.2,
+      "description": "for, false, freeze - major seventh"
+    },
+    "A": {
+      "note": "A#4",
+      "volume": 0.2,
+      "description": "alias_method - reuse third"
+    },
+    "N": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "name, numeric - reuse sixth"
+    },
+    "T": {
+      "note": "G#4",
+      "volume": 0.2,
+      "description": "to_s, to_i, to_a - high second"
+    },
+    "I": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "inspect, initialize - reuse fifth"
+    },
+    "C": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "constant, create - reuse fifth"
+    },
+    "S": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "super, self, string - thirteenth"
+    },
+    "X": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "extend, exit - high fourth"
+    },
+    "M": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "module, method, map - comfortable fifth"
+    },
+    "P": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "puts, private, proc - comfortable sixth"
+    },
+    "L": {
+      "note": "E#5",
+      "volume": 0.2,
+      "description": "lambda, length, local - comfortable seventh"
+    },
+    "G": {
+      "note": "E#5",
+      "volume": 0.2,
+      "description": "gem, grep - reuse seventh"
+    },
+    "H": {
+      "note": "E#5",
+      "volume": 0.2,
+      "description": "hash, has_key - reuse seventh"
+    },
+    "W": {
+      "note": "F#4",
+      "volume": 0.2,
+      "description": "when, while, with - reuse root"
+    },
+    "O": {
+      "note": "G#4",
+      "volume": 0.2,
+      "description": "or, object, open - reuse second"
+    },
+    "K": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "key, kind_of - reuse fourth"
+    },
+    "V": {
+      "note": "F#4",
+      "volume": 0.2,
+      "description": "variable, value - reuse root"
+    },
+    "J": {
+      "note": "G#4",
+      "volume": 0.2,
+      "description": "join, json - reuse second"
+    },
+    "Q": {
+      "note": "A#4",
+      "volume": 0.2,
+      "description": "query operations - reuse third"
+    },
+    "Z": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "zip, zero - reuse fourth"
+    },
+    "Key0": {
+      "note": "F#4",
+      "volume": 0.25,
+      "description": "Numeric literal - F# major root"
+    },
+    "RightParen": {
+      "note": "F#5",
+      "volume": 0.3,
+      "description": "Shift+0 - method call closing (octave)"
+    },
+    "Key1": {
+      "note": "G#4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "G#5",
+      "volume": 0.3,
+      "description": "Shift+1 - bang methods (octave)"
+    },
+    "Key2": {
+      "note": "A#4",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
+    },
+    "At": {
+      "note": "A#5",
+      "volume": 0.3,
+      "description": "Shift+2 - instance variables (octave)"
+    },
+    "Key3": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fourth"
+    },
+    "Hash": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+3 - hash/comments (octave)"
+    },
+    "Key4": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Dollar": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+4 - global variables (octave)"
+    },
+    "Key5": {
+      "note": "D#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Percent": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+5 - percent notation (octave)"
+    },
+    "Key6": {
+      "note": "E#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major seventh"
+    },
+    "Caret": {
+      "note": "E#5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
+    "Key7": {
+      "note": "F#5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "F#4",
+      "volume": 0.25,
+      "description": "Shift+7 - proc to block (shares root)"
+    },
+    "Key8": {
+      "note": "G#5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Asterisk": {
+      "note": "G#5",
+      "volume": 0.35,
+      "description": "Shift+8 - splat operator (emphasized)"
+    },
+    "Key9": {
+      "note": "A#5",
+      "volume": 0.25,
+      "description": "Numeric literal - tenth"
+    },
+    "LeftParen": {
+      "note": "A#5",
+      "volume": 0.3,
+      "description": "Shift+9 - method calls (emphasized)"
+    },
+    "LeftBracket": {
+      "note": "F#3",
+      "volume": 0.3,
+      "description": "Array access - low foundation"
+    },
+    "LeftBrace": {
+      "note": "F#4",
+      "volume": 0.35,
+      "description": "Shift+[ - hash/block literals (octave up)"
+    },
+    "RightBracket": {
+      "note": "F#4",
+      "volume": 0.3,
+      "description": "Array access - closure"
+    },
+    "RightBrace": {
+      "note": "F#5",
+      "volume": 0.35,
+      "description": "Shift+] - hash/block closing (octave up)"
+    },
+    "Semicolon": {
+      "note": "G#3",
+      "volume": 0.15,
+      "description": "Rare semicolon in Ruby"
+    },
+    "Colon": {
+      "note": "G#4",
+      "volume": 0.3,
+      "description": "Shift+; - symbols (critical in Ruby)"
+    },
+    "Equal": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "Assignment operator - fifth"
+    },
+    "Plus": {
+      "note": "C#5",
+      "volume": 0.3,
+      "description": "Shift+= - addition (shares pitch, emphasized)"
+    },
+    "Minus": {
+      "note": "D#5",
+      "volume": 0.3,
+      "description": "Subtraction - sixth"
+    },
+    "Underscore": {
+      "note": "D#4",
+      "volume": 0.3,
+      "description": "Shift+- - snake_case (lower register)"
+    },
+    "Slash": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Division, regex - fourth"
+    },
+    "Question": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "Shift+/ - predicate methods (octave up)"
+    },
+    "BackSlash": {
+      "note": "E#5",
+      "volume": 0.3,
+      "description": "Escape sequences - seventh"
+    },
+    "Pipe": {
+      "note": "E#5",
+      "volume": 0.35,
+      "description": "Shift+\\ - block parameters (shares pitch, emphasized)"
+    },
+    "Comma": {
+      "note": "G#3",
+      "volume": 0.2,
+      "description": "Parameter separator - gentle"
+    },
+    "LessThan": {
+      "note": "G#4",
+      "volume": 0.25,
+      "description": "Shift+, - comparison (octave up)"
+    },
+    "Dot": {
+      "note": "A#4",
+      "volume": 0.25,
+      "description": "Method calls - third"
+    },
+    "GreaterThan": {
+      "note": "A#4",
+      "volume": 0.25,
+      "description": "Shift+. - comparison (shares pitch)"
+    },
+    "Apostrophe": {
+      "note": "A#4",
+      "volume": 0.25,
+      "description": "String literals - third"
+    },
+    "DoubleQuote": {
+      "note": "A#5",
+      "volume": 0.3,
+      "description": "Shift+' - string interpolation (octave up)"
+    },
+    "Grave": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Command execution - fourth"
+    },
+    "Tilde": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Shift+` - regex match (shares pitch)"
+    },
+    "Space": {
+      "note": "F#2",
+      "volume": 0.15,
+      "description": "Whitespace - structural foundation"
+    },
+    "Tab": {
+      "note": "F#2",
+      "volume": 0.15,
+      "description": "Indentation - code structure"
+    },
+    "Enter": {
+      "note": "F#3",
+      "volume": 0.2,
+      "description": "Line breaks - statement structure"
+    },
+    "Backspace": {
+      "note": "D#2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "E#2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "F#2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "G#2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "A#2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "B2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "C#3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "D#3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "F#2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "A#5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Run Ruby script"
+    },
+    "F6": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Interactive Ruby (IRB)"
+    },
+    "F7": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Ruby gems"
+    },
+    "Up": {
+      "note": "A#3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "G#3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "F#3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "B3",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "F#3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "C#4",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "A#3",
+      "volume": 0.15,
+      "description": "Page navigation up"
+    },
+    "PageDown": {
+      "note": "D#4",
+      "volume": 0.15,
+      "description": "Page navigation down"
+    }
+  }
+}

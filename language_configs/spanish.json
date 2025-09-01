@@ -1,0 +1,512 @@
+{
+  "version": "2.0",
+  "description": "Spanish language optimized keyboard mapping - B major scale with Spanish phonetics-focused harmonies",
+  "waveform": "natural",
+  "mappings": {
+    "E": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Most frequent vowel - B major root"
+    },
+    "A": {
+      "note": "C#5",
+      "volume": 0.22,
+      "description": "Second most frequent vowel - major second"
+    },
+    "O": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "Third most frequent vowel - major third"
+    },
+    "S": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "ser, saber, solo - perfect fourth"
+    },
+    "R": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "rr, pero, para - perfect fifth"
+    },
+    "N": {
+      "note": "G#5",
+      "volume": 0.18,
+      "description": "no, en, con - major sixth"
+    },
+    "L": {
+      "note": "A#5",
+      "volume": 0.18,
+      "description": "la, le, los - major seventh"
+    },
+    "D": {
+      "note": "B5",
+      "volume": 0.18,
+      "description": "de, desde, donde - octave"
+    },
+    "T": {
+      "note": "C5",
+      "volume": 0.18,
+      "description": "te, tu, también - ninth"
+    },
+    "I": {
+      "note": "D5",
+      "volume": 0.17,
+      "description": "si, mi, aquí - tenth"
+    },
+    "C": {
+      "note": "E5",
+      "volume": 0.16,
+      "description": "con, como, cuando - eleventh"
+    },
+    "U": {
+      "note": "F5",
+      "volume": 0.15,
+      "description": "un, su, tu - twelfth"
+    },
+    "M": {
+      "note": "G5",
+      "volume": 0.15,
+      "description": "me, mi, más - thirteenth"
+    },
+    "P": {
+      "note": "A5",
+      "volume": 0.14,
+      "description": "por, para, pero - fourteenth"
+    },
+    "Y": {
+      "note": "B5",
+      "volume": 0.13,
+      "description": "y, ya, yo - double octave"
+    },
+    "Q": {
+      "note": "C#5",
+      "volume": 0.12,
+      "description": "que, qué - high second"
+    },
+    "H": {
+      "note": "D#5",
+      "volume": 0.12,
+      "description": "hacer, haber - high third"
+    },
+    "B": {
+      "note": "E5",
+      "volume": 0.12,
+      "description": "bien, blanco - high fourth"
+    },
+    "G": {
+      "note": "F#5",
+      "volume": 0.12,
+      "description": "grande, grupo - comfortable fifth"
+    },
+    "F": {
+      "note": "G#5",
+      "volume": 0.11,
+      "description": "fue, familia - comfortable sixth"
+    },
+    "V": {
+      "note": "A#5",
+      "volume": 0.11,
+      "description": "ver, venir - comfortable seventh"
+    },
+    "J": {
+      "note": "B4",
+      "volume": 0.1,
+      "description": "juego, joven - reuse root"
+    },
+    "Z": {
+      "note": "C#5",
+      "volume": 0.1,
+      "description": "zapato, zona - reuse second"
+    },
+    "Ñ": {
+      "note": "D#5",
+      "volume": 0.15,
+      "description": "niño, español - distinctive Spanish sound"
+    },
+    "K": {
+      "note": "E5",
+      "volume": 0.08,
+      "description": "kilo - rare in Spanish"
+    },
+    "W": {
+      "note": "F#5",
+      "volume": 0.07,
+      "description": "whisky - borrowed words"
+    },
+    "X": {
+      "note": "G#5",
+      "volume": 0.08,
+      "description": "extraño, texto"
+    },
+    "Key0": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric - B major root"
+    },
+    "RightParen": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+0 - punctuation (octave)"
+    },
+    "Key1": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "Numeric - major second"
+    },
+    "Exclamation": {
+      "note": "C5",
+      "volume": 0.35,
+      "description": "Shift+1 - ¡exclamación! (emphasized)"
+    },
+    "Key2": {
+      "note": "D#5",
+      "volume": 0.25,
+      "description": "Numeric - major third"
+    },
+    "At": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+2 - @ symbol (octave)"
+    },
+    "Key3": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric - perfect fourth"
+    },
+    "Hash": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+3 - # symbol (octave)"
+    },
+    "Key4": {
+      "note": "F#5",
+      "volume": 0.25,
+      "description": "Numeric - perfect fifth"
+    },
+    "Dollar": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+4 - $ symbol (octave)"
+    },
+    "Key5": {
+      "note": "G#5",
+      "volume": 0.25,
+      "description": "Numeric - major sixth"
+    },
+    "Percent": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+5 - % symbol (octave)"
+    },
+    "Key6": {
+      "note": "A#5",
+      "volume": 0.25,
+      "description": "Numeric - major seventh"
+    },
+    "Caret": {
+      "note": "A#5",
+      "volume": 0.25,
+      "description": "Shift+6 - ^ symbol"
+    },
+    "Key7": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "Numeric - octave"
+    },
+    "Ampersand": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Shift+7 - & symbol"
+    },
+    "Key8": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric - ninth"
+    },
+    "Asterisk": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+8 - * symbol"
+    },
+    "Key9": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric - tenth"
+    },
+    "LeftParen": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+9 - ( symbol"
+    },
+    "LeftBracket": {
+      "note": "B3",
+      "volume": 0.2,
+      "description": "[ bracket - low foundation"
+    },
+    "LeftBrace": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Shift+[ - { brace"
+    },
+    "RightBracket": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "] bracket closure"
+    },
+    "RightBrace": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "Shift+] - } brace closure"
+    },
+    "Semicolon": {
+      "note": "C#4",
+      "volume": 0.15,
+      "description": "; punctuation - rare in Spanish"
+    },
+    "Colon": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "Shift+; - : punctuation"
+    },
+    "Equal": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "= symbol"
+    },
+    "Plus": {
+      "note": "F#5",
+      "volume": 0.25,
+      "description": "Shift+= - + symbol"
+    },
+    "Minus": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "- hyphen/dash"
+    },
+    "Underscore": {
+      "note": "G#4",
+      "volume": 0.2,
+      "description": "Shift+- - _ underscore"
+    },
+    "Slash": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "/ slash"
+    },
+    "Question": {
+      "note": "E5",
+      "volume": 0.35,
+      "description": "Shift+/ - ¿question? (emphasized)"
+    },
+    "BackSlash": {
+      "note": "A#5",
+      "volume": 0.2,
+      "description": "\\ backslash"
+    },
+    "Pipe": {
+      "note": "A#5",
+      "volume": 0.2,
+      "description": "Shift+\\ - | pipe"
+    },
+    "Comma": {
+      "note": "C#4",
+      "volume": 0.2,
+      "description": ", comma - gentle pause"
+    },
+    "LessThan": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "Shift+, - < symbol"
+    },
+    "Dot": {
+      "note": "D#5",
+      "volume": 0.25,
+      "description": ". period - sentence ending"
+    },
+    "GreaterThan": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "Shift+. - > symbol"
+    },
+    "Apostrophe": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "' apostrophe - contractions"
+    },
+    "DoubleQuote": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Shift+' - \" quotes"
+    },
+    "Grave": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "` grave accent"
+    },
+    "Tilde": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Shift+` - ~ tilde (ñ accent)"
+    },
+    "Space": {
+      "note": "B2",
+      "volume": 0.15,
+      "description": "Space - word separation foundation"
+    },
+    "Tab": {
+      "note": "B2",
+      "volume": 0.15,
+      "description": "Tab - text formatting"
+    },
+    "Enter": {
+      "note": "B3",
+      "volume": 0.2,
+      "description": "Enter - line breaks"
+    },
+    "Backspace": {
+      "note": "G#2",
+      "volume": 0.1,
+      "description": "Backspace - correction"
+    },
+    "Delete": {
+      "note": "A#2",
+      "volume": 0.1,
+      "description": "Delete - removal"
+    },
+    "LShift": {
+      "note": "B2",
+      "volume": 0.05,
+      "description": "Left Shift - modifier"
+    },
+    "RShift": {
+      "note": "C#3",
+      "volume": 0.05,
+      "description": "Right Shift - modifier"
+    },
+    "LControl": {
+      "note": "D#3",
+      "volume": 0.05,
+      "description": "Left Control - modifier"
+    },
+    "RControl": {
+      "note": "E3",
+      "volume": 0.05,
+      "description": "Right Control - modifier"
+    },
+    "LAlt": {
+      "note": "F#3",
+      "volume": 0.05,
+      "description": "Left Alt - modifier"
+    },
+    "RAlt": {
+      "note": "G#3",
+      "volume": 0.05,
+      "description": "Right Alt - accents (AltGr)"
+    },
+    "Escape": {
+      "note": "B2",
+      "volume": 0.1,
+      "description": "Escape - command exit"
+    },
+    "F1": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "F1 - help"
+    },
+    "F2": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "F2 - rename"
+    },
+    "F3": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "F3 - search"
+    },
+    "F4": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "F4 - address bar"
+    },
+    "F5": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "F5 - refresh"
+    },
+    "F6": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "F6 - navigate"
+    },
+    "F7": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "F7 - spell check"
+    },
+    "F8": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "F8 - selection mode"
+    },
+    "F9": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "F9 - send/receive"
+    },
+    "F10": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "F10 - menu activation"
+    },
+    "F11": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "F11 - full screen"
+    },
+    "F12": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "F12 - save as"
+    },
+    "Up": {
+      "note": "D#4",
+      "volume": 0.15,
+      "description": "Arrow up - navigation"
+    },
+    "Down": {
+      "note": "C#4",
+      "volume": 0.15,
+      "description": "Arrow down - navigation"
+    },
+    "Left": {
+      "note": "B3",
+      "volume": 0.15,
+      "description": "Arrow left - navigation"
+    },
+    "Right": {
+      "note": "E4",
+      "volume": 0.15,
+      "description": "Arrow right - navigation"
+    },
+    "Home": {
+      "note": "B3",
+      "volume": 0.15,
+      "description": "Home - line start"
+    },
+    "End": {
+      "note": "F#4",
+      "volume": 0.15,
+      "description": "End - line end"
+    },
+    "PageUp": {
+      "note": "D#4",
+      "volume": 0.15,
+      "description": "Page Up - scroll up"
+    },
+    "PageDown": {
+      "note": "A#4",
+      "volume": 0.15,
+      "description": "Page Down - scroll down"
+    }
+  }
+}

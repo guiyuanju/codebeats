@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "PHP programming language optimized keyboard mapping - C major scale with web development-focused harmonies",
+  "waveform": "electronic",
+  "mappings": {
+    "P": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "PHP keyword foundation - C major root"
+    },
+    "H": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "header, http, hash - perfect fifth"
+    },
+    "E": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "echo, else, empty - major third"
+    },
+    "C": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "construct, const, cookie - tenth"
+    },
+    "O": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "output, override - thirteenth"
+    },
+    "F": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "function, for, file - major seventh"
+    },
+    "U": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "use, unset, upload - octave"
+    },
+    "N": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "namespace, null, number - fourteenth"
+    },
+    "T": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "this, true, try - eleventh"
+    },
+    "I": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "if, include, isset - twelfth"
+    },
+    "A": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "array_key, application - high fourth"
+    },
+    "R": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "redirect, result, regex - high third"
+    },
+    "Y": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "yield operations - comfortable fifth"
+    },
+    "S": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "string, session, static - comfortable sixth"
+    },
+    "V": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "var, value, view - comfortable seventh"
+    },
+    "W": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "while, web, write - reuse root"
+    },
+    "D": {
+      "note": "D4",
+      "volume": 0.2,
+      "description": "database, date, dirname - reuse second"
+    },
+    "L": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "length, list, loop - reuse third"
+    },
+    "G": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "get, global, generate - reuse fourth"
+    },
+    "M": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "mysql, mail, method - reuse fifth"
+    },
+    "B": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "bool, break, base64 - reuse sixth"
+    },
+    "J": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "json, join - reuse seventh"
+    },
+    "K": {
+      "note": "C4",
+      "volume": 0.2,
+      "description": "key operations - reuse root"
+    },
+    "Q": {
+      "note": "D4",
+      "volume": 0.2,
+      "description": "query operations - reuse second"
+    },
+    "X": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "xml, extract - reuse third"
+    },
+    "Z": {
+      "note": "F4",
+      "volume": 0.2,
+      "description": "zip operations - reuse fourth"
+    },
+    "Key0": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Numeric literal - C major root"
+    },
+    "RightParen": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
+    "Key1": {
+      "note": "D4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+1 - logical NOT (octave)"
+    },
+    "Key2": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
+    },
+    "At": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+2 - error suppression (octave)"
+    },
+    "Key3": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fourth"
+    },
+    "Hash": {
+      "note": "F5",
+      "volume": 0.3,
+      "description": "Shift+3 - comments (octave)"
+    },
+    "Key4": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Dollar": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Shift+4 - variable prefix (emphasized, critical in PHP)"
+    },
+    "Key5": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Percent": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
+    },
+    "Key6": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal - major seventh"
+    },
+    "Caret": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
+    "Key7": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "C4",
+      "volume": 0.25,
+      "description": "Shift+7 - reference (shares root)"
+    },
+    "Key8": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Asterisk": {
+      "note": "D5",
+      "volume": 0.35,
+      "description": "Shift+8 - multiplication/comments (emphasized)"
+    },
+    "Key9": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - tenth"
+    },
+    "LeftParen": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (emphasized)"
+    },
+    "LeftBracket": {
+      "note": "C3",
+      "volume": 0.3,
+      "description": "Array access - low foundation"
+    },
+    "LeftBrace": {
+      "note": "C4",
+      "volume": 0.35,
+      "description": "Shift+[ - array/block literals (octave up)"
+    },
+    "RightBracket": {
+      "note": "C4",
+      "volume": 0.3,
+      "description": "Array access - closure"
+    },
+    "RightBrace": {
+      "note": "C5",
+      "volume": 0.35,
+      "description": "Shift+] - array/block closing (octave up)"
+    },
+    "Semicolon": {
+      "note": "D3",
+      "volume": 0.2,
+      "description": "Statement termination - crucial in PHP"
+    },
+    "Colon": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Shift+; - alternative syntax (critical in PHP)"
+    },
+    "Equal": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Assignment operator - fifth"
+    },
+    "Plus": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "Shift+= - addition/concatenation (shares pitch, emphasized)"
+    },
+    "Minus": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Subtraction - sixth"
+    },
+    "Underscore": {
+      "note": "A3",
+      "volume": 0.3,
+      "description": "Shift+- - magic methods (lower register)"
+    },
+    "Slash": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Division, comments - fourth"
+    },
+    "Question": {
+      "note": "F5",
+      "volume": 0.25,
+      "description": "Shift+/ - ternary operator (octave up)"
+    },
+    "BackSlash": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Namespace separator - seventh"
+    },
+    "Pipe": {
+      "note": "B4",
+      "volume": 0.35,
+      "description": "Shift+\\ - bitwise OR (shares pitch, emphasized)"
+    },
+    "Comma": {
+      "note": "D3",
+      "volume": 0.2,
+      "description": "Parameter separator - gentle"
+    },
+    "LessThan": {
+      "note": "D4",
+      "volume": 0.3,
+      "description": "Shift+, - PHP opening tag (octave up)"
+    },
+    "Dot": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Concatenation operator - third"
+    },
+    "GreaterThan": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Shift+. - PHP closing tag (shares pitch)"
+    },
+    "Apostrophe": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "String literals - third"
+    },
+    "DoubleQuote": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals with variables (octave up)"
+    },
+    "Grave": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Rarely used in PHP - fourth"
+    },
+    "Tilde": {
+      "note": "F4",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (shares pitch)"
+    },
+    "Space": {
+      "note": "C2",
+      "volume": 0.15,
+      "description": "Whitespace - structural foundation"
+    },
+    "Tab": {
+      "note": "C2",
+      "volume": 0.15,
+      "description": "Indentation - code structure"
+    },
+    "Enter": {
+      "note": "C3",
+      "volume": 0.2,
+      "description": "Line breaks - statement structure"
+    },
+    "Backspace": {
+      "note": "A2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "B2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "C2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "D2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "F2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "C2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Run/execute PHP"
+    },
+    "F6": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "PHP server"
+    },
+    "F7": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "PHP development tools"
+    },
+    "Up": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "D3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "F3",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "C3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Page navigation up"
+    },
+    "PageDown": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Page navigation down"
+    }
+  }
+}

@@ -1,6 +1,7 @@
 //! Audio engine with ADSR envelope system and state management
 
 use crate::audio_samples::{AudioSample, SamplePlayback};
+use crate::embedded_configs;
 use crate::waveforms::Waveform;
 use device_query::Keycode;
 use std::collections::HashMap;
@@ -107,6 +108,26 @@ impl ADSRParams {
             decay_time: 0.08,
             sustain_level: 0.75,
             release_time: 0.3,
+        }
+    }
+
+    /// Create ambient ADSR (slow attack, long sustain, very long release)
+    pub fn ambient() -> Self {
+        Self {
+            attack_time: 0.5,
+            decay_time: 0.3,
+            sustain_level: 0.8,
+            release_time: 1.0,
+        }
+    }
+
+    /// Create bell ADSR (instant attack, fast decay, no sustain, long release)
+    pub fn bell() -> Self {
+        Self {
+            attack_time: 0.001,
+            decay_time: 0.2,
+            sustain_level: 0.0,
+            release_time: 2.0,
         }
     }
 }
@@ -272,16 +293,14 @@ impl AudioState {
             Waveform::Electronic => ADSRParams::electronic(),
             Waveform::Saw | Waveform::Square => ADSRParams::punchy(),
             Waveform::Cyberpunk => ADSRParams::cyberpunk(),
-            Waveform::Harmonic => ADSRParams::natural(),
-            Waveform::Sine => ADSRParams::electronic(),
-            Waveform::Sawtooth => ADSRParams::punchy(),
             Waveform::Triangle => ADSRParams::electronic(),
             Waveform::Fart => ADSRParams::fart(),
+            Waveform::Bass => ADSRParams::cyberpunk(), // Bass uses analog-style envelope
         };
 
-        // Try to load the fart sample
-        let fart_sample = AudioSample::load_from_file("effects/fart-quick-short.wav")
-            .map_err(|e| eprintln!("Warning: Could not load fart sample: {}", e))
+        // Load the embedded fart sample
+        let fart_sample = AudioSample::load_from_bytes(embedded_configs::get_fart_audio_data())
+            .map_err(|e| eprintln!("Warning: Could not load embedded fart sample: {}", e))
             .ok();
 
         Self {

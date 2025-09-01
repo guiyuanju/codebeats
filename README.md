@@ -5,25 +5,52 @@ Transform your typing into music. Every keystroke becomes a note, creating melod
 ## Features
 
 **GUI Interface:**
-- Language selection (Python, Rust, JavaScript, etc.)
-- Waveform selection (natural, electronic, cyberpunk, fart, etc.)
+- Dynamic language selection (automatically detects all available configurations)
+- Dynamic waveform selection (automatically detects all available waveforms)  
 - Volume and filter controls
 - Real-time log display
 - Start/stop functionality
+- Refresh button to reload available options
 
 **Waveforms:**
-- `natural` - Piano with harmonics
+- `natural` - Piano with harmonics and vibrato
 - `electronic` - Clean sine wave
-- `cyberpunk` - Analog synth atmosphere
-- `fart` - Real fart audio samples 💨
+- `cyberpunk` - Blade Runner 2049 style analog synthesizer
+- `saw` - Bright sawtooth wave for electronic music
+- `square` - Retro 8-bit square wave
+- `triangle` - Smooth triangular wave
+- `fart` - Realistic fart sound synthesis 💨
+- `bass` - Deep bass with rich low frequencies
 
-**Language Configs:**
-- Programming languages: Python, Rust, JavaScript, Java, Go, etc.
-- Human languages: English, Chinese, Japanese
+**Programming Language Configs:**
+- C, C++, C#, Go, Rust, Python, JavaScript, TypeScript
+- Java, Kotlin, Swift, PHP, Ruby, Clojure, Haskell
+- Scheme, Emacs Lisp, General Programming
+
+**Human Language Configs:**
+- English, Chinese, Japanese, Spanish, French, German
 
 ## Easter Egg 🥚
 
 Type `oppokokoppokosuttenten` for a special fart sound effect!
+
+## Complete Feature List 📋
+
+**8 Distinctive Waveforms:**
+Each waveform has unique sonic characteristics and ADSR envelope settings:
+- `natural` - Piano with harmonics and subtle vibrato
+- `electronic` - Clean sine wave for precise tones
+- `cyberpunk` - Multi-oscillator analog synth with LFO modulation
+- `saw` - Bright electronic sawtooth with rich harmonics
+- `square` - Classic 8-bit retro square wave
+- `triangle` - Smooth triangular wave for mellow tones
+- `fart` - Realistic body resonance with formant filtering 💨
+- `bass` - Deep bass with powerful sub-frequencies and analog warmth
+
+**24 Language Configurations:**
+- **Programming Languages** (16): C, C++, C#, TypeScript, Swift, PHP, Ruby, Kotlin, plus Python, Rust, JavaScript, Java, Go, Clojure, Haskell, Scheme, Emacs Lisp, General Programming
+- **Human Languages** (6): English, Chinese, Japanese, Spanish, French, German
+- Each configuration maps keyboard keys to musically meaningful notes based on letter frequency and language-specific characteristics
 
 ## Build Requirements
 
@@ -94,10 +121,11 @@ open CodeBeats.app
 
 ### GUI Mode
 1. Launch `codebeats-gui` 
-2. Select language config and waveform
-3. Adjust volume and filter settings
-4. Click "Start CodeBeats"
-5. Start typing - each key produces a musical note!
+2. Select language config and waveform (automatically loaded from CLI)
+3. Use the 🔄 Refresh button to reload if you add new configurations
+4. Adjust volume and filter settings
+5. Click "Start CodeBeats"
+6. Start typing - each key produces a musical note!
 
 ### CLI Mode
 ```bash

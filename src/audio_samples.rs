@@ -4,6 +4,7 @@
 //! in the audio synthesis pipeline. Used for realistic sound effects like fart sounds.
 
 use hound;
+use std::io::Cursor;
 use std::path::Path;
 
 /// Audio sample data loaded from a WAV file
@@ -21,6 +22,36 @@ impl AudioSample {
     /// Load an audio sample from a WAV file
     pub fn load_from_file<P: AsRef<Path>>(path: P) -> Result<Self, Box<dyn std::error::Error>> {
         let mut reader = hound::WavReader::open(path)?;
+        let spec = reader.spec();
+
+        // Read all samples and convert to f32
+        let samples: Result<Vec<f32>, _> = match spec.sample_format {
+            hound::SampleFormat::Float => reader.samples::<f32>().collect(),
+            hound::SampleFormat::Int => {
+                // Convert integer samples to float
+                let bit_depth = spec.bits_per_sample;
+                let max_val = (1 << (bit_depth - 1)) as f32;
+
+                reader
+                    .samples::<i32>()
+                    .map(|sample| sample.map(|s| s as f32 / max_val))
+                    .collect()
+            }
+        };
+
+        let samples = samples?;
+
+        Ok(AudioSample {
+            samples,
+            sample_rate: spec.sample_rate,
+            channels: spec.channels,
+        })
+    }
+
+    /// Load an audio sample from byte data (WAV format)
+    pub fn load_from_bytes(data: &[u8]) -> Result<Self, Box<dyn std::error::Error>> {
+        let cursor = Cursor::new(data);
+        let mut reader = hound::WavReader::new(cursor)?;
         let spec = reader.spec();
 
         // Read all samples and convert to f32

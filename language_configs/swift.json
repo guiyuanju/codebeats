@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "Swift programming language optimized keyboard mapping - G major scale with iOS/macOS-focused harmonies",
+  "waveform": "triangle",
+  "mappings": {
+    "S": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "struct keyword foundation - G major root"
+    },
+    "W": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "weak, where, while - major second"
+    },
+    "I": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "import, if, init - major third"
+    },
+    "F": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "func, for, false - perfect fourth"
+    },
+    "T": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "true, try, throw - perfect fifth"
+    },
+    "C": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "class, case, catch - major sixth"
+    },
+    "L": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "let, lazy, library - major seventh"
+    },
+    "A": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "async, await, array - octave"
+    },
+    "U": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "unowned, unwrap, UIKit - ninth"
+    },
+    "N": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "nil, new, NSObject - tenth"
+    },
+    "V": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "var, view, value - eleventh"
+    },
+    "E": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "enum, else, extension - twelfth"
+    },
+    "R": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "return, required, range - thirteenth"
+    },
+    "P": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "protocol, private, public - fourteenth"
+    },
+    "O": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "override, optional, open - double octave"
+    },
+    "D": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "delegate, default, deinit - high second"
+    },
+    "M": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "mutating, map, main - high third"
+    },
+    "B": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "break, bundle, bool - high fourth"
+    },
+    "G": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "guard, get, generic - comfortable fifth"
+    },
+    "Y": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "yield (async), type - comfortable sixth"
+    },
+    "H": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "hashable, handler - comfortable seventh"
+    },
+    "K": {
+      "note": "G4",
+      "volume": 0.2,
+      "description": "key, kind - reuse root"
+    },
+    "J": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "JSON operations - reuse second"
+    },
+    "Q": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "queue operations - reuse third"
+    },
+    "X": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "extensions, Xcode - reuse fourth"
+    },
+    "Z": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "zone operations - reuse fifth"
+    },
+    "Key0": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Numeric literal - G major root"
+    },
+    "RightParen": {
+      "note": "G5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
+    "Key1": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+1 - force unwrap (octave)"
+    },
+    "Key2": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
+    },
+    "At": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+2 - attributes (octave)"
+    },
+    "Key3": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fourth"
+    },
+    "Hash": {
+      "note": "C5",
+      "volume": 0.3,
+      "description": "Shift+3 - compiler directives (octave)"
+    },
+    "Key4": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Dollar": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+4 - string interpolation (octave)"
+    },
+    "Key5": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Percent": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+5 - remainder operator (octave)"
+    },
+    "Key6": {
+      "note": "F#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major seventh"
+    },
+    "Caret": {
+      "note": "F#5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
+    "Key7": {
+      "note": "G5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "G4",
+      "volume": 0.25,
+      "description": "Shift+7 - bitwise AND (shares root)"
+    },
+    "Key8": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Asterisk": {
+      "note": "A5",
+      "volume": 0.35,
+      "description": "Shift+8 - multiplication (emphasized)"
+    },
+    "Key9": {
+      "note": "B5",
+      "volume": 0.25,
+      "description": "Numeric literal - tenth"
+    },
+    "LeftParen": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (emphasized)"
+    },
+    "LeftBracket": {
+      "note": "G3",
+      "volume": 0.3,
+      "description": "Array access - low foundation"
+    },
+    "LeftBrace": {
+      "note": "G4",
+      "volume": 0.35,
+      "description": "Shift+[ - closure/dict literals (octave up)"
+    },
+    "RightBracket": {
+      "note": "G4",
+      "volume": 0.3,
+      "description": "Array access - closure"
+    },
+    "RightBrace": {
+      "note": "G5",
+      "volume": 0.35,
+      "description": "Shift+] - closure/block closing (octave up)"
+    },
+    "Semicolon": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Rare semicolon in Swift"
+    },
+    "Colon": {
+      "note": "A4",
+      "volume": 0.3,
+      "description": "Shift+; - type annotations (critical in Swift)"
+    },
+    "Equal": {
+      "note": "D5",
+      "volume": 0.25,
+      "description": "Assignment operator - fifth"
+    },
+    "Plus": {
+      "note": "D5",
+      "volume": 0.3,
+      "description": "Shift+= - addition (shares pitch, emphasized)"
+    },
+    "Minus": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Subtraction - sixth"
+    },
+    "Underscore": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Shift+- - wildcards (lower register)"
+    },
+    "Slash": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Division, comments - fourth"
+    },
+    "Question": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Shift+/ - optional chaining (octave up)"
+    },
+    "BackSlash": {
+      "note": "F#5",
+      "volume": 0.3,
+      "description": "Escape sequences - seventh"
+    },
+    "Pipe": {
+      "note": "F#5",
+      "volume": 0.35,
+      "description": "Shift+\\ - bitwise OR (shares pitch, emphasized)"
+    },
+    "Comma": {
+      "note": "A3",
+      "volume": 0.2,
+      "description": "Parameter separator - gentle"
+    },
+    "LessThan": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Shift+, - generics opening (octave up)"
+    },
+    "Dot": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Property access - third"
+    },
+    "GreaterThan": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Shift+. - generics closing (shares pitch)"
+    },
+    "Apostrophe": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Character literals - third"
+    },
+    "DoubleQuote": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (octave up)"
+    },
+    "Grave": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Rarely used in Swift - fourth"
+    },
+    "Tilde": {
+      "note": "C5",
+      "volume": 0.25,
+      "description": "Shift+` - bitwise NOT (shares pitch)"
+    },
+    "Space": {
+      "note": "G2",
+      "volume": 0.15,
+      "description": "Whitespace - structural foundation"
+    },
+    "Tab": {
+      "note": "G2",
+      "volume": 0.15,
+      "description": "Indentation - code structure"
+    },
+    "Enter": {
+      "note": "G3",
+      "volume": 0.2,
+      "description": "Line breaks - statement structure"
+    },
+    "Backspace": {
+      "note": "E2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "F#2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "G2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "B2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "C3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "D3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "E3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "G2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Build/run Swift"
+    },
+    "F6": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Build project"
+    },
+    "F7": {
+      "note": "F5",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "G5",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "C5",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "D5",
+      "volume": 0.2,
+      "description": "Xcode services"
+    },
+    "Up": {
+      "note": "B3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "C4",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "G3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "D4",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "B3",
+      "volume": 0.15,
+      "description": "Page navigation up"
+    },
+    "PageDown": {
+      "note": "E4",
+      "volume": 0.15,
+      "description": "Page navigation down"
+    }
+  }
+}

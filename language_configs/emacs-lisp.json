@@ -1,7 +1,7 @@
 {
   "version": "2.0",
   "description": "Emacs Lisp programming language optimized keyboard mapping - editor-optimized scale with extensibility focus",
-  "waveform": "sawtooth",
+  "waveform": "saw",
   "mappings": {
     "D": {
       "note": "C4",

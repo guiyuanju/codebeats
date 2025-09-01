@@ -1,0 +1,507 @@
+{
+  "version": "2.0",
+  "description": "C++ programming language optimized keyboard mapping - E major scale with performance-focused harmonies",
+  "waveform": "saw",
+  "mappings": {
+    "C": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "class keyword foundation - E major root"
+    },
+    "L": {
+      "note": "F#4",
+      "volume": 0.2,
+      "description": "class, long, lambda - major second"
+    },
+    "A": {
+      "note": "G#4",
+      "volume": 0.2,
+      "description": "auto, array, algorithm - major third"
+    },
+    "S": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "std, string, struct - perfect fourth"
+    },
+    "T": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "template, this, thread - perfect fifth"
+    },
+    "I": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "int, include, inline - major sixth"
+    },
+    "O": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "operator, override, ostream - major seventh"
+    },
+    "N": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "new, namespace, nullptr - octave"
+    },
+    "P": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "public, private, protected - ninth"
+    },
+    "U": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "using, unique_ptr, unsigned - tenth"
+    },
+    "R": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "return, reference, range - eleventh"
+    },
+    "E": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "extern, enum, exception - twelfth"
+    },
+    "D": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "delete, double, default - thirteenth"
+    },
+    "V": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "virtual, vector, void - fourteenth"
+    },
+    "M": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "move, make_unique, mutable - double octave"
+    },
+    "F": {
+      "note": "F#4",
+      "volume": 0.2,
+      "description": "for, function, friend - high second"
+    },
+    "H": {
+      "note": "G#4",
+      "volume": 0.2,
+      "description": "header, hash, heap - high third"
+    },
+    "W": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "while, weak_ptr, write - high fourth"
+    },
+    "B": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "bool, break, begin - comfortable fifth"
+    },
+    "G": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "get, global, generic - comfortable sixth"
+    },
+    "Y": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "yield (C++20) - comfortable seventh"
+    },
+    "K": {
+      "note": "E4",
+      "volume": 0.2,
+      "description": "keyword operations - reuse root"
+    },
+    "J": {
+      "note": "F#4",
+      "volume": 0.2,
+      "description": "join operations - reuse second"
+    },
+    "Q": {
+      "note": "G#4",
+      "volume": 0.2,
+      "description": "queue operations - reuse third"
+    },
+    "X": {
+      "note": "A4",
+      "volume": 0.2,
+      "description": "execution, extern - reuse fourth"
+    },
+    "Z": {
+      "note": "B4",
+      "volume": 0.2,
+      "description": "zero operations - reuse fifth"
+    },
+    "Key0": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Numeric literal - E major root"
+    },
+    "RightParen": {
+      "note": "E5",
+      "volume": 0.3,
+      "description": "Shift+0 - function call closing (octave)"
+    },
+    "Key1": {
+      "note": "F#4",
+      "volume": 0.25,
+      "description": "Numeric literal - major second"
+    },
+    "Exclamation": {
+      "note": "F#5",
+      "volume": 0.3,
+      "description": "Shift+1 - logical NOT (octave)"
+    },
+    "Key2": {
+      "note": "G#4",
+      "volume": 0.25,
+      "description": "Numeric literal - major third"
+    },
+    "At": {
+      "note": "G#5",
+      "volume": 0.3,
+      "description": "Shift+2 - rarely used (octave)"
+    },
+    "Key3": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fourth"
+    },
+    "Hash": {
+      "note": "A5",
+      "volume": 0.3,
+      "description": "Shift+3 - preprocessor (octave)"
+    },
+    "Key4": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Numeric literal - perfect fifth"
+    },
+    "Dollar": {
+      "note": "B5",
+      "volume": 0.3,
+      "description": "Shift+4 - rarely used (octave)"
+    },
+    "Key5": {
+      "note": "C#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major sixth"
+    },
+    "Percent": {
+      "note": "C#5",
+      "volume": 0.3,
+      "description": "Shift+5 - modulo operator (octave)"
+    },
+    "Key6": {
+      "note": "D#5",
+      "volume": 0.25,
+      "description": "Numeric literal - major seventh"
+    },
+    "Caret": {
+      "note": "D#5",
+      "volume": 0.25,
+      "description": "Shift+6 - XOR operator (shares pitch)"
+    },
+    "Key7": {
+      "note": "E5",
+      "volume": 0.25,
+      "description": "Numeric literal - octave"
+    },
+    "Ampersand": {
+      "note": "E4",
+      "volume": 0.25,
+      "description": "Shift+7 - reference/address (shares root)"
+    },
+    "Key8": {
+      "note": "F#5",
+      "volume": 0.25,
+      "description": "Numeric literal - ninth"
+    },
+    "Asterisk": {
+      "note": "F#5",
+      "volume": 0.35,
+      "description": "Shift+8 - pointer dereference (emphasized)"
+    },
+    "Key9": {
+      "note": "G#5",
+      "volume": 0.25,
+      "description": "Numeric literal - tenth"
+    },
+    "LeftParen": {
+      "note": "G#5",
+      "volume": 0.3,
+      "description": "Shift+9 - function calls (emphasized)"
+    },
+    "LeftBracket": {
+      "note": "E3",
+      "volume": 0.3,
+      "description": "Array access - low foundation"
+    },
+    "LeftBrace": {
+      "note": "E4",
+      "volume": 0.35,
+      "description": "Shift+[ - block/scope (octave up)"
+    },
+    "RightBracket": {
+      "note": "E4",
+      "volume": 0.3,
+      "description": "Array access - closure"
+    },
+    "RightBrace": {
+      "note": "E5",
+      "volume": 0.35,
+      "description": "Shift+] - block/scope closing (octave up)"
+    },
+    "Semicolon": {
+      "note": "F#3",
+      "volume": 0.2,
+      "description": "Statement termination - crucial in C++"
+    },
+    "Colon": {
+      "note": "F#4",
+      "volume": 0.3,
+      "description": "Shift+; - inheritance, labels (critical in C++)"
+    },
+    "Equal": {
+      "note": "B4",
+      "volume": 0.25,
+      "description": "Assignment operator - fifth"
+    },
+    "Plus": {
+      "note": "B4",
+      "volume": 0.3,
+      "description": "Shift+= - addition (shares pitch, emphasized)"
+    },
+    "Minus": {
+      "note": "C#5",
+      "volume": 0.3,
+      "description": "Subtraction - sixth"
+    },
+    "Underscore": {
+      "note": "C#4",
+      "volume": 0.3,
+      "description": "Shift+- - member variables (lower register)"
+    },
+    "Slash": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Division, comments - fourth"
+    },
+    "Question": {
+      "note": "A5",
+      "volume": 0.25,
+      "description": "Shift+/ - ternary operator (octave up)"
+    },
+    "BackSlash": {
+      "note": "D#5",
+      "volume": 0.3,
+      "description": "Escape sequences - seventh"
+    },
+    "Pipe": {
+      "note": "D#5",
+      "volume": 0.35,
+      "description": "Shift+\\ - bitwise OR (shares pitch, emphasized)"
+    },
+    "Comma": {
+      "note": "F#3",
+      "volume": 0.2,
+      "description": "Parameter separator - gentle"
+    },
+    "LessThan": {
+      "note": "F#4",
+      "volume": 0.25,
+      "description": "Shift+, - templates/comparison (octave up)"
+    },
+    "Dot": {
+      "note": "G#4",
+      "volume": 0.25,
+      "description": "Member access - third"
+    },
+    "GreaterThan": {
+      "note": "G#4",
+      "volume": 0.25,
+      "description": "Shift+. - templates/comparison (shares pitch)"
+    },
+    "Apostrophe": {
+      "note": "G#4",
+      "volume": 0.25,
+      "description": "Character literals - third"
+    },
+    "DoubleQuote": {
+      "note": "G#5",
+      "volume": 0.3,
+      "description": "Shift+' - string literals (octave up)"
+    },
+    "Grave": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Rarely used in C++ - fourth"
+    },
+    "Tilde": {
+      "note": "A4",
+      "volume": 0.25,
+      "description": "Shift+` - destructor/bitwise NOT (shares pitch)"
+    },
+    "Space": {
+      "note": "E2",
+      "volume": 0.15,
+      "description": "Whitespace - structural foundation"
+    },
+    "Tab": {
+      "note": "E2",
+      "volume": 0.15,
+      "description": "Indentation - code structure"
+    },
+    "Enter": {
+      "note": "E3",
+      "volume": 0.2,
+      "description": "Line breaks - statement structure"
+    },
+    "Backspace": {
+      "note": "C#2",
+      "volume": 0.1,
+      "description": "Editing - quiet correction"
+    },
+    "Delete": {
+      "note": "D#2",
+      "volume": 0.1,
+      "description": "Deletion - quiet correction"
+    },
+    "LShift": {
+      "note": "E2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RShift": {
+      "note": "F#2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LControl": {
+      "note": "G#2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RControl": {
+      "note": "A2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "LAlt": {
+      "note": "B2",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "RAlt": {
+      "note": "C#3",
+      "volume": 0.05,
+      "description": "Modifier - barely audible"
+    },
+    "Escape": {
+      "note": "E2",
+      "volume": 0.1,
+      "description": "Command escape"
+    },
+    "F1": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Help/documentation"
+    },
+    "F2": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "Rename/refactor"
+    },
+    "F3": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "Search/find next"
+    },
+    "F4": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Go to definition"
+    },
+    "F5": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Build/compile C++"
+    },
+    "F6": {
+      "note": "C#5",
+      "volume": 0.2,
+      "description": "Build project"
+    },
+    "F7": {
+      "note": "D#5",
+      "volume": 0.2,
+      "description": "Debug step"
+    },
+    "F8": {
+      "note": "E5",
+      "volume": 0.2,
+      "description": "Continue debugging"
+    },
+    "F9": {
+      "note": "F#5",
+      "volume": 0.2,
+      "description": "Toggle breakpoint"
+    },
+    "F10": {
+      "note": "G#5",
+      "volume": 0.2,
+      "description": "Step over"
+    },
+    "F11": {
+      "note": "A5",
+      "volume": 0.2,
+      "description": "Step into"
+    },
+    "F12": {
+      "note": "B5",
+      "volume": 0.2,
+      "description": "Go to declaration"
+    },
+    "Up": {
+      "note": "G#3",
+      "volume": 0.15,
+      "description": "Navigation - upward movement"
+    },
+    "Down": {
+      "note": "F#3",
+      "volume": 0.15,
+      "description": "Navigation - downward movement"
+    },
+    "Left": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Navigation - leftward movement"
+    },
+    "Right": {
+      "note": "A3",
+      "volume": 0.15,
+      "description": "Navigation - rightward movement"
+    },
+    "Home": {
+      "note": "E3",
+      "volume": 0.15,
+      "description": "Beginning of line"
+    },
+    "End": {
+      "note": "B3",
+      "volume": 0.15,
+      "description": "End of line"
+    },
+    "PageUp": {
+      "note": "G#3",
+      "volume": 0.15,
+      "description": "Page navigation up"
+    },
+    "PageDown": {
+      "note": "C#4",
+      "volume": 0.15,
+      "description": "Page navigation down"
+    }
+  }
+}
