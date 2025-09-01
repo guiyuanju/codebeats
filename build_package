@@ -1,0 +1,237 @@
+#!/bin/bash
+
+# CodeBeats Build Package Script
+# Builds GUI releases for macOS, Windows, and Linux
+
+set -e
+
+PROJECT_NAME="codebeats"
+GUI_BINARY="${PROJECT_NAME}-gui"
+VERSION="1.0.0"
+
+echo "🎵 CodeBeats Build Package v${VERSION}"
+echo "======================================"
+echo ""
+
+# Check if we're in the right directory
+if [ ! -f "Cargo.toml" ] || [ ! -f "src/gui_main.rs" ]; then
+    echo "❌ Error: Run this script from the CodeBeats project root directory"
+    exit 1
+fi
+
+# Clean previous builds
+echo "🧹 Cleaning previous builds..."
+cargo clean
+rm -rf releases
+mkdir -p releases
+echo ""
+
+
+
+# Build for all platforms
+echo "🔨 Building GUI for all platforms..."
+echo ""
+
+# Build macOS (current platform)
+echo "🍎 Building macOS version..."
+if cargo build --release --bin $GUI_BINARY; then
+    echo "✅ macOS build complete"
+else
+    echo "❌ macOS build failed"
+    exit 1
+fi
+echo ""
+
+# Build Windows
+echo "🪟 Building Windows version..."
+if cargo build --release --target x86_64-pc-windows-gnu --bin $GUI_BINARY; then
+    echo "✅ Windows build complete"
+else
+    echo "⚠️  Windows build failed (this is normal on some platforms)"
+fi
+echo ""
+
+# Build Linux
+echo "🐧 Building Linux version..."
+if cargo build --release --target x86_64-unknown-linux-gnu --bin $GUI_BINARY; then
+    echo "✅ Linux build complete"
+else
+    echo "⚠️  Linux build failed (this is normal on some platforms)"
+fi
+echo ""
+
+# Package macOS as .app
+echo "📱 Creating macOS .app bundle..."
+APP_DIR="releases/CodeBeats.app"
+CONTENTS_DIR="$APP_DIR/Contents"
+MACOS_DIR="$CONTENTS_DIR/MacOS"
+RESOURCES_DIR="$CONTENTS_DIR/Resources"
+
+mkdir -p "$MACOS_DIR"
+mkdir -p "$RESOURCES_DIR"
+
+# Copy macOS binary
+cp "target/release/$GUI_BINARY" "$MACOS_DIR/CodeBeats"
+chmod +x "$MACOS_DIR/CodeBeats"
+
+# Copy resources
+cp -r language_configs "$RESOURCES_DIR/"
+if [ -d "effects" ]; then
+    cp -r effects "$RESOURCES_DIR/"
+fi
+
+# Create Info.plist
+cat > "$CONTENTS_DIR/Info.plist" << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>CodeBeats</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.codebeats.app</string>
+    <key>CFBundleName</key>
+    <string>CodeBeats</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.13</string>
+    <key>CFBundleDisplayName</key>
+    <string>CodeBeats</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.music</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+</dict>
+</plist>
+EOF
+
+echo "✅ macOS .app bundle created"
+echo ""
+
+# Package Windows
+if [ -f "target/x86_64-pc-windows-gnu/release/${GUI_BINARY}.exe" ]; then
+    echo "🪟 Creating Windows package..."
+    WIN_DIR="releases/CodeBeats-Windows"
+    mkdir -p "$WIN_DIR"
+
+    # Copy Windows binary
+    cp "target/x86_64-pc-windows-gnu/release/${GUI_BINARY}.exe" "$WIN_DIR/CodeBeats.exe"
+
+    # Copy resources
+    cp -r language_configs "$WIN_DIR/"
+    if [ -d "effects" ]; then
+        cp -r effects "$WIN_DIR/"
+    fi
+
+    # Create startup script
+    cat > "$WIN_DIR/Start-CodeBeats.bat" << 'EOF'
+@echo off
+echo Starting CodeBeats...
+CodeBeats.exe
+EOF
+
+    # Create README
+    cat > "$WIN_DIR/README.txt" << 'EOF'
+CodeBeats for Windows
+
+QUICK START:
+1. Double-click "Start-CodeBeats.bat"
+2. Configure your settings in the GUI
+3. Click "Start CodeBeats" and begin typing!
+
+DIRECT LAUNCH:
+You can also double-click "CodeBeats.exe" directly.
+
+For more information, visit: https://github.com/your-repo/codebeats
+EOF
+
+    echo "✅ Windows package created"
+else
+    echo "⚠️  Windows binary not found, skipping Windows package"
+fi
+echo ""
+
+# Package Linux
+if [ -f "target/x86_64-unknown-linux-gnu/release/${GUI_BINARY}" ]; then
+    echo "🐧 Creating Linux package..."
+    LINUX_DIR="releases/CodeBeats-Linux"
+    mkdir -p "$LINUX_DIR"
+
+    # Copy Linux binary
+    cp "target/x86_64-unknown-linux-gnu/release/${GUI_BINARY}" "$LINUX_DIR/CodeBeats"
+    chmod +x "$LINUX_DIR/CodeBeats"
+
+    # Copy resources
+    cp -r language_configs "$LINUX_DIR/"
+    if [ -d "effects" ]; then
+        cp -r effects "$LINUX_DIR/"
+    fi
+
+    # Create startup script
+    cat > "$LINUX_DIR/start-codebeats.sh" << 'EOF'
+#!/bin/bash
+echo "🎵 Starting CodeBeats..."
+./CodeBeats
+EOF
+    chmod +x "$LINUX_DIR/start-codebeats.sh"
+
+    # Create README
+    cat > "$LINUX_DIR/README.txt" << 'EOF'
+CodeBeats for Linux
+
+QUICK START:
+1. Run: ./start-codebeats.sh
+   Or double-click "start-codebeats.sh" in your file manager
+2. Configure your settings in the GUI
+3. Click "Start CodeBeats" and begin typing!
+
+DIRECT LAUNCH:
+You can also run: ./CodeBeats
+
+REQUIREMENTS:
+- Audio output device
+- Linux with ALSA/PulseAudio support
+
+For more information, visit: https://github.com/your-repo/codebeats
+EOF
+
+    echo "✅ Linux package created"
+else
+    echo "⚠️  Linux binary not found, skipping Linux package"
+fi
+echo ""
+
+# Show results
+echo "🎉 Build complete! Packages created:"
+echo "=================================="
+
+if [ -d "releases/CodeBeats.app" ]; then
+    APP_SIZE=$(du -sh "releases/CodeBeats.app" | cut -f1)
+    echo "🍎 macOS: CodeBeats.app ($APP_SIZE)"
+    echo "   📱 Drag to Applications folder"
+fi
+
+if [ -d "releases/CodeBeats-Windows" ]; then
+    WIN_SIZE=$(du -sh "releases/CodeBeats-Windows" | cut -f1)
+    echo "🪟 Windows: CodeBeats-Windows/ ($WIN_SIZE)"
+    echo "   💻 Double-click Start-CodeBeats.bat"
+fi
+
+if [ -d "releases/CodeBeats-Linux" ]; then
+    LINUX_SIZE=$(du -sh "releases/CodeBeats-Linux" | cut -f1)
+    echo "🐧 Linux: CodeBeats-Linux/ ($LINUX_SIZE)"
+    echo "   🖥️  Run ./start-codebeats.sh"
+fi
+
+echo ""
+echo "✨ All packages are in the releases/ directory"
+echo "🎵 Ready for distribution!"

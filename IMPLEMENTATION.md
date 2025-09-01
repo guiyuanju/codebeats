@@ -1,67 +1,41 @@
 # Implementation Details
 
+CodeBeats is a real-time audio synthesis application that converts keyboard input into musical notes.
+
 ## Architecture
 
-CodeBeats uses a simple, direct architecture for real-time audio synthesis and keyboard input, with both command-line and GUI interfaces.
-
 ### Core Components
-
-- **AudioState** - Main synthesis engine with ADSR envelopes and note management
-- **KeyboardConfig** - JSON-based key-to-note mapping with language-specific scales
-- **Waveforms** - 8 waveform types (natural, electronic, cyberpunk, harmonic, etc.)
-- **VirtualKeycode** - Handles both physical keys and shifted characters
-- **GUI Module** - Cross-platform graphical interface using egui/eframe
+- **AudioState** - Main synthesis engine with ADSR envelopes and polyphonic note management
+- **KeyboardConfig** - JSON-based key-to-note mapping with language-specific musical scales
+- **Waveforms** - 8 waveform types (natural, electronic, cyberpunk, harmonic, triangle, saw, square, fart)
+- **GUI Module** - Cross-platform graphical interface using egui/eframe with real-time log display
 
 ### Audio System
-
 - **Sample Rate**: 44.1kHz direct CPAL stream output
 - **ADSR Envelopes**: Attack/Decay/Sustain/Release with waveform-specific parameters
-- **Polyphonic**: Multiple notes can play simultaneously with independent envelopes
-- **Rate Limiting**: Volume reduction (0.7^n) for rapid successive key presses
+- **Polyphonic**: Multiple simultaneous notes with independent envelopes
+- **Rate Limiting**: Volume reduction (0.7^n) for rapid successive keypresses
+- **Audio Samples**: Real WAV file playback for fart waveform with automatic sample rate conversion
 
-### Key Design Decisions
-
-1. **Simplified Structure**: Single-level modules, direct function calls
-2. **Real-time Processing**: 10ms polling, lock-free audio where possible
-3. **Musical Comfort**: All frequencies optimized to 65-880Hz range (no harsh high notes)
-4. **Language Optimization**: Each config targets specific language patterns
-
-## GUI Architecture
+## GUI Features
 
 ### Design Philosophy
-The GUI serves as a configuration launcher for the CLI application rather than reimplementing the audio engine. This approach:
-- Preserves the existing CLI interface completely
-- Ensures consistent behavior between GUI and CLI
-- Simplifies maintenance and reduces code duplication
-- Allows advanced users to continue using CLI while providing beginners with an easy interface
-
-### Components
-- **CodeBeatsGui** - Main application state with configuration options
-- **Process Management** - Spawns and manages CLI process instances
-- **Configuration Discovery** - Automatically scans language_configs directory
-- **Real-time Status** - Monitors running process health
-
-### GUI Features
-- **Language Selection** - Dropdown with formatted display names for all .json configs
-- **Waveform Selection** - All available waveforms with descriptions
-- **Volume Control** - Real-time slider (0.0-1.0)
-- **Filter Cutoff** - Low-pass filter frequency slider (200-8000Hz)
-- **Verbose Logging** - Toggle for detailed output with in-GUI log display
-- **Process Control** - Start/stop functionality with status monitoring
-- **Built-in Help** - Collapsible help section with usage tips and Easter egg hints
-- **Live Log Viewer** - Real-time display of CLI process output in scrollable area
-- **Clean Launch** - No terminal windows on Windows/macOS for better user experience
+The GUI launches CLI processes rather than reimplementing the audio engine. This ensures:
+- Consistent behavior between GUI and CLI
+- Simplified maintenance 
+- Single audio codebase
 
 ### Technical Implementation
 - **Framework**: egui 0.24 for immediate mode GUI
-- **Process Spawning**: std::process::Command to launch CLI with stdout/stderr capture
-- **Binary Execution**: Automatic detection of release/debug binaries, falls back to `cargo run --bin codebeats`
+- **Process Management**: Spawns CLI with stdout/stderr capture
+- **Log Display**: Multi-threaded output capture with Arc<Mutex<Vec<String>>>
+- **Configuration Discovery**: Runtime scanning of language_configs directory
 - **Cross-platform**: Native window management via eframe
-- **State Management**: Simple struct-based configuration state
-- **File Discovery**: Runtime scanning of language_configs directory
-- **Widget ID Management**: Explicit IDs for all interactive widgets to prevent collisions
-- **Log Capture**: Multi-threaded stdout/stderr reading with Arc<Mutex<Vec<String>>> for thread-safe log storage
-- **Console Hiding**: Windows subsystem attribute to prevent terminal window appearance
+
+### Platform-Specific Features
+- **macOS**: Native .app bundle creation with Info.plist (no terminal windows)
+- **Windows**: `#![windows_subsystem = "windows"]` attribute to hide console (native builds only)
+- **Linux**: Standard executable with shell script launcher
 
 ## Configuration System
 
@@ -81,170 +55,76 @@ The GUI serves as a configuration launcher for the CLI application rather than r
 }
 ```
 
-### Priority Order
-1. CLI arguments (highest)
-2. Language config files
-3. Built-in defaults
-
-## Logging System
-
-### Verbose Mode
-- **CLI Flag**: `--verbose` enables detailed terminal logging
-- **Key Events**: Shows key press/release with note information
-- **Configuration**: Displays config loading status and audio settings
-- **Format**: Emoji-prefixed messages for visual clarity
-  - 🎵 Key press with note/frequency info
-  - 🔇 Key release events
-  - ✓ Successful operations
-  - ✗ Error conditions
-  - ⚪ Unmapped keys
-
-### Example Verbose Output
-```
-✓ Loaded keyboard config from: language_configs/python.json
-🔊 Audio settings: volume=0.8, filter=1200Hz
-🎵 CodeBeats - Python Programming Language (fart)
-Warning: Could not load fart sample: No such file or directory (os error 2)
-🎹 Verbose logging enabled
-Press Ctrl+C to exit
-🎵 Key: d → D4 (293.7Hz, vol: 0.24) [sample playback]
-🎵 Key: e → E4 (329.6Hz, vol: 0.27) [sample playback]
-⚪ Key: Escape (unmapped)
-```
+### Language Configurations
+- **Programming Languages**: 11 configs optimized for keyword frequency and symbols
+- **Human Languages**: 3 configs optimized for letter frequency patterns
+- **Musical Scales**: Each language uses different musical scales and note ranges
 
 ## Waveform Implementation
-
 - **Natural**: Piano with harmonics and vibrato
-- **Electronic/Sine**: Pure sine wave
+- **Electronic**: Pure sine wave
 - **Cyberpunk**: Multi-oscillator analog synth with LFO
-- **Harmonic**: Mathematical harmonic series with golden ratio
-- **Triangle/Saw/Square**: Classic electronic waveforms
-- **Fart**: Real audio file playback using effects/fart-quick-short.wav with proper sample rate conversion (24kHz→44.1kHz), stereo-to-mono mixing, linear interpolation, volume control, and automatic fallback to synthetic generation if file is missing
+- **Fart**: Real audio file playback with sample rate conversion and linear interpolation
+- **Others**: Standard mathematical waveforms (triangle, saw, square, harmonic)
 
-## Language Configurations
-
-### Programming Languages (11 configs)
-- Keyword frequency analysis determines note assignments
-- Common symbols create harmonic relationships
-- Each language has unique musical character
-
-### Human Languages (3 configs)  
-- Letter frequency optimization (English: E-T-A-O-I-N-S-H-R)
-- Input method patterns (Chinese: Pinyin, Japanese: Romaji)
-- Phonetic considerations for vowels/consonants
-
-## Key Optimizations
-
-- **Frequency Comfort**: All 131 high notes (>1000Hz) reduced to ≤880Hz
-- **Audio File Playback**: Fart waveform uses real WAV file samples with automatic sample rate conversion and linear interpolation
-- **Rate Limiting**: Prevents audio overload during rapid typing
-- **ADSR Tuning**: Waveform-specific envelope parameters (fart bypasses ADSR for direct playback)
-- **Memory Efficiency**: HashMap-based note tracking with automatic cleanup
-- **Sample Management**: Automatic cleanup of finished audio sample playbacks
-- **Graceful Fallback**: If fart audio file is missing, falls back to synthetic generation
-
-## Audio File Requirements
-
-### Fart Sample Format
+## Audio File System
 - **Location**: `effects/fart-quick-short.wav`
-- **Current File**: 24kHz stereo, 16-bit, 0.377s duration
-- **Format**: WAV file (any sample rate, mono or stereo)
-- **Bit Depth**: 16-bit or 32-bit integer, or 32-bit float
-- **Sample Rate Conversion**: Automatic conversion from file sample rate to system sample rate (44.1kHz)
-- **Duration**: Recommended 0.5-2 seconds for quick fart sounds
-- **Stereo Handling**: Stereo files are automatically mixed to mono for playback
-- **Fallback**: If file is missing, synthetic fart generation is used automatically
+- **Format**: WAV (any sample rate, mono/stereo supported)
+- **Processing**: Automatic sample rate conversion to 44.1kHz, stereo-to-mono mixing
+- **Fallback**: Synthetic generation if file missing
 
-## Easter Eggs
+## Build System
 
-### Japanese Sequence Detection
-- **Target Sequence**: `oppokokoppokosuttenten` (romaji for "おっぽこ　こっぽこ　すってんてん")
-- **Trigger Action**: Plays fart audio sample regardless of current waveform
-- **Implementation**: Real-time input sequence detection with circular buffer
-- **Features**:
-  - Ignores spaces and non-letter keys
-  - Anti-spam protection (prevents repeated triggering)
-  - Works in any waveform mode
-  - 50-character input history buffer
-  - Sequence length: 21 characters
-- **Detection Algorithm**: Sliding window pattern matching on keyboard input history
+### Build Package Script
+- **Script**: `./build_package` - Single command to build GUI releases for all platforms
+- **Output**: Creates macOS .app bundle, Windows and Linux folders with startup scripts
+- **Cross-Platform**: Attempts to build for macOS, Windows (x86_64-pc-windows-gnu), and Linux (x86_64-unknown-linux-gnu)
+- **Packaging**: Automatically packages each platform with resources and launch scripts
 
-## Testing
+### Binary Target
+- **GUI Only**: `codebeats-gui` - Configuration launcher with log capture
+- **Cross-Platform**: Builds for macOS (arm64), Windows (x86_64), and Linux (x86_64)
+- **Console Behavior**: Hidden on Windows, native .app bundle on macOS
 
-31 unit tests cover:
-- Audio synthesis and ADSR behavior
-- Audio sample loading and playback functionality
-- Sample interpolation and timing accuracy
-- Keyboard mapping and frequency calculation  
-- Configuration loading and parsing
-- Waveform generation and validation (including fart sample playback)
-- Audio sample file loading with sample rate conversion and error handling
-- Input sequence detection for Easter eggs (6 comprehensive tests)
+### Package Structure
 
-## Platform Support
-
-### Audio Engine (CLI and GUI)
-Cross-platform via CPAL:
-- macOS: Core Audio
-- Windows: WASAPI  
-- Linux: ALSA/PulseAudio
-
-### GUI Framework
-Cross-platform via egui/eframe:
-- **macOS**: Native Cocoa integration with .app bundle support
-- **Windows**: Native Win32 integration with hidden console window
-- **Linux**: X11/Wayland support
-- **Rendering**: OpenGL/Vulkan backend with automatic fallback
-
-### Platform-Specific Features
-- **macOS**: Native .app bundle creation with Info.plist and proper directory structure
-- **Windows**: `#![windows_subsystem = "windows"]` attribute to hide console window
-- **Linux**: Standard executable with shell script launcher
-
-## Binary Targets
-
-### Command-Line Interface
-- **Binary**: `codebeats`
-- **Entry Point**: `src/main.rs`
-- **Usage**: Direct audio synthesis with keyboard input
-- **Dependencies**: Core audio and keyboard libraries only
-
-### Graphical Interface
-- **Binary**: `codebeats-gui` 
-- **Entry Point**: `src/gui_main.rs`
-- **Usage**: Configuration launcher that spawns CLI processes with log capture
-- **Dependencies**: GUI frameworks plus CLI dependencies
-- **Architecture**: Separate binary to keep CLI lightweight
-- **Console Behavior**: Hidden on Windows, native app bundle on macOS
-
-## Unified Build and Deploy System
-
-### Single Script Interface
-- **Script**: `./codebeats` - Unified build, deploy, and run tool
-- **Replaces**: Previous `run.sh`, `deploy.sh`, and `build-release.sh` scripts
-- **Commands**: Run (gui/cli), Build (single/multi-platform), Package (deployment), Utilities (clean/test/check)
-
-### Execution Strategy
-1. **GUI Launch**: Prefers `target/release/codebeats-gui` → `target/debug/codebeats-gui` → `cargo run --bin codebeats-gui`
-2. **CLI Launch**: Prefers `target/release/codebeats` → `target/debug/codebeats` → `cargo run --bin codebeats`
-3. **Build Management**: Handles cross-compilation targets and dependency installation
-4. **Package Creation**: Generates deployment archives with launchers and documentation
-
-### Platform-Specific Packaging
-- **macOS**: Creates native .app bundle with proper Info.plist and directory structure
-- **Windows**: Generates .bat launcher files that start GUI without console window
-- **Linux**: Creates shell script launchers with executable permissions
-- **Universal**: All packages include both GUI and CLI binaries with all assets
-
-### macOS .app Bundle Structure
+**macOS .app Bundle:**
 ```
 CodeBeats.app/
 ├── Contents/
 │   ├── Info.plist          # Application metadata
 │   ├── MacOS/
-│   │   ├── CodeBeats       # GUI executable (renamed)
-│   │   └── codebeats       # CLI executable
+│   │   └── CodeBeats       # GUI executable
 │   └── Resources/
 │       ├── language_configs/
 │       └── effects/
 ```
+
+**Windows Package:**
+```
+CodeBeats-Windows/
+├── CodeBeats.exe           # GUI executable
+├── Start-CodeBeats.bat     # Startup script
+├── README.txt              # User instructions
+├── language_configs/
+└── effects/
+```
+
+**Linux Package:**
+```
+CodeBeats-Linux/
+├── CodeBeats               # GUI executable
+├── start-codebeats.sh      # Startup script
+├── README.txt              # User instructions
+├── language_configs/
+└── effects/
+```
+
+## Easter Egg System
+- **Sequence**: `oppokokoppokosuttenten` (Japanese romaji)
+- **Detection**: Real-time sliding window pattern matching
+- **Features**: Anti-spam protection, works in any waveform mode
+- **Implementation**: 50-character circular buffer with 21-character target sequence
+
+## Testing
+31 unit tests covering audio synthesis, configuration loading, waveform generation, sample playback, and Easter egg detection.
