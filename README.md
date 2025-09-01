@@ -4,7 +4,10 @@ Transform your typing into music. Every keystroke becomes a note, creating melod
 
 ## Quick Start
 
-### Using the Unified Script (Easiest)
+### Download Release
+Download releases and double click to open GUI.
+
+### Using the Unified Script
 ```bash
 # Launch GUI (default)
 ./codebeats
@@ -153,7 +156,7 @@ Opens a user-friendly configuration window where you can:
 
 ### Dependencies
 - `cpal` - Cross-platform audio library
-- `device_query` - Keyboard input detection  
+- `device_query` - Keyboard input detection
 - `hound` - WAV file loading for audio samples
 - `serde`/`serde_json` - Configuration file parsing
 - `clap` - Command-line argument parsing
@@ -183,7 +186,7 @@ Opens a user-friendly configuration window where you can:
 ## Easter Eggs 🥚
 
 ### Japanese Fart Sequence
-Type the romaji sequence `oppokokoppokosuttenten` (Japanese: **おっぽこ　こっぽこ　すってんてん**) anywhere in the program to trigger a special fart sound effect! 
+Type the romaji sequence `oppokokoppokosuttenten` (Japanese: **おっぽこ　こっぽこ　すってんてん**) anywhere in the program to trigger a special fart sound effect!
 
 - Works in any waveform mode
 - Ignores spaces and non-letter keys
@@ -203,7 +206,7 @@ This implementation provides a complete cross-platform GUI solution that preserv
 - **Cross-Platform Support**: Windows, macOS, and Linux binaries
 
 **Key Features:**
-- Dropdown selection for all language configurations  
+- Dropdown selection for all language configurations
 - Slider controls for volume and filter settings
 - Waveform selection with descriptions
 - Real-time process management (start/stop functionality)
@@ -215,7 +218,7 @@ This implementation provides a complete cross-platform GUI solution that preserv
 **For End Users (No Rust Required):**
 ```bash
 # macOS: Drag CodeBeats.app to Applications, double-click
-# Windows: Double-click Start-CodeBeats-GUI.bat  
+# Windows: Double-click Start-CodeBeats-GUI.bat
 # Linux: Double-click Start-CodeBeats-GUI.sh
 ```
 
@@ -256,7 +259,7 @@ This creates platform-specific packages:
 
 All packages include:
 - Both GUI and CLI binaries
-- All configuration files and audio assets  
+- All configuration files and audio assets
 - Platform-appropriate launcher scripts
 - Simple instructions (`HOW-TO-RUN.txt`)
 
@@ -268,7 +271,7 @@ Create packages for multiple platforms:
 # Build for current platform
 ./codebeats build
 
-# Build for specific platforms  
+# Build for specific platforms
 ./codebeats build-windows    # Windows x64
 ./codebeats build-macos      # macOS x64
 ./codebeats build-linux      # Linux x64
@@ -285,7 +288,7 @@ Create packages for multiple platforms:
 **No installation required!** Users just:
 
 1. **Download**: Get the appropriate package for their platform
-2. **Install**: 
+2. **Install**:
    - **macOS**: Drag `CodeBeats.app` to Applications folder
    - **Windows**: Extract `.zip` and double-click `Start-CodeBeats-GUI.bat`
    - **Linux**: Extract `.tar.gz` and double-click `Start-CodeBeats-GUI.sh`
@@ -306,7 +309,7 @@ Create packages for multiple platforms:
 
 The `./codebeats` script provides all functionality in one place:
 - **Run**: Launch GUI or CLI versions
-- **Build**: Compile for current or multiple platforms  
+- **Build**: Compile for current or multiple platforms
 - **Package**: Create deployment archives for distribution
 - **Utilities**: Clean, test, and check code
 
