@@ -777,6 +777,7 @@ dependencies = [
  "egui",
  "env_logger",
  "hound",
+ "log",
  "serde",
  "serde_json",
  "tokio",

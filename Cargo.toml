@@ -17,6 +17,9 @@ keywords = [
 ]
 categories = ["multimedia::audio", "development-tools"]
 
+[lib]
+name = "codebeats"
+path = "src/lib.rs"
 
 [[bin]]
 name = "codebeats"
@@ -37,3 +40,4 @@ eframe = "0.24"
 egui = "0.24"
 tokio = { version = "1.0", features = ["process"] }
 env_logger = "0.10"
+log = "0.4"

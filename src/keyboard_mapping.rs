@@ -86,6 +86,11 @@ impl KeyboardStateTracker {
             || self.pressed_keys.contains(&Keycode::RShift);
     }
 
+    /// Get the current pressed keys
+    pub fn get_current_keys(&self) -> Vec<Keycode> {
+        self.pressed_keys.iter().copied().collect()
+    }
+
     /// Get the virtual keycode for key press events
     pub fn get_virtual_keycode_for_press(
         &mut self,

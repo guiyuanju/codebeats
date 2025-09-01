@@ -22,7 +22,7 @@ CodeBeats is a real-time audio synthesis application that converts keyboard inpu
 ### Design Philosophy
 The GUI launches CLI processes rather than reimplementing the audio engine. This ensures:
 - Consistent behavior between GUI and CLI
-- Simplified maintenance 
+- Simplified maintenance
 - Single audio codebase
 
 ### Technical Implementation
@@ -81,50 +81,8 @@ The GUI launches CLI processes rather than reimplementing the audio engine. This
 - **Cross-Platform**: Attempts to build for macOS, Windows (x86_64-pc-windows-gnu), and Linux (x86_64-unknown-linux-gnu)
 - **Packaging**: Automatically packages each platform with resources and launch scripts
 
-### Binary Target
-- **GUI Only**: `codebeats-gui` - Configuration launcher with log capture
-- **Cross-Platform**: Builds for macOS (arm64), Windows (x86_64), and Linux (x86_64)
-- **Console Behavior**: Hidden on Windows, native .app bundle on macOS
-
-### Package Structure
-
-**macOS .app Bundle:**
-```
-CodeBeats.app/
-├── Contents/
-│   ├── Info.plist          # Application metadata
-│   ├── MacOS/
-│   │   └── CodeBeats       # GUI executable
-│   └── Resources/
-│       ├── language_configs/
-│       └── effects/
-```
-
-**Windows Package:**
-```
-CodeBeats-Windows/
-├── CodeBeats.exe           # GUI executable
-├── Start-CodeBeats.bat     # Startup script
-├── README.txt              # User instructions
-├── language_configs/
-└── effects/
-```
-
-**Linux Package:**
-```
-CodeBeats-Linux/
-├── CodeBeats               # GUI executable
-├── start-codebeats.sh      # Startup script
-├── README.txt              # User instructions
-├── language_configs/
-└── effects/
-```
-
 ## Easter Egg System
 - **Sequence**: `oppokokoppokosuttenten` (Japanese romaji)
 - **Detection**: Real-time sliding window pattern matching
 - **Features**: Anti-spam protection, works in any waveform mode
 - **Implementation**: 50-character circular buffer with 21-character target sequence
-
-## Testing
-31 unit tests covering audio synthesis, configuration loading, waveform generation, sample playback, and Easter egg detection.

@@ -448,6 +448,16 @@ impl AudioState {
     pub fn add_sample_playback(&mut self, playback: SamplePlayback) {
         self.active_sample_playbacks.push(playback);
     }
+
+    /// Set the waveform for the audio engine
+    pub fn set_waveform(&mut self, waveform: Waveform) {
+        self.current_waveform = waveform;
+    }
+
+    /// Set the master volume for the audio engine
+    pub fn set_volume(&mut self, volume: f32) {
+        self.master_volume = volume.clamp(0.0, 1.0);
+    }
 }
 
 #[cfg(test)]

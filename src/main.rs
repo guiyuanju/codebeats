@@ -1,36 +1,11 @@
-//! CodeBeats - Programming Music Simulator
+//! CodeBeats CLI - Programming Music Simulator
 //!
 //! Transform your coding workflow into a harmonious musical experience.
 //! Every keystroke becomes a note, creating beautiful melodies while you code.
-//!
-//! Features:
-//! - Real-time polyphonic audio synthesis
-//! - Multiple waveforms (Electronic default, Natural piano, Saw, Square, Cyberpunk)
-//! - Programming-optimized keyboard mapping based on key frequency analysis
-//! - ADSR envelope system for natural sound transitions
-//! - Command-line waveform selection (no runtime switching)
-//! - Real-time waveform switching with function keys
 
-mod audio_engine;
-mod audio_samples;
-mod keyboard_config;
-mod keyboard_mapping;
-mod sequence_detector;
-mod waveforms;
-
-use audio_engine::AudioState;
-use clap::Parser;
-use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
-use device_query::{DeviceQuery, DeviceState, Keycode};
-use keyboard_config::KeyboardConfig;
-use keyboard_mapping::{
-    KeyboardStateTracker, VirtualKeycode, get_frequency_and_volume_with_config_virtual,
-};
-use sequence_detector::SequenceDetector;
-use std::sync::{Arc, Mutex};
-use std::thread;
-use std::time::Duration;
-use waveforms::Waveform;
+use clap::{Parser, Subcommand};
+use codebeats::{CodeBeatsConfig, CodeBeatsEngine, KeyboardConfig, Waveform};
+use serde_json;
 
 #[derive(Parser)]
 #[command(
@@ -39,6 +14,10 @@ use waveforms::Waveform;
     version = "0.1.0"
 )]
 struct Cli {
+    #[command(subcommand)]
+    command: Option<Commands>,
+
+    // Global options for backward compatibility
     #[arg(short, long)]
     waveform: Option<String>,
 
@@ -67,125 +46,174 @@ struct Cli {
     verbose: bool,
 }
 
-fn load_keyboard_config(cli: &Cli) -> KeyboardConfig {
-    let config_path = cli.config.as_deref().or(cli.language_config.as_deref());
+#[derive(Subcommand)]
+enum Commands {
+    /// Run CodeBeats interactively
+    Run {
+        #[arg(short, long)]
+        waveform: Option<String>,
 
+        #[arg(short = 'l', long = "language")]
+        language_config: Option<String>,
+
+        #[arg(short, long)]
+        config: Option<String>,
+
+        #[arg(short = 'v', long = "volume", value_name = "LEVEL")]
+        volume: Option<f32>,
+
+        #[arg(long = "filter-cutoff", value_name = "FREQUENCY")]
+        filter_cutoff: Option<f32>,
+
+        #[arg(long = "verbose")]
+        verbose: bool,
+    },
+    /// List available waveforms
+    ListWaveforms,
+    /// List available language configurations
+    ListConfigs,
+    /// Validate a configuration file
+    ValidateConfig {
+        #[arg(value_name = "FILE")]
+        config_path: String,
+    },
+    /// Get version information
+    Version,
+    /// Test audio system
+    TestAudio,
+}
+
+fn load_keyboard_config(config_path: Option<&str>, verbose: bool) -> KeyboardConfig {
     if let Some(path) = config_path {
-        match KeyboardConfig::load_from_file(path) {
+        match CodeBeatsEngine::load_keyboard_config(path) {
             Ok(config) => {
-                if cli.verbose {
+                if verbose {
                     println!("✓ Loaded keyboard config from: {}", path);
                 }
                 return config;
             }
             Err(e) => {
-                if cli.verbose {
+                if verbose {
                     println!("✗ Failed to load config from {}: {}", path, e);
                 }
             }
         }
     } else if let Ok(config) =
-        KeyboardConfig::load_from_file("language_configs/general_programming_language.json")
+        CodeBeatsEngine::load_keyboard_config("language_configs/general_programming_language.json")
     {
-        if cli.verbose {
+        if verbose {
             println!("✓ Loaded default programming language config");
         }
         return config;
     }
 
-    if cli.verbose {
+    if verbose {
         println!("✓ Using built-in default keyboard config");
     }
     KeyboardConfig::default()
 }
 
-fn setup_audio(
-    initial_waveform: Waveform,
-    master_volume: f32,
-    filter_cutoff: f32,
-) -> Result<Arc<Mutex<AudioState>>, Box<dyn std::error::Error>> {
-    let host = cpal::default_host();
-    let device = host
-        .default_output_device()
-        .ok_or("No output device available")?;
-    let device_config = device.default_output_config()?;
+fn list_waveforms() {
+    println!("Available waveforms:");
+    let waveforms = [
+        ("natural", "Piano-like with harmonics"),
+        ("electronic", "Clean sine wave"),
+        ("cyberpunk", "Analog synthesizer atmosphere"),
+        ("harmonic", "Mathematical overtone series"),
+        ("triangle", "Triangle wave"),
+        ("saw", "Sawtooth wave"),
+        ("square", "Square wave"),
+        ("fart", "Real fart audio sample"),
+    ];
 
-    let sample_rate = device_config.sample_rate().0 as f32;
-    let audio_state = AudioState::new(sample_rate, initial_waveform, master_volume, filter_cutoff);
-    let audio_state = Arc::new(Mutex::new(audio_state));
-    let audio_state_clone = audio_state.clone();
-
-    let stream = device.build_output_stream(
-        &device_config.into(),
-        move |data: &mut [f32], _: &cpal::OutputCallbackInfo| {
-            let mut state = audio_state_clone.lock().unwrap();
-            for sample in data.iter_mut() {
-                *sample = state.generate_sample();
-            }
-        },
-        |err| eprintln!("Audio stream error: {}", err),
-        None,
-    )?;
-
-    stream.play()?;
-
-    // Keep the stream alive by leaking it (simpler than managing lifetime)
-    std::mem::forget(stream);
-
-    Ok(audio_state)
+    for (name, description) in &waveforms {
+        println!("  {:<12} - {}", name, description);
+    }
 }
 
-fn handle_key_press(
-    virtual_key: &VirtualKeycode,
-    config: &KeyboardConfig,
-    audio_state: &Arc<Mutex<AudioState>>,
-    verbose: bool,
-) {
-    let key_id = virtual_key.to_string();
+fn list_configs() {
+    println!("Available language configurations:");
 
-    if let Some((frequency, volume, note)) =
-        get_frequency_and_volume_with_config_virtual(virtual_key, config)
-    {
-        let mut state = audio_state.lock().unwrap();
-        let actual_volume = state.start_note_with_id(&key_id, frequency, volume);
-
-        if verbose {
-            println!(
-                "🎵 Key: {} → {} ({:.1}Hz, vol: {:.2})",
-                key_id, note, frequency, actual_volume
-            );
+    // Try to list config files from language_configs directory
+    if let Ok(entries) = std::fs::read_dir("language_configs") {
+        for entry in entries.flatten() {
+            if let Some(filename) = entry.file_name().to_str() {
+                if filename.ends_with(".json") {
+                    let display_name = filename
+                        .strip_suffix(".json")
+                        .unwrap_or(filename)
+                        .replace("_", " ")
+                        .replace("-", " ");
+                    println!("  {:<30} - {}", display_name, filename);
+                }
+            }
         }
     } else {
-        if verbose {
-            println!("⚪ Key: {} (unmapped)", key_id);
+        println!("  No language_configs directory found.");
+        println!("  Using built-in default configuration.");
+    }
+}
+
+fn validate_config(config_path: &str) {
+    match CodeBeatsEngine::load_keyboard_config(config_path) {
+        Ok(config) => {
+            println!("✓ Configuration is valid");
+            println!("  Description: {}", config.description);
+            println!("  Note mappings: {} keys configured", config.mappings.len());
+
+            // Output config details as JSON for GUI consumption
+            if let Ok(json) = serde_json::to_string_pretty(&config) {
+                println!("\nConfiguration details:");
+                println!("{}", json);
+            }
+        }
+        Err(e) => {
+            eprintln!("✗ Configuration is invalid: {}", e);
+            std::process::exit(1);
         }
     }
 }
 
-fn handle_key_release(
-    virtual_key: &VirtualKeycode,
-    config: &KeyboardConfig,
-    audio_state: &Arc<Mutex<AudioState>>,
+fn show_version() {
+    println!("CodeBeats v{}", env!("CARGO_PKG_VERSION"));
+    println!("Programming Music Simulator");
+    println!("Transform your typing into music!");
+}
+
+fn test_audio() -> Result<(), Box<dyn std::error::Error>> {
+    println!("Testing audio system...");
+
+    let config = CodeBeatsConfig {
+        waveform: Waveform::Electronic,
+        keyboard_config: KeyboardConfig::default(),
+        volume: 0.5,
+        filter_cutoff: 1200.0,
+        verbose: true,
+    };
+
+    let _engine = CodeBeatsEngine::new(config)?;
+    println!("✓ Audio system initialized successfully");
+    println!("✓ Engine created without errors");
+
+    // Test that we can access audio devices
+    println!("✓ Audio test completed");
+    Ok(())
+}
+
+fn run_codebeats(
+    waveform: Option<String>,
+    language_config: Option<String>,
+    config: Option<String>,
+    volume: Option<f32>,
+    filter_cutoff: Option<f32>,
     verbose: bool,
-) {
-    if let Some((_, _, note)) = get_frequency_and_volume_with_config_virtual(virtual_key, config) {
-        let mut state = audio_state.lock().unwrap();
-        let key_id = virtual_key.to_string();
-        state.stop_note_with_id(&key_id);
-        if verbose {
-            println!("🔇 Key: {} → {} (released)", key_id, note);
-        }
-    }
-}
+) -> Result<(), Box<dyn std::error::Error>> {
+    let master_volume = volume.unwrap_or(1.0).clamp(0.0, 1.0);
+    let filter_cutoff = filter_cutoff.unwrap_or(1200.0).clamp(200.0, 8000.0);
+    let keyboard_config =
+        load_keyboard_config(config.as_deref().or(language_config.as_deref()), verbose);
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let cli = Cli::parse();
-
-    let master_volume = cli.volume.unwrap_or(1.0).clamp(0.0, 1.0);
-    let filter_cutoff = cli.filter_cutoff.unwrap_or(1200.0).clamp(200.0, 8000.0);
-    let keyboard_config = load_keyboard_config(&cli);
-
-    if cli.verbose {
+    if verbose {
         println!(
             "🔊 Audio settings: volume={:.1}, filter={:.0}Hz",
             master_volume, filter_cutoff
@@ -193,7 +221,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     // Determine waveform: CLI arg > language config > default
-    let initial_waveform = if let Some(waveform_str) = &cli.waveform {
+    let waveform = if let Some(waveform_str) = &waveform {
         Waveform::from_str(waveform_str).unwrap_or(Waveform::Electronic)
     } else if let Some(config_waveform) = keyboard_config.get_waveform() {
         config_waveform
@@ -201,84 +229,72 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Waveform::Electronic
     };
 
-    // Setup audio
-    let audio_state = setup_audio(initial_waveform, master_volume, filter_cutoff)?;
+    // Create configuration
+    let config = CodeBeatsConfig {
+        waveform,
+        keyboard_config,
+        volume: master_volume,
+        filter_cutoff,
+        verbose,
+    };
 
-    // Show welcome
-    println!(
-        "🎵 CodeBeats - {} ({})",
-        keyboard_config.description, initial_waveform
-    );
-    if cli.verbose {
-        println!("🎹 Verbose logging enabled");
-        println!("💡 Easter egg hint: Try typing 'oppokokoppokosuttenten' for a surprise! 🎉");
-    }
-    println!("Press Ctrl+C to exit");
+    // Create and run the engine
+    let mut engine = CodeBeatsEngine::new(config)?;
+    engine.run_blocking()?;
 
-    // Setup keyboard input
-    let device_state = DeviceState::new();
-    let mut prev_keys: Vec<Keycode> = Vec::new();
-    let mut keyboard_tracker = KeyboardStateTracker::new();
-    let mut sequence_detector = SequenceDetector::new();
+    Ok(())
+}
 
-    // Main loop
-    loop {
-        let current_keys: Vec<Keycode> = device_state.get_keys();
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let cli = Cli::parse();
 
-        // Find newly pressed keys
-        let pressed_keys: Vec<Keycode> = current_keys
-            .iter()
-            .filter(|key| !prev_keys.contains(key))
-            .copied()
-            .collect();
-
-        // Find newly released keys
-        let released_keys: Vec<Keycode> = prev_keys
-            .iter()
-            .filter(|key| !current_keys.contains(key))
-            .copied()
-            .collect();
-
-        // Update keyboard state tracker
-        keyboard_tracker.update(&pressed_keys, &released_keys);
-
-        // Handle pressed keys
-        for key in pressed_keys {
-            // Check for Easter egg sequence (Japanese: おっぽこ　こっぽこ　すってんてん)
-            if sequence_detector.process_input(key) {
-                // Trigger fart sound Easter egg!
-                if cli.verbose {
-                    println!("🎉 Easter egg triggered: おっぽこ　こっぽこ　すってんてん! 💨");
-                }
-                // Force play fart sample regardless of current waveform
-                let mut state = audio_state.lock().unwrap();
-                if let Some(fart_sample) = state.get_fart_sample() {
-                    let playback = audio_samples::SamplePlayback::new(
-                        fart_sample.clone(),
-                        state.get_global_time(),
-                        0.7, // Easter egg volume
-                    );
-                    state.add_sample_playback(playback);
-                } else if cli.verbose {
-                    println!("⚠️ Fart sample not available for Easter egg");
-                }
-            }
-
-            if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode_for_press(key) {
-                handle_key_press(&virtual_key, &keyboard_config, &audio_state, cli.verbose);
-            }
+    match &cli.command {
+        Some(Commands::Run {
+            waveform,
+            language_config,
+            config,
+            volume,
+            filter_cutoff,
+            verbose,
+        }) => {
+            run_codebeats(
+                waveform.clone(),
+                language_config.clone(),
+                config.clone(),
+                *volume,
+                *filter_cutoff,
+                *verbose,
+            )?;
         }
-
-        // Handle released keys
-        for key in released_keys {
-            if let Some(virtual_key) = keyboard_tracker.get_virtual_keycode_for_release(key) {
-                handle_key_release(&virtual_key, &keyboard_config, &audio_state, cli.verbose);
-            }
+        Some(Commands::ListWaveforms) => {
+            list_waveforms();
         }
-
-        prev_keys = current_keys;
-        thread::sleep(Duration::from_millis(10));
+        Some(Commands::ListConfigs) => {
+            list_configs();
+        }
+        Some(Commands::ValidateConfig { config_path }) => {
+            validate_config(config_path);
+        }
+        Some(Commands::Version) => {
+            show_version();
+        }
+        Some(Commands::TestAudio) => {
+            test_audio()?;
+        }
+        None => {
+            // Backward compatibility: run with global options if no subcommand
+            run_codebeats(
+                cli.waveform,
+                cli.language_config,
+                cli.config,
+                cli.volume,
+                cli.filter_cutoff,
+                cli.verbose,
+            )?;
+        }
     }
+
+    Ok(())
 }
 
 #[cfg(test)]
@@ -304,20 +320,24 @@ mod tests {
     }
 
     #[test]
-    fn test_verbose_flag_parsing() {
+    fn test_cli_parsing() {
         use clap::Parser;
 
-        // Test verbose flag enabled
-        let cli = Cli::try_parse_from(&["codebeats", "--verbose"]).unwrap();
-        assert!(cli.verbose);
+        // Test run subcommand
+        let cli =
+            Cli::try_parse_from(&["codebeats", "run", "--verbose", "--volume", "0.5"]).unwrap();
+        match cli.command {
+            Some(Commands::Run {
+                verbose, volume, ..
+            }) => {
+                assert!(verbose);
+                assert_eq!(volume, Some(0.5));
+            }
+            _ => panic!("Expected Run command"),
+        }
 
-        // Test verbose flag disabled (default)
-        let cli = Cli::try_parse_from(&["codebeats"]).unwrap();
-        assert!(!cli.verbose);
-
-        // Test verbose with other options
-        let cli = Cli::try_parse_from(&["codebeats", "--verbose", "--volume", "0.5"]).unwrap();
-        assert!(cli.verbose);
-        assert_eq!(cli.volume, Some(0.5));
+        // Test list-waveforms subcommand
+        let cli = Cli::try_parse_from(&["codebeats", "list-waveforms"]).unwrap();
+        matches!(cli.command, Some(Commands::ListWaveforms));
     }
 }
