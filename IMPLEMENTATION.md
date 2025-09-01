@@ -46,18 +46,22 @@ The GUI serves as a configuration launcher for the CLI application rather than r
 - **Waveform Selection** - All available waveforms with descriptions
 - **Volume Control** - Real-time slider (0.0-1.0)
 - **Filter Cutoff** - Low-pass filter frequency slider (200-8000Hz)
-- **Verbose Logging** - Toggle for detailed terminal output
+- **Verbose Logging** - Toggle for detailed output with in-GUI log display
 - **Process Control** - Start/stop functionality with status monitoring
 - **Built-in Help** - Collapsible help section with usage tips and Easter egg hints
+- **Live Log Viewer** - Real-time display of CLI process output in scrollable area
+- **Clean Launch** - No terminal windows on Windows/macOS for better user experience
 
 ### Technical Implementation
 - **Framework**: egui 0.24 for immediate mode GUI
-- **Process Spawning**: std::process::Command to launch CLI with parameters
+- **Process Spawning**: std::process::Command to launch CLI with stdout/stderr capture
 - **Binary Execution**: Automatic detection of release/debug binaries, falls back to `cargo run --bin codebeats`
 - **Cross-platform**: Native window management via eframe
 - **State Management**: Simple struct-based configuration state
 - **File Discovery**: Runtime scanning of language_configs directory
 - **Widget ID Management**: Explicit IDs for all interactive widgets to prevent collisions
+- **Log Capture**: Multi-threaded stdout/stderr reading with Arc<Mutex<Vec<String>>> for thread-safe log storage
+- **Console Hiding**: Windows subsystem attribute to prevent terminal window appearance
 
 ## Configuration System
 
@@ -187,10 +191,15 @@ Cross-platform via CPAL:
 
 ### GUI Framework
 Cross-platform via egui/eframe:
-- **macOS**: Native Cocoa integration
-- **Windows**: Native Win32 integration  
+- **macOS**: Native Cocoa integration with .app bundle support
+- **Windows**: Native Win32 integration with hidden console window
 - **Linux**: X11/Wayland support
 - **Rendering**: OpenGL/Vulkan backend with automatic fallback
+
+### Platform-Specific Features
+- **macOS**: Native .app bundle creation with Info.plist and proper directory structure
+- **Windows**: `#![windows_subsystem = "windows"]` attribute to hide console window
+- **Linux**: Standard executable with shell script launcher
 
 ## Binary Targets
 
@@ -203,10 +212,39 @@ Cross-platform via egui/eframe:
 ### Graphical Interface
 - **Binary**: `codebeats-gui` 
 - **Entry Point**: `src/gui_main.rs`
-- **Usage**: Configuration launcher that spawns CLI processes
+- **Usage**: Configuration launcher that spawns CLI processes with log capture
 - **Dependencies**: GUI frameworks plus CLI dependencies
 - **Architecture**: Separate binary to keep CLI lightweight
-- **Execution Strategy**: 
-  1. Prefers `target/release/codebeats` if available (fastest)
-  2. Falls back to `target/debug/codebeats` if available  
-  3. Uses `cargo run --bin codebeats` as final fallback (development)
+- **Console Behavior**: Hidden on Windows, native app bundle on macOS
+
+## Unified Build and Deploy System
+
+### Single Script Interface
+- **Script**: `./codebeats` - Unified build, deploy, and run tool
+- **Replaces**: Previous `run.sh`, `deploy.sh`, and `build-release.sh` scripts
+- **Commands**: Run (gui/cli), Build (single/multi-platform), Package (deployment), Utilities (clean/test/check)
+
+### Execution Strategy
+1. **GUI Launch**: Prefers `target/release/codebeats-gui` → `target/debug/codebeats-gui` → `cargo run --bin codebeats-gui`
+2. **CLI Launch**: Prefers `target/release/codebeats` → `target/debug/codebeats` → `cargo run --bin codebeats`
+3. **Build Management**: Handles cross-compilation targets and dependency installation
+4. **Package Creation**: Generates deployment archives with launchers and documentation
+
+### Platform-Specific Packaging
+- **macOS**: Creates native .app bundle with proper Info.plist and directory structure
+- **Windows**: Generates .bat launcher files that start GUI without console window
+- **Linux**: Creates shell script launchers with executable permissions
+- **Universal**: All packages include both GUI and CLI binaries with all assets
+
+### macOS .app Bundle Structure
+```
+CodeBeats.app/
+├── Contents/
+│   ├── Info.plist          # Application metadata
+│   ├── MacOS/
+│   │   ├── CodeBeats       # GUI executable (renamed)
+│   │   └── codebeats       # CLI executable
+│   └── Resources/
+│       ├── language_configs/
+│       └── effects/
+```

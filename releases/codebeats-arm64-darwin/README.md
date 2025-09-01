@@ -4,19 +4,19 @@ Transform your typing into music. Every keystroke becomes a note, creating melod
 
 ## Quick Start
 
-### Using the Run Script (Easiest)
+### Using the Unified Script (Easiest)
 ```bash
 # Launch GUI (default)
-./run.sh
+./codebeats
 
 # Launch CLI with default settings
-./run.sh cli
+./codebeats cli
 
 # Launch CLI with specific options
-./run.sh cli -w cyberpunk -v 0.5 -l language_configs/python.json
+./codebeats cli -w cyberpunk -v 0.5 -l language_configs/python.json
 
 # Build both versions
-./run.sh build
+./codebeats build
 ```
 
 ### Direct Cargo Commands
@@ -125,16 +125,16 @@ Each package includes both GUI and CLI versions with all assets bundled.
 
 ### Running the Applications
 
-**Run Script (Recommended):**
+**Unified Script (Recommended):**
 ```bash
-./run.sh          # Launch GUI
-./run.sh cli      # Launch CLI
-./run.sh help     # Show all options
+./codebeats          # Launch GUI
+./codebeats cli      # Launch CLI
+./codebeats help     # Show all options
 ```
 
 **GUI Version:**
 ```bash
-./run.sh gui
+./codebeats gui
 # or: cargo run --bin codebeats-gui
 ```
 Opens a user-friendly configuration window where you can:
@@ -146,7 +146,7 @@ Opens a user-friendly configuration window where you can:
 
 **Command-Line Version:**
 ```bash
-./run.sh cli -w natural -v 0.5
+./codebeats cli -w natural -v 0.5
 # or: cargo run --bin codebeats -- -w natural -v 0.5
 ```
 
@@ -193,27 +193,19 @@ This implementation provides a complete cross-platform GUI solution that preserv
 
 ### ✅ What's Been Delivered
 
-**Cross-Platform GUI Application:**
-- Full graphical interface using `egui` framework
+**Cross-Platform Desktop Application:**
+- **GUI Interface**: Full graphical configuration using `egui` framework
+- **CLI Interface**: Original command-line program completely preserved
+- **Standalone Deployment**: Both interfaces packaged for distribution
+- **Cross-Platform Support**: Windows, macOS, and Linux binaries
+
+**Key Features:**
 - Dropdown selection for all language configurations  
 - Slider controls for volume and filter settings
 - Waveform selection with descriptions
 - Real-time process management (start/stop functionality)
-- Built-in help documentation
-- Status monitoring and feedback
-
-**Preserved CLI Interface:**
-- Original command-line program remains completely unchanged
-- All existing functionality and options preserved
-- GUI launches CLI processes with selected parameters
-- No runtime modification features (as requested)
-
-**Enhanced User Experience:**
-- Simple run script (`./run.sh`) for easy access to both versions
-- Automatic discovery of language configuration files
-- User-friendly display names for all options
-- Process health monitoring
-- Cross-platform window management
+- Built-in help and documentation
+- Automatic discovery of configuration files
 
 ### 🚀 How to Use
 
@@ -223,33 +215,25 @@ This implementation provides a complete cross-platform GUI solution that preserv
 ./Start-CodeBeats-GUI.sh    # Double-click in file manager
 ```
 
-**For Developers (GUI):**
+**For Developers:**
 ```bash
-./run.sh                    # Launch GUI
-# or: cargo run --bin codebeats-gui
-```
-
-**For Advanced Users (CLI):**
-```bash
-./run.sh cli -w cyberpunk -v 0.5
-# or: cargo run --bin codebeats -- -w cyberpunk -v 0.5
+./codebeats                    # Launch GUI
+./codebeats cli -w cyberpunk   # Launch CLI with options
 ```
 
 **Build Deployment Packages:**
 ```bash
-./deploy.sh                 # Quick single-platform package
-./build-release.sh all      # Multi-platform packages
+./codebeats package         # Quick single-platform package
+./codebeats package-all     # Multi-platform packages
 ```
 
 ### 🏗️ Architecture Benefits
 
-- **Separation of Concerns**: GUI is a launcher, not a replacement
-- **Consistency**: Same behavior between GUI and CLI
-- **Maintainability**: No code duplication in audio engine
-- **Flexibility**: Advanced users can still use CLI directly
-- **Simplicity**: Follows project rule of "prefer simple even stupid code"
-
-The GUI serves as an intuitive configuration interface while preserving all the power and flexibility of your original command-line tool.
+- **Separation of Concerns**: GUI launches CLI processes, no code duplication
+- **Consistency**: Identical behavior between GUI and CLI interfaces
+- **Maintainability**: Single audio engine, multiple interfaces
+- **Deployment Ready**: Standalone packages for end users
+- **Developer Friendly**: Full source access and build tools
 
 ## Deployment & Distribution
 
@@ -258,7 +242,7 @@ The GUI serves as an intuitive configuration interface while preserving all the 
 Create a ready-to-use package for your platform:
 
 ```bash
-./deploy.sh
+./codebeats package
 ```
 
 This creates `releases/codebeats-[platform].tar.gz` with:
@@ -273,15 +257,15 @@ Create packages for multiple platforms:
 
 ```bash
 # Build for current platform
-./build-release.sh local
+./codebeats build
 
 # Build for specific platforms  
-./build-release.sh windows    # Windows x64
-./build-release.sh macos      # macOS x64
-./build-release.sh linux      # Linux x64
+./codebeats build-windows    # Windows x64
+./codebeats build-macos      # macOS x64
+./codebeats build-linux      # Linux x64
 
 # Build for all platforms
-./build-release.sh all
+./codebeats build-all
 ```
 
 ### End User Experience
@@ -303,17 +287,27 @@ Create packages for multiple platforms:
 
 ### Distribution Formats
 - **Windows**: `codebeats-windows-x64.zip` (~20MB)
-- **macOS**: `codebeats-macos-x64.tar.gz` (~15MB)
+- **macOS**: `codebeats-macos-x64.tar.gz` (~15MB)  
 - **Linux**: `codebeats-linux-x64.tar.gz` (~18MB)
 
-### Deployment Architecture
+### Unified Tool
 
-The GUI intelligently finds and launches the CLI binary:
-- **Development**: Uses `cargo run --bin codebeats` 
-- **Deployment**: Uses bundled binary in same directory
-- **Fallback**: Graceful error handling if binary not found
+The `./codebeats` script provides all functionality in one place:
+- **Run**: Launch GUI or CLI versions
+- **Build**: Compile for current or multiple platforms  
+- **Package**: Create deployment archives for distribution
+- **Utilities**: Clean, test, and check code
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions and cross-compilation setup.
+
+## Summary
+
+CodeBeats now provides a complete desktop music synthesis solution with both command-line and graphical interfaces. The architecture maintains simplicity while offering professional deployment options for end users who don't need to install development tools.
+
+**Perfect for:**
+- **Developers**: Full-featured CLI with all synthesis options
+- **End Users**: Easy-to-use GUI with one-click deployment
+- **Distribution**: Professional standalone packages for all platforms
 
 ---
 

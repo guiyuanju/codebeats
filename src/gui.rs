@@ -4,7 +4,10 @@
 //! the CodeBeats command-line application with different parameters.
 
 use eframe::egui;
-use std::process::Command;
+use std::io::{BufRead, BufReader};
+use std::process::{Command, Stdio};
+use std::sync::{Arc, Mutex};
+use std::thread;
 
 /// GUI application state
 pub struct CodeBeatsGui {
@@ -23,6 +26,10 @@ pub struct CodeBeatsGui {
     status_message: String,
     is_running: bool,
     current_process: Option<std::process::Child>,
+
+    // Log display
+    log_messages: Arc<Mutex<Vec<String>>>,
+    show_logs: bool,
 }
 
 impl Default for CodeBeatsGui {
@@ -50,6 +57,8 @@ impl Default for CodeBeatsGui {
             status_message: "Ready to start CodeBeats".to_string(),
             is_running: false,
             current_process: None,
+            log_messages: Arc::new(Mutex::new(Vec::new())),
+            show_logs: false,
         }
     }
 }
@@ -178,6 +187,9 @@ impl CodeBeatsGui {
             cmd.arg("--verbose");
         }
 
+        // Configure process to capture output
+        cmd.stdout(Stdio::piped()).stderr(Stdio::piped());
+
         self.status_message = format!(
             "Starting CodeBeats with: {} waveform, {} language, volume {:.1}, filter {:.0}Hz{}",
             self.selected_waveform,
@@ -192,11 +204,59 @@ impl CodeBeatsGui {
         );
 
         match cmd.spawn() {
-            Ok(child) => {
+            Ok(mut child) => {
+                // Clear previous logs
+                if let Ok(mut logs) = self.log_messages.lock() {
+                    logs.clear();
+                }
+
+                // Capture stdout
+                if let Some(stdout) = child.stdout.take() {
+                    let log_messages = Arc::clone(&self.log_messages);
+                    thread::spawn(move || {
+                        let reader = BufReader::new(stdout);
+                        for line in reader.lines() {
+                            if let Ok(line) = line {
+                                if let Ok(mut logs) = log_messages.lock() {
+                                    logs.push(format!("🎵 {}", line));
+                                    // Keep only last 100 lines
+                                    if logs.len() > 100 {
+                                        logs.remove(0);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Capture stderr
+                if let Some(stderr) = child.stderr.take() {
+                    let log_messages = Arc::clone(&self.log_messages);
+                    thread::spawn(move || {
+                        let reader = BufReader::new(stderr);
+                        for line in reader.lines() {
+                            if let Ok(line) = line {
+                                if let Ok(mut logs) = log_messages.lock() {
+                                    logs.push(format!("⚠️ {}", line));
+                                    // Keep only last 100 lines
+                                    if logs.len() > 100 {
+                                        logs.remove(0);
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
                 self.current_process = Some(child);
                 self.is_running = true;
                 self.status_message
                     .push_str(" - Running! Press Stop to terminate.");
+
+                // Add initial log message
+                if let Ok(mut logs) = self.log_messages.lock() {
+                    logs.push("🎵 CodeBeats started! Begin typing to make music...".to_string());
+                }
             }
             Err(e) => {
                 self.status_message = format!("Failed to start CodeBeats: {}", e);
@@ -210,6 +270,11 @@ impl CodeBeatsGui {
         if let Some(mut child) = self.current_process.take() {
             let _ = child.kill();
             let _ = child.wait();
+
+            // Add stop message to logs
+            if let Ok(mut logs) = self.log_messages.lock() {
+                logs.push("🔇 CodeBeats stopped".to_string());
+            }
         }
         self.is_running = false;
         self.status_message = "CodeBeats stopped".to_string();
@@ -349,8 +414,11 @@ impl eframe::App for CodeBeatsGui {
             // Verbose Checkbox
             ui.checkbox(
                 &mut self.verbose,
-                "Verbose logging (show keystrokes in terminal)",
+                "Verbose logging (show detailed key information)",
             );
+
+            // Show logs checkbox
+            ui.checkbox(&mut self.show_logs, "Show logs in GUI");
 
             ui.add_space(20.0);
 
@@ -387,6 +455,28 @@ impl eframe::App for CodeBeatsGui {
                 ui.label("Status:");
                 ui.label(&self.status_message);
             });
+
+            // Log Display
+            if self.show_logs {
+                ui.add_space(10.0);
+                ui.separator();
+                ui.label("🎵 CodeBeats Logs:");
+
+                egui::ScrollArea::vertical()
+                    .max_height(200.0)
+                    .auto_shrink([false, true])
+                    .show(ui, |ui| {
+                        if let Ok(logs) = self.log_messages.lock() {
+                            if logs.is_empty() {
+                                ui.label("No logs yet. Start CodeBeats to see activity...");
+                            } else {
+                                for log_message in logs.iter() {
+                                    ui.label(log_message);
+                                }
+                            }
+                        }
+                    });
+            }
 
             ui.add_space(20.0);
 

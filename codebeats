@@ -1,0 +1,534 @@
+#!/bin/bash
+
+# CodeBeats - Unified Build, Deploy, and Run Script
+# Combines functionality of run.sh, deploy.sh, and build-release.sh
+
+set -e
+
+PROJECT_NAME="codebeats"
+GUI_BINARY="${PROJECT_NAME}-gui"
+CLI_BINARY="${PROJECT_NAME}"
+VERSION="1.0.0"
+
+echo "🎵 CodeBeats v${VERSION}"
+echo "======================="
+
+# Check if we're in the right directory
+if [ ! -f "Cargo.toml" ] || [ ! -f "src/main.rs" ]; then
+    echo "❌ Error: Run this script from the CodeBeats project root directory"
+    exit 1
+fi
+
+show_help() {
+    echo ""
+    echo "Usage: ./codebeats [command] [options...]"
+    echo ""
+    echo "🎮 Run Commands:"
+    echo "  gui                    Launch GUI (default)"
+    echo "  cli [args...]          Launch CLI with optional arguments"
+    echo ""
+    echo "🔨 Build Commands:"
+    echo "  build                  Build both GUI and CLI for current platform"
+    echo "  build-all              Build for all platforms (Windows, macOS, Linux)"
+    echo "  build-windows          Build for Windows x64"
+    echo "  build-macos            Build for macOS x64"
+    echo "  build-linux            Build for Linux x64"
+    echo ""
+    echo "📦 Deploy Commands:"
+    echo "  package                Create deployment package for current platform"
+    echo "  package-all            Create deployment packages for all platforms"
+    echo "  package-macos-app      Create macOS .app bundle only"
+    echo ""
+    echo "🧹 Utility Commands:"
+    echo "  clean                  Clean all build artifacts"
+    echo "  test                   Run tests"
+    echo "  check                  Check code without building"
+    echo "  help                   Show this help"
+    echo ""
+    echo "Examples:"
+    echo "  ./codebeats                           # Launch GUI"
+    echo "  ./codebeats cli -w cyberpunk -v 0.5   # Launch CLI with options"
+    echo "  ./codebeats package                   # Create deployment package"
+    echo "  ./codebeats build-all                 # Build for all platforms"
+    echo ""
+}
+
+# === RUN FUNCTIONS ===
+
+run_gui() {
+    echo "🎵 Starting CodeBeats GUI..."
+
+    # Try to use release binary first, fall back to cargo run
+    if [ -f "target/release/${GUI_BINARY}" ]; then
+        ./target/release/${GUI_BINARY}
+    elif [ -f "target/debug/${GUI_BINARY}" ]; then
+        ./target/debug/${GUI_BINARY}
+    else
+        echo "🔨 No binary found, building and running..."
+        cargo run --bin ${GUI_BINARY}
+    fi
+}
+
+run_cli() {
+    shift  # Remove 'cli' from arguments
+    echo "🎵 Starting CodeBeats CLI..."
+
+    # Try to use release binary first, fall back to cargo run
+    if [ -f "target/release/${CLI_BINARY}" ]; then
+        if [ $# -eq 0 ]; then
+            ./target/release/${CLI_BINARY}
+        else
+            ./target/release/${CLI_BINARY} "$@"
+        fi
+    elif [ -f "target/debug/${CLI_BINARY}" ]; then
+        if [ $# -eq 0 ]; then
+            ./target/debug/${CLI_BINARY}
+        else
+            ./target/debug/${CLI_BINARY} "$@"
+        fi
+    else
+        echo "🔨 No binary found, building and running..."
+        if [ $# -eq 0 ]; then
+            cargo run --bin ${CLI_BINARY}
+        else
+            cargo run --bin ${CLI_BINARY} -- "$@"
+        fi
+    fi
+}
+
+# === BUILD FUNCTIONS ===
+
+build_local() {
+    echo "🔨 Building CodeBeats for current platform..."
+    cargo build --release --bin ${CLI_BINARY}
+    cargo build --release --bin ${GUI_BINARY}
+    echo "✅ Build complete!"
+    echo "📁 Binaries: target/release/${CLI_BINARY}, target/release/${GUI_BINARY}"
+}
+
+build_for_target() {
+    local target=$1
+    local target_name=$2
+
+    echo "🔨 Building for $target_name ($target)..."
+
+    # Add target if not already installed
+    if [ "$target" != "local" ]; then
+        rustup target add $target 2>/dev/null || true
+        cargo build --release --target $target --bin $CLI_BINARY
+        cargo build --release --target $target --bin $GUI_BINARY
+        echo "✅ Built $target_name: target/$target/release/"
+    else
+        build_local
+    fi
+}
+
+create_macos_app() {
+    echo "📱 Creating macOS .app bundle..."
+
+    local app_name="CodeBeats.app"
+    local app_dir="releases/$app_name"
+    local contents_dir="$app_dir/Contents"
+    local macos_dir="$contents_dir/MacOS"
+    local resources_dir="$contents_dir/Resources"
+
+    # Create .app directory structure
+    mkdir -p "$macos_dir"
+    mkdir -p "$resources_dir"
+
+    # Determine binary path
+    local gui_binary=""
+    if [ -f "target/x86_64-apple-darwin/release/$GUI_BINARY" ]; then
+        gui_binary="target/x86_64-apple-darwin/release/$GUI_BINARY"
+    elif [ -f "target/release/$GUI_BINARY" ]; then
+        gui_binary="target/release/$GUI_BINARY"
+    else
+        echo "❌ No GUI binary found for macOS. Run build first."
+        return 1
+    fi
+
+    local cli_binary=""
+    if [ -f "target/x86_64-apple-darwin/release/$CLI_BINARY" ]; then
+        cli_binary="target/x86_64-apple-darwin/release/$CLI_BINARY"
+    elif [ -f "target/release/$CLI_BINARY" ]; then
+        cli_binary="target/release/$CLI_BINARY"
+    else
+        echo "❌ No CLI binary found for macOS. Run build first."
+        return 1
+    fi
+
+    # Copy binaries
+    cp "$gui_binary" "$macos_dir/CodeBeats"
+    cp "$cli_binary" "$macos_dir/codebeats"
+    chmod +x "$macos_dir/CodeBeats"
+    chmod +x "$macos_dir/codebeats"
+
+    # Copy resources
+    cp -r language_configs "$resources_dir/"
+    if [ -d "effects" ]; then
+        cp -r effects "$resources_dir/"
+    fi
+
+    # Create Info.plist
+    cat > "$contents_dir/Info.plist" << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>CodeBeats</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.codebeats.app</string>
+    <key>CFBundleName</key>
+    <string>CodeBeats</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.13</string>
+    <key>CFBundleDisplayName</key>
+    <string>CodeBeats</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.music</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+</dict>
+</plist>
+EOF
+
+    echo "✅ macOS .app bundle created: releases/$app_name"
+    echo "📁 You can now drag CodeBeats.app to Applications folder"
+}
+
+build_all_platforms() {
+    echo "🌍 Building for all platforms..."
+    build_for_target "local" "current-platform"
+    build_for_target "x86_64-pc-windows-gnu" "windows-x64"
+    build_for_target "x86_64-apple-darwin" "macos-x64"
+    build_for_target "x86_64-unknown-linux-gnu" "linux-x64"
+    echo ""
+    echo "🎉 All builds complete!"
+}
+
+# === PACKAGING FUNCTIONS ===
+
+package_for_target() {
+    local target=$1
+    local target_name=$2
+
+    echo "📦 Creating deployment package for $target_name..."
+
+    # Special handling for macOS - create .app bundle
+    if [ "$target" = "x86_64-apple-darwin" ] || ([ "$target" = "local" ] && [ "$(uname)" = "Darwin" ]); then
+        create_macos_app
+        return 0
+    fi
+
+    # Determine platform and build directory
+    if [ "$target" = "local" ]; then
+        local build_dir="target/release"
+        local platform_name="$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')"
+    else
+        local build_dir="target/$target/release"
+        local platform_name="$target_name"
+    fi
+
+    # Create deployment directory
+    local deploy_dir="releases/${PROJECT_NAME}-${platform_name}"
+    mkdir -p "$deploy_dir"
+
+    # Copy binaries
+    if [ "$target" = "x86_64-pc-windows-gnu" ]; then
+        cp "$build_dir/${CLI_BINARY}.exe" "$deploy_dir/" 2>/dev/null || {
+            echo "❌ Windows binary not found. Run: ./codebeats build-windows"
+            return 1
+        }
+        cp "$build_dir/${GUI_BINARY}.exe" "$deploy_dir/"
+
+        # Windows batch files
+        cat > "$deploy_dir/Start-CodeBeats-GUI.bat" << 'EOF'
+@echo off
+echo Starting CodeBeats GUI...
+start "" codebeats-gui.exe
+EOF
+        cat > "$deploy_dir/Start-CodeBeats-CLI.bat" << 'EOF'
+@echo off
+echo Starting CodeBeats CLI...
+echo Press Ctrl+C to exit
+codebeats.exe %*
+pause
+EOF
+    else
+        cp "$build_dir/$CLI_BINARY" "$deploy_dir/" 2>/dev/null || {
+            echo "❌ Binary not found for $target_name. Run build command first."
+            return 1
+        }
+        cp "$build_dir/$GUI_BINARY" "$deploy_dir/"
+
+        # Unix shell scripts
+        cat > "$deploy_dir/Start-CodeBeats-GUI.sh" << 'EOF'
+#!/bin/bash
+echo "🎵 Starting CodeBeats GUI..."
+echo "   Close this window to exit CodeBeats"
+echo ""
+./codebeats-gui
+EOF
+        cat > "$deploy_dir/Start-CodeBeats-CLI.sh" << 'EOF'
+#!/bin/bash
+echo "🎵 Starting CodeBeats CLI..."
+echo "   Press Ctrl+C to exit"
+echo ""
+./codebeats
+EOF
+        chmod +x "$deploy_dir/Start-CodeBeats-GUI.sh"
+        chmod +x "$deploy_dir/Start-CodeBeats-CLI.sh"
+        chmod +x "$deploy_dir/$CLI_BINARY"
+        chmod +x "$deploy_dir/$GUI_BINARY"
+    fi
+
+    # Copy assets
+    cp -r language_configs "$deploy_dir/"
+    if [ -d "effects" ]; then
+        cp -r effects "$deploy_dir/"
+    fi
+
+    # Copy documentation
+    cp README.md "$deploy_dir/"
+    [ -f "CHANGELOG.md" ] && cp CHANGELOG.md "$deploy_dir/"
+    [ -f "LICENSE" ] && cp LICENSE "$deploy_dir/"
+
+    # Create user instructions
+    if [ "$target" = "x86_64-pc-windows-gnu" ]; then
+        cat > "$deploy_dir/HOW-TO-RUN.txt" << 'EOF'
+🎵 CodeBeats - How to Run
+
+EASY WAY (Recommended):
+  Double-click: Start-CodeBeats-GUI.bat
+  This opens a user-friendly configuration window without showing terminal.
+
+COMMAND LINE:
+  Double-click: Start-CodeBeats-CLI.bat
+  Or open command prompt here and run: codebeats.exe --help
+
+WHAT'S INCLUDED:
+  - codebeats-gui.exe = Graphical interface (no terminal window)
+  - codebeats.exe     = Command-line interface
+  - language_configs/ = Programming language settings
+  - effects/          = Audio sample files
+  - README.md         = Full documentation
+
+QUICK START:
+  1. Double-click "Start-CodeBeats-GUI.bat"
+  2. Choose your programming language
+  3. Select a waveform (try "cyberpunk" or "natural")
+  4. Click "Start CodeBeats"
+  5. Start typing to make music!
+
+For more options, see README.md
+EOF
+    else
+        cat > "$deploy_dir/HOW-TO-RUN.txt" << 'EOF'
+🎵 CodeBeats - How to Run
+
+EASY WAY (Recommended):
+  Double-click: Start-CodeBeats-GUI.sh
+  This opens a user-friendly configuration window.
+
+COMMAND LINE:
+  Double-click: Start-CodeBeats-CLI.sh
+  Or open terminal here and run: ./codebeats --help
+
+WHAT'S INCLUDED:
+  - codebeats-gui     = Graphical interface
+  - codebeats         = Command-line interface
+  - language_configs/ = Programming language settings
+  - effects/          = Audio sample files
+  - README.md         = Full documentation
+
+QUICK START:
+  1. Double-click "Start-CodeBeats-GUI"
+  2. Choose your programming language
+  3. Select a waveform (try "cyberpunk" or "natural")
+  4. Click "Start CodeBeats"
+  5. Start typing to make music!
+
+For more options, see README.md
+EOF
+    fi
+
+    # Create archive
+    echo "🗜️  Creating distribution archive..."
+    cd releases
+    if [ "$target" = "x86_64-pc-windows-gnu" ]; then
+        if command -v zip &> /dev/null; then
+            zip -r "${PROJECT_NAME}-${platform_name}.zip" "${PROJECT_NAME}-${platform_name}"
+        else
+            tar -czf "${PROJECT_NAME}-${platform_name}.tar.gz" "${PROJECT_NAME}-${platform_name}"
+        fi
+    else
+        tar -czf "${PROJECT_NAME}-${platform_name}.tar.gz" "${PROJECT_NAME}-${platform_name}"
+    fi
+    cd ..
+
+    # Calculate sizes
+    local folder_size=$(du -sh "$deploy_dir" | cut -f1)
+    local archive_name="${PROJECT_NAME}-${platform_name}"
+    local archive_ext="tar.gz"
+    if [ "$target" = "x86_64-pc-windows-gnu" ] && command -v zip &> /dev/null; then
+        archive_ext="zip"
+    fi
+    local archive_size=$(du -sh "releases/${archive_name}.${archive_ext}" | cut -f1)
+
+    echo "✅ Package created: $platform_name"
+    echo "   📁 Folder: $folder_size"
+    echo "   🗜️  Archive: $archive_size"
+    echo "   📦 releases/${archive_name}.${archive_ext}"
+}
+
+package_current() {
+    echo "📦 Creating deployment package for current platform..."
+
+    # Build if needed
+    if [ ! -f "target/release/$CLI_BINARY" ] || [ ! -f "target/release/$GUI_BINARY" ]; then
+        echo "🔨 Building release binaries first..."
+        build_local
+    fi
+
+    mkdir -p releases
+    package_for_target "local" "current"
+
+    echo ""
+    echo "✅ Deployment package ready!"
+
+    # Platform-specific instructions
+    if [ "$(uname)" = "Darwin" ]; then
+        echo "🍎 macOS: CodeBeats.app created!"
+        echo "   📱 Drag CodeBeats.app to Applications folder"
+        echo "   🖱️ Double-click to launch (no terminal window)"
+    elif [ "$(uname)" = "Linux" ]; then
+        echo "🐧 Linux: Package created"
+        echo "   📦 Extract the .tar.gz file"
+        echo "   🖱️ Double-click Start-CodeBeats-GUI.sh"
+    else
+        echo "🎯 User Instructions:"
+        echo "   1. Send them the package file"
+        echo "   2. Tell them to extract it"
+        echo "   3. Tell them to double-click the GUI launcher"
+    fi
+}
+
+package_all() {
+    echo "📦 Creating deployment packages for all platforms..."
+    mkdir -p releases
+
+    echo "Building all platforms first..."
+    build_all_platforms
+
+    echo "📦 Packaging all platforms..."
+    package_for_target "local" "current"
+    package_for_target "x86_64-pc-windows-gnu" "windows-x64"
+    package_for_target "x86_64-apple-darwin" "macos-x64"
+    package_for_target "x86_64-unknown-linux-gnu" "linux-x64"
+
+    echo ""
+    echo "🎉 All packages created!"
+    echo "📁 Check releases/ directory for all archives"
+}
+
+# === UTILITY FUNCTIONS ===
+
+clean_all() {
+    echo "🧹 Cleaning all build artifacts..."
+    cargo clean
+    rm -rf releases
+    echo "✅ Clean complete"
+}
+
+run_tests() {
+    echo "🧪 Running tests..."
+    cargo test
+}
+
+check_code() {
+    echo "🔍 Checking code..."
+    cargo check --all-targets
+}
+
+# === MAIN SCRIPT LOGIC ===
+
+case "${1:-gui}" in
+    # Run commands
+    ""|"gui")
+        run_gui
+        ;;
+    "cli")
+        run_cli "$@"
+        ;;
+
+    # Build commands
+    "build")
+        build_local
+        ;;
+    "build-all")
+        build_all_platforms
+        ;;
+    "build-windows")
+        build_for_target "x86_64-pc-windows-gnu" "windows-x64"
+        ;;
+    "build-macos")
+        build_for_target "x86_64-apple-darwin" "macos-x64"
+        ;;
+    "build-linux")
+        build_for_target "x86_64-unknown-linux-gnu" "linux-x64"
+        ;;
+
+    # Package commands
+    "package")
+        package_current
+        ;;
+    "package-all")
+        package_all
+        ;;
+    "package-macos-app")
+        if [ "$(uname)" != "Darwin" ]; then
+            echo "❌ macOS .app creation is only supported on macOS"
+            exit 1
+        fi
+        if [ ! -f "target/release/$CLI_BINARY" ] || [ ! -f "target/release/$GUI_BINARY" ]; then
+            echo "🔨 Building release binaries first..."
+            build_local
+        fi
+        mkdir -p releases
+        create_macos_app
+        ;;
+
+    # Utility commands
+    "clean")
+        clean_all
+        ;;
+    "test")
+        run_tests
+        ;;
+    "check")
+        check_code
+        ;;
+    "help"|"--help"|"-h")
+        show_help
+        ;;
+    *)
+        echo "❌ Unknown command: $1"
+        echo ""
+        show_help
+        exit 1
+        ;;
+esac
+
+echo ""
+echo "🎵 CodeBeats operation complete! 🎵"

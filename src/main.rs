@@ -24,7 +24,7 @@ use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
 use device_query::{DeviceQuery, DeviceState, Keycode};
 use keyboard_config::KeyboardConfig;
 use keyboard_mapping::{
-    get_frequency_and_volume_with_config_virtual, KeyboardStateTracker, VirtualKeycode,
+    KeyboardStateTracker, VirtualKeycode, get_frequency_and_volume_with_config_virtual,
 };
 use sequence_detector::SequenceDetector;
 use std::sync::{Arc, Mutex};
@@ -252,7 +252,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
                 // Force play fart sample regardless of current waveform
                 let mut state = audio_state.lock().unwrap();
-                if let Some(ref fart_sample) = state.get_fart_sample() {
+                if let Some(fart_sample) = state.get_fart_sample() {
                     let playback = audio_samples::SamplePlayback::new(
                         fart_sample.clone(),
                         state.get_global_time(),
